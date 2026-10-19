@@ -1,0 +1,334 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><style>
+:root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
+
+/* v1.3: compact dashboard */
+.app{padding:10px 12px 88px}header{margin:0 0 6px}h1{font-size:23px}header small{font-size:11px}header .pill{font-size:10px}#today .card{padding:12px 13px;margin:8px 0;border-radius:16px}#today h2{font-size:17px;margin:0 0 5px}#today label{font-size:11px;margin:6px 0 3px}#today input,#today select{min-height:39px;padding:7px 9px;border-radius:9px;font-size:16px}#today .grid{gap:7px}#today .compact-pair{grid-template-columns:1.15fr .85fr}#today .compact-pair select{font-size:14px}#comparison .result{padding:9px 10px;margin:6px 0;border-left-width:3px}#comparison .result .price{font-size:20px;white-space:nowrap}#comparison .result strong{font-size:14px}#comparison .result small{font-size:11px;line-height:1.3;display:block;margin-top:2px}#comparison .card{margin-top:7px}#comparison h2{margin-bottom:5px}#comparison .heat-summary{font-size:12px;margin:0 0 8px;color:#536679}#comparison .status{font-size:11px;font-weight:750;margin-top:3px}#comparison .status.bad{color:#9f1239}#comparison .status.good{color:#12613e}#comparison .result.infeasible{border-color:#c58b27;background:#fff9ee}#comparison details{margin-top:9px;font-size:12px}#comparison details p{margin:8px 0}#comparison .warning{font-size:12px}#comparison .recommend{background:#e9f6ef;border:1px solid #bfe6d0;border-radius:10px;padding:9px 10px;font-size:12px;margin-bottom:8px}.tabs button{padding:5px 2px}.tabs b{font-size:18px}
+#splitPlan{padding:9px 10px;border:1px solid #cbdde5;border-radius:12px;margin:8px 0;background:#f8fbfd}#splitPlan label{margin:2px 0 5px;font-size:12px}#splitPlan input[type=range]{padding:0;min-height:26px;accent-color:#156c86}#splitPlan .row{font-size:13px}#splitPlan .bar{display:flex;height:8px;border-radius:12px;overflow:hidden;background:#dde6eb;margin:7px 0}#splitPlan .bar span:first-child{background:#ee9b45}#splitPlan .bar span:last-child{background:#298ca7;flex:1}#comparison .explain{font-size:11px;color:#64748b;line-height:1.4;margin:7px 0 0}
+/* v1.4 compact tweefasenregeling */
+.phasegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.phasegrid label{margin:5px 0 3px!important}.phasegrid input,.phasegrid select{width:100%;padding:7px!important;min-height:36px!important;font-size:14px!important}.tiny{font-size:11px;color:#64748b}.tankrow{display:flex;gap:8px;align-items:center;justify-content:space-between}.tanktag{font-weight:750;font-size:12px;padding:5px 8px;background:#eaf2f6;border-radius:20px}.inlinebtn{padding:9px 10px;font-size:12px}.panel{border:1px solid #d9e4eb;border-radius:11px;padding:10px;margin-top:8px}#phaseSettings summary{font-size:12px;color:#15546c}#phaseSettings{margin-top:8px}
+
+/* Kleine schermruimte-aanpassing: uitsluitend invoervelden en indicatieve toelichting */
+#today input:not([type="range"]),#today select{min-height:34px;padding:5px 8px;font-size:15px}
+#comparison .explain{font-size:9px;line-height:1.25;margin-top:5px}
+footer{font-size:10px;line-height:1.3;margin-top:10px}.fieldnote{font-size:11px;color:#77634c;background:#f0e3d0;border-radius:8px;padding:8px 6px;min-height:30px}
+
+/* v1.5: compactere telefoonweergave, bedragen en waarschuwingen blijven leesbaar */
+@media(max-width:600px){
+.app{padding:6px 11px 76px}
+header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-size:10px}
+#today .card{padding:9px 11px;margin:5px 0;border-radius:14px}
+#today h2{font-size:16px;margin-bottom:2px}
+#today label{margin:3px 0 2px;font-size:11px;line-height:1.15}
+#today input:not([type=range]),#today select{min-height:30px;padding:4px 7px;font-size:14px}
+#today .grid{gap:5px}
+#splitPlan{margin:5px 0;padding:7px 9px}
+#splitPlan .row{font-size:12px}#splitPlan label{margin:0 0 2px;font-size:11px}
+#splitPlan input[type=range]{min-height:19px;height:20px}
+#splitPlan .bar{height:6px;margin:3px 0}
+#phaseSettings{margin:5px 0!important;padding:8px 11px!important}
+#phaseSettings summary{font-size:11px}
+#comparison .card{margin:5px 0;padding:9px 11px}
+#comparison h2{font-size:16px;margin-bottom:2px}
+#comparison .heat-summary{font-size:11px;line-height:1.2;margin:0 0 4px}
+#comparison .result{padding:6px 8px;margin:4px 0;border-radius:8px}
+#comparison .result strong{font-size:13px}
+#comparison .result .price{font-size:20px}
+#comparison .result small{font-size:10px;line-height:1.15;margin-top:0}
+#comparison .status{font-size:10px;line-height:1.2;margin-top:2px}
+#comparison .explain{font-size:9px;line-height:1.2;margin-top:4px}
+#comparison details{margin-top:5px;font-size:11px}
+.tabs{padding-top:3px}.tabs button{padding:3px 2px}.tabs b{font-size:17px}
+}
+
+/* v1.6: warme beige velden, drie herkenbare panelen en handmatige berekening */
+:root{background:#f7f1e7;color:#45392e}body{background:#f7f1e7}.app{background:#fbf8f2}
+#today>.card{background:#f8f0e3;border-color:#e3d3bd}
+#today input:not([type=range]),#today select{background:#f0e3d0;border-color:#d8c4a6;color:#46392d}
+#today input:focus,#today select:focus{outline:2px solid #bc9b6d;outline-offset:1px}
+#splitPlan{background:#f4e7d4;border-color:#dcc7a9}
+#phaseSettings{background:#f8f0e4;border-color:#e3d3bd}
+#comparison>.card{background:#fffcf7;border-color:#e7dac9}
+#comparison .result{background:#f8f3eb;border-left-color:#b58a53}
+#comparison .result.infeasible{background:#fff8e9;border-left-color:#c58b27}
+#splitPlan .bar{background:#e7d8bf}#splitPlan .bar span:first-child{background:#36383c}#splitPlan .bar span:last-child{background:#e6b42e}
+#splitPlan input[type=range]{accent-color:#36383c}
+.gasdot{color:#dca928}.plan-main{display:flex;gap:8px;align-items:center}.plan-controls{flex:1;min-width:0}.plan-controls>.row:first-child{gap:5px}.plan-controls>.row:first-child small{font-size:10px;white-space:nowrap}.plan-controls strong{font-size:12px;white-space:nowrap}
+.calcbtn{flex:0 0 auto;background:#0b8390;padding:9px 8px;font-size:12px;border-radius:9px;white-space:nowrap;min-width:82px}.calcbtn.pending{background:#aa6e20}
+.calc-pending{font-size:10px;color:#8b5515;margin-top:3px;font-weight:650}.calc-pending.hidden{display:none}
+@media(max-width:380px){.calcbtn{padding:8px 6px;min-width:73px;font-size:11px}.plan-controls>.row:first-child small{font-size:9px}.plan-controls strong{font-size:11px}}
+/* v1.8: verdelingsbalk boven de schuifbalk; uren slechts eenmaal getoond */
+#splitPlan .bar{margin:5px 0 3px}
+#splitPlan input[type=range]{display:block;width:100%;margin:0 0 2px}
+#comparison .result .plan-secondary{font-weight:650;color:#76572f;margin-top:2px}#comparison .result .status{margin-top:2px}#comparison.fresh>.card{background:#eef7ef;border-color:#9fc9aa;box-shadow:0 0 0 1px #d3e8d6}#comparison:not(.fresh)>.card{background:#fffcf7}.test-entry{border:1px solid #e4d8c7;border-radius:12px;background:#fbf6ef;padding:11px;margin:9px 0}.test-entry .row{align-items:flex-start}.test-entry small{display:block;margin:4px 0}.test-entry details{margin:5px 0}.test-entry .test-prediction{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;max-height:240px;overflow:auto}.test-entry .tag{font-size:11px;color:#156c86;font-weight:700}#gasMode{margin-top:4px}#gasInfo{margin-top:8px}#gasSession{background:#fffdf9}</style><style>
+/* v1.9.8: compacte, op een telefoonscherm leesbare drieledige vergelijking */
+#today .today-version{font-size:10px;font-weight:500;color:#867461}
+#today .gas-details{margin:2px 0 4px;font-size:10px}
+#today .gas-details summary{font-size:10px;color:#806d55}
+#today .gas-details p{margin:3px 0}
+#today #splitPlan{padding:7px 9px}
+#today #comparison .cost-panel{padding:9px 8px}
+.compare-heading{display:flex;justify-content:space-between;align-items:baseline;gap:6px;margin-bottom:7px}
+.compare-heading strong{font-size:13px}.compare-heading small{font-size:9px;color:#8c7967;text-align:right}
+.cost-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.cost-choice{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;border:1px solid #e1d2bc;background:#f9f4eb;border-radius:11px;padding:7px 3px 8px;gap:3px}
+.cost-choice.selected{border:2px solid #b88a4e;background:#fff0d8;padding:6px 2px 7px}
+.choice-icon{height:48px;display:flex;align-items:center;justify-content:center}
+.device-icon{width:42px;height:46px;display:block}.mixed-icons{display:flex;align-items:center}.mixed-icons .device-icon{width:29px;height:38px}
+.cost-choice strong{font-size:12px;line-height:1.1}.cost-choice small{font-size:10px;white-space:nowrap;color:#67584a}
+.cost-choice .choice-price{font-size:19px;font-weight:800;white-space:nowrap;color:#453526;letter-spacing:-.7px}
+.cost-note{font-size:10px;line-height:1.35;color:#726251;margin:7px 2px 2px}
+#today #comparison details{margin:4px 2px 0}
+#today #comparison details summary{font-size:10px}
+@media(max-width:360px){.cost-choice .choice-price{font-size:17px}.device-icon{width:36px}.mixed-icons .device-icon{width:25px}.cost-choice strong{font-size:11px}}
+
+/* v1.9.8: brede LC-150, rustige berekenstatus en petroleumvoordeel */
+.choice-icon{height:57px;width:100%}.device-icon{width:56px;height:53px}.zibro-device{width:91px;height:58px;max-width:100%}.mixed-icons{gap:1px}.mixed-icons .zibro-device{width:56px;height:44px}.mixed-icons .device-icon:not(.zibro-device){width:37px;height:43px}
+#comparison:not(.fresh) .cost-choice{background:#f7f4ee;border-color:#e0d8ca}#comparison:not(.fresh) .cost-choice.selected{background:#f7f4ee;border-color:#d3c9b8}
+#comparison:not(.fresh) .choice-price{color:#9a8e80}#comparison:not(.fresh) .cost-panel{background:#fffcf7}
+#today .savings-card{background:#eff7f0;border-color:#b5d8be}#today .savings-card strong{font-size:13px}.saving-number{color:#147c4e;white-space:nowrap}#today .savings-card .grid{margin-top:5px}#today .savings-card .tiny{margin:5px 0 0}
+@media(max-width:390px){.zibro-device{width:79px}.mixed-icons .zibro-device{width:48px}.mixed-icons .device-icon:not(.zibro-device){width:32px}.choice-icon{height:52px}#today .savings-card strong{font-size:12px}}
+</style><style>
+/* v1.9.8 compact: Vandaag past op een gangbaar telefoonscherm zonder verticale scroll */
+#today .card{margin:4px 0;padding:8px 10px;border-radius:12px}
+#today h2{font-size:15px;margin:0 0 2px}
+#today label{font-size:10px;margin:3px 0 1px}
+#today input,#today select{min-height:32px;padding:4px 7px;font-size:14px}
+#today .grid{gap:5px}
+#today .gas-details{margin:1px 0;font-size:9px}
+#today #splitPlan{padding:5px 8px;margin:4px 0}
+#today #splitPlan .bar{margin:2px 0}
+#today #splitPlan label{margin:0 0 1px}
+#today #splitPlan input[type=range]{min-height:20px}
+#today .calcbtn{padding:7px 9px}
+#today #phaseSettings{padding:7px 10px}
+#today #comparison .cost-panel{padding:6px 7px;margin:4px 0}
+#today .compare-heading{margin-bottom:3px}
+#today .cost-choice{padding:3px 2px 4px;gap:1px}
+#today .cost-choice.selected{padding:2px 1px 3px}
+#today .choice-icon{height:43px}
+#today .zibro-device{width:72px;height:42px}
+#today .mixed-icons .zibro-device{width:43px;height:36px}
+#today .mixed-icons .device-icon:not(.zibro-device){width:28px;height:36px}
+#today .device-icon:not(.zibro-device){height:40px}
+#today .cost-choice .choice-price{font-size:17px}
+#today .cost-note{margin:3px 1px 0;font-size:9px}
+#today .savings-card{padding:9px 10px;margin:4px 0}
+#today .savings-card strong{font-size:12px}
+@media(max-height:760px){
+ .app{padding-top:5px}header{margin-bottom:2px}header h1{font-size:20px}
+ #today .card{padding:6px 9px;margin:3px 0}
+ #today input,#today select{min-height:29px;padding:3px 6px}
+ #today #splitPlan{padding:4px 7px;margin:3px 0}
+ #today .choice-icon{height:35px}
+ #today .zibro-device{height:34px;width:65px}
+ #today .mixed-icons .zibro-device{height:31px;width:38px}
+ #today .cost-choice{padding:2px;gap:0}
+ #today .cost-choice .choice-price{font-size:16px}
+ #today #comparison .cost-panel{padding:5px 6px}
+}
+</style><style>/* v1.9.9: heldere petroleuminformatie zonder extra scrollen */
+#today .saving-prices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;font-size:11px;color:#645846}
+#today .saving-prices span{display:flex;justify-content:space-between;gap:4px;align-items:baseline;white-space:nowrap}
+#today .saving-prices b{font-size:12px;color:#3f3a2f}
+#today .saving-footnote{font-size:10px;color:#627565;margin:4px 0 0;line-height:1.2}
+#today .savings-card{padding:8px 10px;margin:4px 0}
+@media(max-width:360px){#today .saving-prices{font-size:10px;gap:4px}#today .saving-prices b{font-size:10px}}
+</style><style>
+/* v1.9.15: duidelijke petroleumkaart zoals gekozen voorbeeld, compact op gsm */
+#today .savings-card{padding:10px 13px;margin:5px 0 2px;background:#eff7f0;border:1px solid #a6d5b5}
+#today .saving-head{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+#today .saving-title{font-size:14px;font-weight:750;color:#235b40}
+#today .saving-prices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 8px}
+#today .saving-prices>div{display:flex;flex-direction:column;gap:2px;min-width:0}
+#today .saving-prices span{font-size:11px;color:#736d63}
+#today .saving-prices b{font-size:15px;color:#263b32}
+#today .saving-bottom{border-top:1px solid #b9d7c3;padding-top:7px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+#today .saving-bottom span{font-size:12px}
+#today .saving-bottom strong{font-size:20px;color:#15844c;white-space:nowrap}
+@media(max-height:800px){#today .savings-card{padding:7px 10px}#today .saving-head{margin-bottom:5px}#today .saving-prices{margin-bottom:5px}#today .saving-bottom{padding-top:5px}}
+</style><style>
+/* v1.9.15: actual LC-150 product image and dark petroleum card */
+#today .choice-icon .zibro-device{object-fit:contain;object-position:center;width:83px;height:54px;max-width:100%;mix-blend-mode:multiply}
+#today .mixed-icons .zibro-device{width:49px;height:43px}
+#today .savings-card{background:#090909!important;color:#fff!important;border:1px solid #343434!important;border-radius:18px;padding:12px 15px;margin:6px 0 3px}
+#today .saving-title{color:#fff!important;font-size:16px;font-weight:750}
+#today .saving-head{margin-bottom:9px}
+#today .saving-prices{margin-bottom:10px;gap:14px}
+#today .saving-prices span{color:#aaa!important;font-size:12px}
+#today .saving-prices b{color:#fff!important;font-size:17px}
+#today .saving-bottom{border-top:1px solid #292929;padding-top:9px;color:#fff}
+#today .saving-bottom span{font-size:13px}
+#today .saving-bottom strong{font-size:23px;color:#1fc369!important}
+@media(max-height:850px){#today .savings-card{padding:9px 12px}#today .saving-head{margin-bottom:6px}#today .saving-prices{margin-bottom:6px}#today .saving-bottom{padding-top:6px}}
+</style><style>
+/* v1.9.15: compacte kaarten, productvormen en tankstationachtergrond */
+#today .choice-icon{height:59px;overflow:hidden;position:relative}
+#today .choice-icon .zibro-device{width:91px;height:55px;object-fit:contain;object-position:center;max-width:100%;mix-blend-mode:multiply}
+#today .choice-icon .bellfires-device{width:70px;height:55px;object-fit:cover;object-position:center;border-radius:3px;mix-blend-mode:multiply}
+#today .mixed-icons{display:flex;align-items:center;justify-content:center;gap:2px;width:100%}
+#today .mixed-icons .zibro-device{width:53px;height:46px}
+#today .mixed-icons .bellfires-device{width:43px;height:46px}
+#today .cost-choice .choice-price{font-size:22px;color:#194f35;font-weight:850}
+#today .savings-card{background:linear-gradient(90deg,rgba(234,244,236,.96) 0%,rgba(234,244,236,.94) 60%,rgba(234,244,236,.47) 100%),url('./tankstation.jpg') right center/auto 100% no-repeat!important;background-color:#eaf4ec!important;color:#293c32!important;border:1px solid #c4dac9!important;padding:8px 12px!important;border-radius:16px!important}
+#today .saving-title{font-size:13px!important;color:#293c32!important}
+#today .saving-head{margin-bottom:5px!important}
+#today .saving-prices{margin-bottom:5px!important;gap:10px!important}
+#today .saving-prices span{font-size:10px!important;color:#536a5c!important}
+#today .saving-prices b{font-size:12px!important;color:#293c32!important}
+#today .saving-bottom{border-top:1px solid #bbd1c2!important;padding-top:5px!important;color:#293c32!important}
+#today .saving-bottom span{font-size:11px!important}
+#today .saving-bottom strong{font-size:16px!important;color:#237a48!important}
+@media(max-height:800px){#today .choice-icon{height:52px}#today .savings-card{padding:6px 10px!important}}
+</style><style>
+/* v1.9.15 – visual style from the user-approved concept */
+#today .cost-choice{background:#f3f8f2;border-color:#d6e5d9;border-radius:14px;overflow:hidden}
+#today .cost-choice.selected{background:#f2f8ef;border-color:#7fa98d}
+#today .choice-icon{height:77px!important;width:100%;overflow:hidden;border-radius:9px;display:block;margin:0 auto 3px}
+#today .scene-photo{width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:9px}
+#today .cost-choice .choice-price{font-size:23px!important;line-height:1.1;color:#145638!important;font-weight:850}
+#today .cost-choice strong{font-size:12px}
+#today .cost-choice small{font-size:10px}
+#today .savings-card{background:linear-gradient(90deg,rgba(240,248,241,.97) 0%,rgba(240,248,241,.91) 49%,rgba(240,248,241,.23) 100%),url('./tankstation-scene.jpg') right center/auto 100% no-repeat!important;background-color:#e9f3eb!important}
+#today .savings-card .saving-number{color:#187d48!important}
+@media(max-height:850px){#today .choice-icon{height:67px!important}}
+@media(max-height:740px){#today .choice-icon{height:53px!important}#today .cost-choice .choice-price{font-size:19px!important}}
+</style><style>
+/* v1.9.15: final user-approved photography, visible before Bereken */
+#today .savings-card{
+ background-image:url('./tankstation-hero.jpg')!important;
+ background-position:center center!important;
+ background-size:cover!important;
+ background-repeat:no-repeat!important;
+ background-color:#eaf4ec!important;
+ overflow:hidden;
+}
+#today .saving-bottom{justify-content:flex-start!important;gap:24px!important}
+#today .saving-bottom .saving-number{margin-left:0!important;white-space:nowrap!important;color:#187d48!important}
+#today .cost-choice .choice-icon{height:77px!important}
+#today .cost-choice .scene-photo{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-height:850px){#today .cost-choice .choice-icon{height:67px!important}}
+@media(max-height:740px){#today .cost-choice .choice-icon{height:53px!important}}
+</style><style>
+/* v1.9.15: warm Fiat 500X scene, no baked-in prices */
+#today .savings-card{
+ background-image:url('./tankstation-fiat500x.jpg')!important;
+ background-position:center center!important;
+ background-size:100% 100%!important;
+ background-repeat:no-repeat!important;
+ background-color:#f1f5ec!important;
+}
+#today .saving-prices{width:65%;gap:8px!important}
+#today .saving-prices>div{min-width:0}
+#today .saving-prices span,#today .saving-prices b{white-space:nowrap}
+#today .saving-bottom{border-top-color:rgba(86,112,91,.30)!important;width:66%;gap:14px!important}
+#today .saving-bottom .saving-number{font-size:16px!important;color:#167747!important}
+#today #splitPlan .plan-controls .row small{font-size:10px;white-space:nowrap}
+@media(max-width:380px){#today .saving-prices{width:69%}#today .saving-bottom{width:73%;gap:9px!important}#today .saving-prices span{font-size:9px!important}#today .saving-prices b{font-size:11px!important}#today #splitPlan .plan-controls .row small{font-size:9px}}
+</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.15</span></header>
+<section id="today"><div class="card"><h2>🏠 Vandaag <span class="today-version">· kostenvergelijking</span></h2><div class="grid"><div><label>Buiten (°C)</label><input id="outside" type="number" value="0" step="1"></div><div><label>Binnen (°C)</label><input id="inside" type="number" value="16" step="0.5"></div></div><details class="gas-details"><summary>ⓘ Hoe is mijn gasprijs berekend?</summary><p id="gasFormulaInfo" class="tiny" aria-live="polite"></p></details><div class="grid"><div><label>Gewenst binnen (°C)</label><input id="target" type="number" value="21" step="0.5"></div><div><label>Verwarmingsduur (uur)</label><input id="duration" type="number" value="4" min="0.5" step="0.5"></div></div><div class="grid"><div><label>Gasradar (ct/kWh)</label><input id="spot" type="number" value="8.8" step="0.1"></div><div><label>Mijn gasprijs (ct/kWh)</label><input id="contractGas" type="number" value="14" min="0" step="0.01" readonly aria-label="Automatisch berekende geschatte totale gasprijs"></div></div></div><div id="splitPlan"><div class="row" style="margin-bottom:4px"><label for="weatherProfile" style="margin:0">Weerprofiel</label><select id="weatherProfile" style="width:auto;min-height:29px;padding:3px 6px;font-size:13px"><option value="mild">🌤️ Zacht</option><option value="cold">❄️ Koud</option><option value="verycold">🥶 Heel koud</option><option value="custom">✏️ Aangepast</option></select></div><div class="tiny hidden" id="profileHint">Voorlopige standen, niet automatisch gekoppeld aan buitentemperatuur.</div><div class="plan-main"><div class="plan-controls"><div class="row"><strong>Mijn combinatie</strong></div><label for="zSplit">Schuif om de uren te verdelen</label><div class="bar" aria-hidden="true"><span id="zBar" style="width:25%"></span><span></span></div><input id="zSplit" type="range" min="0" max="4" value="1" step="0.5" aria-label="Uren Zibro; resterende uren Bellfires"><div class="row"><small>Zibro: <b id="zTime">1 uur</b></small><small>Bellfires Smart Bell 75/80: <b id="gTime">3 uur</b></small></div></div><button id="recalculate" type="button" class="btn calcbtn">↻ Bereken</button></div><div id="calcPending" class="calc-pending hidden">Instellingen gewijzigd — klik op Bereken.</div></div><div id="comparison"></div><div class="card savings-card" aria-label="Mijn petroleumvoordeel"><div class="saving-head"><span class="saving-title">Mijn petroleumvoordeel</span></div><div class="saving-prices"><div><span>Mijn aankoopprijs</span><b id="savingPurchase">€ 1,20/L</b></div><div><span>Huidige prijs</span><b id="savingCurrent">€ 2,00/L</b></div></div><div class="saving-bottom"><span>Voordeel op een tank</span><strong id="tankSaving" class="saving-number">€ 5,60</strong></div></div></section>
+<section id="heating" class="hidden"><details id="phaseSettings" class="card"><summary>⚙️ Standen en opwarmfases instellen</summary><p class="tiny">Kies per toestel hoe lang de hoge stand duurt. De rest van de gekozen toestelduur is de lage stand.</p><div class="panel"><strong>⚫ Zibro</strong><div class="phasegrid"><div><label>Opwarmen (°C)</label><select id="zHighTemp"><option>22</option><option selected>23</option><option>24</option><option>25</option></select></div><div><label>Onderhouden (°C)</label><select id="zLowTemp"><option>19</option><option selected>20</option><option>21</option><option>22</option></select></div></div><label>Hoge stand (uur, binnen Zibro-duur)</label><input id="zHighHours" type="number" min="0" max="10" step="0.5" value="0.5"></div><div class="panel"><strong>🟡 Bellfires</strong><div class="phasegrid"><div><label>Opwarmen</label><select id="gHighBurners"><option value="2" selected>2 branders</option><option value="1">1 brander</option></select></div><div><label>Onderhouden</label><select id="gLowBurners"><option value="1" selected>1 brander</option><option value="2">2 branders</option></select></div></div><label>Hoge stand (uur, binnen Bellfires-duur)</label><input id="gHighHours" type="number" min="0" max="10" step="0.5" value="0.5"></div><p class="tiny">De Zibro moduleert automatisch: een thermostaatinstelling van 23°C betekent niet voortdurend hetzelfde verbruik. De berekening blijft een schatting. De Zibro-thermostaatstand is geen vaste vermogensstand. Je bedient de Bellfires handmatig met 1 of 2 branders, zonder thermostaatmodus. De vermogens zijn indicatief tot we voldoende P1-metingen hebben.</p></details><div class="card"><h2>🛢️ Petroleumprijzen</h2><div class="grid"><div><label for="purchasePriceToday">Mijn aankoopprijs (€/L)</label><input id="purchasePriceToday" type="number" min="0" step="0.01" value="1.20"></div><div><label for="currentPetrolPrice">Huidige prijs (€/L)</label><input id="currentPetrolPrice" type="number" min="0" step="0.01" value="2.00"></div></div><p class="tiny" id="savingNote">Prijsverschil voor 7 liter. Huidige prijs zelf invullen; geen live marktprijs.</p></div><div class="card"><h2>⚙️ Gasprijsinstellingen</h2><details style="margin:8px 0"><summary>⚙️ Schatting netkosten en heffingen</summary><label for="gasExtra">Voorlopige opslag (cent/kWh)</label><input id="gasExtra" type="number" value="3.40" min="0" step="0.01"><p class="tiny">Standaard 3,40 ct/kWh: ruwe benadering op basis van de tariefkaart februari 2025, Fluvius Zenne-Dijle T1, heffingen en transport. Dit is GEEN bevestigd nettarief voor 2026. Pas aan wanneer de actuele tarieven bekend zijn. Vaste jaarlijkse kosten zijn niet inbegrepen.</p></details><p class="tiny">De geschatte totale gasprijs op Vandaag wordt automatisch herberekend.</p></div><div class="card"><h2>🔥 Verwarmingsbeurt</h2><p class="muted">Registreer na het verwarmen de werkelijke duur en temperatuur. De teststart bewaar je bij Registratie.</p><label>Datum</label><input id="sessionDate" type="date"><div class="grid"><div><label>Binnen bij start (°C)</label><input id="startTemp" type="number" value="16" step="0.5"></div><div><label>Binnen bij einde (°C)</label><input id="endTemp" type="number" value="21" step="0.5"></div></div><label>Zibro brandtijd (minuten)</label><input id="zMinutes" type="number" min="0" value="90"><label>Zibro thermostaat (°C)</label><input id="zThermostat" type="number" value="21" step="1"><label>Bellfires brandtijd (minuten)</label><input id="gMinutes" type="number" min="0" value="0"><label>Bellfires stand</label><select id="burners"><option value="0">Niet gebruikt</option><option value="1">1 brander</option><option value="2">2 branders</option><option value="mixed">Afwisselend</option></select><button class="btn wide" id="saveSession">Bewaar verwarmingsbeurt</button><p class="muted">Zibro-kosten zijn voorlopig geschat. Na een volledige tankcyclus kennen we je gemiddelde werkelijke verbruik.</p></div></section>
+<section id="register" class="hidden"><div class="card"><h2>🧪 Nieuwe verwarmingstest</h2><p class="muted">Vul op Vandaag de actuele waarden in en druk op Bereken. Bewaar daarna hier de startgegevens en de voorspelling. Dit is een momentopname.</p><label>Soort dag</label><select id="daytype"><option value="office">Na kantoor</option><option value="home">Thuiswerk</option><option value="sunday">Zondagavond</option><option value="other">Andere dag</option></select><label>Starttijd</label><input id="testTime" type="datetime-local"><label>P1-gasmeter bij start (m³, optioneel)</label><input id="testP1" type="number" step="0.001" placeholder="Bijvoorbeeld 1250.4"><button class="btn wide" id="saveTest">📌 Bewaar teststart en voorspelling</button><p class="tiny" id="testInfo"></p></div><div class="card"><h2>⛽ P1-gasregistratie</h2><p class="muted">Je gebruikt gas alleen voor verwarming. Lees de meter voldoende later uit vanwege mogelijke vertraging.</p><label>Bij welke test of verwarmingsbeurt?</label><select id="gasSession"></select><label>Soort meterstanden</label><select id="gasMode"><option value="day">Dagtotaal gas (m³)</option><option value="meter">Cumulatieve gasmeterstand (m³)</option></select><p class="tiny" id="gasInfo">Vul twee dagtotalen van dezelfde dag in. Het verschil is het gasverbruik van deze test.</p><div class="grid"><div><label>Beginwaarde (m³)</label><input id="gasBegin" type="number" step="0.001" placeholder="bv. 1250.4"></div><div><label>Eindwaarde (m³)</label><input id="gasEnd" type="number" step="0.001" placeholder="bv. 1250.8"></div></div><button class="btn wide" id="saveGas">Bewaar gasmeting</button></div><div class="card"><h2>🛢️ Zibro-tank</h2><div class="tankrow"><span>Geregistreerde status</span><span class="tanktag" id="tankStatus">Nog niet geregistreerd</span></div><p class="muted">De status komt van jouw registratie, niet van een sensor. Je vult pas volledig bij na de waarschuwing van de Zibro.</p><button class="btn alt wide" id="tankWarning">⚠️ Zibro vraagt petroleum</button><p id="tankWarningInfo" class="tiny"></p><label>Werkelijk bijgevulde liters</label><input id="refillLitres" type="number" value="5" min="0.1" step="0.1"><button class="btn wide" id="saveRefill">✓ Tank volledig gevuld — registreer</button><p id="tankInfo" class="muted"></p><div class="warning">De eerste volledige vulling start de meting. Alleen een volgende vulling na een geregistreerde tankcyclus telt mee als verbruik. De waarschuwing betekent niet dat de tank letterlijk leeg is.</div></div></section>
+<section id="overview" class="hidden"><div class="card"><h2>♨️ Zibro – metingen en tankcyclus</h2><p class="muted">Hier bewaren we echte waarnemingen apart van schattingen. De bekende Zibro-metingen van 18 en 19 oktober zijn voorbereid. Op 19 oktober begon de Zibro om 18.00 uur. Onbekende eindtijden en liters blijven leeg.</p><div id="zibroLog"></div><h3>Nieuwe Zibro-meting</h3><p class="tiny">Meet tijdens het opwarmen eventueel om het halfuur; bij stabiele temperatuur volstaat ieder uur. Noteer alleen werkelijk afgelezen waarden; schattingen kies je apart.</p><label>Datum</label><input id="zLogDate" type="date"><label>Tijdstip (optioneel)</label><input id="zLogTime" type="time"><div class="grid"><div><label>Living (°C)</label><input id="zLogLiving" inputmode="decimal" placeholder="bv. 22,5"></div><div><label>Keuken (°C)</label><input id="zLogKitchen" inputmode="decimal" placeholder="optioneel"></div></div><div class="grid"><div><label>Buiten (°C)</label><input id="zLogOutside" inputmode="decimal" placeholder="optioneel"></div><div><label>Instelling Zibro (°C)</label><input id="zLogSet" inputmode="decimal" placeholder="bv. 23"></div></div><div class="grid"><div><label>Zibro ROOM (°C, optioneel)</label><input id="zLogRoom" inputmode="decimal" placeholder="bv. 22"></div><div><label>Soort waarneming</label><select id="zLogType"><option value="gemeten">Gemeten</option><option value="geschat">Geschat / herinnering</option></select></div></div><p class="tiny">Vul alleen afgelezen waarden in. Is bijvoorbeeld Buiten niet opnieuw gemeten, laat dat veld leeg. Bij een gemengde meting licht je schattingen toe in de opmerking.</p><label>Opmerking (ook brandstand of wijziging)</label><input id="zLogNote" placeholder="bv. brander schakelt lager"><button class="btn wide" id="zAddLog">Bewaar meting</button><details><summary>Branduren en tankcyclus</summary><p class="muted">Vulling 19 oktober: 7-literstreepje. De exacte hoeveelheid die later verbruikt is, kennen we nog niet. Registreer per gebruik de werkelijke brandtijd. Bij een volgende vulling tot hetzelfde niveau noteren we hoeveel liter er bijgaat.</p><p class="tiny">19 oktober: start branden om 18.00 uur. Vul de eindtijd pas in zodra de kachel uitgaat. Een lopende beurt telt nog niet als afgeronde brandtijd.</p><label>Datum verwarmingsbeurt</label><input id="zRunDate" type="date"><div class="grid"><div><label>Start werkelijk branden</label><input id="zRunStart" type="time"></div><div><label>Einde branden</label><input id="zRunEnd" type="time"></div></div><button class="btn wide" id="zAddRun">Bewaar branduren</button><div id="zRunSummary"></div><label>Liters bij volgende vulling tot 7-literstreepje</label><input id="zRefillLitres" inputmode="decimal" placeholder="Nog niet bekend"><button class="btn alt wide" id="zCloseCycle">Sluit tankcyclus af</button><div id="zCycleSummary"></div></details></div><div class="card"><h2>📊 Mijn overzicht</h2><div id="totals"></div><h2 style="margin-top:16px">Bewaarde teststarts</h2><div id="testHistory"></div><h2 style="margin-top:22px">Geschiedenis</h2><div id="history"></div></div><div class="card"><h2>⚙️ Instellingen</h2><label>Petroleumprijs (€/liter)</label><input id="petrolPrice" type="number" value="1.20" min="0" step="0.01"><label>Geschat Zibro-verbruik (liter/uur)</label><input id="zRate" type="number" value="0.325" min="0.151" max="0.505" step="0.001"><p class="tiny">De geschatte gasprijs wordt op Vandaag berekend uit Gasradar, de EnergyVision-formule en een aanpasbare opslag voor netkosten/heffingen.</p><label>Omrekening gas (kWh/m³)</label><input id="gasKwh" type="number" value="10.5" min="1" step="0.1"><label>Bellfires geschat rendement (%)</label><input id="gasEff" type="number" value="85" min="1" max="100" step="1"><label>Geschat warmteverlies bij 21°C binnen en 0°C buiten (kW)</label><input id="heatDemand" type="number" value="3" min="0.1" step="0.1"><button class="btn wide" id="saveSettings">Instellingen bewaren</button><details><summary>🛡️ Bescherm je gegevens</summary><p class="muted">Je metingen en instellingen worden op dit toestel bewaard. Maak regelmatig een veiligheidskopie, zeker voordat je HeatWise bijwerkt of van telefoon verandert.</p><button class="btn alt wide" id="export">⬇️ Veiligheidskopie maken</button><p id="backupMessage" class="tiny" role="status"></p><p class="muted">Downloadt een bestand met je gegevens. Je huidige gegevens blijven gewoon bewaard. Bewaar dit bestand op een veilige plaats.</p><label for="import">⬆️ Gegevens terugzetten uit veiligheidskopie</label><p class="muted">Kies alleen een eerder gedownloade HeatWise-veiligheidskopie. Let op: bij het terugzetten worden je huidige opgeslagen gegevens vervangen.</p><input type="file" id="import" accept="application/json,.json"><div style="margin-top:22px;padding-top:16px;border-top:1px solid #ddd"><strong>Gegevens definitief verwijderen</strong><p class="muted">Alle opgeslagen metingen en instellingen op dit toestel worden gewist. Maak eerst een veiligheidskopie.</p><button class="btn danger wide" id="reset">Wis alle gegevens</button></div></details></div></section>
+</main><nav class="tabs"><button data-tab="today" class="active"><b>🏠</b>Vandaag</button><button data-tab="heating"><b>🔥</b>Verwarming</button><button data-tab="register"><b>🧾</b>Registratie</button><button data-tab="overview"><b>📊</b>Overzicht</button></nav><script>
+const $=id=>document.getElementById(id),KEY='heatwise-v1';let db;try{db=JSON.parse(localStorage.getItem(KEY))||{sessions:[],refills:[],settings:{}}}catch{db={sessions:[],refills:[],settings:{}}}db.sessions=db.sessions||[];db.tests=db.tests||[];db.refills=db.refills||[];db.settings=db.settings||{};db.zibroLogs=db.zibroLogs||[];db.zibroRuns=db.zibroRuns||[];db.zibroCycles=db.zibroCycles||[];
+const initialZibroLogs=[
+{id:'initial-18-1857',date:'2026-10-18',time:'18:57',living:21,outside:9,set:22,type:'gemeten',note:'Zibro begint werkelijk te branden; starttemperatuur living 21°C. Instelling later naar 23°C.'},
+{id:'initial-18-1915',date:'2026-10-18',time:'19:15',living:22.75,outside:9,set:23,type:'geschat',note:'Witte thermometer bijna 23°C; waarde 22,75 is indicatieve middenwaarde, geen exacte meting.'},
+{id:'initial-18-evening',date:'2026-10-18',living:23,outside:9,set:22,type:'gemeten',note:'Living 23°C; instelling verlaagd van 23 naar 22°C. Exact tijdstip niet genoteerd.'},
+{id:'initial-18-2052',date:'2026-10-18',time:'20:52',living:22,outside:9,set:22,type:'gemeten',note:'Witte thermometer 22°C; vermoedelijk laag brandvermogen. Later weer ingesteld op 23°C.'},
+{id:'initial-18-kitchen',date:'2026-10-18',time:'22:22',living:23,kitchen:20,outside:9,set:23,type:'gemeten',note:'Keuken 20°C gemeten met witte thermometer na circa uur op die plaats; living 23°C door gebruiker gemeld. Keuken start ~19°C was schatting.'},
+{id:'initial-19-start',date:'2026-10-19',time:'18:00',living:19,outside:14,set:23,type:'gemeten',note:'Werkelijke start Zibro 18.00 uur, bevestigd door gebruiker. Living 19°C vóór start; display ROOM 17°C. Tank gevuld tot 7-literstreepje (geen gemeten verbruik).'}
+];
+// Bevestigde Bellfires-test van 18 oktober: werkelijk 30 minuten, zonder voorspelling te overschrijven.
+for(const t of db.tests){if(String(t.when||'').startsWith('2026-10-18T16:30')&&Number(t.duration)===1&&Math.abs(Number(t.gasM3)-0.4)<0.001&&t.actualMinutes==null)t.actualMinutes=30;}
+for(const item of initialZibroLogs){const existing=db.zibroLogs.find(x=>x.id===item.id);if(!existing)db.zibroLogs.push(item);else if(item.id==='initial-19-start'&&!existing.time){existing.time=item.time;existing.note=item.note;}}
+if(!db.zibroTankStart)db.zibroTankStart={date:'2026-10-19',level:'7-literstreepje',note:'Vulling; geen exacte verbruikte liters vastgesteld'};
+localStorage.setItem('heatwise-v1',JSON.stringify(db));
+const fields=['petrolPrice','zRate','gasKwh','gasEff','heatDemand'];const num=id=>Number($(id).value);const escapeHtml=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const money=n=>'€ '+(Number.isFinite(n)?n:0).toFixed(2).replace('.',',');const save=()=>{localStorage.setItem(KEY,JSON.stringify(db));render()};const stamp=()=>new Date().toISOString().slice(0,10);$('sessionDate').value=stamp();for(const id of fields)if(db.settings[id]!=null)$(id).value=db.settings[id];const settings=()=>({...Object.fromEntries(fields.map(id=>[id,num(id)])),contractGas:num('contractGas'),gasExtra:num('gasExtra'),spot:num('spot')});$('purchasePriceToday').value=String(db.settings.petrolPrice??1.20);$('currentPetrolPrice').value=String(db.settings.currentPetrolPrice??2.00);function updateSavings(){const a=num('purchasePriceToday'),b=num('currentPetrolPrice');$('tankSaving').textContent=Number.isFinite(a)&&Number.isFinite(b)&&a>=0&&b>=0?money(7*(b-a)):'—';$('savingPurchase').textContent=money(a)+'/L';$('savingCurrent').textContent=money(b)+'/L';$('savingNote').textContent='Prijsverschil op een tank van 7 liter. '+(b<a?'De huidige prijs ligt lager dan je aankoopprijs.':'Huidige prijs zelf invullen; geen live marktprijs.')}function updatePetrol(){const a=num('purchasePriceToday'),b=num('currentPetrolPrice');if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<0)return;db.settings.petrolPrice=a;db.settings.currentPetrolPrice=b;$('petrolPrice').value=String(a);localStorage.setItem(KEY,JSON.stringify(db));updateSavings();markPending()}$('purchasePriceToday').addEventListener('input',updatePetrol);$('currentPetrolPrice').addEventListener('input',updatePetrol);updateSavings();const rate=()=>db.zibroCycles.some(r=>r.hours>0)?db.zibroCycles.filter(r=>r.hours>0).reduce((a,r)=>a+r.litres,0)/Math.max(.01,db.zibroCycles.filter(r=>r.hours>0).reduce((a,r)=>a+r.hours,0)):db.refills.some(r=>r.hours>0)?db.refills.filter(r=>r.hours>0).reduce((a,r)=>a+r.litres,0)/Math.max(.01,db.refills.filter(r=>r.hours>0).reduce((a,r)=>a+r.hours,0)):num('zRate');function updateGasEstimate(){
+ const spot=Number($('spot').value),extra=Number($('gasExtra').value);
+ if(!Number.isFinite(spot)||spot<0||!Number.isFinite(extra)||extra<0){$('gasFormulaInfo').textContent='Vul een geldige Gasradar-prijs en opslag in.';return;}
+ const energy=((spot*10)*0.11111+0.2165)*1.06;
+ const total=energy+extra;
+ $('contractGas').value=total.toFixed(2);
+ $('gasFormulaInfo').textContent='Energie volgens EnergyVision: '+energy.toFixed(2).replace('.',',')+' ct/kWh incl. btw + voorlopige opslag '+extra.toFixed(2).replace('.',',')+' = '+total.toFixed(2).replace('.',',')+' ct/kWh. Dagprijs als indicatie; geen definitieve maandafrekening.';
+ db.settings.spot=spot;db.settings.gasExtra=extra;db.settings.contractGas=total;
+ localStorage.setItem(KEY,JSON.stringify(db));
+}
+function gasPrice(){return num('contractGas')/100}function calculate(){
+ const hours=num('duration'),outside=num('outside'),inside=num('inside'),target=num('target');
+ const referenceLoss=num('heatDemand'),petrol=num('petrolPrice'),gas=gasPrice(),eff=num('gasEff')/100;
+ const slider=$('zSplit');slider.max=String(Math.max(0,hours));if(Number(slider.value)>hours)slider.value=String(hours);
+ const zHours=Number(slider.value),gHours=Math.max(0,hours-zHours),fmt=h=>h.toLocaleString('nl-BE',{maximumFractionDigits:1})+' u';
+ $('zTime').textContent=fmt(zHours);$('gTime').textContent=fmt(gHours);$('zBar').style.width=(hours>0?100*zHours/hours:0)+'%';
+ if(![hours,outside,inside,target,referenceLoss,petrol,gas,eff,zHours].every(Number.isFinite)||hours<=0||referenceLoss<=0||eff<=0||petrol<0||gas<0){$('comparison').innerHTML='<div class="card warning">Controleer de ingevoerde waarden.</div>';return}
+ const lossCoeff=referenceLoss/21,meanInside=(inside+target)/2;
+ const maintaining=Math.max(0,lossCoeff*(meanInside-outside)*hours);
+ const warmup=Math.max(0,target-inside)*1.5;
+ const needed=maintaining+warmup,avgPower=needed/hours;
+ const zibroEffective=0.85,zUnit=petrol/(10*zibroEffective),gUnit=gas/eff;
+ const zMax=4.85;
+ // Het tijdschema is een simulatie met aannames over gemiddelde afgegeven warmte.
+ // De Zibro kan moduleren; Bellfires wordt door de gebruiker handmatig bediend.
+ const zHighHours=Math.min(zHours,Math.max(0,num('zHighHours')||0)),gHighHours=Math.min(gHours,Math.max(0,num('gHighHours')||0));
+ // Benaderingen: Zibro thermostaat moduleert; temperatuurstand is geen vaste kW-stand.
+ const zHighPower=3.8,zLowPower=2.0;
+ // Bellfires-waarden zijn NIET gemeten en moeten met P1-data worden geijkt.
+ const gPowerOne=3.5,gPowerTwo=6.5;
+ const gHiPower=$('gHighBurners').value==='2'?gPowerTwo:gPowerOne;
+ const gLoPower=$('gLowBurners').value==='2'?gPowerTwo:gPowerOne;
+ const zHeat=zHighHours*zHighPower+(zHours-zHighHours)*zLowPower;
+ const gHeat=gHighHours*gHiPower+(gHours-gHighHours)*gLoPower;
+ const delivered=zHeat+gHeat;
+ const splitCost=zHeat*zUnit+gHeat*gUnit;window.lastPlanCost=splitCost;
+ // Alle drie de prijzen zijn tijdschema's voor exact dezelfde gekozen duur.
+ // Zibro: voorlopige liter/uur-aanname; na tankcyclus gebruiken we gemeten gemiddelde.
+ const zRateActual=rate(),zOnly=hours*zRateActual*petrol;
+ const zMix=zHours*zRateActual*petrol;
+ // Bellfires: testmetingen 18 oktober: 1 brander 0,4 m³/30min, 2 branders 0,6 m³/30min.
+ // Dit zijn voorlopige meetwaarden, niet gegarandeerde constante verbruiken.
+ const gOne=0.8,gTwo=1.2;
+ const gasHour=b=>b==='2'?gTwo:gOne;
+ const gMixM3=gHighHours*gasHour($('gHighBurners').value)+(gHours-gHighHours)*gasHour($('gLowBurners').value);
+ const gOnlyHi=Math.min(hours,Math.max(0,num('gHighHours')||0));
+ const gOnlyM3=gOnlyHi*gasHour($('gHighBurners').value)+(hours-gOnlyHi)*gasHour($('gLowBurners').value);
+ const gMixCost=gMixM3*num('gasKwh')*gas, gOnly=gOnlyM3*num('gasKwh')*gas;
+ const splitRuntimeCost=zMix+gMixCost;
+ window.lastPlanCost=splitRuntimeCost;
+ const fmtShort=h=>h.toLocaleString('nl-BE',{maximumFractionDigits:1})+'u';
+ const zIcon='<img class="scene-photo" src="./zibro-scene.jpg" alt="Zibro LC-150 in woonkamer (ontwerpvisualisatie)" loading="eager">';
+ const gIcon='<img class="scene-photo" src="./bellfires-scene.jpg" alt="Bellfires Smart Bell 75/80 (ontwerpvisualisatie)" loading="eager">';
+ const items=[
+ {label:'Zibro',sub:fmtShort(hours)+' petroleum',icon:zIcon,cost:zOnly},
+ {label:'Mijn mix',sub:fmtShort(zHours)+' + '+fmtShort(gHours),icon:'<img class="scene-photo" src="./mix-scene.jpg" alt="Zibro en Bellfires samen (ontwerpvisualisatie)" loading="eager">',cost:splitRuntimeCost},
+ {label:'Bellfires',sub:fmtShort(hours)+' gas',icon:gIcon,cost:gOnly}
+ ];
+ $('comparison').innerHTML='<div class="card cost-panel"><div class="compare-heading"><strong>Geschatte kosten · '+fmt(hours)+'</strong><small>Zelfde duur, verschillende toestellen</small></div><div class="cost-grid">'+items.map((x,i)=>'<div class="cost-choice '+(i===1?'selected':'')+'"><div class="choice-icon">'+x.icon+'</div><strong>'+x.label+'</strong><small>'+x.sub+'</small><div class="choice-price">'+money(x.cost)+'</div></div>').join('')+'</div><p class="cost-note">Richtprijzen voor branduren, <b>niet</b> voor gegarandeerd dezelfde kamertemperatuur. Zibro '+zRateActual.toFixed(3).replace('.',',')+' l/u '+(db.zibroCycles.length?'(tankmeting)':'(voorlopige schatting)')+'; Bellfires 0,8/1,2 m³/u bij 1/2 branders (korte tests). Gasprijs indicatief.</p><details><summary>ⓘ Berekening en aannames</summary><p class="tiny">Zibro: '+fmt(hours)+' × '+zRateActual.toFixed(3)+' l/u × '+money(petrol)+'/l. Bellfires: hoge fase '+fmt(gOnlyHi)+' met '+$('gHighBurners').value+' branders; daarna '+fmt(hours-gOnlyHi)+' met '+$('gLowBurners').value+' branders. Mix gebruikt dezelfde fase-instellingen binnen de gekozen uren. Gas: '+num('gasKwh')+' kWh/m³ × '+num('contractGas').toFixed(2)+' ct/kWh. Gemeten halve-uurtests kunnen afwijken bij langere beurten. De Zibro moduleert; het echte verbruik is pas bekend na een volledige tankcyclus. Buitentemperatuur en gewenste temperatuur helpen de warmtebehoefte beoordelen, maar bepalen deze tijdsprijzen niet. De vergelijking is indicatief en garandeert geen gelijk comfort. Gasradar is niet je contracttarief. Volg bij gebruik van een petroleumkachel de veiligheidsvoorschriften van de handleiding.</p></details></div>';
+
+}
+function render(){let opts='<option value="">Kies test of verwarmingsbeurt</option>'+db.tests.slice().reverse().map(t=>'<option value="t:'+t.id+'">🧪 '+t.when.replace('T',' ')+' — '+t.day+(t.gasM3!=null?' ✓':'')+'</option>').join('')+db.sessions.slice().reverse().map(s=>'<option value="s:'+s.id+'">🔥 '+s.date+' — '+s.zMinutes+' min Zibro / '+s.gMinutes+' min gas</option>').join('');let current=$('gasSession').value;$('gasSession').innerHTML=opts;if([...db.tests.map(t=>'t:'+t.id),...db.sessions.map(t=>'s:'+t.id)].includes(current))$('gasSession').value=current;let tank=db.tank||{};$('tankStatus').textContent=tank.status==='warning'?'⚠️ Bijvullen nodig':tank.status==='full'?'✓ Bijgevuld':'Nog niet geregistreerd';$('tankWarningInfo').textContent=tank.status==='warning'?'Waarschuwing geregistreerd op '+(tank.warningDate||'onbekende datum')+'. Vul de tank volledig en registreer de liters.':tank.status==='full'?'Laatste volledige vulling: '+(tank.filledDate||'onbekend')+'.':'Tik op de waarschuwing zodra de Zibro erom vraagt.';let allH=db.sessions.reduce((a,s)=>a+s.zMinutes/60,0),used=db.refills.reduce((a,r)=>a+r.litres,0),tracked=db.refills.reduce((a,r)=>a+r.hours,0);$('tankInfo').textContent='Sinds laatste vulling geregistreerd: '+Math.max(0,allH-(db.tank?.startHours??db.refills.at(-1)?.totalHours??0)).toFixed(1)+' branduren. '+(db.refills.some(r=>r.hours>0)?'Gemeten gemiddeld: '+rate().toFixed(3)+' liter/uur ('+db.refills.filter(r=>r.hours>0).length+' cycli).':db.tank?.status==='full'?'Tankcyclus gestart; wacht op volgende vulling.':'Nog geen afgesloten tankcyclus.');let z=0,g=0;for(const s of db.sessions){z+=(s.zMinutes/60)*rate()*num('petrolPrice');if(s.gasM3!=null)g+=s.gasM3*(s.gasKwh||num('gasKwh'))*(s.gasPrice??gasPrice())}for(const t of db.tests){if(t.gasM3!=null)g+=t.gasM3*(t.gasKwh||num('gasKwh'))*(t.gasPrice??gasPrice())} $('totals').innerHTML='<div class="grid"><div class="result"><small>Zibro geschat</small><div class="price">'+money(z)+'</div></div><div class="result"><small>Gas gemeten</small><div class="price">'+money(g)+'</div></div></div><p><b>Samen: '+money(z+g)+'</b></p><small>Dit is de som van geregistreerde beurten, niet noodzakelijk je volledige energiefactuur. Petroleum blijft een schatting op basis van gemiddelde tankcycli.</small>';$('testHistory').innerHTML=db.tests.length?db.tests.slice().reverse().map(t=>{let gas=t.gasM3!=null;let oldMatch=String(t.prediction||'').match(/Mijn plan:[^€]{0,70}€\s*([0-9]+[,.][0-9]{2})/);let predictionCost=t.predictionCost!=null?money(t.predictionCost):oldMatch?'€ '+oldMatch[1]:'Zie details';let dateLabel=String(t.when||'').replace('T',' ');return '<div class="test-entry"><div class="row"><strong>🧪 '+dateLabel+'</strong><span class="tag">'+(gas?'✓ Gemeten':'Start bewaard')+'</span></div><small>'+escapeHtml(t.day||'')+' · Buiten '+t.outside+'°C · Binnen '+t.inside+'°C → doel '+t.target+'°C · '+t.duration+' u</small><div class="row"><small>Voorspelling: <b>'+predictionCost+'</b></small><small>Gas: <b>'+(gas?t.gasM3.toFixed(2).replace('.',',')+' m³':'Nog te meten')+'</b></small></div>'+(gas?'<small>Gemeten gaskosten: <b>'+money(t.gasM3*(t.gasKwh||num('gasKwh'))*(t.gasPrice??gasPrice()))+'</b> · '+(t.gasMode==='day'?'Dagtotaal gas':'meterstanden')+'</small>':'')+'<details><summary>Werkelijke testduur corrigeren</summary><p class="tiny">De oorspronkelijke voorspelling blijft bewaard. Corrigeer alleen de echte duur van de test.</p><label>Werkelijke duur (minuten)</label><input type="number" min="1" max="1440" step="1" id="actualDuration-'+t.id+'" value="'+(t.actualMinutes??'')+'" placeholder="bv. 30"><button type="button" class="btn" data-fix-test="'+t.id+'">Bewaar werkelijke duur</button></details>'+ (t.actualMinutes!=null?'<small>Werkelijke testduur: <b>'+t.actualMinutes+' minuten</b> (voorspelde duur: '+t.duration+' uur)</small>':'<small>Werkelijke duur nog niet afzonderlijk bevestigd; '+t.duration+' uur is de oorspronkelijke voorspelling.</small>') +'<details><summary>Voorspelling en details</summary><div class="test-prediction">'+escapeHtml(t.prediction||'')+'</div></details></div>'}).join(''):'<p class="muted">Nog geen teststarts bewaard.</p>' ;$('history').innerHTML=db.sessions.length?db.sessions.slice().reverse().map(s=>'<div class="history"><strong>'+s.date+'</strong> — '+s.startTemp+' → '+s.endTemp+'°C<br><small>Zibro '+s.zMinutes+' min op '+s.zThermostat+'°C • Bellfires '+s.gMinutes+' min ('+s.burners+' brander(s))'+(s.gasM3!=null?' • P1 '+s.gasM3.toFixed(3)+' m³':' • P1 nog niet ingevoerd')+'</small></div>').join(''):'<p class="muted">Nog geen verwarmingsbeurten.</p>'}document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));$(b.dataset.tab).classList.remove('hidden');document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));render()});const calculateInputs=['outside','inside','target','duration','spot','gasExtra','zSplit','zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours'];
+function markPending(){ $('comparison').classList.remove('fresh');$('calcPending').classList.remove('hidden');$('recalculate').textContent='↻ Bereken';$('recalculate').classList.add('pending'); }
+function refreshSplitPreview(){const hours=Math.max(0,Number($('duration').value)||0),slider=$('zSplit');slider.max=hours;const zh=Math.min(hours,Math.max(0,Number(slider.value)||0));slider.value=zh;const gh=Math.max(0,hours-zh),fmt=h=>h.toLocaleString('nl-BE',{maximumFractionDigits:1})+' u';$('zTime').textContent=fmt(zh);$('gTime').textContent=fmt(gh);$('zBar').style.width=(hours?100*zh/hours:0)+'%';}
+calculateInputs.forEach(id=>$(id).addEventListener('input',()=>{refreshSplitPreview();boundPhaseHours();markPending()}));
+$('testHistory').addEventListener('click',e=>{const b=e.target.closest('[data-fix-test]');if(!b)return;const t=db.tests.find(x=>String(x.id)===b.dataset.fixTest);if(!t)return;const field=$('actualDuration-'+t.id),minutes=Number(field.value);if(!field.value||!Number.isInteger(minutes)||minutes<1||minutes>1440)return alert('Vul de werkelijke duur in minuten in.');if(!confirm('Werkelijke duur op '+minutes+' minuten zetten? De oorspronkelijke voorspelling blijft ongewijzigd.'))return;t.actualMinutes=minutes;save();});
+$('recalculate').addEventListener('click',()=>{calculate();$('comparison').classList.add('fresh');$('calcPending').classList.add('hidden');$('recalculate').textContent='↻ Bereken';$('recalculate').classList.remove('pending')});$('saveTest').onclick=()=>{if(!$('calcPending').classList.contains('hidden'))return alert('Klik eerst op Bereken zodat de voorspelling actueel is.');const p=$('testP1').value.trim();if(p&&(!Number.isFinite(Number(p))||Number(p)<0))return alert('Controleer de P1-startstand.');let t={id:Date.now(),when:$('testTime').value||new Date().toLocaleString('sv-SE').replace(' ','T').slice(0,16),day:$('daytype').selectedOptions[0].textContent,outside:num('outside'),inside:num('inside'),target:num('target'),duration:num('duration'),spot:num('spot'),gasPrice:gasPrice(),petrolPrice:num('petrolPrice'),p1:p?Number(p):null,zHours:num('zSplit'),zHighTemp:num('zHighTemp'),zLowTemp:num('zLowTemp'),zHighHours:num('zHighHours'),gHighBurners:$('gHighBurners').value,gLowBurners:$('gLowBurners').value,gHighHours:num('gHighHours'),predictionCost:window.lastPlanCost??null,prediction:$('comparison').innerText};db.tests=db.tests||[];db.tests.push(t);save();$('testInfo').textContent='Teststart bewaard: '+t.when;alert('Teststart en voorspelling bewaard.');};$('saveSettings').onclick=()=>{db.settings={...db.settings,...settings()};$('purchasePriceToday').value=$('petrolPrice').value;updateSavings();save();markPending();alert('Instellingen bewaard')};$('saveSession').onclick=()=>{if(num('zMinutes')<0||num('gMinutes')<0)return alert('Vul geldige tijden in');db.sessions.push({id:Date.now(),date:$('sessionDate').value||stamp(),startTemp:num('startTemp'),endTemp:num('endTemp'),zMinutes:num('zMinutes'),zThermostat:num('zThermostat'),gMinutes:num('gMinutes'),burners:$('burners').value});save();alert('Verwarmingsbeurt bewaard')};$('gasMode').addEventListener('change',()=>{$('gasInfo').textContent=$('gasMode').value==='day'?'Vul twee dagtotalen van dezelfde dag in, bijvoorbeeld 0,0 en 0,4 m³. De app berekent het verschil.':'Vul de twee cumulatieve standen van de gasmeter in.'});$('saveGas').onclick=()=>{let choice=$('gasSession').value,record=choice.startsWith('t:')?db.tests.find(t=>'t:'+t.id===choice):db.sessions.find(t=>'s:'+t.id===choice);if(!record)return alert('Kies eerst een test of verwarmingsbeurt');let start=num('gasBegin'),end=num('gasEnd');if(!$('gasBegin').value||!$('gasEnd').value||!Number.isFinite(start)||!Number.isFinite(end)||start<0||end<start)return alert('Controleer de meterstanden');if(record.gasM3!=null&&!confirm('Voor deze test bestaat al een gasmeting. Overschrijven?'))return;record.gasM3=end-start;record.gasBegin=start;record.gasEnd=end;record.gasMode=$('gasMode').value;record.gasPrice=gasPrice();record.gasKwh=num('gasKwh');save();alert('Gasmeting bewaard bij de gekozen test!')};$('tankWarning').onclick=()=>{db.tank={...(db.tank||{}),status:'warning',warningDate:stamp()};save()};$('saveRefill').onclick=()=>{let litres=num('refillLitres'),total=db.sessions.reduce((a,s)=>a+s.zMinutes/60,0);if(!Number.isFinite(litres)||litres<=0)return alert('Vul de werkelijk bijgevulde liters in.');if(!db.tank?.filledDate){if(!confirm('Eerste volledige vulling als STARTPUNT bewaren? De toegevoegde liters zijn nog geen gemeten verbruik.'))return;db.tank={status:'full',filledDate:stamp(),startHours:total,firstLitres:litres};save();alert('Startpunt van de tankmeting bewaard.');return;}if(db.tank.status!=='warning')return alert('Registreer eerst dat de Zibro om petroleum vraagt.');let last=db.tank.startHours??db.refills.at(-1)?.totalHours??0,hours=total-last;if(hours<=0)return alert('Registreer eerst de Zibro-branduren sinds de vorige vulling.');if(!confirm('Volledige tankcyclus afsluiten: '+litres+' liter bijgevuld na '+hours.toFixed(1)+' geregistreerde branduren?'))return;db.refills.push({date:stamp(),litres,hours,totalHours:total});db.tank={status:'full',filledDate:stamp(),startHours:total};save();alert('Tankcyclus bewaard.');};$('export').onclick=()=>{let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='heatwise-backup-'+stamp()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('backupMessage').textContent='De download is gestart. Controleer in Bestandsbeheer → Download of heatwise-backup-'+stamp()+'.json aanwezig is. Je huidige metingen blijven bewaard.'};$('import').onchange=async e=>{try{let data=JSON.parse(await e.target.files[0].text());if(!Array.isArray(data.sessions)||!Array.isArray(data.refills)||!data.settings)throw Error();if(confirm('Let op: je huidige HeatWise-metingen en instellingen worden vervangen door de gegevens uit deze veiligheidskopie. Wil je doorgaan?')){db=data;save();location.reload()}}catch{alert('Ongeldige back-up')}};$('reset').onclick=()=>{if(confirm('WAARSCHUWING: alle opgeslagen HeatWise-metingen en instellingen op dit toestel worden definitief gewist. Heb je eerst een veiligheidskopie gemaakt?')){localStorage.removeItem(KEY);location.reload()}};for(const id of ['zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours']){const v=db.phase?.[id];if(v!==undefined)$(id).value=v;$(id).addEventListener('change',()=>{db.phase=Object.fromEntries(['zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours'].map(k=>[k,$(k).value]));localStorage.setItem(KEY,JSON.stringify(db))})};$('spot').value=String(db.settings.spot??8.8);$('gasExtra').value=String(db.settings.gasExtra??3.40);$('spot').addEventListener('input',()=>{updateGasEstimate();markPending()});$('gasExtra').addEventListener('input',()=>{updateGasEstimate();markPending()});updateGasEstimate();
+const profileSettings={mild:{zHighTemp:22,zLowTemp:20,zHighHours:0.5,gHighBurners:2,gLowBurners:1,gHighHours:0.5},cold:{zHighTemp:23,zLowTemp:21,zHighHours:1,gHighBurners:2,gLowBurners:1,gHighHours:1},verycold:{zHighTemp:23,zLowTemp:21,zHighHours:1,gHighBurners:2,gLowBurners:1,gHighHours:1.5}};
+const phaseIds=['zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours'];
+function boundPhaseHours(){const total=Math.max(0,num('duration')||0),z=Math.min(total,Math.max(0,num('zSplit')||0)),g=Math.max(0,total-z);for(const [id,max] of [['zHighHours',z],['gHighHours',g]]){const el=$(id);el.max=String(max);const current=Number(el.value);if(!Number.isFinite(current)||current<0||current>max)el.value=String(Math.min(max,Math.max(0,current||0)));}}
+
+$('weatherProfile').value=db.profile||'custom';
+$('weatherProfile').addEventListener('change',()=>{const name=$('weatherProfile').value,profile=profileSettings[name];if(profile){for(const [id,value] of Object.entries(profile))$(id).value=value;db.phase=Object.fromEntries(phaseIds.map(id=>[id,$(id).value]));}boundPhaseHours();db.phase=Object.fromEntries(phaseIds.map(id=>[id,$(id).value]));db.profile=name;localStorage.setItem(KEY,JSON.stringify(db));markPending();});
+phaseIds.forEach(id=>$(id).addEventListener('input',()=>{if($('weatherProfile').value!=='custom'){$('weatherProfile').value='custom';db.profile='custom';localStorage.setItem(KEY,JSON.stringify(db))}}));
+
+const zNumber=id=>{const raw=$(id).value.trim().replace(',','.');return raw===''?null:(Number.isFinite(Number(raw))?Number(raw):NaN)};
+function zRender(){const fmt=n=>n==null?'—':Number(n).toLocaleString('nl-BE',{maximumFractionDigits:2})+'°C';
+$('zibroLog').innerHTML='<details><summary>Bekijk opgeslagen Zibro-metingen ('+db.zibroLogs.length+')</summary>'+db.zibroLogs.slice().sort((a,b)=>(b.date+(b.time||'')).localeCompare(a.date+(a.time||''))).map(x=>'<div class="history"><b>'+escapeHtml(x.date)+' '+escapeHtml(x.time||'tijd onbekend')+'</b> · Living '+fmt(x.living)+' · Keuken '+fmt(x.kitchen)+' · Buiten '+fmt(x.outside)+' · SET '+fmt(x.set)+' · ROOM '+fmt(x.room)+'<br><small>'+(x.type==='geschat'?'⚠️ Geschat':'✓ Gemeten / gemeld')+' — '+escapeHtml(x.note||'')+'</small></div>').join('')+'</details>';
+const minutes=db.zibroRuns.filter(r=>r.date>='2026-10-19').reduce((n,r)=>n+r.minutes,0);$('zRunSummary').textContent='Geregistreerde brandtijd sinds 19 oktober: '+(minutes/60).toLocaleString('nl-BE',{maximumFractionDigits:2})+' uur ('+db.zibroRuns.length+' beurten). Alleen ingevoerde beurten tellen mee.';
+$('zCycleSummary').textContent=db.zibroCycles.length?'Laatste afgesloten tankcyclus: '+db.zibroCycles.at(-1).litres.toLocaleString('nl-BE')+' liter / '+db.zibroCycles.at(-1).hours.toLocaleString('nl-BE',{maximumFractionDigits:2})+' uur = '+db.zibroCycles.at(-1).rate.toLocaleString('nl-BE',{maximumFractionDigits:3})+' l/uur.':'Nog geen werkelijk gemeten petroleumverbruik. De kosten op Vandaag blijven een modelschatting.';
+}
+$('zLogDate').value=stamp();$('zRunDate').value=stamp();if(stamp()==='2026-10-19')$('zRunStart').value='18:00';
+$('zAddLog').onclick=()=>{const date=$('zLogDate').value,fields=[['zLogLiving','living'],['zLogKitchen','kitchen'],['zLogOutside','outside'],['zLogSet','set'],['zLogRoom','room']];if(!date)return alert('Vul een datum in');let x={id:Date.now().toString(),date,time:$('zLogTime').value,type:$('zLogType').value,note:$('zLogNote').value};for(const [id,k] of fields){x[k]=zNumber(id);if(Number.isNaN(x[k]))return alert('Controleer de temperatuur: '+id)}if(x.living==null&&x.kitchen==null)return alert('Vul minstens één binnentemperatuur in');db.zibroLogs.push(x);save();zRender();alert('Zibro-meting bewaard')};
+$('zAddRun').onclick=()=>{const date=$('zRunDate').value,a=$('zRunStart').value,b=$('zRunEnd').value;if(!date||!a||!b)return alert('Vul datum, start en einde in');const mins=t=>{let [h,m]=t.split(':').map(Number);return h*60+m};let diff=mins(b)-mins(a);if(diff<=0)diff+=1440;if(diff>1200)return alert('Controleer de uren (maximaal 20 uur per beurt)');if(db.zibroRuns.some(r=>r.date===date&&r.start===a&&r.end===b))return alert('Deze branduren zijn al geregistreerd.');db.zibroRuns.push({id:Date.now(),date,start:a,end:b,minutes:diff});save();zRender();alert('Branduren bewaard')};
+$('zCloseCycle').onclick=()=>{const litres=zNumber('zRefillLitres'),hours=db.zibroRuns.filter(r=>r.date>='2026-10-19').reduce((n,r)=>n+r.minutes,0)/60-db.zibroCycles.reduce((n,r)=>n+r.hours,0);if(litres==null||!Number.isFinite(litres)||litres<=0||hours<=0)return alert('Vul werkelijk bijgevulde liters in en registreer alle branduren');if(!confirm('Tankcyclus afsluiten met '+litres+' werkelijk bijgevulde liters over '+hours.toFixed(2)+' branduren?'))return;db.zibroCycles.push({date:stamp(),litres,hours,rate:litres/hours});save();zRender();alert('Tankcyclus bewaard. Let op: controleer of alle branduren ingevoerd zijn.')};
+zRender();
+refreshSplitPreview();boundPhaseHours();render();$('comparison').innerHTML='<div class="card cost-panel"><div class="compare-heading"><strong>Geschatte kosten</strong><small>Klik op Bereken</small></div><div class="cost-grid">'+['Zibro','Mijn mix','Bellfires'].map((x,i)=>'<div class="cost-choice"><div class="choice-icon"><img class="scene-photo" src="./'+['zibro-scene.jpg','mix-scene.jpg','bellfires-scene.jpg'][i]+'" alt="'+x+'" loading="eager"></div><strong>'+x+'</strong><div class="choice-price">—</div></div>').join('')+'</div></div>';if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script></body></html>
