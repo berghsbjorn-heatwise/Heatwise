@@ -461,8 +461,18 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 #register .hw-hours-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:#536a5b;margin-top:4px}
 #register .hw-hours-meta strong{font-weight:700;color:#3b5e4d}
 @media(max-width:370px){#today .station-saving-label strong{font-size:10px!important}#today .station-saving-label span{font-size:9px!important}#today .station-saving{gap:2px!important}}
-</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.38</span></header>
-<section id="today"><div class="dashboard-inputs"><div class="card today-fields"><h2>🏠 Vandaag <span class="today-version">· invoer</span></h2><div class="input-grid"><div><label>Buiten (°C)</label><input id="outside" type="number" value="0" step="1"></div><div><label>Binnen (°C)</label><input id="inside" type="number" value="16" step="0.5"></div><div><label>Gewenst binnen (°C)</label><input id="target" type="number" value="21" step="0.5"></div><div><label>Verwarmingsduur (uur)</label><input id="duration" type="number" value="4" min="0.5" step="0.5"></div><div><label>Gasradar (ct/kWh)</label><input id="spot" type="text" inputmode="decimal" value="8,80" aria-label="GasRadar-prijs in cent per kWh, twee decimalen"></div><div><label>Mijn gasprijs (ct/kWh)</label><input id="contractGas" type="text" inputmode="decimal" value="14" min="0" step="0.01" readonly aria-label="Automatisch berekende geschatte totale gasprijs"></div></div><details class="gas-details"><summary>ⓘ Hoe is mijn gasprijs berekend?</summary><p id="gasFormulaInfo" class="tiny" aria-live="polite"></p></details></div><div id="splitPlan"><div class="row" style="margin-bottom:4px"><label for="weatherProfile" style="margin:0">Weerprofiel</label><select id="weatherProfile" style="width:auto;min-height:29px;padding:3px 6px;font-size:13px"><option value="mild">🌤️ Zacht</option><option value="cold">❄️ Koud</option><option value="verycold">🥶 Heel koud</option><option value="custom">✏️ Aangepast</option></select></div><div class="tiny hidden" id="profileHint">Voorlopige standen, niet automatisch gekoppeld aan buitentemperatuur.</div><div class="plan-main"><div class="plan-controls"><div class="row"><strong>Mijn combinatie</strong></div><label for="zSplit">Schuif om de uren te verdelen</label><div class="bar" aria-hidden="true"><span id="zBar" style="width:25%"></span><span></span></div><input id="zSplit" type="range" min="0" max="4" value="1" step="0.5" aria-label="Uren Zibro; resterende uren Bellfires"><div class="row"><small>Zibro: <b id="zTime">1 uur</b></small><small>Bellfires Smart Bell 75/80: <b id="gTime">3 uur</b></small></div></div><button id="recalculate" type="button" class="btn calcbtn">↻ Bereken</button></div><div id="calcPending" class="calc-pending hidden">Instellingen gewijzigd — klik op Bereken.</div></div></div><div id="comparison"></div><div class="card savings-card station-card" aria-label="Mijn petroleumvoordeel"><div class="station-board"><div class="station-row"><span>Mijn<br>aankoopprijs</span><div class="station-led"><b id="savingPurchase">1.20</b><small>€/L</small></div></div><div class="station-row"><span>Huidige<br>prijs</span><div class="station-led"><b id="savingCurrent">2.00</b><small>€/L</small></div></div></div><div class="station-saving"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M5 2h16a2 2 0 0 1 2 2v23H3V4a2 2 0 0 1 2-2zm2 4v10h12V6H7zm-5 23h24v2H2zm21-21 5 5v11a2 2 0 0 1-4 0v-7h-2v-3h4l-3-3z"/><path fill="#fff" d="M13 18c-2 3-4 5-4 7a4 4 0 0 0 8 0c0-2-2-4-4-7z"/></svg><div class="station-saving-label"><strong>Voordeel</strong><span>per 7 liter</span></div><strong id="tankSaving" class="station-saving-value">€ 5,60</strong></div></div><div style="margin:7px 0 4px"><button type="button" id="openSources" class="btn alt wide" style="min-height:36px">🌤️ Actuele prijzen &amp; weer</button></div></section>
+</style>
+<style>
+/* HeatWise v1.9.39 — GasRadar is a market indicator; my tariff-based price is distinct. */
+#today .hw-gas-market input {border-color:#a7c3d1!important; background:#eff6f8!important;}
+#today .hw-gas-contract input {border:2px solid #4b9b74!important; background:#f0f9f3!important; color:#176744!important; font-weight:800;}
+#today .hw-gas-contract label {color:#176744;}
+#today .hw-gas-caption {display:block; min-height:12px; margin:3px 1px 0; font-size:10px; line-height:1.15; font-weight:650; color:#516f79; white-space:normal;}
+#today .hw-gas-contract .hw-gas-caption {color:#28724e;}
+@media(max-width:370px){#today .hw-gas-caption {font-size:9px;}}
+</style>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.39</span></header>
+<section id="today"><div class="dashboard-inputs"><div class="card today-fields"><h2>🏠 Vandaag <span class="today-version">· invoer</span></h2><div class="input-grid"><div><label>Buiten (°C)</label><input id="outside" type="number" value="0" step="1"></div><div><label>Binnen (°C)</label><input id="inside" type="number" value="16" step="0.5"></div><div><label>Gewenst binnen (°C)</label><input id="target" type="number" value="21" step="0.5"></div><div><label>Verwarmingsduur (uur)</label><input id="duration" type="number" value="4" min="0.5" step="0.5"></div><div class="hw-gas-market"><label for="spot">GasRadar (ct/kWh)</label><input id="spot" type="text" inputmode="decimal" value="8,80" aria-label="GasRadar-marktindicatie in cent per kWh, twee decimalen"><span class="hw-gas-caption">Marktindicatie</span></div><div class="hw-gas-contract"><label for="contractGas">Mijn gasprijs (ct/kWh)</label><input id="contractGas" type="text" inputmode="decimal" value="14" min="0" step="0.01" readonly aria-label="Mijn persoonlijke gasprijs volgens tariefformule, in cent per kWh"><span class="hw-gas-caption">Volgens tariefformule</span></div></div><details class="gas-details"><summary>ⓘ Hoe is mijn gasprijs berekend?</summary><p id="gasFormulaInfo" class="tiny" aria-live="polite"></p></details></div><div id="splitPlan"><div class="row" style="margin-bottom:4px"><label for="weatherProfile" style="margin:0">Weerprofiel</label><select id="weatherProfile" style="width:auto;min-height:29px;padding:3px 6px;font-size:13px"><option value="mild">🌤️ Zacht</option><option value="cold">❄️ Koud</option><option value="verycold">🥶 Heel koud</option><option value="custom">✏️ Aangepast</option></select></div><div class="tiny hidden" id="profileHint">Voorlopige standen, niet automatisch gekoppeld aan buitentemperatuur.</div><div class="plan-main"><div class="plan-controls"><div class="row"><strong>Mijn combinatie</strong></div><label for="zSplit">Schuif om de uren te verdelen</label><div class="bar" aria-hidden="true"><span id="zBar" style="width:25%"></span><span></span></div><input id="zSplit" type="range" min="0" max="4" value="1" step="0.5" aria-label="Uren Zibro; resterende uren Bellfires"><div class="row"><small>Zibro: <b id="zTime">1 uur</b></small><small>Bellfires Smart Bell 75/80: <b id="gTime">3 uur</b></small></div></div><button id="recalculate" type="button" class="btn calcbtn">↻ Bereken</button></div><div id="calcPending" class="calc-pending hidden">Instellingen gewijzigd — klik op Bereken.</div></div></div><div id="comparison"></div><div class="card savings-card station-card" aria-label="Mijn petroleumvoordeel"><div class="station-board"><div class="station-row"><span>Mijn<br>aankoopprijs</span><div class="station-led"><b id="savingPurchase">1.20</b><small>€/L</small></div></div><div class="station-row"><span>Huidige<br>prijs</span><div class="station-led"><b id="savingCurrent">2.00</b><small>€/L</small></div></div></div><div class="station-saving"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M5 2h16a2 2 0 0 1 2 2v23H3V4a2 2 0 0 1 2-2zm2 4v10h12V6H7zm-5 23h24v2H2zm21-21 5 5v11a2 2 0 0 1-4 0v-7h-2v-3h4l-3-3z"/><path fill="#fff" d="M13 18c-2 3-4 5-4 7a4 4 0 0 0 8 0c0-2-2-4-4-7z"/></svg><div class="station-saving-label"><strong>Voordeel</strong><span>per 7 liter</span></div><strong id="tankSaving" class="station-saving-value">€ 5,60</strong></div></div><div style="margin:7px 0 4px"><button type="button" id="openSources" class="btn alt wide" style="min-height:36px">🌤️ Actuele prijzen &amp; weer</button></div></section>
 <section id="sources" class="hidden">
  <div class="card"><button type="button" id="backSources" class="btn alt" style="margin-bottom:10px">← Terug naar Vandaag</button><h2>🌤️ Actuele prijzen &amp; weer</h2><p class="muted">Weer en energieprijzen worden automatisch opgehaald. Je kunt ze ook zelf aanpassen.</p>
  <div class="hw-source"><h3>🌤️ Weer · Tienen</h3><div id="srcWeather" class="hw-source-value">Nog niet opgehaald</div><p class="tiny" id="srcWeatherInfo">Bron: Open-Meteo. Model- of weerstationgegevens kunnen verschillen van je eigen thermometer.</p><button type="button" id="refreshWeather" class="btn wide">↻ Buitentemperatuur ophalen</button><button type="button" id="applyWeather" class="btn alt wide" disabled>Neem temperatuur over op Vandaag</button><a class="hw-source-link" href="https://www.weeronline.be/Europa/Belgie/Tienen/4053996" target="_blank" rel="noopener noreferrer">Bekijk weerwebsite ↗</a></div>
@@ -1282,6 +1292,42 @@ refreshSplitPreview();boundPhaseHours();render();$('comparison').innerHTML='<div
    alert('Oude losse temperatuurmetingen verwijderd. Start/Stop-tests, historische branduren en P1-kosten zijn behouden.');
  });
  sync();
+})();
+</script>
+
+<script>
+/* HeatWise v1.9.39 — visible dates DD/MM/JJ, existing stored ISO dates untouched. */
+(function(){
+ const months={januari:1,februari:2,maart:3,april:4,mei:5,juni:6,juli:7,augustus:8,september:9,oktober:10,november:11,december:12};
+ const two=n=>String(n).padStart(2,'0');
+ function formatVisibleDates(raw){
+  return String(raw)
+   .replace(/\b(20\d{2})-(0[1-9]|1[0-2])-([0-2]\d|3[01])(?:(T)(?=\d{2}:\d{2}))?/g,(_,y,m,d,t)=>d+'/'+m+'/'+y.slice(2)+(t?' ':''))
+   .replace(/\b([0-2]?\d|3[01])\s+(januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)\s+(20\d{2})\b/gi,(_,d,m,y)=>two(d)+'/'+two(months[m.toLowerCase()])+'/'+y.slice(2))
+   .replace(/\b(18|19) oktober\b/gi,(_,d)=>d+'/10/26');
+ }
+ function applyText(node){
+  if(node.nodeType!==Node.TEXT_NODE)return;
+  if(node.parentElement?.closest('script,style,textarea,select,option,[contenteditable="true"]'))return;
+  const before=node.nodeValue,after=formatVisibleDates(before);
+  if(before!==after)node.nodeValue=after;
+ }
+ function applyTree(root){
+  if(root.nodeType===Node.TEXT_NODE){applyText(root);return;}
+  if(root.nodeType!==Node.ELEMENT_NODE || root.matches('script,style,textarea,select,option,[contenteditable="true"]'))return;
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  while(walker.nextNode())applyText(walker.currentNode);
+ }
+ const root=document.querySelector('main.app')||document.body;
+ applyTree(root);
+ const observer=new MutationObserver(changes=>{
+  for(const change of changes){
+   if(change.type==='characterData')applyText(change.target);
+   else for(const node of change.addedNodes)applyTree(node);
+  }
+ });
+ observer.observe(root,{childList:true,characterData:true,subtree:true});
+ window.hwDisplayDate1939=formatVisibleDates;
 })();
 </script>
 </body></html>
