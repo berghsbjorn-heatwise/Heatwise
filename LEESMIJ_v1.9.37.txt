@@ -1,0 +1,14 @@
+HeatWise v1.9.37 (voor GitHub Pages)
+
+- Gasprijs toont 14,12 in plaats van 14.12.
+- Frontaal gecorrigeerde Zibro LC-150 in de Vandaag-kaart.
+- Petroleumvoordeel: wit voordeelvak even breed als het zwarte prijsblok, groene tankgreep zichtbaar.
+- GasRadar en Petroleum C: prijs en geldigheidsdatum op afzonderlijke regels; geen dubbele prijs of datum in de bronuitleg. Bron en bronlinks direct onder de prijs.
+- Petroleumprijzen in de app worden op twee decimalen getoond en overgenomen; voordeelberekening gebruikt de afgeronde zichtbare literprijs. De bronprijs met meer decimalen kan afzonderlijk worden bewaard.
+- Petroleum handmatige invoer accepteert zowel 1,95 als 1.95. Geen lange reeksen zwevende-kommadecimalen.
+
+Installatie: pak de inhoud van het ZIP-bestand uit op de bestaande GitHub Pages-locatie (niet in een submap).
+Maak eerst via Overzicht > Bescherm je gegevens een JSON-back-up van je bestaande gegevens.
+De opslagcode voor temperatuurmetingen, historisch gemeten gas en branduren is niet gewijzigd.
+
+Een aangekondigde petroleumprijs wordt alleen apart vermeld als ze werkelijk verschilt van de huidige prijs; ze wordt nooit stilzwijgend als actuele prijs overgenomen.

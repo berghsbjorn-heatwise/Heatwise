@@ -196,7 +196,7 @@ function gasPrice(){return num('contractGas')/100}function calculate(){
  const splitRuntimeCost=zMix+gMixCost;
  window.lastPlanCost=splitRuntimeCost;
  const fmtShort=h=>h.toLocaleString('nl-BE',{maximumFractionDigits:1})+'u';
- const zIcon='<img class="scene-photo" src="./zibro-scene.jpg" alt="Zibro LC-150, mijn eigen model" loading="eager">';
+ const zIcon='<img class="scene-photo" src="./zibro-frontal.jpg" alt="Zibro LC-150, mijn eigen model" loading="eager">';
  const gIcon='<img class="scene-photo" src="./bellfires-scene.jpg" alt="Bellfires Smart Bell 75/80 (ontwerpvisualisatie)" loading="eager">';
  const items=[
  {label:'Zibro',sub:fmtShort(hours)+' petroleum',icon:zIcon,cost:zOnly},
@@ -317,7 +317,7 @@ $('hwFinishWithReading').onclick=()=>hwFinish(true);
 // Laat de laatst ingevulde temperaturen staan voor volgende metingen.
 hwUpdate();
 zRender();
-refreshSplitPreview();boundPhaseHours();render();$('comparison').innerHTML='<div class="card cost-panel"><div class="compare-heading"><strong>Geschatte kosten</strong><small>Klik op Bereken</small></div><div class="cost-grid">'+['Zibro','Mijn mix','Bellfires'].map((x,i)=>'<div class="cost-choice"><div class="choice-icon"><img class="scene-photo" src="./'+['zibro-scene.jpg','mix-icons-v1932.jpg','bellfires-scene.jpg'][i]+'" alt="'+x+'" loading="eager"></div><strong>'+x+'</strong><div class="choice-price">—</div></div>').join('')+'</div></div>';if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+refreshSplitPreview();boundPhaseHours();render();$('comparison').innerHTML='<div class="card cost-panel"><div class="compare-heading"><strong>Geschatte kosten</strong><small>Klik op Bereken</small></div><div class="cost-grid">'+['Zibro','Mijn mix','Bellfires'].map((x,i)=>'<div class="cost-choice"><div class="choice-icon"><img class="scene-photo" src="./'+['zibro-frontal.jpg','mix-icons-v1932.jpg','bellfires-scene.jpg'][i]+'" alt="'+x+'" loading="eager"></div><strong>'+x+'</strong><div class="choice-price">—</div></div>').join('')+'</div></div>';if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 
 ;
 
