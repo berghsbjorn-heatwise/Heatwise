@@ -442,12 +442,43 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 .hw-source-link{margin-top:4px!important;margin-bottom:4px!important}.hw-source-value .hw-date-line{display:block!important;font-size:clamp(15px,3.6vw,17px)!important;line-height:1.3!important;font-weight:500!important;color:#647281!important;margin-top:5px!important}
 @media(max-width:390px){#today .station-board,#today .station-saving{width:52%!important}#today .station-saving{padding:5px 4px!important}#today .station-saving-value{font-size:16px!important;padding:6px 3px!important}}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.37</span></header>
+<style>
+/* HeatWise 1.9.38: overzichtelijke GasRadar-barometer, brandurenteller en petroleumvoordeel */
+#sources .hw-gas-gauge{margin:13px 0 10px;padding:12px 12px 8px;background:#fbf9f3;border:1px solid #ddd5c7;border-radius:15px;text-align:center;overflow:hidden}
+#sources .hw-gauge-topline{font-size:14px;font-weight:750;letter-spacing:.01em;color:#315b66;text-align:left;padding-left:4px}
+#sources .hw-gauge-svg{display:block;max-width:330px;width:100%;height:auto;margin:-5px auto -6px;overflow:visible}
+#sources .hw-gauge-judgment{font-size:19px;font-weight:850;color:#284752;margin:2px 0 3px}
+#sources .hw-gauge-note{font-size:12px;color:#64727b;line-height:1.4;max-width:290px;margin:auto}
+#today .station-saving{background:linear-gradient(118deg,#27343e 0%,#111922 100%)!important;border:2px solid #73818b!important;box-shadow:inset 0 1px 0 #47545e,0 2px 6px #0005!important;color:#fff!important}
+#today .station-saving-label strong{color:#fff!important;font-weight:750!important}
+#today .station-saving-label span{color:#f0f4f5!important;font-weight:500!important}
+#today .station-saving-value{color:#fff!important;background:#00894b!important}
+#register .hw-tank-hours{background:linear-gradient(120deg,#f4fbf7 0%,#eaf5ef 100%)!important;border:2px solid #58a880!important;border-radius:15px!important;box-shadow:0 3px 10px #24684512!important;padding:15px 16px!important;margin:15px 0!important;gap:6px!important}
+#register .hw-tank-hours h3{color:#255f46!important;font-weight:800!important;font-size:16px!important;margin:0 0 1px!important}
+#register .hw-tank-hours h3::before{content:'◷';color:#27935c;margin-right:8px;font-size:21px;vertical-align:-1px}
+#register .hw-tank-hours #zRunSummary{background:none!important;border:none!important;padding:0!important;margin:0!important;line-height:1.3!important}
+#register .hw-hours-total{font-size:clamp(24px,7vw,37px);font-weight:850;letter-spacing:-.04em;color:#16834d;font-variant-numeric:tabular-nums;line-height:1.25}
+#register .hw-hours-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:#536a5b;margin-top:4px}
+#register .hw-hours-meta strong{font-weight:700;color:#3b5e4d}
+@media(max-width:370px){#today .station-saving-label strong{font-size:10px!important}#today .station-saving-label span{font-size:9px!important}#today .station-saving{gap:2px!important}}
+</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.38</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields"><h2>🏠 Vandaag <span class="today-version">· invoer</span></h2><div class="input-grid"><div><label>Buiten (°C)</label><input id="outside" type="number" value="0" step="1"></div><div><label>Binnen (°C)</label><input id="inside" type="number" value="16" step="0.5"></div><div><label>Gewenst binnen (°C)</label><input id="target" type="number" value="21" step="0.5"></div><div><label>Verwarmingsduur (uur)</label><input id="duration" type="number" value="4" min="0.5" step="0.5"></div><div><label>Gasradar (ct/kWh)</label><input id="spot" type="text" inputmode="decimal" value="8,80" aria-label="GasRadar-prijs in cent per kWh, twee decimalen"></div><div><label>Mijn gasprijs (ct/kWh)</label><input id="contractGas" type="text" inputmode="decimal" value="14" min="0" step="0.01" readonly aria-label="Automatisch berekende geschatte totale gasprijs"></div></div><details class="gas-details"><summary>ⓘ Hoe is mijn gasprijs berekend?</summary><p id="gasFormulaInfo" class="tiny" aria-live="polite"></p></details></div><div id="splitPlan"><div class="row" style="margin-bottom:4px"><label for="weatherProfile" style="margin:0">Weerprofiel</label><select id="weatherProfile" style="width:auto;min-height:29px;padding:3px 6px;font-size:13px"><option value="mild">🌤️ Zacht</option><option value="cold">❄️ Koud</option><option value="verycold">🥶 Heel koud</option><option value="custom">✏️ Aangepast</option></select></div><div class="tiny hidden" id="profileHint">Voorlopige standen, niet automatisch gekoppeld aan buitentemperatuur.</div><div class="plan-main"><div class="plan-controls"><div class="row"><strong>Mijn combinatie</strong></div><label for="zSplit">Schuif om de uren te verdelen</label><div class="bar" aria-hidden="true"><span id="zBar" style="width:25%"></span><span></span></div><input id="zSplit" type="range" min="0" max="4" value="1" step="0.5" aria-label="Uren Zibro; resterende uren Bellfires"><div class="row"><small>Zibro: <b id="zTime">1 uur</b></small><small>Bellfires Smart Bell 75/80: <b id="gTime">3 uur</b></small></div></div><button id="recalculate" type="button" class="btn calcbtn">↻ Bereken</button></div><div id="calcPending" class="calc-pending hidden">Instellingen gewijzigd — klik op Bereken.</div></div></div><div id="comparison"></div><div class="card savings-card station-card" aria-label="Mijn petroleumvoordeel"><div class="station-board"><div class="station-row"><span>Mijn<br>aankoopprijs</span><div class="station-led"><b id="savingPurchase">1.20</b><small>€/L</small></div></div><div class="station-row"><span>Huidige<br>prijs</span><div class="station-led"><b id="savingCurrent">2.00</b><small>€/L</small></div></div></div><div class="station-saving"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M5 2h16a2 2 0 0 1 2 2v23H3V4a2 2 0 0 1 2-2zm2 4v10h12V6H7zm-5 23h24v2H2zm21-21 5 5v11a2 2 0 0 1-4 0v-7h-2v-3h4l-3-3z"/><path fill="#fff" d="M13 18c-2 3-4 5-4 7a4 4 0 0 0 8 0c0-2-2-4-4-7z"/></svg><div class="station-saving-label"><strong>Voordeel</strong><span>per 7 liter</span></div><strong id="tankSaving" class="station-saving-value">€ 5,60</strong></div></div><div style="margin:7px 0 4px"><button type="button" id="openSources" class="btn alt wide" style="min-height:36px">🌤️ Actuele prijzen &amp; weer</button></div></section>
 <section id="sources" class="hidden">
- <div class="card"><button type="button" id="backSources" class="btn alt" style="margin-bottom:10px">← Terug naar Vandaag</button><h2>🌤️ Actuele prijzen &amp; weer</h2><p class="muted">Weer in Tienen automatisch via Open-Meteo. Petroleum C proberen we automatisch bij Statbel op te halen. GasRadar proberen we automatisch op te halen. Als dat niet lukt, kun je de prijzen zelf invullen.</p>
+ <div class="card"><button type="button" id="backSources" class="btn alt" style="margin-bottom:10px">← Terug naar Vandaag</button><h2>🌤️ Actuele prijzen &amp; weer</h2><p class="muted">Weer en energieprijzen worden automatisch opgehaald. Je kunt ze ook zelf aanpassen.</p>
  <div class="hw-source"><h3>🌤️ Weer · Tienen</h3><div id="srcWeather" class="hw-source-value">Nog niet opgehaald</div><p class="tiny" id="srcWeatherInfo">Bron: Open-Meteo. Model- of weerstationgegevens kunnen verschillen van je eigen thermometer.</p><button type="button" id="refreshWeather" class="btn wide">↻ Buitentemperatuur ophalen</button><button type="button" id="applyWeather" class="btn alt wide" disabled>Neem temperatuur over op Vandaag</button><a class="hw-source-link" href="https://www.weeronline.be/Europa/Belgie/Tienen/4053996" target="_blank" rel="noopener noreferrer">Bekijk weerwebsite ↗</a></div>
- <div class="hw-source"><h3>🔥 GasRadar · gasprijs</h3><div id="srcGas" class="hw-source-value">—</div><p class="tiny">Bron: GasRadar · openbare JSON-prijsindicatie, niet noodzakelijk je contractprijs.</p><a class="hw-source-link" href="https://gasradar.be/" target="_blank" rel="noopener noreferrer">Open GasRadar ↗</a><p class="tiny" id="srcGasAutoStatus" aria-live="polite">Automatische bron nog niet geraadpleegd.</p><button type="button" id="refreshGasRadar" class="btn wide">↻ GasRadar automatisch ophalen</button><button type="button" id="useGasRadar" class="btn alt wide" disabled>Neem opgehaalde prijs over</button><label for="srcGasInput">GasRadar-prijs (ct/kWh)</label><input id="srcGasInput" type="text" inputmode="decimal" aria-label="GasRadar-prijs, twee decimalen"><button type="button" class="btn alt wide" id="applyGas">Bewaar gasprijs op Vandaag</button></div>
+ <div class="hw-source"><h3>🔥 GasRadar · gasprijs</h3><div id="srcGas" class="hw-source-value">—</div><div class="hw-gas-gauge" id="gasGauge" aria-live="polite">
+<div class="hw-gauge-topline">Gasbarometer</div>
+<svg class="hw-gauge-svg" viewBox="0 0 360 208" role="img" aria-labelledby="gasGaugeTitle gasGaugeDescription">
+<title id="gasGaugeTitle">Gasbarometer op basis van GasRadar</title>
+<desc id="gasGaugeDescription">Gekleurde halve cirkel van goedkoop links naar duur rechts, met de positie volgens het oordeel van GasRadar over de afgelopen 90 dagen.</desc>
+<path d="M51.10,171.82 A129,129 0 0 1 72.68,105.43" stroke="#188d74" stroke-width="23" fill="none" stroke-linecap="round"/><path d="M78.76,97.05 A129,129 0 0 1 135.25,56.01" stroke="#8fc571" stroke-width="23" fill="none" stroke-linecap="round"/><path d="M145.09,52.81 A129,129 0 0 1 214.91,52.81" stroke="#e1bd43" stroke-width="23" fill="none" stroke-linecap="round"/><path d="M224.75,56.01 A129,129 0 0 1 281.24,97.05" stroke="#ed9137" stroke-width="23" fill="none" stroke-linecap="round"/><path d="M287.32,105.43 A129,129 0 0 1 308.90,171.82" stroke="#ce4d40" stroke-width="23" fill="none" stroke-linecap="round"/><line id="gasGaugeNeedle" x1="180" y1="177" x2="180" y2="65" stroke="#283746" stroke-width="6" stroke-linecap="round" style="display:none"/>
+<circle cx="180" cy="177" r="11" fill="#283746" stroke="#fff" stroke-width="3"/>
+<text x="12" y="204" fill="#397862" font-size="17" font-weight="650">Goedkoop</text>
+<text x="348" y="204" fill="#a4503b" font-size="17" font-weight="650" text-anchor="end">Duur</text>
+</svg>
+<div class="hw-gauge-judgment" id="gasGaugeVerdict">GasRadar-barometer wordt geladen…</div>
+<div class="hw-gauge-note" id="gasGaugeNote">Oordeel ten opzichte van de afgelopen 90 dagen.</div>
+</div><p class="tiny">Bron: GasRadar · openbare JSON-prijsindicatie, niet noodzakelijk je contractprijs.</p><a class="hw-source-link" href="https://gasradar.be/" target="_blank" rel="noopener noreferrer">Open GasRadar ↗</a><p class="tiny" id="srcGasAutoStatus" aria-live="polite">Automatische bron nog niet geraadpleegd.</p><button type="button" id="refreshGasRadar" class="btn wide">↻ GasRadar automatisch ophalen</button><button type="button" id="useGasRadar" class="btn alt wide" disabled>Neem opgehaalde prijs over</button><label for="srcGasInput">GasRadar-prijs (ct/kWh)</label><input id="srcGasInput" type="text" inputmode="decimal" aria-label="GasRadar-prijs, twee decimalen"><button type="button" class="btn alt wide" id="applyGas">Bewaar gasprijs op Vandaag</button></div>
  <div class="hw-source"><h3>⛽ Petroleum C · aan de pomp</h3>
  <div id="srcOfficialPetrol" class="hw-source-value" aria-live="polite">Nog niet opgehaald</div>
  <p class="tiny" id="srcPetrolInfo">Bron: Statbel / FOD Economie · lamppetroleum C aan de pomp, incl. btw. Werkelijke stationsprijs kan afwijken.</p>
@@ -823,7 +854,7 @@ const oldLogs=db.zibroLogs.filter(x=>!x.testId||!db.zibroTests.some(t=>t.id===x.
 $('zibroLog').innerHTML='<details><summary>Bekijk eerdere temperatuurmetingen ('+oldLogs.length+')</summary>'+oldLogs.slice().sort((a,b)=>(b.date+(b.time||'')).localeCompare(a.date+(a.time||''))).map(x=>'<div class="history hw-measurement"><b>'+escapeHtml(x.date)+' '+escapeHtml(x.time||'tijd onbekend')+'</b><div>Living '+fmt(x.living)+' · Keuken '+fmt(x.kitchen)+' · Buiten '+fmt(x.outside)+' · SET '+fmt(x.set)+' · ROOM '+fmt(x.room)+'</div><small>'+(x.type==='geschat'?'⚠️ Geschat':'✓ Gemeten / gemeld')+(x.note?' — '+escapeHtml(x.note):'')+'</small><button type="button" class="hw-measure-delete" data-zold-delete="'+escapeHtml(x.id)+'" aria-label="Verwijder deze meting" title="Verwijder meting">🗑</button></div>').join('')+'</details>';
 const relevantRuns=db.zibroRuns.filter(r=>r.date>='2026-10-19');
 const minutes=relevantRuns.reduce((n,r)=>n+(Number(r.minutes)||0),0);
-$('zRunSummary').textContent='Sinds 19 oktober: '+Math.floor(minutes/60)+' uur en '+minutes%60+' minuten ('+relevantRuns.length+' brandbeurt'+(relevantRuns.length===1?'':'en')+').';
+$('zRunSummary').innerHTML='<div class="hw-hours-total">'+Math.floor(minutes/60)+' uur '+String(minutes%60).padStart(2,'0')+' min</div><div class="hw-hours-meta"><span>Sinds 19/10/26</span><strong>'+relevantRuns.length+' brandbeurt'+(relevantRuns.length===1?'':'en')+'</strong></div>';
 const legacyRuns=relevantRuns.filter(r=>r.source!=='zibroTest');
 const legacyBox=$('hwLegacyRuns');if(legacyBox)legacyBox.innerHTML=legacyRuns.length?legacyRuns.slice().reverse().map(r=>'<div class="history hw-measurement"><strong>'+escapeHtml(hwDateText(r.date||''))+' · '+escapeHtml(r.start||'')+'–'+escapeHtml(r.end||'')+'</strong><div>'+Math.floor((Number(r.minutes)||0)/60)+' uur '+(Number(r.minutes)||0)%60+' minuten (handmatig geregistreerd)</div></div>').join(''):'<p class="tiny">Geen aparte handmatige branduren.</p>';
 const legacyDetail=$('hwLegacyRunsDetails');if(legacyDetail)legacyDetail.classList.toggle('hidden',!legacyRuns.length);
@@ -956,19 +987,37 @@ refreshSplitPreview();boundPhaseHours();render();$('comparison').innerHTML='<div
  }
  // Statbel publiceert een vrije JSON-export. Alleen exact lamppetroleum C aan de pomp, prijs incl. btw.
  // Let op: browserbeveiliging (CORS) van de bron kan direct ophalen verhinderen.
+ function renderGasBarometer(verdict,date){
+  const needle=el('gasGaugeNeedle'),label=el('gasGaugeVerdict'),note=el('gasGaugeNote');
+  const clean=String(verdict||'').toLocaleLowerCase('nl-BE').trim();
+  let tier=-1;
+  if(/(zeer|heel|erg)\s+goedkoop/.test(clean))tier=0;
+  else if(clean==='goedkoop'||clean==='vrij goedkoop')tier=1;
+  else if(clean==='gemiddeld'||clean==='normaal'||clean==='neutraal')tier=2;
+  else if(clean==='duur'||clean==='vrij duur')tier=3;
+  else if(/(zeer|heel|erg)\s+duur/.test(clean))tier=4;
+  if(tier<0){needle.style.display='none';label.textContent=verdict?'GasRadar-oordeel onbekend':'Barometer niet beschikbaar';note.textContent='Geen betrouwbaar oordeel ontvangen. Bekijk de actuele meter op GasRadar.';return;}
+  const theta=(180+(tier+0.5)*36)*Math.PI/180;
+  needle.setAttribute('x2',String(180+Math.cos(theta)*101));
+  needle.setAttribute('y2',String(177+Math.sin(theta)*101));
+  needle.style.display='';
+  const names=['Zeer goedkoop','Goedkoop','Gemiddeld','Duur','Heel duur'];
+  label.textContent=names[tier];
+  note.textContent='Volgens GasRadar · voorbije 90 dagen'+(date?' · '+hwDateText(date):'');
+ }
  async function loadGasRadar(){
-   gasRadar=null;el('useGasRadar').disabled=true;el('srcGasAutoStatus').textContent='GasRadar ophalen…';
+   gasRadar=null;el('useGasRadar').disabled=true;el('srcGasAutoStatus').textContent='GasRadar ophalen…';el('gasGaugeVerdict').textContent='GasRadar-barometer wordt geladen…';
    try{
      const j=await fetchTimed('https://gasradar.be/api/now',10);
      const price=Number(j?.price?.centPerKwh),date=isoDate(j?.price?.todayDate);
      if(!Number.isFinite(price)||price<=0||price>100||!date)throw new Error('Ongeldig API-antwoord');
-     const current=belgiumToday();gasRadar={price,date};
+     const current=belgiumToday();gasRadar={price,date};renderGasBarometer(j?.price?.verdict?.headline,date);
      el('srcGasAutoStatus').textContent=date<current?'Bronprijs van een eerdere gasdag; controleer de datum hierboven.':'Automatisch opgehaald · actuele gasdag.';
      el('useGasRadar').disabled=false;
      // Alleen automatisch overnemen wanneer dezelfde gasdag actief is, nooit een oudere prijs stilzwijgend overschrijven.
      el('srcGas').innerHTML='<span class="hw-price-line">'+gas2(price)+' ct/kWh</span><span class="hw-date-line">(GasRadar · '+hwDateText(date)+')</span>';
      if(date===current){el('spot').value=gas2(price);el('spot').dispatchEvent(new Event('input',{bubbles:true}));}
-   }catch(err){el('srcGasAutoStatus').textContent='Automatisch ophalen niet mogelijk. Handmatige GasRadar-invoer blijft beschikbaar; je bestaande prijs is niet gewijzigd.';}
+   }catch(err){renderGasBarometer(null,null);el('srcGasAutoStatus').textContent='Automatisch ophalen niet mogelijk. Handmatige GasRadar-invoer blijft beschikbaar; je bestaande prijs is niet gewijzigd.';}
  }
  async function loadPetrol(){
   officialPetrol=null;el('useOfficialPetrol').disabled=true;
