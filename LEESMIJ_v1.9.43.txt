@@ -1,0 +1,8 @@
+HeatWise v1.9.43 – FLINQ-foto gecorrigeerd
+
+- De FLINQ-badkamerpagina gebruikt nu de zwarte, frontale productfoto die jij hebt goedgekeurd: zonder smartphone en zonder afbeelding van een schuifbalk.
+- De geselecteerde foto is ingesloten in index.html, zodat ze ook verschijnt als een apart afbeeldingsbestand niet wordt geladen. Hetzelfde foto-bestand is bovendien afzonderlijk meegeleverd als flinq-panel-dark.jpg.
+- De echte verwarmingsduur-schuifbalk onder de foto blijft gewoon werken.
+- De andere functies, berekeningen, vier tabbladen en bewaarde gegevens van HeatWise v1.9.42 blijven ongewijzigd.
+
+Installatie: maak voor de zekerheid eerst een JSON-back-up via Overzicht > Bescherm je gegevens. Upload alle bestanden uit de ZIP naar dezelfde GitHub Pages-locatie. Wis geen browser-/sitegegevens. De bestaande lokale metingen worden door deze update niet opgeruimd.
