@@ -487,7 +487,46 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 .hw-p1-confirm{margin:7px 0;font-weight:650;color:#28644e;font-size:15px;}
 .hw-p1-correction .grid,.hw-p1-correction .hw-mix-fields{margin-top:10px;}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.40</span></header>
+<style>
+/* HeatWise v1.9.41 – extra elektrisch toestel zonder extra onderbalk-tab */
+.hw-other-devices h2{margin-bottom:8px!important}
+.hw-device-row{display:flex;align-items:center;gap:12px;width:100%;border:1px solid #e3d6c1;border-radius:13px;background:#faf6ee;text-align:left;padding:12px 13px;color:#45392e;font:inherit;cursor:pointer}
+.hw-device-row:focus-visible,.hw-stand:focus-visible{outline:3px solid #167896;outline-offset:2px}
+.hw-device-icon{font-size:27px;flex-shrink:0}
+.hw-device-desc{display:flex;flex:1;flex-direction:column;gap:2px;font-size:14px}
+.hw-device-desc small{font-size:12px;color:#677785}
+.hw-device-arrow{font-size:22px;color:#1a6980}
+.hw-other-future{display:flex;gap:9px;align-items:center;color:#74818b;padding:10px 6px 1px;font-size:13px}
+#flinqPage{padding-top:3px}
+#flinqPage .card{background:white;border-radius:19px}
+#flinqPage .hw-flinq-back{margin-bottom:14px;padding:11px 14px}
+#flinqPage .hw-flinq-head h2{font-size:21px;margin:0 0 3px;color:#3d382f}
+#flinqPage .hw-flinq-subtitle{color:#64748b;margin:0 0 13px;font-size:13px}
+#flinqPage .hw-flinq-photo{display:block;width:100%;height:auto;border-radius:13px;border:1px solid #383b40;background:#16171a;margin:6px 0 14px;object-fit:contain}
+#flinqPage .hw-flinq-section{border-top:1px solid #e8e0d7;padding-top:14px;margin-top:14px}
+#flinqPage .hw-flinq-section h3{font-size:16px;margin:0 0 10px;color:#403b34}
+#flinqPage .hw-stand-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+#flinqPage .hw-stand{cursor:pointer;border-radius:11px;border:1px solid #d8d8d5;background:#f6f5f2;color:#50473d;padding:12px 5px;font:inherit;font-size:13px;font-weight:600}
+#flinqPage .hw-stand[aria-pressed=true]{background:#e9f4ed;border:2px solid #25845d;color:#146c49;padding:11px 4px}
+#flinqPage .hw-flinq-range-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px}
+#flinqPage input[type=range]{width:100%;height:28px;accent-color:#187b84;touch-action:pan-y}
+#flinqPage .hw-min-labels{display:flex;justify-content:space-between;font-size:12px;color:#718096}
+#flinqPage .hw-flinq-price-input{max-width:100%;font-size:17px;min-height:44px}
+#flinqPage .hw-flinq-result{margin-top:15px;background:#ebf5f0;border:1px solid #bfdccc;border-radius:14px;padding:15px}
+#flinqPage .hw-flinq-result-title{font-size:15px;font-weight:700;color:#246747;margin-bottom:10px}
+#flinqPage .hw-flinq-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#flinqPage .hw-flinq-stat{background:#fff;border-radius:10px;padding:11px;min-width:0}
+#flinqPage .hw-flinq-stat small{display:block;color:#667785;font-size:11px;margin-bottom:4px}
+#flinqPage .hw-flinq-stat strong{display:block;color:#21744f;font-size:24px;font-weight:750;letter-spacing:-.5px;overflow-wrap:anywhere}
+#flinqPage .hw-flinq-period{border-top:1px solid #cde3d8;margin-top:11px;padding-top:10px;display:flex;justify-content:space-between;font-size:13px;gap:12px}
+#flinqPage .hw-flinq-details{margin-top:15px;border-radius:11px;border:1px solid #e8decf;background:#fcfaf5;padding:12px}
+#flinqPage .hw-flinq-details summary{font-size:14px;font-weight:700;color:#24566a;cursor:pointer}
+#flinqPage .hw-flinq-details .grid{gap:8px}
+#flinqPage .hw-flinq-details input{width:100%;font-size:15px;padding:9px}
+#flinqPage .hw-flinq-room-stats{font-size:14px;padding:10px;background:#f0f6f3;border-radius:9px;margin:9px 0}
+#flinqPage .hw-flinq-disclaimer{font-size:12px;line-height:1.55;color:#637180;margin:13px 0 0}
+@media(max-width:380px){#flinqPage .hw-flinq-stat strong{font-size:20px}#flinqPage .hw-stand{font-size:12px}}
+</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.41</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields"><h2>🏠 Vandaag <span class="today-version">· invoer</span></h2><div class="input-grid"><div><label>Buiten (°C)</label><input id="outside" type="text" inputmode="decimal" value="0" step="1"></div><div><label>Binnen (°C)</label><input id="inside" type="text" inputmode="decimal" value="16" step="0.5"></div><div><label>Gewenst binnen (°C)</label><input id="target" type="text" inputmode="decimal" value="21" step="0.5"></div><div><label>Verwarmingsduur (uur)</label><input id="duration" type="number" value="4" min="0.5" step="0.5"></div><div class="hw-gas-market"><label for="spot">GasRadar (ct/kWh)</label><input id="spot" type="text" inputmode="decimal" value="8,80" aria-label="GasRadar-marktindicatie in cent per kWh, twee decimalen"><span class="hw-gas-caption">Marktindicatie</span></div><div class="hw-gas-contract"><label for="contractGas">Mijn gasprijs (ct/kWh)</label><input id="contractGas" type="text" inputmode="decimal" value="14" min="0" step="0.01" readonly aria-label="Mijn persoonlijke gasprijs volgens tariefformule, in cent per kWh"><span class="hw-gas-caption">Volgens tariefformule</span></div></div><details class="gas-details"><summary>ⓘ Hoe is mijn gasprijs berekend?</summary><p id="gasFormulaInfo" class="tiny" aria-live="polite"></p></details></div><div id="splitPlan"><div class="row" style="margin-bottom:4px"><label for="weatherProfile" style="margin:0">Weerprofiel</label><select id="weatherProfile" style="width:auto;min-height:29px;padding:3px 6px;font-size:13px"><option value="mild">🌤️ Zacht</option><option value="cold">❄️ Koud</option><option value="verycold">🥶 Heel koud</option><option value="custom">✏️ Aangepast</option></select></div><div class="tiny hidden" id="profileHint">Voorlopige standen, niet automatisch gekoppeld aan buitentemperatuur.</div><div class="plan-main"><div class="plan-controls"><div class="row"><strong>Mijn combinatie</strong></div><label for="zSplit">Schuif om de uren te verdelen</label><div class="bar" aria-hidden="true"><span id="zBar" style="width:25%"></span><span></span></div><input id="zSplit" type="range" min="0" max="4" value="1" step="0.5" aria-label="Uren Zibro; resterende uren Bellfires"><div class="row"><small>Zibro: <b id="zTime">1 uur</b></small><small>Bellfires Smart Bell 75/80: <b id="gTime">3 uur</b></small></div></div><button id="recalculate" type="button" class="btn calcbtn">↻ Bereken</button></div><div id="calcPending" class="calc-pending hidden">Instellingen gewijzigd — klik op Bereken.</div></div></div><div id="comparison"></div><div class="card savings-card station-card" aria-label="Mijn petroleumvoordeel"><div class="station-board"><div class="station-row"><span>Mijn<br>aankoopprijs</span><div class="station-led"><b id="savingPurchase">1.20</b><small>€/L</small></div></div><div class="station-row"><span>Huidige<br>prijs</span><div class="station-led"><b id="savingCurrent">2.00</b><small>€/L</small></div></div></div><div class="station-saving"><svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M5 2h16a2 2 0 0 1 2 2v23H3V4a2 2 0 0 1 2-2zm2 4v10h12V6H7zm-5 23h24v2H2zm21-21 5 5v11a2 2 0 0 1-4 0v-7h-2v-3h4l-3-3z"/><path fill="#fff" d="M13 18c-2 3-4 5-4 7a4 4 0 0 0 8 0c0-2-2-4-4-7z"/></svg><div class="station-saving-label"><strong>Voordeel</strong><span>per 7 liter</span></div><strong id="tankSaving" class="station-saving-value">€ 5,60</strong></div></div><div style="margin:7px 0 4px"><button type="button" id="openSources" class="btn alt wide" style="min-height:36px">🌤️ Actuele prijzen &amp; weer</button></div></section>
 <section id="sources" class="hidden">
  <div class="card"><button type="button" id="backSources" class="btn alt" style="margin-bottom:10px">← Terug naar Vandaag</button><h2>🌤️ Actuele prijzen &amp; weer</h2><p class="muted">Weer en energieprijzen worden automatisch opgehaald. Je kunt ze ook zelf aanpassen.</p>
@@ -599,6 +638,48 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 <label class="hw-cleanup-check"><input type="checkbox" id="hwBackupVerified"> Ik heb de JSON-back-up gedownload en teruggevonden op mijn toestel.</label>
 <button type="button" class="btn danger wide" id="hwCleanupRun" disabled>Verwijder oude losse temperatuurmetingen</button>
 <p id="hwCleanupFeedback" class="tiny" role="status"></p></div><p class="muted">Downloadt een bestand met je gegevens. Je huidige gegevens blijven gewoon bewaard. Bewaar dit bestand op een veilige plaats.</p><label for="import">⬆️ Gegevens terugzetten uit veiligheidskopie</label><p class="muted">Kies alleen een eerder gedownloade HeatWise-veiligheidskopie. Let op: bij het terugzetten worden je huidige opgeslagen gegevens vervangen.</p><input type="file" id="import" accept="application/json,.json"><div style="margin-top:22px;padding-top:16px;border-top:1px solid #ddd"><strong>Gegevens definitief verwijderen</strong><p class="muted">Alle opgeslagen metingen en instellingen op dit toestel worden gewist. Maak eerst een veiligheidskopie.</p><button class="btn danger wide" id="reset">Wis alle gegevens</button></div></details></div></section>
+
+<section id="flinqPage" class="hidden" aria-labelledby="flinqTitle">
+ <div class="card" id="hwFlinqPanel">
+  <button type="button" class="btn alt hw-flinq-back" id="hwFlinqBack">← Terug naar Overzicht</button>
+  <div class="hw-flinq-head"><h2 id="flinqTitle">🚿 FLINQ · Badkamerverwarming</h2>
+   <p class="hw-flinq-subtitle">Smart Panel Heater FQC8176/8177 · Elektrisch</p></div>
+  <img src="./flinq-panel-dark.jpg" alt="Zwarte FLINQ Smart Panel Heater, frontaal in beeld" class="hw-flinq-photo">
+  <div class="hw-flinq-section">
+   <h3>Verwarmingsstand</h3>
+   <div class="hw-stand-row" role="group" aria-label="Kies vermogen">
+    <button type="button" class="hw-stand" data-flinq-power="1000" aria-pressed="false">Stand 1 · 1000 W</button>
+    <button type="button" class="hw-stand" data-flinq-power="2000" aria-pressed="true">Stand 2 · 2000 W</button>
+   </div>
+  </div>
+  <div class="hw-flinq-section">
+   <div class="hw-flinq-range-label"><label for="hwFlinqMinutes" style="margin:0">Verwarmingsduur</label><strong id="hwFlinqMinutesDisplay" aria-live="polite">30 minuten</strong></div>
+   <input id="hwFlinqMinutes" type="range" min="5" max="120" step="5" value="30">
+   <div class="hw-min-labels"><span>5 min</span><span>120 min</span></div>
+   <label for="hwFlinqTariff">Mijn elektriciteitsprijs (€/kWh)</label>
+   <input id="hwFlinqTariff" class="hw-flinq-price-input" type="text" inputmode="decimal" autocomplete="off" value="0,30" placeholder="bv. 0,30">
+   <p class="tiny">Voorlopig tarief: Ecopower Groene Burgerstroom, september 2026, circa € 0,30/kWh inclusief btw. Exclusief vaste kosten en capaciteitstarief. Je kunt dit aanpassen.</p>
+  </div>
+  <div class="hw-flinq-result" aria-live="polite">
+   <div class="hw-flinq-result-title">⚡ Geschat verbruik en kosten</div>
+   <div class="hw-flinq-stats">
+    <div class="hw-flinq-stat"><small>Elektriciteitsverbruik</small><strong id="hwFlinqKwh">1,00 kWh</strong></div>
+    <div class="hw-flinq-stat"><small>Kosten per verwarmingsbeurt</small><strong id="hwFlinqCost">€ 0,30</strong></div>
+   </div>
+   <div class="hw-flinq-period"><span>Bij dagelijks gebruik (30 dagen)</span><strong id="hwFlinqMonth">€ 9,00</strong></div>
+  </div>
+  <details class="hw-flinq-details"><summary>📐 Mijn badkamer · afmetingen</summary>
+   <div class="grid">
+    <div><label for="hwFlinqLength">Lengte (m)</label><input type="text" inputmode="decimal" id="hwFlinqLength" value="2,92"></div>
+    <div><label for="hwFlinqWidth">Breedte (m)</label><input type="text" inputmode="decimal" id="hwFlinqWidth" value="1,70"></div>
+   </div>
+   <label for="hwFlinqHeight">Plafondhoogte (m)</label><input type="text" inputmode="decimal" id="hwFlinqHeight" value="2,10">
+   <div id="hwFlinqRoomStats" class="hw-flinq-room-stats">Oppervlakte: 4,96 m² · volume: 10,42 m³</div>
+   <p class="tiny">Afmetingen helpen de verwarmingscapaciteit beoordelen. De berekende stroomkosten hangen af van vermogen, tijd en tarief.</p>
+  </details>
+  <p class="hw-flinq-disclaimer">Dit is een <strong>schatting bij continu verwarmen op het gekozen vermogen</strong>. De thermostaat kan tussentijds uitschakelen, waardoor het werkelijke verbruik lager ligt. HeatWise bedient het toestel niet; daarvoor gebruik je de FLINQ-app. Geen Start/Stop-test nodig.</p>
+ </div>
+</section>
 </main><nav class="tabs"><button data-tab="today" class="active"><b>🏠</b>Vandaag</button><button data-tab="register"><b>⛽</b>Zibro</button><button data-tab="heating"><b>🔥</b>Bellfires</button><button data-tab="overview"><b>📊</b>Overzicht</button></nav><script>
 /* HeatWise v1.9.33 — overzichtelijker testen en resultaten, bestaande data en invoer-ID's behouden. */
 (function(){
@@ -1416,6 +1497,63 @@ el('bellStart').onclick=()=>{
  });
  observer.observe(root,{childList:true,characterData:true,subtree:true});
  window.hwDisplayDate1939=formatVisibleDates;
+})();
+</script>
+
+<script>
+/* HeatWise v1.9.41 – berekeningspagina FLINQ badkamerverwarming. Geen wijzigingen in bestaande testgegevens. */
+(function(){
+ 'use strict';
+ const id=x=>document.getElementById(x);
+ const overview=id('overview'), flinq=id('flinqPage');
+ if(!overview||!flinq)return;
+ const target=overview.querySelector('#hwAdvanced')||overview.querySelector('.hw-settings-inside');
+ const card=document.createElement('div');card.className='card hw-other-devices';card.id='hwOtherDevices';
+ card.innerHTML='<h2>♨️ Mijn andere toestellen</h2><button class="hw-device-row" type="button" id="hwFlinqOpen" aria-label="Open FLINQ badkamerverwarming"><span class="hw-device-icon">🚿</span><span class="hw-device-desc"><strong>FLINQ badkamerverwarming</strong><small>1000 / 2000 W · Bereken elektriciteitskosten</small></span><span class="hw-device-arrow">›</span></button><div class="hw-other-future"><span>❄️</span><span>Airco · later toevoegen</span></div>';
+ if(target)overview.insertBefore(card,target);else overview.appendChild(card);
+ const KEY='heatwise-v1';
+ // Bestaande gegevens blijven in dezelfde datastore. Nieuwe instellingen staan in een afzonderlijk subobject.
+ db.settings=db.settings||{};
+ const defaults={power:2000,minutes:30,tariff:0.30,length:2.92,width:1.70,height:2.10};
+ const initial=db.settings.flinq||{};
+ const setting={...defaults,...initial};
+ const parseValue=x=>Number(String(x).trim().replace(/\s/g,'').replace(',','.'));
+ const euro=x=>x.toLocaleString('nl-BE',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2});
+ const dec=(x,p=2)=>x.toLocaleString('nl-BE',{minimumFractionDigits:p,maximumFractionDigits:p});
+ const settingsKey=['tariff','length','width','height'];
+ const fields={tariff:id('hwFlinqTariff'),length:id('hwFlinqLength'),width:id('hwFlinqWidth'),height:id('hwFlinqHeight')};
+ for(const k of settingsKey)fields[k].value=dec(setting[k]);
+ id('hwFlinqMinutes').value=String(setting.minutes);
+ function save(){db.settings.flinq={...setting};localStorage.setItem(KEY,JSON.stringify(db));}
+ function draw(){
+  document.querySelectorAll('[data-flinq-power]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.flinqPower)===setting.power)));
+  id('hwFlinqMinutesDisplay').textContent=setting.minutes+' minuten';
+  const price=parseValue(fields.tariff.value);
+  const kwh=setting.power/1000*setting.minutes/60;
+  id('hwFlinqKwh').textContent=dec(kwh)+' kWh';
+  id('hwFlinqCost').textContent=Number.isFinite(price)&&price>=0?euro(kwh*price):'—';
+  id('hwFlinqMonth').textContent=Number.isFinite(price)&&price>=0?euro(kwh*price*30):'—';
+  const length=parseValue(fields.length.value),width=parseValue(fields.width.value),height=parseValue(fields.height.value);
+  id('hwFlinqRoomStats').textContent=([length,width,height].every(x=>Number.isFinite(x)&&x>0))?'Oppervlakte: '+dec(length*width)+' m² · volume: '+dec(length*width*height)+' m³':'Vul geldige positieve afmetingen in.';
+ }
+ function open(){
+  document.querySelectorAll('main section').forEach(x=>x.classList.add('hidden'));
+  flinq.classList.remove('hidden');
+  document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab==='overview'));
+  draw();window.scrollTo({top:0,behavior:'instant'});
+ }
+ function back(){flinq.classList.add('hidden');overview.classList.remove('hidden');document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab==='overview'));window.scrollTo({top:0,behavior:'instant'});}
+ id('hwFlinqOpen').addEventListener('click',open);
+ id('hwFlinqBack').addEventListener('click',back);
+ document.querySelectorAll('[data-flinq-power]').forEach(b=>b.addEventListener('click',()=>{setting.power=Number(b.dataset.flinqPower);save();draw()}));
+ id('hwFlinqMinutes').addEventListener('input',e=>{setting.minutes=Number(e.target.value);save();draw()});
+ for(const k of settingsKey){
+  fields[k].addEventListener('input',()=>{
+   const v=parseValue(fields[k].value);if(Number.isFinite(v)&&v>=0&&(k==='tariff'||v>0)){setting[k]=v;save()};draw()
+  });
+  fields[k].addEventListener('blur',()=>{const v=parseValue(fields[k].value);if(Number.isFinite(v)&&v>=0&&(k==='tariff'||v>0))fields[k].value=dec(v,k==='tariff'?2:2);draw()});
+ }
+ draw();
 })();
 </script>
 </body></html>
