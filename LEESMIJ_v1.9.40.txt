@@ -1,0 +1,14 @@
+HeatWise v1.9.40 – GitHub Pages
+
+Wijzigingen:
+1. P1-formulier verdwijnt na het bewaren achter een inklapbare knop.
+2. Opmerkingenveld: groter, breder en meerdere regels.
+3. Temperatuurweergave met decimale komma.
+4. Start bewaart de ingevulde temperaturen direct als eerste meting (Zibro, Bellfires, gemengd).
+5. Temperatuurvelden, inclusief Vandaag, accepteren komma én punt; negatieve waarden mogelijk.
+6. Stop bewaart de ingevulde eindtemperaturen zonder extra keuzescherm. Livingtemperatuur is verplicht.
+
+Installatie: maak vooraf een JSON-back-up van je gegevens via Overzicht -> Bescherm je gegevens.
+Upload ALLE bestanden uit de ZIP naar dezelfde GitHub Pages-repository en behoud dezelfde URL.
+De opgeslagen waarden blijven in de browser van jouw toestel (localStorage). Verwijder geen websitegegevens.
+De huidige werkende test kan best eerst worden beëindigd vóór de update.
