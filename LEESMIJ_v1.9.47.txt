@@ -1,0 +1,24 @@
+HEATWISE v1.9.47 — Correctie verborgen oude gasregistraties
+
+Probleem in v1.9.45:
+- Bij Bellfires is enkel de volledige Start/Stop-test van 20 oktober zichtbaar.
+- Twee oudere gasregistraties van 18 oktober uit het oude, onzichtbare opslagsysteem tellen toch nog mee in het Overzicht en de JSON-back-up.
+- Daardoor toont het Overzicht 3 gasmetingen en € 3,10 in plaats van 1 gasmeting en € 1,63, op basis van de opgeslagen testtarieven.
+
+Correctie:
+- Bij het openen van deze versie worden uitsluitend de oude verborgen gegevens uit de verouderde opslagvelden ‘tests’ en ‘sessions’ verwijderd uit de lokaal opgeslagen HeatWise-database.
+- De test van 20 oktober en alle zichtbare Bellfires-, Zibro- en gemengde testresultaten blijven behouden. Ook tankinformatie, instellingen, FLINQ en de gasprijsberekening blijven ongewijzigd.
+- Het Overzicht telt alleen het gasverbruik van zichtbare Bellfires- en gemengde tests.
+- Nieuwe back-ups bevatten geen verborgen verouderde testregistraties. Ook als je een oude back-up importeert, worden zulke verborgen verouderde registraties opnieuw weggelaten.
+- Geen extra schermen of knoppen. Het reeds bestaande verwijderen-per-test blijft werken.
+
+Installeren:
+1. Bewaar de huidige JSON-back-up van 23 oktober als extra herstelpunt.
+2. Upload index.html en sw.js uit deze ZIP naar jouw bestaande GitHub-repository, plus eventueel dit LEESMIJ-bestand. Laat de afbeeldingen, het manifest en alle andere bestaande bestanden staan.
+3. Open of herlaad HeatWise. Controleer ‘Privé • v1.9.47’ bovenaan.
+4. Ga naar Overzicht: de Bellfires-meting van 20 oktober hoort als 1 gasmeting (€ 1,63 op basis van het opgeslagen tarief) te verschijnen.
+5. Maak via Overzicht > Bescherm je gegevens een nieuwe JSON-back-up. Daarin moeten ‘tests’ en ‘sessions’ lege lijsten zijn, en onder ‘bellfiresTests’ staat nog steeds de test van 20 oktober.
+
+Let op: de gasprijs voor nieuwe testen kan veranderen. De € 1,63 komt uit de op 20 oktober opgeslagen testkosten, niet uit de huidige dagprijs.
+
+De appgegevens worden lokaal op je telefoon bewaard; deze ZIP verandert je GitHub-repository of jouw telefoon niet totdat je de update zelf uploadt en opent.
