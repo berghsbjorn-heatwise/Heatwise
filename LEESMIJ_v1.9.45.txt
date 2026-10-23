@@ -1,0 +1,26 @@
+HeatWise v1.9.45 — automatische indicatieve gasprijs, zonder keuzelijsten
+
+WAT IS GEWIJZIGD?
+• De T1/T2-keuze, de accijnskeuze en de invulvelden voor een TTF_RLP-maandindex zijn verwijderd.
+• Op Vandaag staan nog steeds de GasRadar-marktindicatie en de berekende gasprijs. Nieuwe gegevens worden automatisch opgehaald wanneer GasRadar een actuele gasdag levert.
+• De persoonlijke gasprijs is een schatting met de bestaande EnergyVision-contractformule van februari 2025 en gepubliceerde netkosten voor Fluvius Zenne-Dijle 2026.
+• Zolang het jaarverbruik onbekend is, gebruikt HeatWise als indicatief uitgangspunt de T2-distributiecomponent en de lage accijnsschijf. De prijs is dus niet gelijk aan een exacte gasfactuur; bij T1 kan de distributiecomponent hoger zijn.
+• GasRadar-dagprijzen zijn NIET dezelfde als de contractueel RLP-gewogen maandindex. Een correcte maandafrekening vergt de echte TTF_RLP-index en het relevante jaarverbruik.
+• Onder 'Hoe is mijn gasprijs berekend?' staat een transparante uitsplitsing.
+• Er zijn geen extra keuzes of velden nodig. De oude metingen en lokale gegevens blijven behouden.
+
+BELANGRIJK
+• Als het automatisch ophalen niet lukt, gebruikt HeatWise de laatst opgeslagen bronprijs (of aanvankelijk de oude standaardwaarde). Dat is geen actuele koers.
+• Voor de echte contractkosten zijn de factuur en de geldende tariefkaart bepalend.
+• De bestaande foto's, vier tabbladen, P1-testregistraties, FLINQ en tankcyclus blijven ongewijzigd.
+
+INSTALLATIE
+1. Maak eerst een JSON-back-up via Overzicht > Bescherm je gegevens.
+2. Voor een kleine update: upload index.html, sw.js en dit LEESMIJ-bestand; vervang de oude versies op GitHub.
+3. Download of wis GEEN browser-/sitegegevens en wis nooit localStorage. Een PWA kan na de update een extra keer herladen vereisen.
+4. De precieze tarieven en aannames vind je in het toelichtingsveld in Vandaag.
+
+BRONNEN
+- Jouw EnergyVision Aardgas Variabel tariefkaart februari 2025.
+- Fluvius Zenne-Dijle 2026 aardgas: https://assets.vlaamsenutsregulator.be/2025-11/FZD%20-%202026%20-%20GAS.pdf
+- EnergyVision 2026 tariefkaart: https://www.energyvision.be/sites/default/files/inline-files/EV-0826-GSG-nl.pdf
