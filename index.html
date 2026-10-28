@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.51: ontwerpgetrouwe Vandaag-pagina en behoud van bestaande meetlogica --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.52: distributiecategorie T1 voor laag gasverbruik; bestaande metingen en lay-out behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -742,7 +742,7 @@ header small{font-size:12px}
 #today .station-board,#today .station-saving{position:relative!important;z-index:1!important}
 #today .hw-gas-footnote{display:inline-block!important;max-width:calc(100% - 56px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
 
-</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.51</span></header>
+</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.52</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -1230,16 +1230,16 @@ function updateGasEstimate(){
  // Dit is NIET de contractuele TTF_RLP-maandindex; daarom blijft de prijs altijd indicatief.
  const index=spot*10;
  const energy=(index*0.11111+0.2165)*1.06;
- // Zonder volledig jaarverbruik is de distributiecategorie onbekend. Als standaardscenario
- // nemen we T2 (woning met gasverwarming), dus de prijs is GEEN bewezen persoonlijk tarief.
- const dist=HW_GAS2026.distribution.T2;
+ // Historisch jaarverbruik (2023-2025) ligt ruim onder 5.000 kWh: T1 is het passende
+ // distributiescenario. Dit blijft een richtprijs, geen bewezen factuurtarief.
+ const dist=HW_GAS2026.distribution.T1;
  const extra=dist+HW_GAS2026.transport+HW_GAS2026.energyContribution+HW_GAS2026.excise.low;
  const total=energy+extra;
  const lastDate=db.settings.gasRadarDate;
  const status=lastDate ? 'GasRadar-bronwaarde van '+hwDateText(lastDate) : 'GasRadar-marktindicatie (datum nog niet bevestigd)';
  $('contractGas').value=hwGasFmt(total);
- $('hwGas2026Details').textContent='Richtprijs: '+hwGasFmt(total)+' ct/kWh. '+status+'. Indicatieve kosten op basis van distributiescenario T2; dat is niet bevestigd zonder jaarverbruik.';
- $('gasFormulaInfo').textContent='EnergyVision-formule (02/2025): ('+hwGasFmt(index)+' €/MWh × 0,11111 + 0,2165) × 1,06 = '+hwGasFmt(energy)+' ct/kWh. Variabele 2026-kosten (aangenomen T2): distributie '+hwGasFmt(dist,5)+' + transport '+hwGasFmt(HW_GAS2026.transport,3)+' + energiebijdrage '+hwGasFmt(HW_GAS2026.energyContribution,5)+' + accijns '+hwGasFmt(HW_GAS2026.excise.low,5)+' = '+hwGasFmt(extra,5)+' ct/kWh. Samen '+hwGasFmt(total)+' ct/kWh. Let op: contractuele TTF_RLP is een gewogen maandindex; dagelijkse GasRadar-prijs is uitsluitend een benadering. Bij T1 kan de distributiecomponent circa 1,59 ct/kWh hoger zijn. Historische metingen worden niet herschreven.';
+ $('hwGas2026Details').textContent='Richtprijs: '+hwGasFmt(total)+' ct/kWh. '+status+'. Indicatieve kosten met distributiecategorie T1 (tot 5.000 kWh/jaar); geen exacte factuurprijs.';
+ $('gasFormulaInfo').textContent='EnergyVision-formule (02/2025): ('+hwGasFmt(index)+' €/MWh × 0,11111 + 0,2165) × 1,06 = '+hwGasFmt(energy)+' ct/kWh. Variabele 2026-kosten (T1, laag jaarverbruik): distributie '+hwGasFmt(dist,5)+' + transport '+hwGasFmt(HW_GAS2026.transport,3)+' + energiebijdrage '+hwGasFmt(HW_GAS2026.energyContribution,5)+' + accijns '+hwGasFmt(HW_GAS2026.excise.low,5)+' = '+hwGasFmt(extra,5)+' ct/kWh. Samen '+hwGasFmt(total)+' ct/kWh. Let op: contractuele TTF_RLP is een gewogen maandindex; dagelijkse GasRadar-prijs is uitsluitend een benadering. T1 heeft circa 1,59 ct/kWh hogere variabele distributiekosten dan T2, maar lagere vaste netkosten; die vaste kosten zijn niet in de uurprijs opgenomen. Historische metingen worden niet herschreven.';
  db.settings.spot=spot;
  db.settings.contractGas=total;
  // Oude maandindexgegevens uit v1.9.45 blijven ongemoeid voor compatibiliteit; ze zijn niet meer nodig.
