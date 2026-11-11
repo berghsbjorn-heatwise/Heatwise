@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.65: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.66: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -60,17 +60,17 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 #splitPlan .bar{margin:5px 0 3px}
 #splitPlan input[type=range]{display:block;width:100%;margin:0 0 2px}
 #comparison .result .plan-secondary{font-weight:650;color:#76572f;margin-top:2px}#comparison .result .status{margin-top:2px}#comparison.fresh>.card{background:#eef7ef;border-color:#9fc9aa;box-shadow:0 0 0 1px #d3e8d6}#comparison:not(.fresh)>.card{background:#fffcf7}.test-entry{border:1px solid #e4d8c7;border-radius:12px;background:#fbf6ef;padding:11px;margin:9px 0}.test-entry .row{align-items:flex-start}.test-entry small{display:block;margin:4px 0}.test-entry details{margin:5px 0}.test-entry .test-prediction{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;max-height:240px;overflow:auto}.test-entry .tag{font-size:11px;color:#156c86;font-weight:700}#gasMode{margin-top:4px}#gasInfo{margin-top:8px}#gasSession{background:#fffdf9}
-/* HeatWise v1.9.65 — zeven dagen, alleen blauwe brandurenbalken en losse eurobedragen */
-#register .hw65-chart{width:100%;margin-top:8px;overflow:hidden}
-#register .hw65-bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;align-items:end;width:100%;padding:8px 0 10px;border-bottom:1px solid #536878}
-#register .hw65-day{min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;color:#f0f6fa;text-align:center}
-#register .hw65-hours{font-size:clamp(9px,2.6vw,12px);font-weight:700;white-space:nowrap}
-#register .hw65-bar-area{height:120px;width:100%;display:flex;align-items:flex-end;justify-content:center}
-#register .hw65-bar{width:76%;max-width:36px;background:#4d99d4;border-radius:5px 5px 0 0}
-#register .hw65-cost{font-size:clamp(8px,2.4vw,12px);color:#f1f6fa;font-weight:700;white-space:nowrap}
-#register .hw65-day small{font-size:clamp(9px,2.4vw,11px);color:#bfd0d9;white-space:nowrap}
-#register .hw65-nav{margin:14px 0 8px}
-#register .hw65-page{color:#d6e6ef;font-size:13px;min-width:92px;text-align:center}
+/* HeatWise v1.9.66 — zeven dagen, alleen blauwe brandurenbalken en losse eurobedragen */
+#register .hw65-chart,#heating .hw65-chart{width:100%;margin-top:8px;overflow:hidden}
+#register .hw65-bars,#heating .hw65-bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;align-items:end;width:100%;padding:8px 0 10px;border-bottom:1px solid #536878}
+#register .hw65-day,#heating .hw65-day{min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;color:#f0f6fa;text-align:center}
+#register .hw65-hours,#heating .hw65-hours{font-size:clamp(9px,2.6vw,12px);font-weight:700;white-space:nowrap}
+#register .hw65-bar-area,#heating .hw65-bar-area{height:120px;width:100%;display:flex;align-items:flex-end;justify-content:center}
+#register .hw65-bar,#heating .hw65-bar{width:76%;max-width:36px;background:#4d99d4;border-radius:5px 5px 0 0}
+#register .hw65-cost,#heating .hw65-cost{font-size:clamp(8px,2.4vw,12px);color:#f1f6fa;font-weight:700;white-space:nowrap}
+#register .hw65-day small,#heating .hw65-day small{font-size:clamp(9px,2.4vw,11px);color:#bfd0d9;white-space:nowrap}
+#register .hw65-nav,#heating .hw65-nav{margin:14px 0 8px}
+#register .hw65-page,#heating .hw65-page{color:#d6e6ef;font-size:13px;min-width:92px;text-align:center}
 </style><style>
 /* v1.9.8: compacte, op een telefoonscherm leesbare drieledige vergelijking */
 #today .today-version{font-size:10px;font-weight:500;color:#867461}
@@ -941,7 +941,7 @@ header small{font-size:12px}
 .hw59-cooling-bar:focus-visible{outline:3px solid #c5791b}
 .hw59-legend{font-size:12px;color:#607783;margin:8px 0}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.65</span></header>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.66</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -2372,7 +2372,7 @@ refreshSplitPreview();boundPhaseHours();render();calculate();$('comparison').cla
   const t=active();el('bellStart').classList.toggle('hidden',!!t);el('bellActive').classList.toggle('hidden',!t);
   el('bellStatus').textContent=t?'🟢 Test loopt sinds '+localDate(t.start)+' · '+(t.measurements||[]).length+' meting(en) opgeslagen.':'Geen lopende Bellfires-test.';
   if(t)prefill(t);
-  el('bellSaved').innerHTML=db.bellfiresTests.slice().reverse().map(x=>{
+  el('bellSaved').innerHTML=db.bellfiresTests.slice().reverse().filter(x=>x.status!=='active').map(x=>{
    const running=x.status==='active',pending=x.status==='waiting',list=x.measurements||[],mins=x.minutes||0;
    const label=running?'🟢 Lopende test':pending?'⏳ Wacht op P1':'✓ Afgeronde test';
    const notes=list.map((m,i)=>'<div class="hw-measurement"><strong>'+escapeHtml(localDate(m.when))+'</strong><div>Living '+format(m.living)+' · Buiten '+format(m.outside)+' · '+(m.burners||'?')+' brander(s)'+(m.kitchen!=null?' · Keuken '+format(m.kitchen):'')+'</div>'+(m.note?'<div class="hw-note">📝 '+escapeHtml(m.note)+'</div>':'')+'<button type="button" class="hw-measure-delete" data-bell-measure="'+i+'" data-bell-parent="'+escapeHtml(x.id)+'" aria-label="Verwijder deze temperatuurmeting" title="Verwijder meting">🗑</button></div>').join('')||'<p class="tiny">Nog geen temperatuurmetingen.</p>';
@@ -2814,6 +2814,8 @@ const bMonth=div('hw57MonthB','🔥 Mijn Bellfires-verbruik per maand','<label f
 const comparison=div('hw57Compare','📊 Mijn verwarmingskosten vergelijken','<label for="hw57OMonth" class="hw57-label">Kies een maand</label><select id="hw57OMonth" class="hw57-select"></select><div id="hw57CompareBody"></div>');
 const analysis=div('hw57Analysis','📊 Mijn Zibro-winteranalyse',
  '<p class="hw62-intro">Berekende voorspelling op basis van je opgeslagen Zibro-tests. Dit zijn geen gemeten toekomstige temperaturen.</p><div class="hw62-fields"><label>Nu in woonkamer (°C)<input id="hw62Now" type="number" step="0.5" inputmode="decimal"></label><label>Gewenste temperatuur (°C)<input id="hw62Target" type="number" step="0.5" inputmode="decimal"></label><label>Zibro ingesteld op (°C)<input id="hw62Set" type="number" step="1" inputmode="decimal"></label><label>Buiten (°C)<input id="hw62Outside" type="number" step="0.1" inputmode="decimal"></label></div><p id="hw62Origin" class="hw62-note"></p><div id="hw62Forecast" aria-live="polite"></div>');
+const bellAnalysis=div('hw66BellAnalysis','📊 Mijn Bellfires-winteranalyse',
+ '<p class="hw62-intro">Voorzichtige voorspelling op basis van afgeronde Bellfires-tests met temperatuurmetingen. De gasmeterstand is hiervoor niet nodig.</p><div class="hw62-fields"><label>Nu in woonkamer (°C)<input id="hw66Now" type="number" step="0.5" inputmode="decimal"></label><label>Gewenste temperatuur (°C)<input id="hw66Target" type="number" step="0.5" inputmode="decimal" value="21"></label><label>Aantal branders<select id="hw66Burners"><option value="1">1 brander</option><option value="2">2 branders</option></select></label><label>Buiten (°C)<input id="hw66Outside" type="number" step="0.1" inputmode="decimal"></label></div><div id="hw66Forecast" aria-live="polite"></div>');
 const lastZ=div('hw57LastZ','📋 Mijn laatste Zibro-test','<div id="hw57LastZBody"></div>');
 const lastB=div('hw57LastB','📋 Mijn laatste Bellfires-test','<div id="hw57LastBBody"></div>');
 // Bestaande weergave bij elkaar zetten, geen registratie-objecten dupliceren.
@@ -2836,8 +2838,8 @@ comparison.after(archive);
 const mixed=el('hwMixedCard');if(mixed)archive.after(mixed);
 const oldTotals=el('totals')?.closest('.card');if(oldTotals)oldTotals.classList.add('hw57-legacy-hide');
 // Afzonderlijke Bellfires-gegevens blijven bij Bellfires; uitgebreide testen alleen achter een uitklapknop.
-const bellTest=el('bellTestPanel');if(bellTest){B.insertBefore(bellTest,B.firstElementChild);bellTest.after(bMonth);bMonth.after(lastB);}
-const bellResults=el('bellNewResults');if(bellResults){archive.after(bellResults);bellResults.querySelector('h2').textContent='';const p=bellResults.querySelector('p.muted');if(p)p.textContent='Open dit overzicht om vroegere gasmetingen en P1-gegevens te bekijken of aan te vullen.';const d=document.createElement('details');d.innerHTML='<summary class="hw57-summary">Overzicht testen Bellfires</summary>';const old=el('bellSaved');if(old)d.appendChild(old);bellResults.appendChild(d);}
+const bellTest=el('bellTestPanel');if(bellTest){B.insertBefore(bellTest,B.firstElementChild);bellTest.after(bMonth);bMonth.after(bellAnalysis);bellAnalysis.after(lastB);lastB.classList.add('hw57-legacy-hide');}
+const bellResults=el('bellNewResults');if(bellResults){archive.appendChild(bellResults);bellResults.querySelector('h2').textContent='';const p=bellResults.querySelector('p.muted');if(p)p.textContent='Open dit overzicht om vroegere gasmetingen en P1-gegevens te bekijken of aan te vullen.';const d=document.createElement('details');d.innerHTML='<summary class="hw57-summary">🔥 Overzicht testen Bellfires</summary>';const old=el('bellSaved');if(old)d.appendChild(old);bellResults.appendChild(d);}
 // Dagtype en startreden zichtbaar als eenvoudige radio-opties; originele selects blijven behouden voor opgeslagen databankvelden.
 const starts=el('hw56StartChoices');let dayOptions=[['office','Ik ga vandaag naar het werk'],['telework','Ik werk vandaag thuis'],['home','Ik ben vandaag vrij / thuis']];
 let reasonOptions=[['morning','Even verwarmen voordat ik vertrek'],['day','Ik ben thuis en ga langer verwarmen'],['evening','Ik ben thuisgekomen en wil verwarmen'],['restart','Ik zet mijn Zibro opnieuw aan na een pauze'],['absence','Ik ben terug na een langere afwezigheid'],['other','Andere reden']];
@@ -2956,13 +2958,13 @@ function hw59ShowMonth(id,days,table,desc){
  host.append(graph,details);
  hw59MonthGraph(key,days,hw59Modes[key]||'hours',desc);
 }
-function hw62ShowZMonth(days,table){
- const host=el('hw57ZBody');
- const graph=document.createElement('div');graph.className='hw65-chart';graph.setAttribute('aria-label','Zibro-verbruik per week: blauwe balken tonen branduren, bedragen eronder tonen geschatte kosten');
+function hw62ShowZMonth(days,table,device='Z'){
+ const host=el(device==='Z'?'hw57ZBody':'hw57BBody');
+ const graph=document.createElement('div');graph.className='hw65-chart';graph.setAttribute('aria-label',device==='Z'?'Zibro-verbruik per week: blauwe balken tonen branduren, bedragen eronder tonen geschatte kosten':'Bellfires-verbruik per week: blauwe balken tonen branduren, bedragen eronder tonen gemeten gaskosten of geen P1');
  const nav=document.createElement('div');nav.className='hw63-nav hw65-nav';nav.setAttribute('aria-label','Blader per zeven dagen');
  const monthDays=new Date(Number(chosenMonth.slice(0,4)),Number(chosenMonth.slice(5,7)),0).getDate();
  const byDay=new Map(days.map(d=>[Number(d.day.slice(0,2)),d]));
- const fullDays=Array.from({length:monthDays},(_,i)=>byDay.get(i+1)||{day:String(i+1).padStart(2,'0')+'/'+chosenMonth.slice(5,7),hours:0,cost:0});
+ const fullDays=Array.from({length:monthDays},(_,i)=>byDay.get(i+1)||{day:String(i+1).padStart(2,'0')+'/'+chosenMonth.slice(5,7),hours:0,cost:device==='Z'?0:null});
  const pages=Math.ceil(monthDays/7);let active=0;
  const maxHours=Math.max(1,...fullDays.map(d=>d.hours));
  const render=()=>{
@@ -2971,7 +2973,7 @@ function hw62ShowZMonth(days,table){
   nav.innerHTML='<button type="button" aria-label="Vorige zeven dagen" '+(active===0?'disabled':'')+'>〈</button><span class="hw65-page">'+(active*7+1)+'–'+Math.min(monthDays,(active+1)*7)+' / '+monthDays+'</span><button type="button" aria-label="Volgende zeven dagen" '+(active===pages-1?'disabled':'')+'>〉</button>';
   const buttons=nav.querySelectorAll('button');buttons[0].onclick=()=>{active=Math.max(0,active-1);render()};buttons[1].onclick=()=>{active=Math.min(pages-1,active+1);render()};
  };
- const details=document.createElement('details');details.className='hw59-month-details';details.innerHTML='<summary class="hw57-summary">Bekijk exacte brandbeurten</summary>'+table+'<p class="hw57-note">Kosten zijn schattingen op basis van branduren, gemiddeld verbruik en petroleumprijs.</p>';
+ const details=document.createElement('details');details.className='hw59-month-details';details.innerHTML='<summary class="hw57-summary">Bekijk exacte brandbeurten</summary>'+table+'<p class="hw57-note">'+(device==='Z'?'Kosten zijn schattingen op basis van branduren, gemiddeld verbruik en petroleumprijs.':'Bellfires-kosten worden alleen getoond bij beschikbare P1-metingen; — betekent geen P1-gegevens.')+'</p>';
  host.append(graph,nav,details);render();
 }
 
@@ -2986,7 +2988,7 @@ function monthZ(){const segs=zSegments().filter(x=>x.day.startsWith(chosenMonth)
 function monthB(){const rec=gRows().filter(x=>x.day.startsWith(chosenMonth)),real=rec.filter(x=>x.gas!==null),total=real.reduce((n,x)=>n+x.cost,0);const days=new Map();for(const r of rec){if(!days.has(r.day))days.set(r.day,{cost:0,m3:0,minutes:0,readings:0,pending:0});const d=days.get(r.day);d.minutes+=r.minutes||0;if(r.cost!==null){d.cost+=r.cost;d.m3+=r.gas;d.readings++;}else d.pending++;}
  const arr=[...days].sort((a,b)=>b[0].localeCompare(a[0]));const table=arr.length?'<table class="hw57-table"><thead><tr><th>Datum</th><th>Gas</th><th>Kosten</th></tr></thead><tbody>'+arr.map(([day,r])=>'<tr><td><strong>'+prettyDate(day)+'</strong><small>'+(r.pending?r.pending+' test(s) zonder P1-verbruik':'')+'</small></td><td>'+(r.readings?nf(r.m3,3)+' m³':'—')+'</td><td>'+(r.readings?euro(r.cost):'Niet gemeten')+'</td></tr>').join('')+'</tbody></table>':'<p class="hw57-note">Voor deze maand zijn geen Bellfires-gasmetingen geregistreerd.</p>';
  el('hw57BBody').innerHTML='<div class="hw57-grid"><div class="hw57-tile"><small>Gemeten gas</small><strong>'+nf(real.reduce((n,r)=>n+r.gas,0),3)+' m³</strong></div><div class="hw57-tile"><small>Geregistreerde gaskosten</small><strong>'+euro(total)+'</strong></div></div><p class="hw57-note">Geregistreerde brandduur: '+period(arr.reduce((n,[,r])=>n+r.minutes,0))+'</p><h3>Mijn verbruik per dag</h3>';
- hw59ShowMonth('hw57BBody',arr.slice().reverse().map(([day,r])=>({day:day.slice(8)+'/'+day.slice(5,7),hours:r.minutes/60,cost:r.cost})),table,'Geregistreerde gaskosten per dag (P1)');
+ if(!arr.length){el('hw57BBody').insertAdjacentHTML('beforeend','<p class="hw57-note">Nog geen Bellfires-verbruik geregistreerd voor deze maand.</p>');}else{hw62ShowZMonth(arr.slice().reverse().map(([day,r])=>({day:day.slice(8)+'/'+day.slice(5,7),hours:r.minutes/60,cost:r.readings?r.cost:null})),table,'B');}
  return {total,known:real.length,pending:rec.length-real.length};
 }
 function monthCompare(z,g){const total=z+g.total,max=Math.max(z,g.total,0.01);const line=(name,n,shade)=>'<div class="hw57-bar-line"><strong>'+name+'</strong><div class="hw57-bar-track"><div class="hw57-bar-fill" style="width:'+(100*n/max).toFixed(1)+'%;background:'+shade+'"></div></div><span>'+euro(n)+'</span></div>';
@@ -3144,8 +3146,31 @@ function hw62Analyze(){
  out.innerHTML=html;
 }
 
+let hw66Dirty=false;
+function hw66Analyze(){
+ const tests=(db.bellfiresTests||[]).filter(t=>t.status!=='active'&&Array.isArray(t.measurements)&&t.measurements.length>=2);
+ if(!hw66Dirty){const m=tests.slice().sort((a,b)=>String(a.start).localeCompare(String(b.start))).at(-1)?.measurements?.at(-1);if(m){el('hw66Now').value=m.living??'';el('hw66Outside').value=db.settings?.currentOutside??m.outside??'';}}
+ const now=parsed(el('hw66Now').value),target=parsed(el('hw66Target').value),outside=parsed(el('hw66Outside').value),burners=Number(el('hw66Burners').value),out=el('hw66Forecast');
+ if([now,target,outside].some(v=>v===null)){out.innerHTML='<p class="hw62-note">Vul de temperaturen en het aantal branders in.</p>';return;}
+ const rates=[];let matched=0,maxSeen=-Infinity;
+ for(const t of tests){const ms=t.measurements.slice().filter(m=>parsed(m.living)!==null&&m.when).sort((a,b)=>String(a.when).localeCompare(String(b.when)));const intervals=[];
+  for(let i=1;i<ms.length;i++){const a=ms[i-1],b=ms[i],hrs=(Date.parse(b.when)-Date.parse(a.when))/3600000,delta=Number(b.living)-Number(a.living),ext=parsed(a.outside),br=Number(a.burners||1);
+   if(hrs<.2||hrs>5||delta<.3||delta/hrs>8||br!==burners||Number(b.burners||1)!==br||ext===null||Math.abs(ext-outside)>8||Math.abs(Number(a.living)-now)>5)continue;
+   intervals.push(delta/hrs);maxSeen=Math.max(maxSeen,Number(b.living));matched++;
+  }
+  if(intervals.length)rates.push(intervals.reduce((a,b)=>a+b,0)/intervals.length);
+ }
+ const enough=rates.length>=2,avg=enough?rates.reduce((a,b)=>a+b,0)/rates.length:null;
+ const after=avg===null?null:now+avg;
+ let html='<div class="hw62-metrics"><div><small>Verwachte kamertemperatuur na 1 uur</small><strong>'+(after!==null&&after<=maxSeen+.5?nf(after,1)+'°C':'Nog onvoldoende gegevens')+'</strong></div><div><small>Wanneer wordt mijn woonkamer '+nf(target,1)+'°C?</small><strong>';
+ if(target<=now)html+='Al bereikt';else if(avg!==null&&target<=maxSeen+.5)html+='± '+Math.round((target-now)/avg*12)*5+' minuten';else html+='Nog onvoldoende gegevens';
+ html+='</strong></div></div><p class="hw62-note">'+matched+' vergelijkbare opwarmingsperiodes uit '+rates.length+' onafhankelijke Bellfires-tests met '+burners+' brander(s). '+(enough?'Voorzichtige schatting: omstandigheden kunnen verschillen.':'Voor een voorspelling zijn minstens 2 verschillende vergelijkbare tests met echte opwarming nodig.')+'</p>';
+ if(enough&&(after>maxSeen+.5||target>maxSeen+.5))html+='<p class="hw62-note">HeatWise voorspelt niet voorbij het werkelijk gemeten temperatuurbereik.</p>';
+ out.innerHTML=html;
+}
+for(const id of ['hw66Now','hw66Target','hw66Outside','hw66Burners'])el(id)?.addEventListener('input',()=>{hw66Dirty=true;hw66Analyze();});
 for(const id of hw62Inputs)el(id)?.addEventListener('input',()=>{hw62Dirty=true;if(id==='hw62Target')localStorage.setItem('heatwise-winter-target',el(id).value);hw62Analyze();});
-function v57Render(){try{monthSelects();const z=monthZ(),g=monthB();monthCompare(z,g);}catch(e){console.error('HeatWise maandoverzicht:',e);}try{hw62Analyze();}catch(e){console.error('HeatWise winteranalyse:',e);el('hw57HeatVerdict').textContent='De analyse kon niet worden geladen. Controleer je opgeslagen gegevens.';}try{lastTest('hw57LastZ',db.zibroTests||[],'Zibro');lastTest('hw57LastB',db.bellfiresTests||[],'Bellfires');syncTest();if(el('hwCompletedAll'))el('hwCompletedAll').open=true;offlineDetails.classList.toggle('hw57-hidden',!!hwCurrent());}catch(e){console.error('HeatWise testweergave:',e);}}
+function v57Render(){try{monthSelects();const z=monthZ(),g=monthB();monthCompare(z,g);}catch(e){console.error('HeatWise maandoverzicht:',e);}try{hw62Analyze();hw66Analyze();}catch(e){console.error('HeatWise winteranalyse:',e);el('hw57HeatVerdict').textContent='De analyse kon niet worden geladen. Controleer je opgeslagen gegevens.';}try{lastTest('hw57LastZ',db.zibroTests||[],'Zibro');lastTest('hw57LastB',db.bellfiresTests||[],'Bellfires');syncTest();if(el('hwCompletedAll'))el('hwCompletedAll').open=true;offlineDetails.classList.toggle('hw57-hidden',!!hwCurrent());}catch(e){console.error('HeatWise testweergave:',e);}}
 const previousRender=render;render=function(...args){const result=previousRender.apply(this,args);v57Render();return result;};
 const previousHWUpdate=hwUpdate;hwUpdate=function(...args){const result=previousHWUpdate.apply(this,args);syncTest();syncOfflineWeather(false);return result;};
 // Zodra de oorspronkelijke weeranalyse opnieuw wordt opgebouwd, krijgt ons overzicht dezelfde gegevens.
