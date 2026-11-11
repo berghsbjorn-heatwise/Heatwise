@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.64: tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.65: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -59,7 +59,19 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 /* v1.8: verdelingsbalk boven de schuifbalk; uren slechts eenmaal getoond */
 #splitPlan .bar{margin:5px 0 3px}
 #splitPlan input[type=range]{display:block;width:100%;margin:0 0 2px}
-#comparison .result .plan-secondary{font-weight:650;color:#76572f;margin-top:2px}#comparison .result .status{margin-top:2px}#comparison.fresh>.card{background:#eef7ef;border-color:#9fc9aa;box-shadow:0 0 0 1px #d3e8d6}#comparison:not(.fresh)>.card{background:#fffcf7}.test-entry{border:1px solid #e4d8c7;border-radius:12px;background:#fbf6ef;padding:11px;margin:9px 0}.test-entry .row{align-items:flex-start}.test-entry small{display:block;margin:4px 0}.test-entry details{margin:5px 0}.test-entry .test-prediction{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;max-height:240px;overflow:auto}.test-entry .tag{font-size:11px;color:#156c86;font-weight:700}#gasMode{margin-top:4px}#gasInfo{margin-top:8px}#gasSession{background:#fffdf9}</style><style>
+#comparison .result .plan-secondary{font-weight:650;color:#76572f;margin-top:2px}#comparison .result .status{margin-top:2px}#comparison.fresh>.card{background:#eef7ef;border-color:#9fc9aa;box-shadow:0 0 0 1px #d3e8d6}#comparison:not(.fresh)>.card{background:#fffcf7}.test-entry{border:1px solid #e4d8c7;border-radius:12px;background:#fbf6ef;padding:11px;margin:9px 0}.test-entry .row{align-items:flex-start}.test-entry small{display:block;margin:4px 0}.test-entry details{margin:5px 0}.test-entry .test-prediction{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;max-height:240px;overflow:auto}.test-entry .tag{font-size:11px;color:#156c86;font-weight:700}#gasMode{margin-top:4px}#gasInfo{margin-top:8px}#gasSession{background:#fffdf9}
+/* HeatWise v1.9.65 — zeven dagen, alleen blauwe brandurenbalken en losse eurobedragen */
+#register .hw65-chart{width:100%;margin-top:8px;overflow:hidden}
+#register .hw65-bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;align-items:end;width:100%;padding:8px 0 10px;border-bottom:1px solid #536878}
+#register .hw65-day{min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;color:#f0f6fa;text-align:center}
+#register .hw65-hours{font-size:clamp(9px,2.6vw,12px);font-weight:700;white-space:nowrap}
+#register .hw65-bar-area{height:120px;width:100%;display:flex;align-items:flex-end;justify-content:center}
+#register .hw65-bar{width:76%;max-width:36px;background:#4d99d4;border-radius:5px 5px 0 0}
+#register .hw65-cost{font-size:clamp(8px,2.4vw,12px);color:#f1f6fa;font-weight:700;white-space:nowrap}
+#register .hw65-day small{font-size:clamp(9px,2.4vw,11px);color:#bfd0d9;white-space:nowrap}
+#register .hw65-nav{margin:14px 0 8px}
+#register .hw65-page{color:#d6e6ef;font-size:13px;min-width:92px;text-align:center}
+</style><style>
 /* v1.9.8: compacte, op een telefoonscherm leesbare drieledige vergelijking */
 #today .today-version{font-size:10px;font-weight:500;color:#867461}
 #today .gas-details{margin:2px 0 4px;font-size:10px}
@@ -929,7 +941,7 @@ header small{font-size:12px}
 .hw59-cooling-bar:focus-visible{outline:3px solid #c5791b}
 .hw59-legend{font-size:12px;color:#607783;margin:8px 0}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.64</span></header>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.65</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -2945,17 +2957,22 @@ function hw59ShowMonth(id,days,table,desc){
  hw59MonthGraph(key,days,hw59Modes[key]||'hours',desc);
 }
 function hw62ShowZMonth(days,table){
- const host=el('hw57ZBody'),maxHours=Math.max(1,...days.map(d=>d.hours)),maxCost=Math.max(.01,...days.map(d=>d.cost));
- const graph=document.createElement('div');graph.className='hw62-chart-scroll';graph.setAttribute('aria-label','Dagverbruik, veeg horizontaal voor andere dagen');
- graph.innerHTML=days.length?'<div class="hw62-bars">'+days.map(d=>'<div class="hw62-bar-col"><span>'+nf(d.hours,1)+' u</span><div class="hw63-pair"><div class="hw62-bar" title="'+nf(d.hours,1)+' branduren" style="height:'+Math.max(3,Math.round(d.hours/maxHours*115))+'px"></div><div class="hw63-cost-bar" title="'+euro(d.cost)+'" style="height:'+Math.max(3,Math.round(d.cost/maxCost*115))+'px"></div></div><b>'+euro(d.cost)+'</b><small>'+esc(d.day)+'</small></div>').join('')+'</div>':'<p class="hw62-note">Nog geen geregistreerde brandbeurten voor deze maand.</p>';
- const nav=document.createElement('div');nav.className='hw63-nav';nav.setAttribute('aria-label','Schuif door de dagen');
- if(days.length){const pages=Math.max(1,Math.ceil(days.length/4));let active=0;nav.innerHTML='<button type="button" aria-label="Vorige dagen">〈</button><span class="hw63-dots"></span><button type="button" aria-label="Volgende dagen">〉</button>';
- const dots=nav.querySelector('.hw63-dots');const buttons=nav.querySelectorAll('button');
- const refresh=()=>{const maxScroll=Math.max(0,graph.scrollWidth-graph.clientWidth);active=maxScroll?Math.min(pages-1,Math.round(graph.scrollLeft/maxScroll*(pages-1))):0;dots.innerHTML=Array.from({length:pages},(_,i)=>'<span class="'+(i===active?'active':'')+'">•</span>').join('');buttons[0].disabled=graph.scrollLeft<3;buttons[1].disabled=graph.scrollLeft>=maxScroll-3;};
- const move=dir=>graph.scrollBy({left:dir*Math.max(1,graph.clientWidth-35),behavior:'smooth'});buttons[0].onclick=()=>move(-1);buttons[1].onclick=()=>move(1);graph.addEventListener('scroll',refresh,{passive:true});requestAnimationFrame(refresh);
- }
+ const host=el('hw57ZBody');
+ const graph=document.createElement('div');graph.className='hw65-chart';graph.setAttribute('aria-label','Zibro-verbruik per week: blauwe balken tonen branduren, bedragen eronder tonen geschatte kosten');
+ const nav=document.createElement('div');nav.className='hw63-nav hw65-nav';nav.setAttribute('aria-label','Blader per zeven dagen');
+ const monthDays=new Date(Number(chosenMonth.slice(0,4)),Number(chosenMonth.slice(5,7)),0).getDate();
+ const byDay=new Map(days.map(d=>[Number(d.day.slice(0,2)),d]));
+ const fullDays=Array.from({length:monthDays},(_,i)=>byDay.get(i+1)||{day:String(i+1).padStart(2,'0')+'/'+chosenMonth.slice(5,7),hours:0,cost:0});
+ const pages=Math.ceil(monthDays/7);let active=0;
+ const maxHours=Math.max(1,...fullDays.map(d=>d.hours));
+ const render=()=>{
+  const chunk=fullDays.slice(active*7,active*7+7);
+  graph.innerHTML='<div class="hw65-bars">'+chunk.map(d=>'<div class="hw65-day"><span class="hw65-hours">'+(d.hours>0?nf(d.hours,1)+' u':'0 u')+'</span><div class="hw65-bar-area"><div class="hw65-bar" title="'+nf(d.hours,1)+' branduren" style="height:'+(d.hours>0?Math.max(3,Math.round(d.hours/maxHours*112)):0)+'px"></div></div><b class="hw65-cost">'+euro(d.cost)+'</b><small>'+esc(d.day)+'</small></div>').join('')+'</div>';
+  nav.innerHTML='<button type="button" aria-label="Vorige zeven dagen" '+(active===0?'disabled':'')+'>〈</button><span class="hw65-page">'+(active*7+1)+'–'+Math.min(monthDays,(active+1)*7)+' / '+monthDays+'</span><button type="button" aria-label="Volgende zeven dagen" '+(active===pages-1?'disabled':'')+'>〉</button>';
+  const buttons=nav.querySelectorAll('button');buttons[0].onclick=()=>{active=Math.max(0,active-1);render()};buttons[1].onclick=()=>{active=Math.min(pages-1,active+1);render()};
+ };
  const details=document.createElement('details');details.className='hw59-month-details';details.innerHTML='<summary class="hw57-summary">Bekijk exacte brandbeurten</summary>'+table+'<p class="hw57-note">Kosten zijn schattingen op basis van branduren, gemiddeld verbruik en petroleumprijs.</p>';
- host.append(graph,nav,details);
+ host.append(graph,nav,details);render();
 }
 
 function monthZ(){const segs=zSegments().filter(x=>x.day.startsWith(chosenMonth)),total=segs.reduce((a,r)=>a+r.minutes,0),daily=new Map();const consumption=rate(),unit=parsed(el('petrolPrice')?.value)||0;
