@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.63: tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.64: tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -817,7 +817,7 @@ header small{font-size:12px}
 #register .hw56-winter .btn{font-size:13px}
 @media(max-width:370px){#register .hw56-grid{grid-template-columns:1fr}}
 </style><style id="hw57-ui">
-/* HeatWise v1.9.63: overzicht zonder wijzigingen aan meetdata of tarieven */
+/* HeatWise v1.9.64: overzicht zonder wijzigingen aan meetdata of tarieven */
 .hw57-card{border:1px solid #dfe7e6;border-radius:20px;background:#fff;padding:18px;margin:16px 0;box-shadow:0 2px 12px rgba(20,43,55,.055)}
 .hw57-card h2{margin:0 0 14px;font-size:21px;color:#273b41}.hw57-card h3{font-size:17px;margin:15px 0 9px;color:#2e4550}
 .hw57-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -878,7 +878,7 @@ header small{font-size:12px}
 #hw57Analysis details{margin-top:12px;background:#f7fafb;border:1px solid #dde7eb;padding:10px 12px;border-radius:12px}
 #hw57Analysis details[open]>summary{margin-bottom:12px}
 
-/* v1.9.63: compact tankoverzicht */
+/* v1.9.64: compact tankoverzicht */
 #register .hw-tank-card>.hw-tank-baseline,#register .hw-tank-card>.hw-tank-hint,#register .hw-tank-card>#zCycleSummary,#register .hw-tank-card>#tankHistoryDetails,#register .hw-tank-card>#tankInfo{display:none!important}
 #register .hw-tank-card>.hw-tank-hours{margin-top:12px!important}
 #register .hw-tank-card .hw-remaining-note{display:none!important}
@@ -886,7 +886,7 @@ header small{font-size:12px}
 #register .hw-tank-card .hw58-tank-status strong{font-size:16px}
 #register .hw-tank-card>#tankRefillDetails{margin-top:13px}
 #overview .hw57-bell-test>summary{cursor:pointer}
-/* v1.9.63: eenmalige, heldere tank- en testweergave */
+/* v1.9.64: eenmalige, heldere tank- en testweergave */
 #register .hw-tank-card .hw-tank-status-banner, #register .hw-tank-card .hw-tank-description, #register .hw-tank-card .hw-tank-note {display:none!important}
 #register .hw-tank-card p.tiny{display:none!important}
 #register #zibroTestPanel>p.muted,#register #zibroTestPanel #hwTestSummary,#register #zibroTestPanel #hwTestStatus{display:none!important}
@@ -929,7 +929,7 @@ header small{font-size:12px}
 .hw59-cooling-bar:focus-visible{outline:3px solid #c5791b}
 .hw59-legend{font-size:12px;color:#607783;margin:8px 0}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.63</span></header>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.64</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -2779,7 +2779,7 @@ el('bellStart').onclick=()=>{
 })();
 </script>
 <script id="hw57-layout">
-/* HeatWise v1.9.63 — bediening en overzicht; bestaande db, tarieven en tankcycli ongewijzigd. */
+/* HeatWise v1.9.64 — bediening en overzicht; bestaande db, tarieven en tankcycli ongewijzigd. */
 (function(){
 'use strict';
 const el=id=>document.getElementById(id);
@@ -3078,7 +3078,7 @@ panel.after(offlineDetails);
 el('hw57OfflineSave')?.addEventListener('click',()=>{if(hwCurrent()){el('hw57OfflineMessage').textContent='Er loopt nu een Zibro-test. Bewaar je temperatuur daarin.';return;}const t=parsed(el('hw57OfflineLiving').value);if(t===null||t<0||t>40){el('hw57OfflineMessage').textContent='Vul een geldige temperatuur van de woonkamer in.';return;}db.hw57OfflineTemps=db.hw57OfflineTemps||[];db.hw57OfflineTemps.push({id:'offline-'+Date.now(),when:dateTime(Date.now()),living:t,noOtherHeating:el('hw57OfflineNoOther').checked});localStorage.setItem(KEY,JSON.stringify(db));el('hw57OfflineMessage').textContent='✓ Temperatuur van '+nf(t,1)+'°C bewaard. Er is geen Zibro-test gestart.';el('hw57OfflineLiving').value='';el('hw57OfflineNoOther').checked=true;v57Render();syncOfflineWeather(false);});
 // Bij de oude interface werd de knop "Weergegevens opnieuw controleren" al gebruikt. Alleen de nieuwe plaats is zichtbaar.
 // Geen gebeurtenis mag de resterende tank- of tariefberekeningen veranderen.
-// v1.9.63: voorzichtige, controleerbare voorspellingen; oude meetgegevens blijven ongewijzigd.
+// v1.9.64: voorzichtige, controleerbare voorspellingen; oude meetgegevens blijven ongewijzigd.
 const hw62Inputs=['hw62Now','hw62Target','hw62Set','hw62Outside'];
 let hw62Dirty=false;
 function hw62Defaults(){
@@ -3094,32 +3094,36 @@ function hw62Analyze(){
  const now=parsed(el('hw62Now').value),target=parsed(el('hw62Target').value),set=parsed(el('hw62Set').value),outside=parsed(el('hw62Outside').value),out=el('hw62Forecast');
  if([now,target,set,outside].some(v=>v===null)){out.innerHTML='<p class="hw62-note">Vul de vier temperaturen in om je opgeslagen metingen te vergelijken.</p>';return;}
  const ana=hw56Analyze();
- // Eerst alle bruikbare intervallen tellen; pas daarna vergelijken. Ook stabiele
- // temperaturen zijn waardevol, maar niet voor een opwarmsnelheid.
- const rows=ana.rows.filter(r=>r.hrs>=.25&&r.hrs<=3&&r.set!==null&&r.outside!==null&&!r.changed&&!r.vent&&r.startTemp!==null&&r.houseEnd!==null);
- const sameSet=rows.filter(r=>Math.abs(r.set-set)<.15);
- const similar=sameSet.filter(r=>Math.abs(r.outside-outside)<=5&&Math.abs(r.startTemp-now)<=2);
- const warm=similar.filter(r=>r.delta>=.3&&r.phase==='warm');
+ // De vergelijkingsbasis gebruikt ook langere meetintervallen en beperkte verschillen
+ // in de SET-waarde. Wijzigingen tijdens een interval en verluchten blijven uitgesloten.
+ const rows=ana.rows.filter(r=>r.hrs>=.20&&r.hrs<=8&&r.set!==null&&r.outside!==null&&!r.changed&&!r.vent&&r.startTemp!==null&&r.houseEnd!==null);
  const unique=a=>new Set(a.map(r=>r.test.id)).size;
- let html='<div class="hw62-metrics"><div><small>Verwachte kamertemperatuur na 1 uur</small><strong>';
- // Geen voorspelling zonder onafhankelijke proeven die daadwerkelijk opwarmden.
- const sufficient=unique(warm)>=2;
- const rates=warm.map(r=>r.delta/r.hrs).filter(v=>v>0&&v<=8);
- const avg=rates.length?rates.reduce((a,b)=>a+b,0)/rates.length:null;
- const after=sufficient&&avg!==null?now+avg:null;
+ const bands=[{inside:2,outside:5,set:.15},{inside:3,outside:7,set:1.1},{inside:4,outside:9,set:2.1}];
+ let similar=[],bandIndex=0;
+ for(let i=0;i<bands.length;i++){
+  const b=bands[i];const selected=rows.filter(r=>Math.abs(r.set-set)<=b.set&&Math.abs(r.outside-outside)<=b.outside&&Math.abs(r.startTemp-now)<=b.inside);
+  similar=selected;bandIndex=i;
+  if(unique(selected.filter(r=>r.delta>=.3&&r.phase==='warm'))>=2)break;
+ }
+ const warm=similar.filter(r=>r.delta>=.3&&r.phase==='warm'&&r.delta/r.hrs<=8);
+ // Elke afzonderlijke test krijgt hetzelfde gewicht, ook bij meerdere meetintervallen.
+ const byTest=new Map();for(const r of warm){const id=r.test.id;if(!byTest.has(id))byTest.set(id,[]);byTest.get(id).push(r.delta/r.hrs);}
+ const testRates=[...byTest.values()].map(a=>a.reduce((x,y)=>x+y,0)/a.length);
+ const sufficient=testRates.length>=2;
+ const avg=sufficient?testRates.reduce((x,y)=>x+y,0)/testRates.length:null;
  const maxSeen=warm.length?Math.max(...warm.map(r=>r.houseEnd)):null;
+ const after=avg!==null?now+avg:null;
+ let html='<div class="hw62-metrics"><div><small>Verwachte kamertemperatuur na 1 uur</small><strong>';
  html+=after!==null&&after<=maxSeen+.5?nf(after,1)+'°C':'Nog onvoldoende gegevens';
  html+='</strong></div><div><small>Wanneer wordt mijn woonkamer '+nf(target,1)+'°C?</small><strong>';
  if(target<=now)html+='Al bereikt';
- else if(sufficient){
-  const reached=warm.filter(r=>r.startTemp<target&&r.houseEnd>=target);
-  const byTest=new Map();for(const r of reached)if(!byTest.has(r.test.id))byTest.set(r.test.id,(target-r.startTemp)/r.delta*r.hrs*60);
-  const mins=[...byTest.values()];html+=mins.length>=2?'± '+Math.round(mins.reduce((a,b)=>a+b,0)/mins.length/5)*5+' minuten':'Nog onvoldoende gegevens';
- }else html+='Nog onvoldoende gegevens';
+ else if(avg!==null&&target<=maxSeen+.5){const mins=(target-now)/avg*60;html+='± '+Math.round(mins/5)*5+' minuten';}
+ else html+='Nog onvoldoende gegevens';
  html+='</strong></div></div>';
- html+='<p class="hw62-note">'+similar.length+' vergelijkbare meetperiodes uit '+unique(similar)+' tests ('+warm.length+' met opwarming). '+(sufficient?'Voorzichtige schatting op basis van gemeten opwarming.':'Voor een opwarmingsvoorspelling zijn minstens 2 verschillende tests met daadwerkelijke opwarming nodig.')+'</p>';
- if(!similar.length&&sameSet.length)html+='<p class="hw62-note">Er zijn wel '+sameSet.length+' meetperiodes met SET '+nf(set,0)+'°C, maar niet bij voldoende vergelijkbare binnen- en buitentemperaturen. Je bestaande metingen zijn niet verloren.</p>';
- if(!sameSet.length&&rows.length)html+='<p class="hw62-note">Er zijn '+rows.length+' bruikbare meetperiodes met andere Zibro-instellingen. Blijf meten bij je normale instelling.</p>';
+ html+='<p class="hw62-note">'+similar.length+' vergelijkbare meetperiodes uit '+unique(similar)+' tests ('+warm.length+' met opwarming uit '+testRates.length+' tests). '+(sufficient?'Voorzichtige schatting op basis van meerdere onafhankelijke tests.':'Voor een voorspelling zijn minstens 2 verschillende tests met daadwerkelijke opwarming nodig.')+'</p>';
+ if(bandIndex>0)html+='<p class="hw62-note">Er zijn ruimere vergelijkingsmarges gebruikt voor binnen-, buiten- en Zibro-temperatuur. De voorspelling is daardoor minder precies.</p>';
+ if(sufficient&&((after!==null&&after>maxSeen+.5)||(target>now&&target>maxSeen+.5)))html+='<p class="hw62-note">Voor deze temperatuur is onvoldoende werkelijk gemeten opwarming beschikbaar. HeatWise extrapoleert niet voorbij het gemeten bereik.</p>';
+ if(!similar.length)html+='<p class="hw62-note">Er zijn nog geen voldoende vergelijkbare meetperiodes. Je bestaande gegevens blijven behouden.</p>';
  out.innerHTML=html;
 }
 
@@ -3169,7 +3173,7 @@ setTimeout(()=>syncOfflineWeather(false),2000);
 #register #hw57MonthZ .hw59-switch{display:none!important}
 @media(max-width:400px){#register .hw62-fields{grid-template-columns:1fr 1fr;gap:8px}#register .hw62-fields label{font-size:11px}}
 
-/* v1.9.63: contrast en consistente donkere tankkaart. */
+/* v1.9.64: contrast en consistente donkere tankkaart. */
 #register .hw57-card label,#register .hw57-card .hw57-label{color:#eef5f8!important}
 #register #zibroTestPanel input[type="radio"]{accent-color:#1b7a92}
 #register #zibroTestPanel label:has(input[type="radio"]),#register #zibroTestPanel .hw57-radio,#register #zibroTestPanel .hw-test-reason-option{color:#172d39!important}
