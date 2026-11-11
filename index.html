@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.59: tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.60: tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -817,7 +817,7 @@ header small{font-size:12px}
 #register .hw56-winter .btn{font-size:13px}
 @media(max-width:370px){#register .hw56-grid{grid-template-columns:1fr}}
 </style><style id="hw57-ui">
-/* HeatWise v1.9.59: overzicht zonder wijzigingen aan meetdata of tarieven */
+/* HeatWise v1.9.60: overzicht zonder wijzigingen aan meetdata of tarieven */
 .hw57-card{border:1px solid #dfe7e6;border-radius:20px;background:#fff;padding:18px;margin:16px 0;box-shadow:0 2px 12px rgba(20,43,55,.055)}
 .hw57-card h2{margin:0 0 14px;font-size:21px;color:#273b41}.hw57-card h3{font-size:17px;margin:15px 0 9px;color:#2e4550}
 .hw57-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -878,7 +878,7 @@ header small{font-size:12px}
 #hw57Analysis details{margin-top:12px;background:#f7fafb;border:1px solid #dde7eb;padding:10px 12px;border-radius:12px}
 #hw57Analysis details[open]>summary{margin-bottom:12px}
 
-/* v1.9.59: compact tankoverzicht */
+/* v1.9.60: compact tankoverzicht */
 #register .hw-tank-card>.hw-tank-baseline,#register .hw-tank-card>.hw-tank-hint,#register .hw-tank-card>#zCycleSummary,#register .hw-tank-card>#tankHistoryDetails,#register .hw-tank-card>#tankInfo{display:none!important}
 #register .hw-tank-card>.hw-tank-hours{margin-top:12px!important}
 #register .hw-tank-card .hw-remaining-note{display:none!important}
@@ -886,7 +886,7 @@ header small{font-size:12px}
 #register .hw-tank-card .hw58-tank-status strong{font-size:16px}
 #register .hw-tank-card>#tankRefillDetails{margin-top:13px}
 #overview .hw57-bell-test>summary{cursor:pointer}
-/* v1.9.59: eenmalige, heldere tank- en testweergave */
+/* v1.9.60: eenmalige, heldere tank- en testweergave */
 #register .hw-tank-card .hw-tank-status-banner, #register .hw-tank-card .hw-tank-description, #register .hw-tank-card .hw-tank-note {display:none!important}
 #register .hw-tank-card p.tiny{display:none!important}
 #register #zibroTestPanel>p.muted,#register #zibroTestPanel #hwTestSummary,#register #zibroTestPanel #hwTestStatus{display:none!important}
@@ -929,7 +929,7 @@ header small{font-size:12px}
 .hw59-cooling-bar:focus-visible{outline:3px solid #c5791b}
 .hw59-legend{font-size:12px;color:#607783;margin:8px 0}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.59</span></header>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.60</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -2772,7 +2772,7 @@ el('bellStart').onclick=()=>{
 })();
 </script>
 <script id="hw57-layout">
-/* HeatWise v1.9.59 — bediening en overzicht; bestaande db, tarieven en tankcycli ongewijzigd. */
+/* HeatWise v1.9.60 — bediening en overzicht; bestaande db, tarieven en tankcycli ongewijzigd. */
 (function(){
 'use strict';
 const el=id=>document.getElementById(id);
@@ -2800,7 +2800,7 @@ const lastB=div('hw57LastB','📋 Mijn laatste Bellfires-test','<div id="hw57Las
 // Bestaande weergave bij elkaar zetten, geen registratie-objecten dupliceren.
 Z.insertBefore(tank,Z.firstElementChild);
 tank.after(panel); panel.after(zMonth);zMonth.after(analysis);analysis.after(lastZ);
-const tankHours=tank.querySelector('.hw-tank-hours');const tankStatus=el('tankStatus');const refill=tank.querySelector('#tankRefillDetails');if(tankHours&&tankStatus){const row=document.createElement('div');row.className='hw58-tank-status';tankStatus.hidden=true;row.append(tankStatus);tankHours.append(row);tank.append(tankHours);if(refill)tankHours.after(refill);}
+const tankHours=tank.querySelector('.hw-tank-hours');const tankStatus=el('tankStatus');const refill=tank.querySelector('#tankRefillDetails');if(tankHours&&tankStatus){tankStatus.hidden=true;tankStatus.style.display='none';tank.append(tankHours);if(refill)tankHours.after(refill);}
 const saved=el('hwSavedTests');
 const archive=div('hw57Archive','📁 Mijn afgeronde tests','<details id="hw57AllPast"><summary class="hw57-summary">Overzicht testen Zibro</summary><div id="hw57ArchiveSlot"></div></details>');
 if(saved)archive.querySelector('#hw57ArchiveSlot').appendChild(saved);
@@ -2840,6 +2840,17 @@ attach('hwRoom','hw57ZibroFields','Zibro ROOM (°C)','Bijv. 21');
 const outside=el('hwOutside');if(outside){outside.placeholder='—';el('hw57OutsideInputSlot').append(outside);}
 const optional=panel.querySelector('.hw56-extra-details');if(optional){optional.classList.add('hw57-hidden');const select=el('hw56Comfort'),explain=el('hw56ComfortExplain');select?.classList.add('hw57-hidden');explain?.classList.add('hw57-hidden');optional.querySelector('label[for="hw56Comfort"]')?.classList.add('hw57-hidden');}
 oldFields?.remove();
+// Verwijder de achtergebleven labels en lege containers van het oorspronkelijke formulier.
+// De invoerelementen zelf zijn hierboven naar het nieuwe formulier verhuisd.
+const oldActive=el('hwActiveTest');
+if(oldActive){
+ for(const id of ['hwOutside','hwLiving','hwSet','hwRoom','hwKitchen']){
+  oldActive.querySelectorAll('label[for="'+id+'"]').forEach(label=>label.remove());
+ }
+ oldActive.querySelectorAll(':scope > .grid').forEach(grid=>{
+  if(!grid.querySelector('input,select,textarea,button'))grid.remove();
+ });
+}
 const startButton=el('hwStartTest');if(startButton){startButton.textContent='▶ START TEST';startButton.classList.add('hw57-primary');}
 const oldStatus=el('hwTestStatus');oldStatus?.classList.add('hw57-hidden');
 panel.querySelector('h2').textContent='⛽ Mijn Zibro-test';panel.querySelector('h2')?.insertAdjacentHTML('afterend','<div id="hw57TestStatus" class="hw57-status"></div>');
@@ -2917,9 +2928,10 @@ function hw59MonthGraph(id,days,mode,label){
 }
 function hw59ShowMonth(id,days,table,desc){
  const host=el(id),key=id+'Graph';if(!host)return;
+ // De maandfunctie heeft de inhoud hierboven al opnieuw opgebouwd.
  const graph=document.createElement('div');graph.id=key;
  const details=document.createElement('details');details.className='hw59-month-details';
- details.innerHTML='<summary class="hw57-summary">Bekijk exacte brandbeurten</summary>'+table;
+ details.innerHTML='<summary class="hw57-summary">Bekijk exacte brandbeurten</summary>'+table+'<p class="hw57-note">Zibro-kosten zijn geschat op basis van branduren en gemiddeld petroleumverbruik. Bellfires-kosten komen uit de beschikbare P1-metingen.</p>';
  host.append(graph,details);
  hw59MonthGraph(key,days,hw59Modes[key]||'hours',desc);
 }
@@ -2927,13 +2939,13 @@ function monthZ(){const segs=zSegments().filter(x=>x.day.startsWith(chosenMonth)
  for(const s of segs){let x=daily.get(s.day);if(!x){x={day:s.day,minutes:0,sessions:[]};daily.set(s.day,x);}x.minutes+=s.minutes;x.sessions.push(s.start+'–'+s.end);}
  const dailyList=[...daily.values()].sort((a,b)=>b.day.localeCompare(a.day));
  const table=dailyList.length?'<table class="hw57-table"><thead><tr><th>Datum en uur</th><th>Brandduur</th><th>Kosten</th></tr></thead><tbody>'+dailyList.map(r=>'<tr><td><strong>'+prettyDate(r.day)+'</strong><small>'+esc(r.sessions.join(' · '))+'</small></td><td>'+period(r.minutes)+'</td><td>'+euro(r.minutes/60*consumption*unit)+'</td></tr>').join('')+'</tbody></table>':'<p class="hw57-note">Voor deze maand zijn nog geen Zibro-branduren geregistreerd.</p>';
- el('hw57ZBody').innerHTML='<div class="hw57-grid"><div class="hw57-tile"><small>Totaal gebrand</small><strong>'+period(total)+'</strong></div><div class="hw57-tile"><small>Geschatte kosten</small><strong>'+euro(total/60*consumption*unit)+'</strong></div></div><h3>Op welke dagen brandde mijn Zibro?</h3>'+table+'<p class="hw57-note">Kosten zijn een schatting: branduren × gemiddeld verbruik van geldige tankcycli × jouw opgeslagen petroleumprijs. Geen afzonderlijke verbruiksmeting per instelling.</p>';
+ el('hw57ZBody').innerHTML='<div class="hw57-grid"><div class="hw57-tile"><small>Totaal gebrand</small><strong>'+period(total)+'</strong></div><div class="hw57-tile"><small>Geschatte kosten</small><strong>'+euro(total/60*consumption*unit)+'</strong></div></div><h3>Mijn verbruik per dag</h3>';
  hw59ShowMonth('hw57ZBody',dailyList.slice().reverse().map(r=>({day:r.day.slice(8)+'/'+r.day.slice(5,7),hours:r.minutes/60,cost:r.minutes/60*consumption*unit})),table,'Dagelijks geregistreerde Zibro-branduren of geschatte kosten');
  return total/60*consumption*unit;
 }
 function monthB(){const rec=gRows().filter(x=>x.day.startsWith(chosenMonth)),real=rec.filter(x=>x.gas!==null),total=real.reduce((n,x)=>n+x.cost,0);const days=new Map();for(const r of rec){if(!days.has(r.day))days.set(r.day,{cost:0,m3:0,minutes:0,readings:0,pending:0});const d=days.get(r.day);d.minutes+=r.minutes||0;if(r.cost!==null){d.cost+=r.cost;d.m3+=r.gas;d.readings++;}else d.pending++;}
  const arr=[...days].sort((a,b)=>b[0].localeCompare(a[0]));const table=arr.length?'<table class="hw57-table"><thead><tr><th>Datum</th><th>Gas</th><th>Kosten</th></tr></thead><tbody>'+arr.map(([day,r])=>'<tr><td><strong>'+prettyDate(day)+'</strong><small>'+(r.pending?r.pending+' test(s) zonder P1-verbruik':'')+'</small></td><td>'+(r.readings?nf(r.m3,3)+' m³':'—')+'</td><td>'+(r.readings?euro(r.cost):'Niet gemeten')+'</td></tr>').join('')+'</tbody></table>':'<p class="hw57-note">Voor deze maand zijn geen Bellfires-gasmetingen geregistreerd.</p>';
- el('hw57BBody').innerHTML='<div class="hw57-grid"><div class="hw57-tile"><small>Gemeten gas</small><strong>'+nf(real.reduce((n,r)=>n+r.gas,0),3)+' m³</strong></div><div class="hw57-tile"><small>Geregistreerde gaskosten</small><strong>'+euro(total)+'</strong></div></div><p class="hw57-note">Geregistreerde brandduur: '+period(arr.reduce((n,[,r])=>n+r.minutes,0))+'</p><h3>Wanneer heb ik verwarmd?</h3>'+table+'<p class="hw57-note">Alleen tests met ingevoerde P1-gegevens krijgen een gemeten bedrag. De eurokosten volgen het bij de gasmeting opgeslagen tarief, of de huidige prijs als geen historisch tarief is vastgelegd.</p>';
+ el('hw57BBody').innerHTML='<div class="hw57-grid"><div class="hw57-tile"><small>Gemeten gas</small><strong>'+nf(real.reduce((n,r)=>n+r.gas,0),3)+' m³</strong></div><div class="hw57-tile"><small>Geregistreerde gaskosten</small><strong>'+euro(total)+'</strong></div></div><p class="hw57-note">Geregistreerde brandduur: '+period(arr.reduce((n,[,r])=>n+r.minutes,0))+'</p><h3>Mijn verbruik per dag</h3>';
  hw59ShowMonth('hw57BBody',arr.slice().reverse().map(([day,r])=>({day:day.slice(8)+'/'+day.slice(5,7),hours:r.minutes/60,cost:r.cost})),table,'Geregistreerde gaskosten per dag (P1)');
  return {total,known:real.length,pending:rec.length-real.length};
 }
