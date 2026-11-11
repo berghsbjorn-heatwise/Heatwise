@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.52: distributiecategorie T1 voor laag gasverbruik; bestaande metingen en lay-out behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.55: tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -461,6 +461,18 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 #register .hw-hours-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:#536a5b;margin-top:4px}
 #register .hw-hours-meta strong{font-weight:700;color:#3b5e4d}
 @media(max-width:370px){#today .station-saving-label strong{font-size:10px!important}#today .station-saving-label span{font-size:9px!important}#today .station-saving{gap:2px!important}}
+#register .hw-remaining{margin-top:13px;padding-top:12px;border-top:1px solid #a8ccba;display:flex;flex-direction:column;gap:3px}
+#register .hw-remaining-title{font-size:14px;font-weight:700;color:#2e654d}
+#register .hw-remaining-value{font-size:clamp(20px,5.4vw,27px);line-height:1.3;color:#177c4b;font-variant-numeric:tabular-nums;font-weight:800}
+#register .hw-remaining-note{font-size:12px;color:#5f766b;line-height:1.5;margin-top:3px;font-weight:400}
+#register details.hw-test-accordion{padding:0;overflow:hidden}
+#register .hw-test-accordion>.hw-test-toggle{display:block;list-style:none;cursor:pointer;padding:12px 14px 12px 29px;position:relative}
+#register .hw-test-accordion>.hw-test-toggle::-webkit-details-marker{display:none}
+#register .hw-test-accordion>.hw-test-toggle:before{content:'▸';position:absolute;left:12px;top:14px;color:#246b78;font-size:16px}
+#register .hw-test-accordion[open]>.hw-test-toggle:before{content:'▾'}
+#register .hw-test-accordion>.hw-test-toggle:focus-visible{outline:2px solid #27758a;outline-offset:-3px}
+#register .hw-test-brief{display:block;font-size:12px;color:#71685c;margin-top:5px;line-height:1.5}
+#register .hw-test-accordion>.hw-test-body{padding:0 14px 14px;border-top:1px solid #e7dfd2}
 </style>
 <style>
 /* HeatWise v1.9.39 — GasRadar is a market indicator; my tariff-based price is distinct. */
@@ -742,7 +754,35 @@ header small{font-size:12px}
 #today .station-board,#today .station-saving{position:relative!important;z-index:1!important}
 #today .hw-gas-footnote{display:inline-block!important;max-width:calc(100% - 56px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
 
-</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.52</span></header>
+</style>
+<style>
+/* HeatWise v1.9.55 · petroleumprijsgeschiedenis bij de officiële energieprijzen */
+#sources .hw-petrol-editor{margin:16px 0 12px;padding:14px 12px 12px;background:#f5f9f4;border:1px solid #cbd9cc;border-radius:14px}
+#sources .hw-petrol-editor h2{font-size:18px;margin:0 0 12px;color:#234f45}
+#sources .hw-petrol-editor .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#sources .hw-petrol-editor .grid>div{min-width:0}
+#sources .hw-petrol-editor label{font-size:12px;font-weight:700;line-height:1.35;margin:7px 0 5px;display:block;color:#2d4b44}
+#sources .hw-petrol-editor input{display:block;width:100%;min-width:0;box-sizing:border-box;font-size:16px;min-height:42px}
+#sources .hw-petrol-editor input[type=date]{font-size:12px;padding:7px 4px;min-height:38px}
+#sources #hwPetrolSavePrices{margin:12px 0 2px}
+#sources .hw-petrol-hint{margin:8px 0 4px;line-height:1.4}
+#sources .hw-petrol-chart{background:#fffdf9;border:1px solid #e4d8c3;border-radius:14px;padding:12px 8px 11px;margin:10px 0 8px;overflow:hidden}
+#sources .hw-petrol-chart-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin:0 4px 8px}
+#sources .hw-petrol-chart-head h3{margin:0;font-size:16px;line-height:1.3;color:#234f45}
+#sources .hw-petrol-chart-head label{display:flex;align-items:center;gap:6px;font-size:12px;white-space:nowrap;color:#315c55}
+#sources .hw-petrol-chart-head select{font-size:13px;width:auto;min-width:75px;min-height:34px;padding:4px 7px;background:#ffffff;color:#23483f;border:1px solid #b9cabb;border-radius:8px}
+#sources .hw-petrol-chart-legend{display:flex;gap:15px;flex-wrap:wrap;padding:0 4px 3px;color:#4e5c58;font-size:12px}
+#sources .hw-petrol-chart-legend span{display:inline-flex;align-items:center;gap:5px}
+#sources .hw-petrol-chart-legend i{display:inline-block;width:22px;height:0;border-top:3px solid #d58329}
+#sources .hw-petrol-chart-legend .hw-chart-green{border-color:#239a73;border-top-style:dashed}
+#sources #hwPetrolHistorySvg{display:block;width:100%;height:auto;max-height:280px;overflow:visible;touch-action:manipulation}
+#sources #hwPetrolHistorySvg circle[data-price-date]{cursor:pointer}
+#sources .hw-petrol-chart-detail{margin:2px 4px 4px;color:#284d45;font-weight:650;font-size:12px;min-height:18px}
+#sources #hwPetrolChartInfo{margin:4px 4px 0;font-size:11px;line-height:1.5}
+#sources .hw-petrol-legacy{display:none!important}
+@media(max-width:390px){#sources .hw-petrol-editor .grid{gap:7px}#sources .hw-petrol-editor{padding:11px 8px}#sources .hw-petrol-editor input{font-size:15px}#sources .hw-petrol-chart-head h3{font-size:14px}}
+</style>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.55</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -772,14 +812,14 @@ header small{font-size:12px}
 <div class="hw-gauge-topline">Gasbarometer</div>
 <svg class="hw-gauge-svg" viewBox="0 0 360 208" role="img" aria-labelledby="gasGaugeTitle gasGaugeDescription">
 <title id="gasGaugeTitle">Gasbarometer op basis van GasRadar</title>
-<desc id="gasGaugeDescription">Gekleurde halve cirkel van goedkoop links naar duur rechts, met de positie volgens het oordeel van GasRadar over de afgelopen 90 dagen.</desc>
+<desc id="gasGaugeDescription">Gekleurde halve cirkel van goedkoop links naar duur rechts, met de positie op basis van de prijsrang in de afgelopen twee jaar.</desc>
 <path d="M51.10,171.82 A129,129 0 0 1 72.68,105.43" stroke="#188d74" stroke-width="23" fill="none" stroke-linecap="round"/><path d="M78.76,97.05 A129,129 0 0 1 135.25,56.01" stroke="#8fc571" stroke-width="23" fill="none" stroke-linecap="round"/><path d="M145.09,52.81 A129,129 0 0 1 214.91,52.81" stroke="#e1bd43" stroke-width="23" fill="none" stroke-linecap="round"/><path d="M224.75,56.01 A129,129 0 0 1 281.24,97.05" stroke="#ed9137" stroke-width="23" fill="none" stroke-linecap="round"/><path d="M287.32,105.43 A129,129 0 0 1 308.90,171.82" stroke="#ce4d40" stroke-width="23" fill="none" stroke-linecap="round"/><line id="gasGaugeNeedle" x1="180" y1="177" x2="180" y2="65" stroke="#283746" stroke-width="6" stroke-linecap="round" style="display:none"/>
 <circle cx="180" cy="177" r="11" fill="#283746" stroke="#fff" stroke-width="3"/>
 <text x="12" y="204" fill="#397862" font-size="17" font-weight="650">Goedkoop</text>
 <text x="348" y="204" fill="#a4503b" font-size="17" font-weight="650" text-anchor="end">Duur</text>
 </svg>
 <div class="hw-gauge-judgment" id="gasGaugeVerdict">GasRadar-barometer wordt geladen…</div>
-<div class="hw-gauge-note" id="gasGaugeNote">Oordeel ten opzichte van de afgelopen 90 dagen.</div>
+<div class="hw-gauge-note" id="gasGaugeNote">Prijspositie ten opzichte van de afgelopen twee jaar.</div>
 </div><p class="tiny">Bron: GasRadar · openbare JSON-prijsindicatie, niet noodzakelijk je contractprijs.</p><a class="hw-source-link" href="https://gasradar.be/" target="_blank" rel="noopener noreferrer">Open GasRadar ↗</a><p class="tiny" id="srcGasAutoStatus" aria-live="polite">Automatische bron nog niet geraadpleegd.</p><button type="button" id="refreshGasRadar" class="btn wide">↻ GasRadar automatisch ophalen</button><button type="button" id="useGasRadar" class="btn alt wide" disabled>Neem opgehaalde prijs over</button><label for="srcGasInput">GasRadar-prijs (ct/kWh)</label><input id="srcGasInput" type="text" inputmode="decimal" aria-label="GasRadar-prijs, twee decimalen"><button type="button" class="btn alt wide" id="applyGas">Bewaar gasprijs op Vandaag</button></div>
  <div class="hw-source"><h3>⛽ Petroleum C · aan de pomp</h3>
  <div id="srcOfficialPetrol" class="hw-source-value" aria-live="polite">Nog niet opgehaald</div>
@@ -789,12 +829,20 @@ header small{font-size:12px}
  <p id="srcPetrolUpcoming" class="tiny hidden" aria-live="polite"></p>
  <button type="button" id="refreshPetrol" class="btn wide">↻ Officiële prijs ophalen</button>
  <button type="button" id="useOfficialPetrol" class="btn alt wide" disabled>Neem officiële maximumprijs over</button>
- <div style="border-top:1px solid #e5ded6;margin:13px 0 11px"></div>
+ <div id="hwPetrolEditorSlot"></div>
+ <div class="hw-petrol-chart" id="hwPetrolPriceChart" aria-label="Prijsverloop petroleum C">
+  <div class="hw-petrol-chart-head"><h3>📈 Prijsverloop petroleum C</h3><label for="hwPetrolYear">Jaar <select id="hwPetrolYear" aria-label="Kies jaar"></select></label></div>
+  <div class="hw-petrol-chart-legend"><span><i class="hw-chart-orange"></i>Officiële prijs</span><span><i class="hw-chart-green"></i>Mijn aankoopprijs</span></div>
+  <svg id="hwPetrolHistorySvg" viewBox="0 0 420 238" role="img" aria-label="Jaarlijkse stappengrafiek van de geregistreerde petroleumprijzen" preserveAspectRatio="xMidYMid meet"></svg>
+  <p id="hwPetrolChartPoint" class="hw-petrol-chart-detail" aria-live="polite">Tik op een geregistreerd punt om de datum en prijs te bekijken.</p>
+  <p id="hwPetrolChartInfo" class="tiny">De grafiek gebruikt alleen je opgeslagen prijzen en de echte datums van wijzigingen.</p>
+ </div>
+ <div class="hw-petrol-legacy" hidden aria-hidden="true">
  <div id="srcPetrol" class="tiny">Huidige prijs in HeatWise: —</div>
  <label for="srcPetrolInput">Werkelijke prijs aan de pomp (€/liter) · handmatig</label><input id="srcPetrolInput" type="text" inputmode="decimal">
  <label for="srcPetrolDate">Geldig vanaf (datum van jouw pompprijs)</label><input id="srcPetrolDate" type="date"><button type="button" class="btn alt wide" id="applyPetrol">Bewaar handmatig ingevoerde prijs</button>
  </div>
- <p class="tiny">De aankoopprijs van je eigen petroleum wordt hier niet aangepast. Reeds opgeslagen metingen blijven ongewijzigd.</p></div>
+ </div></div>
 </section>
 <section id="heating" class="hidden">
 <div class="card" id="bellTestPanel">
@@ -950,7 +998,16 @@ header small{font-size:12px}
  const results=byTitle(overview,'Mijn overzicht');
  const settings=byTitle(overview,'Instellingen');
  // Zibro: test, eerdere Zibro-brandtesten, tankcyclus, petroleum en oudere registraties.
- move(petrol,zibro);
+ if(petrol){
+  const slot=document.getElementById('hwPetrolEditorSlot');
+  petrol.classList.remove('card');petrol.classList.add('hw-petrol-editor');
+  const priceGrid=petrol.querySelector('.grid');
+  const purchaseColumn=priceGrid?.children[0],officialColumn=priceGrid?.children[1];
+  if(purchaseColumn)purchaseColumn.insertAdjacentHTML('beforeend','<label for="hwPetrolPurchaseDate">Aankoopdatum</label><input id="hwPetrolPurchaseDate" type="date" aria-label="Datum waarop je deze petroleum kocht">');
+  if(officialColumn)officialColumn.insertAdjacentHTML('beforeend','<label for="hwPetrolOfficialDate">Prijs geldig vanaf</label><input id="hwPetrolOfficialDate" type="date" aria-label="Datum van de officiële prijswijziging">');
+  const info=petrol.querySelector('#savingNote');if(info)info.insertAdjacentHTML('afterend','<p class="tiny hw-petrol-hint">Pas beide bedragen afzonderlijk aan. Wanneer je een veld verlaat, bewaren we een gewijzigde prijs met de gekozen datum. De grafiek wordt automatisch bijgewerkt.</p><button type="button" id="hwPetrolSavePrices" class="btn wide">💾 Bewaar prijswijzigingen</button>');
+  move(petrol,slot);
+}
   if(historic){
     // Oude formulieren blijven in het DOM voor compatibiliteit, maar verdwijnen uit de gewone bediening.
     historic.classList.add('hidden');historic.setAttribute('aria-hidden','true');
@@ -972,7 +1029,7 @@ header small{font-size:12px}
     const oldRuns=document.createElement('details');oldRuns.id='hwLegacyRunsDetails';
     oldRuns.innerHTML='<summary>Bekijk handmatig geregistreerde branduren</summary><div id="hwLegacyRuns"></div>';
     savedCard.append(oldRuns);
-    if(tank)zibro.insertBefore(savedCard,tank);else zibro.append(savedCard);
+    if(tank)tank.after(savedCard);else zibro.append(savedCard);
     if(tank){tank.querySelector('h2').textContent='⛽ Mijn tank en petroleumverbruik';
       const tankHint=document.createElement('p');tankHint.className='tiny hw-tank-hint';tankHint.textContent='Je vorige tankcyclus is bewaard. De lopende tank gebruikt alleen nieuwe branduren. Registreer pas opnieuw als de kachel leeg is en weer volledig gevuld.';
       const st=tank.querySelector('.tankrow');if(st)st.after(tankHint);
@@ -1039,7 +1096,7 @@ header small{font-size:12px}
   const title=document.createElement('h3');title.textContent='Geregistreerde branduren';summaryBox.append(title);
   if(summary)summaryBox.append(summary);tank.insertBefore(summaryBox,tank.querySelector('#tankWarning'));
   // De bekende startvulling is reeds vastgelegd onder db.zibroTankStart. Geen nieuwe liters of vulling registreren.
-  if(petrol)petrol.after(archive);else z.append(archive);
+  if(saved)saved.after(archive);else if(tank)tank.after(archive);else z.append(archive);
  }
  const ref=$('refillLitres');if(ref){ref.value='7,00';ref.placeholder='Bij een echte vulling: bv. 7,00';}
  if(tank){const caution=tank.querySelector('.warning');if(caution){const why=document.createElement('details');why.className='hw-tank-how';why.innerHTML='<summary>Hoe werkt de tankcyclus?</summary>';caution.replaceWith(why);why.append(caution);}}
@@ -1135,6 +1192,28 @@ function hwRemoveHiddenLegacyTests(data){
  return data;
 }
 hwRemoveHiddenLegacyTests(db);
+// v1.9.55: exacte eenmalige correctie van de onvolledig geregistreerde derde tank.
+// De ruwe, werkelijk opgeslagen brandbeurten en alle huidige tankmetingen blijven behouden.
+function hwIsInvalidThirdTank(c){
+ return !!c && String(c.startAt||'').slice(0,16)==='2026-11-03T13:29'
+  && String(c.endAt||'').slice(0,16)==='2026-11-08T23:06'
+  && Math.abs(Number(c.litres)-7)<0.01
+  && Math.abs((Number(c.minutes)||Number(c.hours)*60)-1175)<=1;
+}
+function hwCorrectInvalidThirdTank(data){
+ if(!data||!Array.isArray(data.zibroCycles))return data;
+ const invalid=data.zibroCycles.filter(hwIsInvalidThirdTank);
+ if(!invalid.length)return data;
+ // Een herstelkopie bewaren in dezelfde browser alvorens de ongeldige cyclus te verwijderen.
+ try{if(!localStorage.getItem('heatwise-recovery-before-v1953'))localStorage.setItem('heatwise-recovery-before-v1953',JSON.stringify(data));}catch(e){}
+ const ids=new Set(invalid.map(c=>String(c.id)));
+ data.zibroCycles=data.zibroCycles.filter(c=>!hwIsInvalidThirdTank(c));
+ data.refills=(data.refills||[]).filter(r=>!ids.has(String(r.cycleId))&&!ids.has(String(r.id)));
+ if(data.tank&&ids.has(String(data.tank.lastCycleId)))delete data.tank.lastCycleId;
+ data.hwTankCorrection20261108=true;
+ return data;
+}
+hwCorrectInvalidThirdTank(db);
 const initialZibroLogs=[
 {id:'initial-18-1857',date:'2026-10-18',time:'18:57',living:21,outside:9,set:22,type:'gemeten',note:'Zibro begint werkelijk te branden; starttemperatuur living 21°C. Instelling later naar 23°C.'},
 {id:'initial-18-1915',date:'2026-10-18',time:'19:15',living:22.75,outside:9,set:23,type:'geschat',note:'Witte thermometer bijna 23°C; waarde 22,75 is indicatieve middenwaarde, geen exacte meting.'},
@@ -1173,7 +1252,7 @@ function hwCycleUsage(startAt,endAt){
  }
  return {minutes:Math.round(minutes),overlap,coverage:intervals.length};
 }
-function hwMeasuredCycles(){return (db.zibroCycles||[]).filter(c=>Number(c.litres)>0&&Number(c.hours)>0&&Number.isFinite(Number(c.rate)))}
+function hwMeasuredCycles(){return (db.zibroCycles||[]).filter(c=>!hwIsInvalidThirdTank(c)&&Number(c.litres)>0&&Number(c.hours)>0&&Number.isFinite(Number(c.rate)))}
 function hwTankClose(litres,endAt){
  const last=db.zibroTankStart||{};
  const from=last.startAt||((last.date||'')+'T00:00:00');
@@ -1332,7 +1411,7 @@ function render(){let opts='<option value="">Kies test of verwarmingsbeurt</opti
 $('tankWarningInfo').textContent=tank.status==='full'?'Laatste volledige vulling: '+hwDateText(tank.filledDate||db.zibroTankStart?.date||'onbekend')+'.':db.zibroTankStart?'Lopende cyclus vanaf '+hwDateText(db.zibroTankStart.date||'')+'.':'Nog geen tankstart bekend.';
 const activeFrom=db.zibroTankStart?.startAt||(db.zibroTankStart?.date?db.zibroTankStart.date+'T00:00:00':null);
 const activeUsage=activeFrom?hwCycleUsage(activeFrom,hwLocalISO()):{minutes:0};
-$('tankCurrent').textContent=activeFrom?'Deze tank: '+Math.floor(activeUsage.minutes/60)+' u '+String(activeUsage.minutes%60).padStart(2,'0')+' min geregistreerd · gemiddeld '+hwFmt(rate(),3)+' liter/uur op basis van vorige volledige tank.':'Maak eerst een tankstart aan.';
+$('tankCurrent').textContent=activeFrom?'Deze tank: '+Math.floor(activeUsage.minutes/60)+' u '+String(activeUsage.minutes%60).padStart(2,'0')+' min geregistreerd · gemiddeld '+hwFmt(rate(),3)+' liter/uur op basis van geldige tankcycli.':'Maak eerst een tankstart aan.';
 $('tankHistory').innerHTML=(db.zibroCycles||[]).length?(db.zibroCycles||[]).slice().reverse().map(c=>'<div class="hw-tank-history-item"><strong>'+hwDateText(c.startAt)+' → '+hwDateText(c.endAt)+'</strong><br>'+hwFmt(c.litres,2)+' liter · '+Math.floor(Math.round(Number(c.hours)*60)/60)+' u '+String(Math.round(Number(c.hours)*60)%60).padStart(2,'0')+' min · '+hwFmt(c.rate,3)+' l/u</div>').join(''):'<p class="tiny">Nog geen afgesloten tankcyclus.</p>';let allH=db.sessions.reduce((a,s)=>a+s.zMinutes/60,0),used=db.refills.reduce((a,r)=>a+r.litres,0),tracked=db.refills.reduce((a,r)=>a+r.hours,0);$('tankInfo').textContent=(hwMeasuredCycles().length?'Werkelijk tankgemiddelde: '+hwFmt(rate(),3)+' liter/uur ('+hwMeasuredCycles().length+' volledige cyclus/cycli).':'Nog geen volledige tankcyclus. De berekening gebruikt voorlopig een schatting.');let z=0,g=0;
 // Eén bron per brandregistratie: geregistreerde Zibro-runs incl. afzonderlijke en gemengde testen.
 const runs=db.zibroRuns.filter(r=>Number.isFinite(Number(r.minutes))&&Number(r.minutes)>0);
@@ -1359,7 +1438,7 @@ $('tankRefillDetails').addEventListener('toggle',()=>{if($('tankRefillDetails').
  if(new Date(endAt)>new Date())return alert('De eindtijd mag niet in de toekomst liggen.');
  if(new Date(endAt)<=new Date(db.zibroTankStart.startAt||(db.zibroTankStart.date+'T00:00:00')))return alert('De eindtijd moet na de vorige vulling liggen.');
  if(!hwTankClose(litres,endAt))return;
- $('refillLitres').value='7,00';$('tankEndAt').value='';$('tankRefillDetails').open=false;save();zRender();alert('Tankcyclus bewaard. Je nieuwe volle tank is gestart.');};$('export').onclick=()=>{hwRemoveHiddenLegacyTests(db);localStorage.setItem(KEY,JSON.stringify(db));render();let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='heatwise-backup-'+stamp()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('backupMessage').textContent='De download is gestart. Controleer in Bestandsbeheer → Download of heatwise-backup-'+stamp()+'.json aanwezig is. Je huidige metingen blijven bewaard.'};$('import').onchange=async e=>{try{let data=JSON.parse(await e.target.files[0].text());if(!Array.isArray(data.sessions)||!Array.isArray(data.refills)||!data.settings)throw Error();if(confirm('Let op: je huidige HeatWise-metingen en instellingen worden vervangen door de gegevens uit deze veiligheidskopie. Wil je doorgaan?')){db=hwRemoveHiddenLegacyTests(data);save();location.reload()}}catch{alert('Ongeldige back-up')}};$('reset').onclick=()=>{if(confirm('WAARSCHUWING: alle opgeslagen HeatWise-metingen en instellingen op dit toestel worden definitief gewist. Heb je eerst een veiligheidskopie gemaakt?')){localStorage.removeItem(KEY);location.reload()}};for(const id of ['zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours']){const v=db.phase?.[id];if(v!==undefined)$(id).value=v;$(id).addEventListener('change',()=>{db.phase=Object.fromEntries(['zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours'].map(k=>[k,$(k).value]));localStorage.setItem(KEY,JSON.stringify(db))})};$('spot').value=Number(db.settings.spot??8.8).toLocaleString('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2});
+ $('refillLitres').value='7,00';$('tankEndAt').value='';$('tankRefillDetails').open=false;save();zRender();alert('Tankcyclus bewaard. Je nieuwe volle tank is gestart.');};$('export').onclick=()=>{hwRemoveHiddenLegacyTests(db);localStorage.setItem(KEY,JSON.stringify(db));render();let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='heatwise-backup-'+stamp()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('backupMessage').textContent='De download is gestart. Controleer in Bestandsbeheer → Download of heatwise-backup-'+stamp()+'.json aanwezig is. Je huidige metingen blijven bewaard.'};$('import').onchange=async e=>{try{let data=JSON.parse(await e.target.files[0].text());if(!Array.isArray(data.sessions)||!Array.isArray(data.refills)||!data.settings)throw Error();if(confirm('Let op: je huidige HeatWise-metingen en instellingen worden vervangen door de gegevens uit deze veiligheidskopie. Wil je doorgaan?')){db=hwCorrectInvalidThirdTank(hwRemoveHiddenLegacyTests(data));save();location.reload()}}catch{alert('Ongeldige back-up')}};$('reset').onclick=()=>{if(confirm('WAARSCHUWING: alle opgeslagen HeatWise-metingen en instellingen op dit toestel worden definitief gewist. Heb je eerst een veiligheidskopie gemaakt?')){localStorage.removeItem(KEY);location.reload()}};for(const id of ['zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours']){const v=db.phase?.[id];if(v!==undefined)$(id).value=v;$(id).addEventListener('change',()=>{db.phase=Object.fromEntries(['zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours'].map(k=>[k,$(k).value]));localStorage.setItem(KEY,JSON.stringify(db))})};$('spot').value=Number(db.settings.spot??8.8).toLocaleString('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2});
 // V1.9.45: geen keuzelijsten voor tariefcategorie of index. GasRadar haalt automatisch een dagwaarde op.
 $('spot').addEventListener('input',()=>{updateGasEstimate();markPending()});
 updateGasEstimate();
@@ -1379,7 +1458,15 @@ const relevantRuns=db.zibroRuns.filter(r=>r.date>='2026-10-19');
 const cycleStart=db.zibroTankStart?.startAt||(db.zibroTankStart?.date?db.zibroTankStart.date+'T00:00:00':'2026-10-19T18:00:00');
 const minutes=hwCycleUsage(cycleStart,hwLocalISO()).minutes;
 const recentRuns=relevantRuns.filter(r=>{const p=hwRunInterval(r);return p&&p[1]>new Date(cycleStart).getTime();});
-$('zRunSummary').innerHTML='<div class="hw-hours-total">'+Math.floor(minutes/60)+' uur '+String(minutes%60).padStart(2,'0')+' min</div><div class="hw-hours-meta"><span>Deze tank · sinds '+hwDateText(String(cycleStart).slice(0,10))+'</span><strong>'+recentRuns.length+' brandbeurt'+(recentRuns.length===1?'':'en')+'</strong></div>';
+// 7 liter is de afgesproken volle vulling. Enkel de twee (of meer) geldige tankcycli tellen mee.
+const validCycles=hwMeasuredCycles();
+const measuredRate=validCycles.length?rate():null;
+const expectedTotalMinutes=measuredRate>0?Math.round(7/measuredRate*60):null;
+const remainingMinutes=expectedTotalMinutes===null?null:Math.max(0,expectedTotalMinutes-minutes);
+const remainingText=remainingMinutes===null?'Nog geen betrouwbaar tankgemiddelde':('± '+Math.floor(remainingMinutes/60)+' uur '+String(remainingMinutes%60).padStart(2,'0')+' min');
+const remainingHint=remainingMinutes===null?'Na de eerste volledige, geldige tankcyclus komt hier een voorspelling.':'Schatting bij 7 liter en '+hwFmt(measuredRate,3)+' l/u, op basis van '+validCycles.length+' geldige tankcycli. Werkelijk verbruik hangt af van de brandstand.';
+$('zRunSummary').innerHTML='<div class="hw-hours-total">'+Math.floor(minutes/60)+' uur '+String(minutes%60).padStart(2,'0')+' min</div><div class="hw-hours-meta"><span>Deze tank · sinds '+hwDateText(String(cycleStart).slice(0,10))+'</span><strong>'+recentRuns.length+' brandbeurt'+(recentRuns.length===1?'':'en')+'</strong></div>'+
+ '<div class="hw-remaining"><div class="hw-remaining-title">Geschatte resterende branduren</div><strong class="hw-remaining-value">'+remainingText+'</strong><div class="hw-remaining-note">'+remainingHint+'</div></div>';
 const legacyRuns=relevantRuns.filter(r=>r.source!=='zibroTest');
 const legacyBox=$('hwLegacyRuns');if(legacyBox)legacyBox.innerHTML=legacyRuns.length?legacyRuns.slice().reverse().map(r=>'<div class="history hw-measurement"><strong>'+escapeHtml(hwDateText(r.date||''))+' · '+escapeHtml(r.start||'')+'–'+escapeHtml(r.end||'')+'</strong><div>'+Math.floor((Number(r.minutes)||0)/60)+' uur '+(Number(r.minutes)||0)%60+' minuten (handmatig geregistreerd)</div></div>').join(''):'<p class="tiny">Geen aparte handmatige branduren.</p>';
 const legacyDetail=$('hwLegacyRunsDetails');if(legacyDetail)legacyDetail.classList.toggle('hidden',!legacyRuns.length);
@@ -1416,10 +1503,16 @@ function hwRenderSavedTests(){
   const details=list.length?list.map(m=>'<div class="hw-measurement"><strong>'+escapeHtml(hwDateText(m.date||'')+' '+(m.time||''))+(m.final?' · eindmeting':'')+'</strong><div>Living '+fmtVal(m.living)+' · Buiten '+fmtVal(m.outside)+'</div><div>Zibro SET '+fmtVal(m.set)+' · ROOM '+fmtVal(m.room)+(m.kitchen!=null?' · Keuken '+fmtVal(m.kitchen):'')+'</div>'+(m.note?'<div class="hw-note">📝 '+escapeHtml(m.note)+'</div>':'')+'<button type="button" class="hw-measure-delete" data-hw-measure="'+escapeHtml(m.id)+'" data-hw-test="'+escapeHtml(t.id)+'" aria-label="Verwijder deze temperatuurmeting" title="Verwijder meting">🗑</button></div>').join(''):'<p class="tiny">Nog geen temperatuurmetingen binnen deze test.</p>';
   const stopNote=t.stopNote?'<div class="hw-note">Stopopmerking: '+escapeHtml(t.stopNote)+'</div>':'';
   const warning=t.warning?'<p class="tiny">'+escapeHtml(t.warning)+'</p>':'';
-  return '<div class="hw-test-entry"><div class="hw-test-head"><b>'+label+'</b><span>'+start+'</span></div>'+
-   '<p class="tiny">'+(active?'Brandtijd loopt vanaf de start.': 'Einde: '+end+' · '+Math.floor(mins/60)+' u '+mins%60+' min')+' · '+list.length+' meting(en)</p>'+
-   '<details '+(active?'open':'')+'><summary>Bekijk '+list.length+' temperatuurmeting(en) en opmerkingen</summary>'+details+stopNote+'</details>'+warning+
-   (active?'':'<button type="button" class="btn danger hw-delete-button" data-hw-delete="'+escapeHtml(t.id)+'">🗑️ Verwijder deze test</button>')+'</div>';
+  if(active){
+   return '<div class="hw-test-entry"><div class="hw-test-head"><b>'+label+'</b><span>'+start+'</span></div>'+ 
+    '<p class="tiny">Brandtijd loopt vanaf de start. · '+list.length+' meting(en)</p>'+ 
+    '<details open><summary>Bekijk '+list.length+' temperatuurmeting(en) en opmerkingen</summary>'+details+stopNote+'</details>'+warning+'</div>';
+  }
+  return '<details class="hw-test-entry hw-test-accordion"><summary class="hw-test-toggle">'+
+   '<div class="hw-test-head"><b>✓ Afgeronde test</b><span>'+start+'</span></div>'+ 
+   '<span class="hw-test-brief">Einde: '+end+' · '+Math.floor(mins/60)+' u '+mins%60+' min · '+list.length+' meting(en)</span></summary>'+ 
+   '<div class="hw-test-body">'+details+stopNote+warning+ 
+   '<button type="button" class="btn danger hw-delete-button" data-hw-delete="'+escapeHtml(t.id)+'">🗑️ Verwijder deze test</button></div></details>';
  }).join('');
 }
 function hwDeleteTest(id){
@@ -1530,23 +1623,88 @@ refreshSplitPreview();boundPhaseHours();render();calculate();$('comparison').cla
  }
  // Statbel publiceert een vrije JSON-export. Alleen exact lamppetroleum C aan de pomp, prijs incl. btw.
  // Let op: browserbeveiliging (CORS) van de bron kan direct ophalen verhinderen.
- function renderGasBarometer(verdict,date){
-  const needle=el('gasGaugeNeedle'),label=el('gasGaugeVerdict'),note=el('gasGaugeNote');
-  const clean=String(verdict||'').toLocaleLowerCase('nl-BE').trim();
-  let tier=-1;
-  if(/(zeer|heel|erg)\s+goedkoop/.test(clean))tier=0;
-  else if(clean==='goedkoop'||clean==='vrij goedkoop')tier=1;
-  else if(clean==='gemiddeld'||clean==='normaal'||clean==='neutraal')tier=2;
-  else if(clean==='duur'||clean==='vrij duur')tier=3;
-  else if(/(zeer|heel|erg)\s+duur/.test(clean))tier=4;
-  if(tier<0){needle.style.display='none';label.textContent=verdict?'GasRadar-oordeel onbekend':'Barometer niet beschikbaar';note.textContent='Geen betrouwbaar oordeel ontvangen. Bekijk de actuele meter op GasRadar.';return;}
-  const theta=(180+(tier+0.5)*36)*Math.PI/180;
-  needle.setAttribute('x2',String(180+Math.cos(theta)*101));
-  needle.setAttribute('y2',String(177+Math.sin(theta)*101));
-  needle.style.display='';
-  const names=['Zeer goedkoop','Goedkoop','Gemiddeld','Duur','Heel duur'];
-  label.textContent=names[tier];
-  note.textContent='Volgens GasRadar · voorbije 90 dagen'+(date?' · '+hwDateText(date):'');
+ // v1.9.55: gebruik voor de gasbarometer de langere prijsvergelijking van GasRadar.
+ // De korte kwalificatie "Normaal" vergelijkt uitsluitend de laatste 90 dagen en
+ // kan een historisch hoge prijs misleidend neutraal doen lijken.
+ function hwGasLongPercentile(long){
+   if(long==null)return null;
+   const asNumber=value=>{
+     if(typeof value==='number')return Number.isFinite(value)?value:null;
+     if(typeof value!=='string')return null;
+     const cleaned=value.trim().replace(',','.');
+     if(!/^\d+(?:\.\d+)?$/.test(cleaned))return null;
+     const n=Number(cleaned);return Number.isFinite(n)?n:null;
+   };
+   const fromText=value=>{
+     if(typeof value!=='string')return null;
+     const match=value.match(/(?:duurder dan|more expensive than|higher than|goedkoper dan|cheaper than)\s*(\d{1,3}(?:[.,]\d+)?)\s*%/i);
+     if(match){const p=Number(match[1].replace(',','.'));if(p>=0&&p<=100)return p;}
+     // Bijvoorbeeld de openbare datatabel: "699/29 van 730".
+     const counts=value.match(/(\d{1,4})\s*\/\s*(\d{1,4})\s*(?:van|of|out of)\s*(\d{2,4})/i);
+     if(counts){const cheaper=Number(counts[1]),total=Number(counts[3]);if(total>=100&&cheaper>=0&&cheaper<=total)return 100*cheaper/total;}
+     return null;
+   };
+   if(typeof long==='string')return fromText(long);
+   if(typeof long==='number')return long>=0&&long<=100?long:null;
+   if(Array.isArray(long)&&long.length>=3){
+     const cheaper=asNumber(long[0]),total=asNumber(long[2]);
+     if(cheaper!=null&&total>=100&&cheaper<=total)return 100*cheaper/total;
+   }
+   const entries=[];
+   const inspect=(obj,depth=0)=>{
+     if(depth>3||!obj||typeof obj!=='object')return;
+     for(const [k,v] of Object.entries(obj)){
+       if(v&&typeof v==='object')inspect(v,depth+1);
+       else entries.push({key:k.toLowerCase(),value:v});
+     }
+   };
+   inspect(long);
+   // Ook een aangeleverde tekst met het uitgeschreven historische percentage herkennen.
+   for(const {value} of entries){const p=fromText(value);if(p!=null)return p;}
+   const findValue=pattern=>{
+     const row=entries.find(x=>pattern.test(x.key)&&asNumber(x.value)!=null);
+     return row?asNumber(row.value):null;
+   };
+   let pct=findValue(/(?:percentile|pctcheaper|cheaperpct|percentcheaper|cheaperpercent|pctbelow|belowpct|pctlower|lowerpct|percentage|percent)/);
+   if(pct!=null&&pct>=0&&pct<=100)return pct;
+   const cheaper=findValue(/(?:cheap|goedkop|below|lower|lesscostly|less_expensive)/);
+   const dearer=findValue(/(?:dearer|expens|duurder|higher|costlier|above)/);
+   let total=findValue(/(?:total|sample|n_days|days_count|count_days|perioddays|daystotal|days_total|daysinperiod)/);
+   if(total==null&&cheaper!=null&&dearer!=null)total=cheaper+dearer;
+   if(cheaper!=null&&total>=100&&cheaper>=0&&cheaper<=total)return 100*cheaper/total;
+   return null;
+ }
+ function renderGasBarometer(verdict,date,long){
+   const needle=el('gasGaugeNeedle'),label=el('gasGaugeVerdict'),note=el('gasGaugeNote');
+   const historical=hwGasLongPercentile(long);
+   let fraction=null;
+   if(historical!=null&&Number.isFinite(historical)&&historical>=0&&historical<=100){
+     // De kleuren zijn geen lineaire percentielkaart: de laatste paar procent
+     // zijn gereserveerd voor uitzonderlijke rode prijspieken. 96% valt oranje.
+     const p=historical;
+     fraction=p<=20?p/100:p<=40?0.2+(p-20)*0.01:p<=70?0.4+(p-40)/150:p<=98?0.6+(p-70)/140:0.8+(p-98)/10;
+     const judgment=p>=98?'Zeer duur':p>=70?'Duur':p>=40?'Gemiddeld':p>=20?'Goedkoop':'Zeer goedkoop';
+     label.textContent=judgment;
+     note.textContent='Duurder dan '+Math.round(p)+'% van de dagen in de afgelopen 2 jaar'+(date?' · '+hwDateText(date):'');
+   }else{
+     // Alleen bij ontbrekende historische data terugvallen op het 90-dagenoordeel;
+     // duidelijk vermelden dat het een andere vergelijking is.
+     const clean=String(verdict||'').toLocaleLowerCase('nl-BE').trim();
+     let tier=-1;
+     if(/(zeer|heel|erg)\s+goedkoop/.test(clean))tier=0;
+     else if(clean==='goedkoop'||clean==='vrij goedkoop')tier=1;
+     else if(clean==='gemiddeld'||clean==='normaal'||clean==='neutraal')tier=2;
+     else if(clean==='duur'||clean==='vrij duur')tier=3;
+     else if(/(zeer|heel|erg)\s+duur/.test(clean))tier=4;
+     if(tier<0){needle.style.display='none';label.textContent='Barometer niet beschikbaar';note.textContent='Geen betrouwbare historische prijsvergelijking ontvangen.';return;}
+     fraction=(tier+0.5)/5;
+     label.textContent=['Zeer goedkoop','Goedkoop','Gemiddeld','Duur','Heel duur'][tier];
+     note.textContent='Alleen 90-dagenoordeel beschikbaar'+(date?' · '+hwDateText(date):'');
+   }
+   const theta=(180+fraction*180)*Math.PI/180;
+   needle.setAttribute('x2',String(180+Math.cos(theta)*101));
+   needle.setAttribute('y2',String(177+Math.sin(theta)*101));
+   needle.style.display='';
  }
  async function loadGasRadar(){
    gasRadar=null;el('useGasRadar').disabled=true;el('srcGasAutoStatus').textContent='GasRadar ophalen…';el('gasGaugeVerdict').textContent='GasRadar-barometer wordt geladen…';
@@ -1554,7 +1712,7 @@ refreshSplitPreview();boundPhaseHours();render();calculate();$('comparison').cla
      const j=await fetchTimed('https://gasradar.be/api/now',10);
      const price=Number(j?.price?.centPerKwh),date=isoDate(j?.price?.todayDate);
      if(!Number.isFinite(price)||price<=0||price>100||!date)throw new Error('Ongeldig API-antwoord');
-     const current=belgiumToday();gasRadar={price,date};renderGasBarometer(j?.price?.verdict?.headline,date);
+     const current=belgiumToday();gasRadar={price,date};renderGasBarometer(j?.price?.verdict?.headline,date,j?.price?.insights?.long);
      el('srcGasAutoStatus').textContent=date<current?'Bronprijs van een eerdere gasdag; controleer de datum hierboven.':'Automatisch opgehaald · actuele gasdag.';
      el('useGasRadar').disabled=false;
      // Alleen automatisch overnemen wanneer dezelfde gasdag actief is, nooit een oudere prijs stilzwijgend overschrijven.
@@ -1935,6 +2093,167 @@ el('bellStart').onclick=()=>{
   fields[k].addEventListener('blur',()=>{const v=parseValue(fields[k].value);if(Number.isFinite(v)&&v>=0&&(k==='tariff'||v>0))fields[k].value=dec(v,k==='tariff'?2:2);draw()});
  }
  draw();
+})();
+</script>
+<script>
+/* HeatWise v1.9.55: price history with real calendar spacing; never infer unobserved official prices. */
+(function(){
+ const $=id=>document.getElementById(id);
+ const from='2026-08-01';
+ const today=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Brussels',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+ const number=v=>{const n=Number(String(v??'').trim().replace(',','.'));return Number.isFinite(n)?n:NaN};
+ const euros=n=>'€ '+Number(n).toLocaleString('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const human=d=>{const p=String(d||'').split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:d};
+ const validDate=d=>/^\d{4}-\d{2}-\d{2}$/.test(String(d||''))&&Number.isFinite(Date.parse(d+'T12:00:00'))&&new Date(d+'T12:00:00').toISOString().slice(0,10)===d&&d>=from&&d<=today();
+ const hasPrice=v=>Number.isFinite(Number(v))&&Number(v)>0&&Number(v)<20;
+ const date0=()=>today();
+ const history=db.petrolPriceHistory&&typeof db.petrolPriceHistory==='object'?db.petrolPriceHistory:{};
+ db.petrolPriceHistory=history;
+ history.official=Array.isArray(history.official)?history.official:[];
+ history.purchase=Array.isArray(history.purchase)?history.purchase:[];
+ // The 1 August purchase is user-confirmed. Only seed it when the stored purchase really still costs €1.20.
+ if(!history.purchase.length&&hasPrice(db.settings.petrolPrice)){
+   const p=Number(db.settings.petrolPrice);
+   history.purchase.push({date:Math.abs(p-1.20)<.001?from:date0(),price:p,source:'aankoop'});
+ }
+ // The official reference may begin ONLY at a date already stored in HeatWise; never invent a historic quote.
+ if(!history.official.length&&hasPrice(db.settings.currentPetrolPrice)&&validDate(db.settings.petrolPriceEffectiveDate)){
+   history.official.push({date:db.settings.petrolPriceEffectiveDate,price:Number(db.settings.currentPetrolPrice),source:db.settings.petrolPriceSource||'eerder bewaard'});
+ }
+ const purchaseInput=$('purchasePriceToday'),officialInput=$('currentPetrolPrice');
+ const purchaseDate=$('hwPetrolPurchaseDate'),officialDate=$('hwPetrolOfficialDate');
+ const yearPicker=$('hwPetrolYear'),svg=$('hwPetrolHistorySvg'),info=$('hwPetrolChartInfo'),selection=$('hwPetrolChartPoint');
+ if(!purchaseInput||!officialInput||!purchaseDate||!officialDate||!yearPicker||!svg)return;
+ const sortRows=rows=>rows.filter(x=>x&&validHistoryDate(x.date)&&hasPrice(x.price)).map(x=>({date:x.date,price:Number(x.price),source:String(x.source||'')})).sort((a,b)=>a.date.localeCompare(b.date));
+ const validHistoryDate=d=>/^\d{4}-\d{2}-\d{2}$/.test(String(d||''))&&d>=from&&Number.isFinite(Date.parse(d+'T12:00:00'));
+ const write=()=>localStorage.setItem('heatwise-v1',JSON.stringify(db));
+ function normalize(arr){
+   const byDate=new Map();for(const v of sortRows(arr))byDate.set(v.date,v);
+   return Array.from(byDate.values()).sort((a,b)=>a.date.localeCompare(b.date));
+ }
+ history.purchase=normalize(history.purchase);history.official=normalize(history.official);
+ const last=(kind)=>history[kind].length?history[kind][history[kind].length-1]:null;
+ purchaseDate.value=last('purchase')?.date||from;
+ officialDate.value=last('official')?.date||today();
+ let editPurchaseDate=false,editOfficialDate=false;
+ purchaseDate.addEventListener('input',()=>{editPurchaseDate=true});
+ officialDate.addEventListener('input',()=>{editOfficialDate=true});
+ purchaseInput.addEventListener('focus',()=>{if(!editPurchaseDate)purchaseDate.value=today()});
+ officialInput.addEventListener('focus',()=>{if(!editOfficialDate)officialDate.value=today()});
+ function record(kind,raw,date,source){
+   const value=number(raw);
+   if(!hasPrice(value)){alert('Vul een geldige petroleumprijs in.');return false}
+   if(!validDate(date)){alert('Kies een geldige datum vanaf 1 augustus 2026, niet in de toekomst.');return false}
+   const series=history[kind];const rounded=Math.round((value+Number.EPSILON)*100)/100;
+   const sameDay=series.find(r=>r.date===date);
+   if(sameDay&&Math.abs(sameDay.price-rounded)<.000001)return false;
+   const preceding=series.filter(r=>r.date<=date).at(-1);
+   if(!sameDay&&preceding&&Math.abs(preceding.price-rounded)<.000001)return false;
+   const entry={date,price:rounded,source};
+   const pos=series.findIndex(r=>r.date===date);
+   if(pos>=0)series[pos]=entry;else series.push(entry);
+   history[kind]=normalize(series);
+   if(kind==='purchase')db.settings.petrolPurchaseDate=date;
+   if(kind==='official'){
+     db.settings.petrolPriceEffectiveDate=date;
+     db.settings.petrolPriceSource=source;
+   }
+   write();draw();return true;
+ }
+ function commitPurchase(){
+   const success=record('purchase',purchaseInput.value,purchaseDate.value,'aankoop');
+   if(success){editPurchaseDate=false;purchaseDate.value=last('purchase')?.date||today()}
+   return success;
+ }
+ function commitOfficial(isProgrammatic=false){
+   const date=isProgrammatic?(db.settings.petrolPriceEffectiveDate||today()):officialDate.value;
+   const source=isProgrammatic?(db.settings.petrolPriceSource||'officiële prijs'):'handmatig';
+   const success=record('official',officialInput.value,date,source);
+   if(success){editOfficialDate=false;officialDate.value=last('official')?.date||today()}
+   return success;
+ }
+ purchaseInput.addEventListener('change',commitPurchase);
+ officialInput.addEventListener('change',e=>commitOfficial(!e.isTrusted));
+ $('hwPetrolSavePrices')?.addEventListener('click',()=>{
+   if(!hasPrice(number(purchaseInput.value))||!hasPrice(number(officialInput.value))){alert('Controleer beide bedragen.');return;}
+   if(!validDate(purchaseDate.value)||!validDate(officialDate.value)){alert('Controleer beide datums; ze mogen niet in de toekomst liggen.');return;}
+   // If a price is unchanged, no redundant history point will be added.
+   commitPurchase();commitOfficial(false);
+   const purchase=number(purchaseInput.value),official=number(officialInput.value);
+   db.settings.petrolPrice=purchase;db.settings.currentPetrolPrice=official;
+   $('petrolPrice').value=String(purchase).replace('.',',');
+   write();
+   $('hwPetrolChartPoint').textContent='Prijzen bewaard. De grafiek wordt automatisch bijgewerkt bij een echte prijswijziging.';
+ });
+ const milliseconds=d=>Date.parse(d+'T12:00:00Z');
+ function line(rows,start,end,tx,ty){
+   const prior=rows.filter(r=>r.date<start).at(-1)||null;
+   const inRange=rows.filter(r=>r.date>=start&&r.date<=end);
+   let current=prior;let d=current?'M '+tx(start).toFixed(2)+' '+ty(current.price).toFixed(2):'';
+   const points=[];
+   for(const r of inRange){
+     const x=tx(r.date),y=ty(r.price);
+     if(current){d+=' H '+x.toFixed(2)+' V '+y.toFixed(2)}
+     else d='M '+x.toFixed(2)+' '+y.toFixed(2);
+     current=r;points.push({x,y,...r});
+   }
+   if(current)d+=' H '+tx(end).toFixed(2);
+   return {d,points};
+ }
+ function draw(){
+   const all=[...history.purchase,...history.official];
+   const years=new Set([2026,Number(today().slice(0,4)),...all.map(r=>Number(r.date.slice(0,4)))]);
+   const existing=yearPicker.value||String(today().slice(0,4));
+   const sortedYears=[...years].filter(y=>y>=2026&&y<=2100).sort((a,b)=>b-a);
+   yearPicker.innerHTML=sortedYears.map(y=>'<option value="'+y+'">'+y+'</option>').join('');
+   yearPicker.value=sortedYears.includes(Number(existing))?existing:String(sortedYears[0]);
+   const yr=Number(yearPicker.value),start=yr===2026?from:yr+'-01-01',fullEnd=yr+'-12-31';
+   const end=today()<fullEnd?today():fullEnd;
+   const minT=milliseconds(start),maxT=milliseconds(fullEnd);
+   const x0=52,x1=403,y0=19,y1=181;
+   const tx=d=>x0+(milliseconds(d)-minT)/Math.max(1,maxT-minT)*(x1-x0);
+   const seen=all.filter(r=>r.date<=end&&((r.date>=start)||r===history.purchase.find(x=>x.date<start)||r===history.official.find(x=>x.date<start)));
+   const activeAtStart=[history.purchase.filter(r=>r.date<=start).at(-1),history.official.filter(r=>r.date<=start).at(-1)].filter(Boolean);
+   const values=[...activeAtStart.map(r=>r.price),...all.filter(r=>r.date>=start&&r.date<=end).map(r=>r.price)];
+   let min=values.length?Math.min(...values):1,max=values.length?Math.max(...values):2;
+   const gap=Math.max(.10,(max-min)*.18);
+   min=Math.max(0,Math.floor((min-gap)*10)/10);max=Math.ceil((max+gap)*10)/10;
+   if(max-min<.3){min=Math.max(0,min-.1);max+=.2}
+   const ty=n=>y1-(n-min)/(max-min)*(y1-y0);
+   let parts=[];
+   for(let i=0;i<=4;i++){
+     const p=min+(max-min)*i/4,y=ty(p);
+     parts.push('<line x1="'+x0+'" y1="'+y.toFixed(2)+'" x2="'+x1+'" y2="'+y.toFixed(2)+'" stroke="currentColor" opacity=".12" stroke-dasharray="3 4" />');
+     parts.push('<text x="45" y="'+(y+4).toFixed(2)+'" font-size="12" text-anchor="end" fill="currentColor" opacity=".7">'+p.toFixed(2).replace('.',',')+'</text>');
+   }
+   const months=['Jan','Feb','Mrt','Apr','Mei','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
+   const startMonth=yr===2026?8:1;
+   for(let month=startMonth;month<=12;month++){
+     const date=yr+'-'+String(month).padStart(2,'0')+'-01',x=tx(date);
+     const show=yr===2026||month%2===1;
+     if(show)parts.push('<text x="'+x.toFixed(2)+'" y="201" fill="currentColor" opacity=".7" text-anchor="middle" font-size="12">'+months[month-1]+'</text>');
+   }
+   const rows=[['official','#d58329',false],['purchase','#239a73',true]];
+   for(const [kind,color,dashed] of rows){
+     const result=line(history[kind],start,end,tx,ty);
+     if(result.d)parts.push('<path d="'+result.d+'" fill="none" stroke="'+color+'" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" '+(dashed?'stroke-dasharray="8 5"':'')+'/>');
+     for(const p of result.points){
+       const label=kind==='purchase'?'Aankoopprijs':'Officiële prijs';
+       parts.push('<circle cx="'+p.x.toFixed(2)+'" cy="'+p.y.toFixed(2)+'" r="5.3" fill="'+color+'" stroke="#fff" stroke-width="2" data-price-kind="'+kind+'" data-price-date="'+p.date+'" data-price="'+p.price+'"><title>'+label+' · '+human(p.date)+' · '+euros(p.price)+'/liter</title></circle>');
+     }
+   }
+   if(!values.length)parts.push('<text x="224" y="98" text-anchor="middle" fill="currentColor" font-size="13">Nog geen prijzen voor dit jaar.</text>');
+   svg.innerHTML=parts.join('');
+   const nOfficial=history.official.filter(r=>r.date>=start&&r.date<=end).length;
+   const nPurchase=history.purchase.filter(r=>r.date>=start&&r.date<=end).length;
+   info.textContent='Geregistreerd: '+nOfficial+' officiële prijs'+(nOfficial===1?'':'wijzigingen')+' en '+nPurchase+' aankoopprijs'+(nPurchase===1?'':'wijzigingen')+'. Een prijs blijft horizontaal tot een nieuwe registratie. Niet-geregistreerde vroegere wijzigingen zijn onbekend.';
+ }
+ yearPicker.addEventListener('change',draw);
+ svg.addEventListener('click',e=>{
+   const p=e.target.closest('circle[data-price-date]');if(!p)return;
+   selection.textContent=(p.dataset.priceKind==='purchase'?'Mijn aankoopprijs':'Officiële petroleumprijs')+' · '+human(p.dataset.priceDate)+' · '+euros(Number(p.dataset.price))+'/liter';
+ });
+ write();draw();
 })();
 </script>
 </body></html>
