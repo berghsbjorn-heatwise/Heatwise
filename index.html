@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.66: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.67: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -60,7 +60,7 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 #splitPlan .bar{margin:5px 0 3px}
 #splitPlan input[type=range]{display:block;width:100%;margin:0 0 2px}
 #comparison .result .plan-secondary{font-weight:650;color:#76572f;margin-top:2px}#comparison .result .status{margin-top:2px}#comparison.fresh>.card{background:#eef7ef;border-color:#9fc9aa;box-shadow:0 0 0 1px #d3e8d6}#comparison:not(.fresh)>.card{background:#fffcf7}.test-entry{border:1px solid #e4d8c7;border-radius:12px;background:#fbf6ef;padding:11px;margin:9px 0}.test-entry .row{align-items:flex-start}.test-entry small{display:block;margin:4px 0}.test-entry details{margin:5px 0}.test-entry .test-prediction{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;max-height:240px;overflow:auto}.test-entry .tag{font-size:11px;color:#156c86;font-weight:700}#gasMode{margin-top:4px}#gasInfo{margin-top:8px}#gasSession{background:#fffdf9}
-/* HeatWise v1.9.66 — zeven dagen, alleen blauwe brandurenbalken en losse eurobedragen */
+/* HeatWise v1.9.67 — zeven dagen, alleen blauwe brandurenbalken en losse eurobedragen */
 #register .hw65-chart,#heating .hw65-chart{width:100%;margin-top:8px;overflow:hidden}
 #register .hw65-bars,#heating .hw65-bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;align-items:end;width:100%;padding:8px 0 10px;border-bottom:1px solid #536878}
 #register .hw65-day,#heating .hw65-day{min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;color:#f0f6fa;text-align:center}
@@ -941,7 +941,34 @@ header small{font-size:12px}
 .hw59-cooling-bar:focus-visible{outline:3px solid #c5791b}
 .hw59-legend{font-size:12px;color:#607783;margin:8px 0}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.66</span></header>
+
+<style id="hw67Uniform">
+/* v1.9.67: Bellfires gebruikt dezelfde donkere visuele taal als Zibro. */
+#heating{background:#151d24!important;color:#edf4f8!important;padding:10px;border-radius:18px}
+#heating .card,#heating .hw57-card,#heating #bellTestPanel,
+#heating #hw57MonthB,#heating #hw66BellAnalysis{
+ background:#202b34!important;color:#f1f6fa!important;border:1px solid #34424e!important;box-shadow:none!important;border-radius:18px!important}
+#heating h2,#heating h3,#heating label,#heating summary,#heating strong,#heating .hw57-label{color:#f0f6fa!important}
+#heating p,#heating .muted,#heating .hw62-intro,#heating .hw62-note{color:#b6c7d1!important}
+#heating input,#heating select,#heating textarea{
+ background:#18232b!important;color:#f3f7fa!important;border:1px solid #53616c!important;border-radius:11px!important}
+#heating .hw57-tile,#heating .hw57-result,#heating .hw62-metrics>div{
+ background:#293640!important;color:#f0f6fa!important;border:1px solid #40505b!important;border-radius:13px!important}
+#heating .hw62-fields{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+#heating .hw62-fields label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:650}
+#heating .hw62-fields input,#heating .hw62-fields select{width:100%;box-sizing:border-box;min-width:0;padding:10px}
+#heating #hw66Forecast{display:grid;gap:12px;margin-top:16px;line-height:1.5}
+#heating #hw66Forecast>div{background:#293a46;border:1px solid #3d5261;border-radius:13px;padding:15px}
+#heating #hw66Forecast strong{display:block;font-size:21px;line-height:1.4;margin-top:6px}
+#heating #hw66Forecast small{display:block;color:#bdd1de!important}
+#heating .hw57-bar-track{background:#34424e!important}
+#hw57Archive>details,#hw67BellFolder{border:1px solid #d8e2e7;border-radius:13px;padding:10px 13px;margin:9px 0;background:#f2f6f8}
+#hw57Archive>details>summary{margin:0!important;padding:6px 0;cursor:pointer}
+#hw57Archive>details[open]>summary{margin-bottom:12px!important}
+#hw67BellFolder #bellNewResults{border:0!important;box-shadow:none!important;background:transparent!important;padding:4px!important;margin:0!important}
+@media(max-width:400px){#heating .hw62-fields{gap:8px}#heating .hw62-fields label{font-size:11px}}
+</style>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.67</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -2839,7 +2866,19 @@ const mixed=el('hwMixedCard');if(mixed)archive.after(mixed);
 const oldTotals=el('totals')?.closest('.card');if(oldTotals)oldTotals.classList.add('hw57-legacy-hide');
 // Afzonderlijke Bellfires-gegevens blijven bij Bellfires; uitgebreide testen alleen achter een uitklapknop.
 const bellTest=el('bellTestPanel');if(bellTest){B.insertBefore(bellTest,B.firstElementChild);bellTest.after(bMonth);bMonth.after(bellAnalysis);bellAnalysis.after(lastB);lastB.classList.add('hw57-legacy-hide');}
-const bellResults=el('bellNewResults');if(bellResults){archive.appendChild(bellResults);bellResults.querySelector('h2').textContent='';const p=bellResults.querySelector('p.muted');if(p)p.textContent='Open dit overzicht om vroegere gasmetingen en P1-gegevens te bekijken of aan te vullen.';const d=document.createElement('details');d.innerHTML='<summary class="hw57-summary">🔥 Overzicht testen Bellfires</summary>';const old=el('bellSaved');if(old)d.appendChild(old);bellResults.appendChild(d);}
+const bellResults=el('bellNewResults');if(bellResults){
+  const bellFolder=document.createElement('details');
+  bellFolder.id='hw67BellFolder';
+  bellFolder.innerHTML='<summary class="hw57-summary">🔥 Overzicht testen Bellfires</summary>';
+  archive.appendChild(bellFolder);
+  bellFolder.appendChild(bellResults);
+  const heading=bellResults.querySelector('h2');if(heading)heading.style.display='none';
+  const p=bellResults.querySelector('p.muted');
+  if(p)p.textContent='Afgeronde Bellfires-tests en beschikbare P1-gegevens.';
+  const old=el('bellSaved');if(old)bellResults.appendChild(old);
+  const bellAuto=[...O.querySelectorAll('details')].find(d=>d!==bellFolder&&d.querySelector('summary')?.textContent.includes('Automatische analyse')&&d.textContent.includes('Bellfires'));
+  if(bellAuto)bellFolder.appendChild(bellAuto);
+}
 // Dagtype en startreden zichtbaar als eenvoudige radio-opties; originele selects blijven behouden voor opgeslagen databankvelden.
 const starts=el('hw56StartChoices');let dayOptions=[['office','Ik ga vandaag naar het werk'],['telework','Ik werk vandaag thuis'],['home','Ik ben vandaag vrij / thuis']];
 let reasonOptions=[['morning','Even verwarmen voordat ik vertrek'],['day','Ik ben thuis en ga langer verwarmen'],['evening','Ik ben thuisgekomen en wil verwarmen'],['restart','Ik zet mijn Zibro opnieuw aan na een pauze'],['absence','Ik ben terug na een langere afwezigheid'],['other','Andere reden']];
