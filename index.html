@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.67: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.68: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -60,7 +60,7 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 #splitPlan .bar{margin:5px 0 3px}
 #splitPlan input[type=range]{display:block;width:100%;margin:0 0 2px}
 #comparison .result .plan-secondary{font-weight:650;color:#76572f;margin-top:2px}#comparison .result .status{margin-top:2px}#comparison.fresh>.card{background:#eef7ef;border-color:#9fc9aa;box-shadow:0 0 0 1px #d3e8d6}#comparison:not(.fresh)>.card{background:#fffcf7}.test-entry{border:1px solid #e4d8c7;border-radius:12px;background:#fbf6ef;padding:11px;margin:9px 0}.test-entry .row{align-items:flex-start}.test-entry small{display:block;margin:4px 0}.test-entry details{margin:5px 0}.test-entry .test-prediction{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;max-height:240px;overflow:auto}.test-entry .tag{font-size:11px;color:#156c86;font-weight:700}#gasMode{margin-top:4px}#gasInfo{margin-top:8px}#gasSession{background:#fffdf9}
-/* HeatWise v1.9.67 — zeven dagen, alleen blauwe brandurenbalken en losse eurobedragen */
+/* HeatWise v1.9.68 — zeven dagen, alleen blauwe brandurenbalken en losse eurobedragen */
 #register .hw65-chart,#heating .hw65-chart{width:100%;margin-top:8px;overflow:hidden}
 #register .hw65-bars,#heating .hw65-bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;align-items:end;width:100%;padding:8px 0 10px;border-bottom:1px solid #536878}
 #register .hw65-day,#heating .hw65-day{min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;color:#f0f6fa;text-align:center}
@@ -943,7 +943,7 @@ header small{font-size:12px}
 </style>
 
 <style id="hw67Uniform">
-/* v1.9.67: Bellfires gebruikt dezelfde donkere visuele taal als Zibro. */
+/* v1.9.68: Bellfires gebruikt dezelfde donkere visuele taal als Zibro. */
 #heating{background:#151d24!important;color:#edf4f8!important;padding:10px;border-radius:18px}
 #heating .card,#heating .hw57-card,#heating #bellTestPanel,
 #heating #hw57MonthB,#heating #hw66BellAnalysis{
@@ -968,7 +968,7 @@ header small{font-size:12px}
 #hw67BellFolder #bellNewResults{border:0!important;box-shadow:none!important;background:transparent!important;padding:4px!important;margin:0!important}
 @media(max-width:400px){#heating .hw62-fields{gap:8px}#heating .hw62-fields label{font-size:11px}}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.67</span></header>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.68</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -1035,8 +1035,8 @@ header small{font-size:12px}
 <h2>🔥 Mijn Bellfires · Test uitvoeren</h2>
 <p class="muted">Start bij het aanzetten en stop zodra je de gashaard uitzet. De P1-gasgegevens mag je een kwartier later invullen.</p>
 <p id="bellStatus" class="hw-test-status" role="status">Geen lopende Bellfires-test.</p>
-<button type="button" class="btn wide" id="bellStart">▶ Start Bellfires-test</button>
-<div id="bellActive" class="hidden">
+<div class="hw68-start-vent"><label><input type="checkbox" id="hw68BVent"> 🌬️ Ik heb mijn woning verlucht vóór deze test</label><div id="hw68BVentDuration" hidden><label for="hw68BVentMin">Duur van verluchting</label><select id="hw68BVentMin"><option value="15">15 minuten</option><option value="30" selected>30 minuten</option><option value="45">45 minuten</option><option value="60">60 minuten</option></select></div></div><button type="button" class="btn wide" id="bellStart">▶ Start Bellfires-test</button>
+<div id="bellActive" class="hidden"><div id="hw68BLiveList" class="hw68-live-list"></div>
 <h3>Nieuwe temperatuurmeting</h3><p class="tiny">De datum en tijd worden automatisch bewaard. De vorige temperaturen worden voorgesteld; pas aan wat veranderd is.</p>
 <div class="grid"><div><label for="bellOutside">Buiten (°C)</label><input id="bellOutside" inputmode="decimal" placeholder="bv. 6"></div><div><label for="bellLiving">Living (°C)</label><input id="bellLiving" inputmode="decimal" placeholder="bv. 20"></div></div>
 <div class="grid"><div><label for="bellBurners">Bellfires-branders</label><select id="bellBurners"><option value="1">1 brander</option><option value="2">2 branders</option></select></div><div><label for="bellKitchen">Keuken (°C) · optioneel</label><input id="bellKitchen" inputmode="decimal" placeholder="mag leeg blijven"></div></div>
@@ -2104,6 +2104,14 @@ $('hwStartTest').onclick=()=>{
  const kind=$('hw56DayKind')?.value||'',reason=$('hw56StartReason')?.value||hw56GuessStart();
  if(kind)hw56DayKinds()[hw56Date(start)]=kind;
  const t={id:'test-'+Date.now(),start,status:'active',measurements:[m],startNote:'',dayKind:kind,startReason:reason};
+ if($('hw68ZVent')?.checked){
+  const mins=Number($('hw68ZVentMin')?.value)||30;
+  const startMs=new Date(start).getTime();const begin=new Date(startMs-mins*60000);
+  const local=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')+'T'+[d.getHours(),d.getMinutes(),d.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
+  t.ventilatedBeforeStart=true;t.ventilationMinutes=mins;m.ventilatedBeforeStart=true;
+  hw56Vents().push({id:'vent-start-'+Date.now(),start:local(begin),end:start,durationMinutes:mins,testId:t.id,beforeStart:true});
+  $('hw68ZVent').checked=false;$('hw68ZVentDuration').hidden=true;
+ }
  db.zibroTests.push(t);db.zibroLogs.push({...m,testId:t.id});
  hwLastAutoFill='';save();zRender();$('hwMeasurementFeedback').textContent='Beginmeting bewaard. De test loopt.';hwUpdate();hw56SyncWeather(false);
 };
@@ -2399,6 +2407,8 @@ refreshSplitPreview();boundPhaseHours();render();calculate();$('comparison').cla
   const t=active();el('bellStart').classList.toggle('hidden',!!t);el('bellActive').classList.toggle('hidden',!t);
   el('bellStatus').textContent=t?'🟢 Test loopt sinds '+localDate(t.start)+' · '+(t.measurements||[]).length+' meting(en) opgeslagen.':'Geen lopende Bellfires-test.';
   if(t)prefill(t);
+  const liveList=el('hw68BLiveList');if(liveList&&t){liveList.innerHTML='<strong>Metingen in deze lopende test</strong>'+(t.measurements||[]).map((m,i)=>'<div class="hw68-live-row"><span>'+escapeHtml(localDate(m.when))+' · woonkamer '+format(m.living)+' · '+(m.burners||'?')+' brander(s)</span><button type="button" class="hw68-trash" data-hw68-bdel="'+i+'" aria-label="Verwijder deze meting" title="Verwijder meting">🗑️</button></div>').join('');}
+if(t)prefill(t);
   el('bellSaved').innerHTML=db.bellfiresTests.slice().reverse().filter(x=>x.status!=='active').map(x=>{
    const running=x.status==='active',pending=x.status==='waiting',list=x.measurements||[],mins=x.minutes||0;
    const label=running?'🟢 Lopende test':pending?'⏳ Wacht op P1':'✓ Afgeronde test';
@@ -2421,7 +2431,9 @@ refreshSplitPreview();boundPhaseHours();render();calculate();$('comparison').cla
 }
 el('bellStart').onclick=()=>{
  if(active())return;const start=now(),m=readBellMeasurement(start);if(!m)return;
- db.bellfiresTests.push({id:'bell-'+Date.now(),start,status:'active',measurements:[m],gasM3:null,gasPrice:gasPrice(),gasKwh:num('gasKwh')});
+ const t={id:'bell-'+Date.now(),start,status:'active',measurements:[m],gasM3:null,gasPrice:gasPrice(),gasKwh:num('gasKwh')};
+ if(el('hw68BVent')?.checked){t.ventilatedBeforeStart=true;t.ventilationMinutes=Number(el('hw68BVentMin')?.value)||30;m.ventilatedBeforeStart=true;el('hw68BVent').checked=false;el('hw68BVentDuration').hidden=true;}
+ db.bellfiresTests.push(t);
  filledKey='';el('bellNote').value='';el('bellFeedback').textContent='Beginmeting bewaard. De test loopt.';saveDb();
 };
  el('bellSaveTemp').onclick=()=>{
@@ -2436,6 +2448,14 @@ el('bellStart').onclick=()=>{
  el('bellNote').value='';saveDb();
  alert('Bellfires-test gestopt met eindmeting. Brandtijd: '+Math.floor(duration/60)+' u '+duration%60+' min. P1-gegevens kun je later invullen.');
 };
+ el('hw68BVent')?.addEventListener('change',e=>{el('hw68BVentDuration').hidden=!e.target.checked;});
+ el('hw68BLiveList')?.addEventListener('click',e=>{
+ const b=e.target.closest('[data-hw68-bdel]');if(!b)return;const t=active();if(!t)return;const i=Number(b.dataset.hw68Bdel);
+ if(!Number.isInteger(i)||!t.measurements[i])return;
+ if(t.measurements.length<=1)return alert('De enige startmeting kan niet afzonderlijk worden verwijderd. Verwijder indien nodig de hele test.');
+ if(!confirm('Deze meting uit de lopende Bellfires-test verwijderen? Ze telt daarna niet meer mee in de analyse.'))return;
+ t.measurements.splice(i,1);filledKey='';saveDb();
+ });
  el('bellDiscard').onclick=()=>{const t=active();if(!t)return;if(!confirm('Deze lopende Bellfires-proef en al haar metingen verwijderen?'))return;db.bellfiresTests=db.bellfiresTests.filter(x=>x.id!==t.id);saveDb()};
  el('bellSaved').addEventListener('click',e=>{
   const single=e.target.closest('[data-bell-measure]');if(single){const t=db.bellfiresTests.find(x=>x.id===single.dataset.bellParent),i=Number(single.dataset.bellMeasure);if(!t||!Number.isInteger(i)||!t.measurements?.[i])return;if(!confirm('Alleen deze Bellfires-temperatuurmeting en haar opmerking verwijderen? De brandduur en P1-gegevens blijven behouden.'))return;t.measurements.splice(i,1);saveDb();return;}
@@ -2888,6 +2908,7 @@ function matchRadios(){for(const [name,id] of [['hw57Day','hw56DayKind'],['hw57S
 function pickRadio(name){return document.querySelector('input[name="'+name+'"]:checked')?.value||'';}
 const startHint={morning:'Kort verwarmen vóór vertrek.',day:'Je blijft thuis en verwarmt langere tijd.',evening:'Je begint te verwarmen na thuiskomst.',restart:'De Zibro heeft eerder al gebrand.',absence:'De woning stond langere tijd zonder geregistreerde Zibro-verwarming.',other:'Je registreert een andere verwarmingsbeurt.'};
 function syncStartHint(){const h=el('hw57StartHint');if(h)h.textContent=startHint[el('hw56StartReason')?.value]||'';}
+starts?.insertAdjacentHTML('beforeend','<div class="hw68-start-vent"><label><input type="checkbox" id="hw68ZVent"> 🌬️ Ik heb mijn woning verlucht vóór deze test</label><div id="hw68ZVentDuration" hidden><label for="hw68ZVentMin">Duur van verluchting</label><select id="hw68ZVentMin"><option value="15">15 minuten</option><option value="30" selected>30 minuten</option><option value="45">45 minuten</option><option value="60">60 minuten</option></select></div></div>');document.getElementById('hw68ZVent')?.addEventListener('change',e=>{document.getElementById('hw68ZVentDuration').hidden=!e.target.checked;});
 starts?.addEventListener('change',e=>{const r=e.target;if(r.name==='hw57Day'){el('hw56DayKind').value=r.value;el('hw56DayKind').dispatchEvent(new Event('change',{bubbles:true}));matchRadios();syncStartHint();}else if(r.name==='hw57Start'){el('hw56StartReason').value=r.value;el('hw56StartReason').dispatchEvent(new Event('change',{bubbles:true}));syncStartHint();}});
 matchRadios();syncStartHint();
 // Belangrijk: een en hetzelfde temperatuurformulier bij START, tussentijds OPSLAAN en STOP.
@@ -2931,12 +2952,20 @@ const oldStopLabel=active?.querySelector('label[for="hw56StopReason"]');oldStopL
 let previousActiveKey=null;
 function syncTest(){
  const t=hwCurrent(),live=!!t,status=el('hw57TestStatus');
- if(status){status.innerHTML=live?'<strong>🟢 Lopende test</strong><small>Gestart '+esc(String(t.start).slice(11,16))+' · '+(t.measurements||[]).length+' meting(en) bewaard</small><div class="hw62-live-rows">'+(t.measurements||[]).map(m=>'<div><b>'+esc(String(m.when||'').slice(11,16))+'</b> · woonkamer '+nf(m.living,1)+'°C · buiten '+(m.outside==null?'—':nf(m.outside,1)+'°C')+' · SET '+(m.set==null?'—':nf(m.set,0)+'°C')+' · ROOM '+(m.room==null?'—':nf(m.room,0)+'°C')+'</div>').join('')+'</div>':'Geen lopende Zibro-test';status.classList.toggle('hw62-live',live);}
+ if(status){status.innerHTML=live?'<strong>🟢 Lopende test</strong><small>Gestart '+esc(String(t.start).slice(11,16))+' · '+(t.measurements||[]).length+' meting(en) bewaard</small><div class="hw62-live-rows">'+(t.measurements||[]).map(m=>'<div><b>'+esc(String(m.when||'').slice(11,16))+'</b> · woonkamer '+nf(m.living,1)+'°C · buiten '+(m.outside==null?'—':nf(m.outside,1)+'°C')+' · SET '+(m.set==null?'—':nf(m.set,0)+'°C')+' · ROOM '+(m.room==null?'—':nf(m.room,0)+'°C')+' <button type="button" class="hw68-trash" data-hw68-zdel="'+esc(m.id)+'" aria-label="Verwijder deze meting" title="Verwijder deze meting">🗑️</button></div>').join('')+'</div>':'Geen lopende Zibro-test';status.classList.toggle('hw62-live',live);}
  el('hw57MeasureTitle').textContent=live?'Nieuwe meting':'3. Welke temperaturen meet je nu?';
  el('hw57ActiveActions')?.classList.toggle('hw57-hidden',!live);
  if(!live){matchRadios();syncStartHint();previousActiveKey=null;}
  else{const last=(t.measurements||[]).at(-1);const key=t.id+':'+(last?.id||'');if(previousActiveKey!==key){outside.value='';el('hw57OutsideStatus').textContent='';previousActiveKey=key;}}
 }
+el('hw57TestStatus')?.addEventListener('click',e=>{
+ const btn=e.target.closest('[data-hw68-zdel]');if(!btn)return;
+ const t=hwCurrent();if(!t)return;const m=t.measurements.find(x=>String(x.id)===btn.dataset.hw68Zdel);if(!m)return;
+ if(t.measurements.length<=1)return alert('De enige startmeting kan niet afzonderlijk worden verwijderd. Verwijder indien nodig de hele test.');
+ if(!confirm('Deze meting uit de lopende Zibro-test verwijderen? Ze telt daarna niet meer mee in de analyse.'))return;
+ t.measurements=t.measurements.filter(x=>x.id!==m.id);db.zibroLogs=db.zibroLogs.filter(x=>!(x.testId===t.id&&x.id===m.id));
+ hwLastAutoFill='';save();zRender();hwUpdate();syncTest();v57Render();
+ });
 function changeDisplay(){const selection=pickRadio('hw57Change')||'none';el('hw57SetWrap')?.classList.toggle('hw57-hidden',selection!=='set');el('hw57VentWrap')?.classList.toggle('hw57-hidden',selection!=='vent');const prev=hwCurrent()?.measurements?.at(-1)?.set;const current=parsed(el('hwSet')?.value);if(selection==='set')el('hw57SetPrev').textContent='Vorige instelling: '+(prev==null?'onbekend':nf(prev,0)+'°C')+' · Nieuwe instelling: '+(current===null?'nog invullen':nf(current,0)+'°C');}
 function setChange(v){const r=document.querySelector('input[name="hw57Change"][value="'+v+'"]');if(r)r.checked=true;changeDisplay();}
 setChange('none');
@@ -3277,4 +3306,16 @@ setTimeout(()=>syncOfflineWeather(false),2000);
 #register .hw63-dots{display:flex;gap:7px;font-size:19px;letter-spacing:1px}
 #register .hw63-dots span{opacity:.35}
 #register .hw63-dots span.active{opacity:1;color:#f0c74e}
+</style><style>
+/* HeatWise 1.9.68 — verluchting vóór test, verwijderbare actieve metingen */
+#register .hw68-start-vent,#heating .hw68-start-vent{padding:12px;margin:12px 0;border:1px solid #557487;border-radius:12px;background:#293c49;color:#f1f7fb}
+#register .hw68-start-vent label,#heating .hw68-start-vent label{display:block;color:#f1f7fb!important;font-weight:600}
+.hw68-start-vent input[type=checkbox]{width:19px;height:19px;vertical-align:middle;accent-color:#4fa7db}
+.hw68-start-vent select{width:100%;margin-top:6px}
+.hw68-start-vent [hidden]{display:none!important}
+.hw68-trash{border:1px solid #8b6870;background:#49313a;color:#fff;border-radius:8px;padding:5px 9px;margin-left:6px;cursor:pointer;font-size:15px}
+#register .hw62-live-rows>div{display:flex;align-items:center;flex-wrap:wrap;gap:5px;justify-content:space-between}
+#heating .hw68-live-list{background:#283a47;color:#f2f6f9;border-radius:12px;padding:12px;margin-bottom:12px}
+#heating .hw68-live-row{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #526573;padding:9px 0;font-size:13px}
+#register #hw57ActiveActions .hw57-start-title{color:#f0f6fa!important}
 </style></body></html>
