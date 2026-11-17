@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.69: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.71: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -60,7 +60,7 @@ header{margin-bottom:2px}h1{font-size:22px;line-height:1.1}header small{font-siz
 #splitPlan .bar{margin:5px 0 3px}
 #splitPlan input[type=range]{display:block;width:100%;margin:0 0 2px}
 #comparison .result .plan-secondary{font-weight:650;color:#76572f;margin-top:2px}#comparison .result .status{margin-top:2px}#comparison.fresh>.card{background:#eef7ef;border-color:#9fc9aa;box-shadow:0 0 0 1px #d3e8d6}#comparison:not(.fresh)>.card{background:#fffcf7}.test-entry{border:1px solid #e4d8c7;border-radius:12px;background:#fbf6ef;padding:11px;margin:9px 0}.test-entry .row{align-items:flex-start}.test-entry small{display:block;margin:4px 0}.test-entry details{margin:5px 0}.test-entry .test-prediction{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;max-height:240px;overflow:auto}.test-entry .tag{font-size:11px;color:#156c86;font-weight:700}#gasMode{margin-top:4px}#gasInfo{margin-top:8px}#gasSession{background:#fffdf9}
-/* HeatWise v1.9.69 — zeven dagen, alleen blauwe brandurenbalken en losse eurobedragen */
+/* HeatWise v1.9.71 — zeven dagen, alleen blauwe brandurenbalken en losse eurobedragen */
 #register .hw65-chart,#heating .hw65-chart{width:100%;margin-top:8px;overflow:hidden}
 #register .hw65-bars,#heating .hw65-bars{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;align-items:end;width:100%;padding:8px 0 10px;border-bottom:1px solid #536878}
 #register .hw65-day,#heating .hw65-day{min-width:0;display:flex;flex-direction:column;align-items:center;gap:7px;color:#f0f6fa;text-align:center}
@@ -943,7 +943,7 @@ header small{font-size:12px}
 </style>
 
 <style id="hw67Uniform">
-/* v1.9.69: Bellfires gebruikt dezelfde donkere visuele taal als Zibro. */
+/* v1.9.71: Bellfires gebruikt dezelfde donkere visuele taal als Zibro. */
 #heating{background:#151d24!important;color:#edf4f8!important;padding:10px;border-radius:18px}
 #heating .card,#heating .hw57-card,#heating #bellTestPanel,
 #heating #hw57MonthB,#heating #hw66BellAnalysis{
@@ -968,7 +968,7 @@ header small{font-size:12px}
 #hw67BellFolder #bellNewResults{border:0!important;box-shadow:none!important;background:transparent!important;padding:4px!important;margin:0!important}
 @media(max-width:400px){#heating .hw62-fields{gap:8px}#heating .hw62-fields label{font-size:11px}}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.69</span></header>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.71</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -1468,27 +1468,36 @@ function hwRunInterval(r){
 function hwCycleUsage(startAt,endAt){
  const from=new Date(startAt).getTime(),to=new Date(endAt).getTime();
  if(!Number.isFinite(from)||!Number.isFinite(to)||to<=from)return {minutes:0,overlap:false,coverage:0};
- const intervals=(db.zibroRuns||[]).map(r=>({r,period:hwRunInterval(r)})).filter(x=>x.period&&x.period[1]>from&&x.period[0]<to).sort((a,b)=>a.period[0]-b.period[0]);
+ const recorded=(db.zibroRuns||[]).map(r=>({r,period:hwRunInterval(r)}));
+ const active=(db.zibroTests||[]).filter(t=>t.status==='active'&&t.start).map(t=>({r:{source:'activeTest',id:t.id},period:[new Date(t.start).getTime(),to]}));
+ const intervals=[...recorded,...active].filter(x=>x.period&&Number.isFinite(x.period[0])&&x.period[1]>from&&x.period[0]<to).sort((a,b)=>a.period[0]-b.period[0]);
  let minutes=0,lastEnd=-Infinity,overlap=false;
  for(const {r,period:[a,b]} of intervals){
    const first=Math.max(from,a),last=Math.min(to,b);
    if(last<=first)continue;
    if(first<lastEnd){overlap=true;const fresh=Math.max(0,last-Math.max(first,lastEnd));minutes+=fresh/60000;}
-   else if(first===a&&last===b&&Number.isFinite(Number(r.minutes))&&Number(r.minutes)>0){minutes+=Number(r.minutes);}
    else {minutes+=(last-first)/60000;}
    lastEnd=Math.max(lastEnd,last);
  }
  return {minutes:Math.round(minutes),overlap,coverage:intervals.length};
 }
-function hwMeasuredCycles(){return (db.zibroCycles||[]).filter(c=>!hwIsInvalidThirdTank(c)&&Number(c.litres)>0&&Number(c.hours)>0&&Number.isFinite(Number(c.rate)))}
+function hwAllRegisteredRunMinutes(){
+ const intervals=(db.zibroRuns||[]).map(hwRunInterval).filter(Boolean).sort((a,b)=>a[0]-b[0]);
+ let total=0,end=-Infinity;
+ for(const [a,b] of intervals){total+=Math.max(0,b-Math.max(a,end))/60000;end=Math.max(end,b);}
+ return Math.round(total);
+}
+function hwMeasuredCycles(){return (db.zibroCycles||[]).filter(c=>!hwIsInvalidThirdTank(c)&&c.refilledEarly!==true&&Number(c.litres)>0&&Number(c.hours)>0&&Number.isFinite(Number(c.rate)))}
 function hwTankClose(litres,endAt){
  const last=db.zibroTankStart||{};
  const from=last.startAt||((last.date||'')+'T00:00:00');
  const usage=hwCycleUsage(from,endAt);
  if(!Number.isFinite(litres)||litres<=0||litres>40||!usage.minutes){alert('Controleer de bijgevulde liters en de geregistreerde branduren.');return false;}
  if(db.zibroCycles.some(c=>c.startAt===from&&c.endAt===endAt)){alert('Deze tankcyclus bestaat al.');return false;}
- const hours=usage.minutes/60,cycle={id:'cycle-'+Date.now(),startAt:from,endAt,litres,hours,minutes:usage.minutes,rate:litres/hours,source:'volledige tankvulling',runCount:usage.coverage,overlapDetected:usage.overlap};
- if(!confirm('Afsluiten: '+hwFmt(litres)+' liter over '+Math.floor(usage.minutes/60)+' u '+String(usage.minutes%60).padStart(2,'0')+' min = '+hwFmt(cycle.rate,3)+' l/u?'))return false;
+ const hours=usage.minutes/60,cycle={id:'cycle-'+Date.now(),startAt:from,endAt,litres,hours,minutes:usage.minutes,rate:litres/hours,source:'volledige tankvulling',runCount:usage.coverage,overlapDetected:usage.overlap,includesActiveAtRefill:(db.zibroTests||[]).some(t=>t.status==='active'&&new Date(t.start).getTime()<new Date(endAt).getTime())};
+ const nearlyEmpty=confirm('Was de vorige tank echt (bijna) leeg toen je bijvulde?\n\nOK = ja, de '+hwFmt(litres)+' liter mag als verbruik worden gebruikt.\nAnnuleren = nee / onzeker, de vulling wordt bewaard maar niet gebruikt om liters per uur te leren.');
+ cycle.refilledEarly=!nearlyEmpty;
+ if(!confirm('Tankvulling bewaren: '+hwFmt(litres)+' liter bijgevuld, '+Math.floor(usage.minutes/60)+' u '+String(usage.minutes%60).padStart(2,'0')+' min geregistreerd. '+(nearlyEmpty?'Verbruikscyclus wordt gebruikt voor prognoses.':'Geen verbruikscyclus: bijgevuld volume is niet gelijk aan verbruikt volume.')+' Doorgaan?'))return false;
  db.zibroCycles.push(cycle);db.refills.push({id:cycle.id,date:hwDateOnly(),litres,hours,cycleId:cycle.id});
  db.zibroTankStart={date:hwDateOnly(),startAt:endAt,level:'volledig gevuld',note:'Nieuwe cyclus na werkelijk bijvullen. Startgrens ligt op het vorige eindtijdstip.'};
  db.tank={status:'full',filledDate:hwDateOnly(),filledAt:hwLocalISO(),lastCycleId:cycle.id};
@@ -1631,20 +1640,23 @@ function render(){let opts='<option value="">Kies test of verwarmingsbeurt</opti
 $('tankWarningInfo').textContent=tank.status==='full'?'Laatste volledige vulling: '+hwDateText(tank.filledDate||db.zibroTankStart?.date||'onbekend')+'.':db.zibroTankStart?'Lopende cyclus vanaf '+hwDateText(db.zibroTankStart.date||'')+'.':'Nog geen tankstart bekend.';
 const activeFrom=db.zibroTankStart?.startAt||(db.zibroTankStart?.date?db.zibroTankStart.date+'T00:00:00':null);
 const activeUsage=activeFrom?hwCycleUsage(activeFrom,hwLocalISO()):{minutes:0};
+const inconsistentCycles=hwMeasuredCycles().filter(c=>Math.abs(hwCycleUsage(c.startAt,c.endAt).minutes-Number(c.minutes||Math.round(c.hours*60)))>2);
+
 $('tankCurrent').textContent=activeFrom?'Deze tank: '+Math.floor(activeUsage.minutes/60)+' u '+String(activeUsage.minutes%60).padStart(2,'0')+' min geregistreerd · gemiddeld '+hwFmt(rate(),3)+' liter/uur op basis van geldige tankcycli.':'Maak eerst een tankstart aan.';
-$('tankHistory').innerHTML=(db.zibroCycles||[]).length?(db.zibroCycles||[]).slice().reverse().map(c=>'<div class="hw-tank-history-item"><strong>'+hwDateText(c.startAt)+' → '+hwDateText(c.endAt)+'</strong><br>'+hwFmt(c.litres,2)+' liter · '+Math.floor(Math.round(Number(c.hours)*60)/60)+' u '+String(Math.round(Number(c.hours)*60)%60).padStart(2,'0')+' min · '+hwFmt(c.rate,3)+' l/u</div>').join(''):'<p class="tiny">Nog geen afgesloten tankcyclus.</p>';let allH=db.sessions.reduce((a,s)=>a+s.zMinutes/60,0),used=db.refills.reduce((a,r)=>a+r.litres,0),tracked=db.refills.reduce((a,r)=>a+r.hours,0);$('tankInfo').textContent=(hwMeasuredCycles().length?'Werkelijk tankgemiddelde: '+hwFmt(rate(),3)+' liter/uur ('+hwMeasuredCycles().length+' volledige cyclus/cycli).':'Nog geen volledige tankcyclus. De berekening gebruikt voorlopig een schatting.');let z=0,g=0;
+$('tankHistory').innerHTML=(db.zibroCycles||[]).length?(db.zibroCycles||[]).slice().reverse().map(c=>'<div class="hw-tank-history-item"><strong>'+hwDateText(c.startAt)+' → '+hwDateText(c.endAt)+'</strong><br>'+hwFmt(c.litres,2)+' liter · '+Math.floor(Math.round(Number(c.hours)*60)/60)+' u '+String(Math.round(Number(c.hours)*60)%60).padStart(2,'0')+' min · '+hwFmt(c.rate,3)+' l/u</div>').join(''):'<p class="tiny">Nog geen afgesloten tankcyclus.</p>';let allH=db.sessions.reduce((a,s)=>a+s.zMinutes/60,0),used=db.refills.reduce((a,r)=>a+r.litres,0),tracked=db.refills.reduce((a,r)=>a+r.hours,0);$('tankInfo').textContent=(hwMeasuredCycles().length?'Afgeleid tankgemiddelde (aangenomen volledig verbruik): '+hwFmt(rate(),3)+' liter/uur ('+hwMeasuredCycles().length+' volledige cyclus/cycli).':'Nog geen volledige tankcyclus. De berekening gebruikt voorlopig een schatting.');if(inconsistentCycles.length)$('tankInfo').textContent+=' ⚠️ '+inconsistentCycles.length+' historische tankcyclus/cycli wijken af van de geregistreerde brandbeurten. Maak een back-up en controleer deze gegevens; HeatWise past ze niet stilzwijgend aan.';
+let z=0,g=0;
 // Eén bron per brandregistratie: geregistreerde Zibro-runs incl. afzonderlijke en gemengde testen.
 const runs=db.zibroRuns.filter(r=>Number.isFinite(Number(r.minutes))&&Number(r.minutes)>0);
-const zHours=runs.reduce((sum,r)=>sum+Number(r.minutes)/60,0);
+const zHours=hwAllRegisteredRunMinutes()/60;
 const zRate=rate(),zPrice=num('petrolPrice');z=zHours*zRate*zPrice;
 // Oude gecombineerde sessies alleen meetellen als zij niet al als losse Zibro-run bestaan.
 for(const s of db.sessions){const sessionStart=new Date(String(s.date||'')+'T00:00:00');const matchingRun=runs.some(r=>r.date===s.date);if(!matchingRun&&Number(s.zMinutes)>0)z+=Number(s.zMinutes)/60*zRate*zPrice;
 if(s.gasM3!=null)g+=s.gasM3*(s.gasKwh||num('gasKwh'))*(s.gasPrice??gasPrice())}for(const t of db.tests){if(t.gasM3!=null)g+=t.gasM3*(t.gasKwh||num('gasKwh'))*(t.gasPrice??gasPrice())} for(const t of db.bellfiresTests||[]){if(t.gasM3!=null)g+=t.gasM3*(t.gasKwh||num('gasKwh'))*(t.gasPrice??gasPrice())} for(const t of db.mixedTests||[]){if(t.gasM3!=null)g+=t.gasM3*(t.gasKwh||num('gasKwh'))*(t.gasPrice??gasPrice())} const gasCount=db.sessions.filter(t=>t.gasM3!=null).length+db.tests.filter(t=>t.gasM3!=null).length+(db.bellfiresTests||[]).filter(t=>t.gasM3!=null).length+(db.mixedTests||[]).filter(t=>t.gasM3!=null).length;
-const fullMinutes=runs.reduce((acc,r)=>acc+Number(r.minutes||0),0);
+const fullMinutes=hwAllRegisteredRunMinutes();
 const sessionExtraMinutes=db.sessions.filter(s=>!runs.some(r=>r.date===s.date)).reduce((acc,s)=>acc+Number(s.zMinutes||0),0);
 const totalMinutes=fullMinutes+sessionExtraMinutes;
 const registeredZ=runs.length+db.sessions.filter(s=>!runs.some(r=>r.date===s.date)&&Number(s.zMinutes)>0).length;
-$('totals').innerHTML='<div class="grid"><div class="result"><small>Zibro · geschat</small><div class="price">'+money(z)+'</div><p class="hw-cost-detail">'+Math.floor(totalMinutes/60)+'u'+String(totalMinutes%60).padStart(2,'0')+' branduren<br>'+registeredZ+' brandbeurt'+(registeredZ===1?'':'en')+'</p></div><div class="result"><small>Bellfires · gemeten</small><div class="price">'+money(g)+'</div><p class="hw-cost-detail">'+gasCount+' gasmeting'+(gasCount===1?'':'en')+'<br>P1 / zichtbare testresultaten</p></div></div><div class="hw-cost-total"><span>Totaal geregistreerd</span><strong>'+money(z+g)+'</strong></div><details class="hw-overview-explain"><summary>Berekening en toelichting</summary><p>Dit zijn de geregistreerde kosten over meerdere verwarmingsbeurten, niet alleen vandaag. Petroleumkosten gebruiken de gemeten tankgemiddelde verbruikswaarde zodra een volledige cyclus beschikbaar is. Het blijft een gemiddelde, geen meting per brandbeurt. Gas telt alleen mee als er P1-gegevens zijn. Alleen P1-metingen uit de zichtbare Bellfires- en gemengde tests tellen mee.</p></details>';$('testHistory').innerHTML=db.tests.length?db.tests.slice().reverse().map(t=>{let gas=t.gasM3!=null;let oldMatch=String(t.prediction||'').match(/Mijn plan:[^€]{0,70}€\s*([0-9]+[,.][0-9]{2})/);let predictionCost=t.predictionCost!=null?money(t.predictionCost):oldMatch?'€ '+oldMatch[1]:'Zie details';let dateLabel=hwDateText(t.when);return '<div class="test-entry"><div class="row"><strong>🧪 '+dateLabel+'</strong><span class="tag">'+(gas?'✓ Gemeten':'Start bewaard')+'</span></div><small>'+escapeHtml(t.day||'')+' · Buiten '+t.outside+'°C · Binnen '+t.inside+'°C → doel '+t.target+'°C · '+t.duration+' u</small><div class="row"><small>Voorspelling: <b>'+predictionCost+'</b></small><small>Gas: <b>'+(gas?t.gasM3.toFixed(2).replace('.',',')+' m³':'Nog te meten')+'</b></small></div>'+(gas?'<small>Gemeten gaskosten: <b>'+money(t.gasM3*(t.gasKwh||num('gasKwh'))*(t.gasPrice??gasPrice()))+'</b> · '+(t.gasMode==='day'?'Dagtotaal gas':'meterstanden')+'</small>':'')+'<details><summary>Werkelijke testduur corrigeren</summary><p class="tiny">De oorspronkelijke voorspelling blijft bewaard. Corrigeer alleen de echte duur van de test.</p><label>Werkelijke duur (minuten)</label><input type="number" min="1" max="1440" step="1" id="actualDuration-'+t.id+'" value="'+(t.actualMinutes??'')+'" placeholder="bv. 30"><button type="button" class="btn" data-fix-test="'+t.id+'">Bewaar werkelijke duur</button></details>'+ (t.actualMinutes!=null?'<small>Werkelijke testduur: <b>'+t.actualMinutes+' minuten</b> (voorspelde duur: '+t.duration+' uur)</small>':'<small>Werkelijke duur nog niet afzonderlijk bevestigd; '+t.duration+' uur is de oorspronkelijke voorspelling.</small>') +'<details><summary>Voorspelling en details</summary><div class="test-prediction">'+escapeHtml(t.prediction||'')+'</div></details></div>'}).join(''):'<p class="muted">Nog geen teststarts bewaard.</p>' ;$('history').innerHTML=db.sessions.length?db.sessions.slice().reverse().map(s=>'<div class="history"><strong>'+s.date+'</strong> — '+s.startTemp+' → '+s.endTemp+'°C<br><small>Zibro '+s.zMinutes+' min op '+s.zThermostat+'°C • Bellfires '+s.gMinutes+' min ('+s.burners+' brander(s))'+(s.gasM3!=null?' • P1 '+hwFmt(s.gasM3,3)+' m³':' • P1 nog niet ingevoerd')+'</small></div>').join(''):'<p class="muted">Nog geen verwarmingsbeurten.</p>';if($('hwCombinedHistory'))$('hwCombinedHistory').classList.toggle('hidden',!db.sessions.length);hwRenderInsights()}document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));$(b.dataset.tab).classList.remove('hidden');document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));render()});const calculateInputs=['outside','inside','target','duration','spot','zSplit','zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours'];
+$('totals').innerHTML='<div class="grid"><div class="result"><small>Zibro · geschat</small><div class="price">'+money(z)+'</div><p class="hw-cost-detail">'+Math.floor(totalMinutes/60)+'u'+String(totalMinutes%60).padStart(2,'0')+' branduren<br>'+registeredZ+' brandbeurt'+(registeredZ===1?'':'en')+'</p></div><div class="result"><small>Bellfires · gemeten</small><div class="price">'+money(g)+'</div><p class="hw-cost-detail">'+gasCount+' gasmeting'+(gasCount===1?'':'en')+'<br>P1 / zichtbare testresultaten</p></div></div><div class="hw-cost-total"><span>Totaal geschat (geen factuur)</span><strong>'+money(z+g)+'</strong></div><details class="hw-overview-explain"><summary>Berekening en toelichting</summary><p>Dit zijn indicatieve kosten over meerdere verwarmingsbeurten, niet alleen vandaag. Petroleumkosten gebruiken één gemiddeld verbruik voor historische uren en de ingestelde aankoopprijs; dit is geen werkelijk gemeten verbruik per brandbeurt en geen kassabon. Een latere prijswijziging kan dus ook de getoonde historische raming veranderen. Gas telt alleen mee als er P1-gegevens zijn. Alleen P1-metingen uit de zichtbare Bellfires- en gemengde tests tellen mee.</p></details>';$('testHistory').innerHTML=db.tests.length?db.tests.slice().reverse().map(t=>{let gas=t.gasM3!=null;let oldMatch=String(t.prediction||'').match(/Mijn plan:[^€]{0,70}€\s*([0-9]+[,.][0-9]{2})/);let predictionCost=t.predictionCost!=null?money(t.predictionCost):oldMatch?'€ '+oldMatch[1]:'Zie details';let dateLabel=hwDateText(t.when);return '<div class="test-entry"><div class="row"><strong>🧪 '+dateLabel+'</strong><span class="tag">'+(gas?'✓ Gemeten':'Start bewaard')+'</span></div><small>'+escapeHtml(t.day||'')+' · Buiten '+t.outside+'°C · Binnen '+t.inside+'°C → doel '+t.target+'°C · '+t.duration+' u</small><div class="row"><small>Voorspelling: <b>'+predictionCost+'</b></small><small>Gas: <b>'+(gas?t.gasM3.toFixed(2).replace('.',',')+' m³':'Nog te meten')+'</b></small></div>'+(gas?'<small>Gemeten gaskosten: <b>'+money(t.gasM3*(t.gasKwh||num('gasKwh'))*(t.gasPrice??gasPrice()))+'</b> · '+(t.gasMode==='day'?'Dagtotaal gas':'meterstanden')+'</small>':'')+'<details><summary>Werkelijke testduur corrigeren</summary><p class="tiny">De oorspronkelijke voorspelling blijft bewaard. Corrigeer alleen de echte duur van de test.</p><label>Werkelijke duur (minuten)</label><input type="number" min="1" max="1440" step="1" id="actualDuration-'+t.id+'" value="'+(t.actualMinutes??'')+'" placeholder="bv. 30"><button type="button" class="btn" data-fix-test="'+t.id+'">Bewaar werkelijke duur</button></details>'+ (t.actualMinutes!=null?'<small>Werkelijke testduur: <b>'+t.actualMinutes+' minuten</b> (voorspelde duur: '+t.duration+' uur)</small>':'<small>Werkelijke duur nog niet afzonderlijk bevestigd; '+t.duration+' uur is de oorspronkelijke voorspelling.</small>') +'<details><summary>Voorspelling en details</summary><div class="test-prediction">'+escapeHtml(t.prediction||'')+'</div></details></div>'}).join(''):'<p class="muted">Nog geen teststarts bewaard.</p>' ;$('history').innerHTML=db.sessions.length?db.sessions.slice().reverse().map(s=>'<div class="history"><strong>'+s.date+'</strong> — '+s.startTemp+' → '+s.endTemp+'°C<br><small>Zibro '+s.zMinutes+' min op '+s.zThermostat+'°C • Bellfires '+s.gMinutes+' min ('+s.burners+' brander(s))'+(s.gasM3!=null?' • P1 '+hwFmt(s.gasM3,3)+' m³':' • P1 nog niet ingevoerd')+'</small></div>').join(''):'<p class="muted">Nog geen verwarmingsbeurten.</p>';if($('hwCombinedHistory'))$('hwCombinedHistory').classList.toggle('hidden',!db.sessions.length);hwRenderInsights()}document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));$(b.dataset.tab).classList.remove('hidden');document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));render()});const calculateInputs=['outside','inside','target','duration','spot','zSplit','zHighTemp','zLowTemp','zHighHours','gHighBurners','gLowBurners','gHighHours'];
 function markPending(){
  clearTimeout(window.hwAutoCalcTimer);
  window.hwAutoCalcTimer=setTimeout(()=>{calculate();$('comparison').classList.add('fresh');$('calcPending').classList.add('hidden');$('recalculate').classList.remove('pending');},100);
@@ -1679,26 +1691,21 @@ const cycleStart=db.zibroTankStart?.startAt||(db.zibroTankStart?.date?db.zibroTa
 const minutes=hwCycleUsage(cycleStart,hwLocalISO()).minutes;
 const recentRuns=relevantRuns.filter(r=>{const p=hwRunInterval(r);return p&&p[1]>new Date(cycleStart).getTime();});
 // 7 liter is de afgesproken volle vulling. Enkel de twee (of meer) geldige tankcycli tellen mee.
-const validCycles=hwMeasuredCycles();
-// Recente volledige tankcycli krijgen meer gewicht; zonder vermogens-/literdata blijft dit onzeker.
-const cycleRates=validCycles.map(c=>Number(c.rate)).filter(r=>r>0&&Number.isFinite(r));
-const recentRate=cycleRates.length?cycleRates.reduce((sum,r,i)=>sum+r*(i+1),0)/cycleRates.reduce((sum,r,i)=>sum+i+1,0):null;
-const cycleMin=cycleRates.length?Math.min(...cycleRates):null;
-const cycleMax=cycleRates.length?Math.max(...cycleRates):null;
-const observedSpread=cycleRates.length>1?(cycleMax-cycleMin)/recentRate:0;
-const uncertainty=Math.max(0.20,Math.min(0.45,observedSpread/2+0.15));
+const validCycles=hwMeasuredCycles().slice().sort((a,b)=>String(a.endAt).localeCompare(String(b.endAt)));
+const recentCycles=validCycles.slice(-3);
+const weights=recentCycles.map((_,i)=>Math.pow(2,i));
+const weightSum=weights.reduce((a,b)=>a+b,0);
+const recentRate=weightSum?recentCycles.reduce((sum,c,i)=>sum+(Number(c.litres)/Number(c.hours))*weights[i],0)/weightSum:null;
 const estimatedUsed=recentRate?minutes/60*recentRate:null;
 const estimatedLeft=estimatedUsed===null?null:Math.max(0,7-estimatedUsed);
-const lowerRate=recentRate?(recentRate*(1+uncertainty)):null;
-const upperRate=recentRate?(recentRate*(1-uncertainty)):null;
 const remainingMinutes=estimatedLeft===null?null:Math.max(0,Math.round(estimatedLeft/recentRate*60));
-const lowMinutes=estimatedLeft===null?null:Math.max(0,Math.round(estimatedLeft/lowerRate*60));
-const highMinutes=estimatedLeft===null?null:Math.max(0,Math.round(estimatedLeft/upperRate*60));
 const durationText=m=>Math.floor(m/60)+' u '+String(m%60).padStart(2,'0')+' min';
-let remainingText=remainingMinutes===null?'Nog geen betrouwbaar tankgemiddelde':(estimatedLeft<=0.2?'Mogelijk bijna leeg':'Ongeveer '+durationText(lowMinutes)+' – '+durationText(highMinutes));
+let remainingText=remainingMinutes===null?'Nog onvoldoende tankgegevens':(estimatedLeft<=0.2?'Mogelijk bijna leeg':'± '+durationText(remainingMinutes));
 const remainingHint=remainingMinutes===null?'Registreer een volledige tankcyclus om een schatting te krijgen.':
- 'Indicatieve bandbreedte op basis van '+validCycles.length+' volledige tankcycli (recentere wegen zwaarder). Kouder weer en hoger vermogen kunnen het verbruik verhogen; HeatWise meet het actuele vermogen en tankpeil niet. Bij tankwaarschuwing: tank bijna leeg, ongeacht deze schatting.';
+ 'Indicatieve schatting op basis van '+recentCycles.length+' tankcycli (recentere wegen zwaarder). Lopende test telt mee. Dit veronderstelt 7 liter beschikbaar na de laatste vulling en dat eerdere cycli tot bijna leeg zijn gebruikt. De Zibro meet geen tankpeil; koude en vermogen kunnen het resultaat veranderen. Een tankwaarschuwing gaat altijd voor.';
 if(db.tank?.status==='warning')remainingText='⚠️ Tankwaarschuwing: bijna leeg';
+const hwHistoricDiscrepancies=hwMeasuredCycles().filter(c=>Math.abs(hwCycleUsage(c.startAt,c.endAt).minutes-Number(c.minutes||Math.round(c.hours*60)))>2);
+if(hwHistoricDiscrepancies.length)remainingHint+=' ⚠️ '+hwHistoricDiscrepancies.length+' oudere tankcyclus/cycli verschillen van de opgeslagen branduren. De historische cijfers zijn niet automatisch aangepast.';
 $('zRunSummary').innerHTML='<div class="hw-hours-total">'+Math.floor(minutes/60)+' uur '+String(minutes%60).padStart(2,'0')+' min</div><div class="hw-hours-meta"><span>Deze tank · sinds '+hwDateText(String(cycleStart).slice(0,10))+'</span><strong>'+recentRuns.length+' brandbeurt'+(recentRuns.length===1?'':'en')+'</strong></div>'+
  '<div class="hw-remaining"><div class="hw-remaining-title">Geschatte resterende branduren</div><strong class="hw-remaining-value">'+remainingText+'</strong><div class="hw-remaining-note">'+remainingHint+'</div></div>';
 const tankMeta=$('zRunSummary').querySelector('.hw-hours-meta');if(tankMeta)$('zRunSummary').append(tankMeta);
@@ -1707,7 +1714,7 @@ const legacyBox=$('hwLegacyRuns');if(legacyBox)legacyBox.innerHTML=legacyRuns.le
 const legacyDetail=$('hwLegacyRunsDetails');if(legacyDetail)legacyDetail.classList.toggle('hidden',!legacyRuns.length);
 $('zCycleSummary').classList.toggle('hidden',!hwMeasuredCycles().length);
 const cycles=hwMeasuredCycles(),last=cycles.at(-1);
-$('zCycleSummary').innerHTML=last?'<div class="hw-cycle-box"><strong>✓ Laatste volledige tankcyclus</strong><div>'+hwDateText(last.startAt)+' → '+hwDateText(last.endAt)+'</div><div>'+hwFmt(last.litres)+' liter / '+Math.floor(Math.round(last.hours*60)/60)+' u '+String(Math.round(last.hours*60)%60).padStart(2,'0')+' min = <b>'+hwFmt(last.rate,3)+' liter/uur</b></div><small>Gemeten tankgemiddelde op basis van geregistreerde branduren.</small></div>':'<p class="tiny">Nog geen werkelijk gemeten volledige tankcyclus.</p>';
+$('zCycleSummary').innerHTML=last?'<div class="hw-cycle-box"><strong>✓ Laatste volledige tankcyclus</strong><div>'+hwDateText(last.startAt)+' → '+hwDateText(last.endAt)+'</div><div>'+hwFmt(last.litres)+' liter / '+Math.floor(Math.round(last.hours*60)/60)+' u '+String(Math.round(last.hours*60)%60).padStart(2,'0')+' min = <b>'+hwFmt(last.rate,3)+' liter/uur</b></div><small>Afgeleid uit bijgevulde liters en geregistreerde branduren, alleen betrouwbaar wanneer de vorige tank (bijna) leeg was.</small></div>':'<p class="tiny">Nog geen werkelijk gemeten volledige tankcyclus.</p>';
 }
 $('zLogDate').value=stamp();$('zRunDate').value=stamp();if(stamp()==='2026-10-19')$('zRunStart').value='18:00';
 $('zAddLog').onclick=()=>{const date=$('zLogDate').value,fields=[['zLogLiving','living'],['zLogKitchen','kitchen'],['zLogOutside','outside'],['zLogSet','set'],['zLogRoom','room']];if(!date)return alert('Vul een datum in');let x={id:Date.now().toString(),date,time:$('zLogTime').value,type:$('zLogType').value,note:$('zLogNote').value};for(const [id,k] of fields){x[k]=zNumber(id);if(Number.isNaN(x[k]))return alert('Controleer de temperatuur: '+id)}if(x.living==null&&x.kitchen==null)return alert('Vul minstens één binnentemperatuur in');db.zibroLogs.push(x);save();zRender();alert('Zibro-meting bewaard')};
@@ -2137,7 +2144,7 @@ function hwFinish(withReading){const t=hwCurrent();if(!t)return;const end=hwStop
 let m=null;if(withReading){m=hwReadMeasurement(end,true);if(!m)return;}const stopNote='';if(m){m.note=[m.note,stopNote].filter(Boolean).join(' · ');hwStoreMeasurement(m,t)}t.status='finished';t.end=end;t.minutes=mins;t.stopNote=stopNote;t.stopReason=$('hw56StopReason')?.value||'';
 const date=hwLocalDate(t.start),start=hwLocalTime(t.start),finish=hwLocalTime(end);
 // Gebruik dezelfde lijst als de oude tankcyclus, zonder bestaande branduren te verdubbelen.
-const overlap=db.zibroRuns.some(r=>{const a=new Date(r.date+'T'+r.start+':00').getTime();let b=new Date(r.date+'T'+r.end+':00').getTime();if(b<=a)b+=86400000;return new Date(t.start).getTime()<b&&new Date(t.end).getTime()>a});
+const overlap=db.zibroRuns.some(r=>{const p=hwRunInterval(r);return p&&new Date(t.start).getTime()<p[1]&&new Date(t.end).getTime()>p[0]});
 if(!overlap){db.zibroRuns.push({id:t.id,date,start,end:finish,minutes:mins,source:'zibroTest'});t.inTankCycle=true;}else{t.inTankCycle=false;t.warning='Brandtijd overlapt een eerder geregistreerde beurt en is niet dubbel toegevoegd.';}
 save();zRender();$('hwStopNote').value='';$('hwNote').value='';hwStoppedAt=null;hwUpdate();hw56StartPrep();hw56ClearOptionalFields();hw56SyncWeather(false);alert('Test beëindigd. Brandtijd: '+Math.floor(mins/60)+' u '+mins%60+' min.'+(t.inTankCycle?'':' Let op: overlappende branduren zijn niet dubbel geteld.'))}
 $('hwFinishNoReading').onclick=()=>hwFinish(true);
