@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.107: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.108: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -968,7 +968,7 @@ header small{font-size:12px}
 #hw67BellFolder #bellNewResults{border:0!important;box-shadow:none!important;background:transparent!important;padding:4px!important;margin:0!important}
 @media(max-width:400px){#heating .hw62-fields{gap:8px}#heating .hw62-fields label{font-size:11px}}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.107</span></header>
+</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.108</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -1231,9 +1231,11 @@ header small{font-size:12px}
   petrol.classList.remove('card');petrol.classList.add('hw-petrol-editor');
   const priceGrid=petrol.querySelector('.grid');
   const purchaseColumn=priceGrid?.children[0],officialColumn=priceGrid?.children[1];
+  if(purchaseColumn){purchaseColumn.insertAdjacentHTML('afterbegin','<h3>Mijn petroleumaankoop</h3>');purchaseColumn.style.cssText='padding:12px;border:1px solid #bed7c7;border-radius:12px';}
+  if(officialColumn){officialColumn.insertAdjacentHTML('afterbegin','<h3>Officiële petroleumprijs</h3>');officialColumn.style.cssText='padding:12px;border:1px solid #b6cde8;border-radius:12px';officialColumn.querySelector('input').readOnly=true;}
   if(purchaseColumn)purchaseColumn.insertAdjacentHTML('beforeend','<label for="hwPetrolPurchaseDate">Aankoopdatum</label><input id="hwPetrolPurchaseDate" type="date" aria-label="Datum waarop je deze petroleum kocht">');
-  if(officialColumn)officialColumn.insertAdjacentHTML('beforeend','<label for="hwPetrolOfficialDate">Prijs geldig vanaf</label><input id="hwPetrolOfficialDate" type="date" aria-label="Datum van de officiële prijswijziging">');
-  const info=petrol.querySelector('#savingNote');if(info)info.insertAdjacentHTML('afterend','<p class="tiny hw-petrol-hint">Pas beide bedragen afzonderlijk aan. Wanneer je een veld verlaat, bewaren we een gewijzigde prijs met de gekozen datum. De grafiek wordt automatisch bijgewerkt.</p><button type="button" id="hwPetrolSavePrices" class="btn wide">💾 Bewaar prijswijzigingen</button>');
+  if(officialColumn)officialColumn.insertAdjacentHTML('beforeend','<label for="hwPetrolOfficialDate">Officiële prijs geldig vanaf</label><input id="hwPetrolOfficialDate" type="date" aria-label="Datum van de officiële prijswijziging" readonly>');
+  const info=petrol.querySelector('#savingNote');if(info)info.insertAdjacentHTML('afterend','<p class="tiny hw-petrol-hint">Je eigen aankoopprijs en aankoopdatum kun je hieronder bewaren. De officiële prijs wordt afzonderlijk opgehaald met de knop hierboven.</p><button type="button" id="hwPetrolSavePrices" class="btn wide">💾 Bewaar mijn aankoopprijs</button>');
   move(petrol,slot);
 }
   if(historic){
@@ -2827,15 +2829,14 @@ el('bellStart').onclick=()=>{
  // Programmatische officiële prijsophaling blijft via de bestaande bronfunctie lopen.
  officialInput.addEventListener('change',e=>{if(!e.isTrusted)commitOfficial(true)});
  $('hwPetrolSavePrices')?.addEventListener('click',()=>{
-   if(!hasPrice(number(purchaseInput.value))||!hasPrice(number(officialInput.value))){alert('Controleer beide bedragen.');return;}
-   if(!validDate(purchaseDate.value)||!validDate(officialDate.value)){alert('Controleer beide datums; ze mogen niet in de toekomst liggen.');return;}
-   // If a price is unchanged, no redundant history point will be added.
-   commitPurchase();commitOfficial(false);
-   const purchase=number(purchaseInput.value),official=number(officialInput.value);
-   db.settings.petrolPrice=purchase;db.settings.currentPetrolPrice=official;
+   const purchase=number(purchaseInput.value);
+   if(!hasPrice(purchase)){alert('Controleer je aankoopprijs.');return;}
+   if(!validDate(purchaseDate.value)){alert('Controleer je aankoopdatum.');return;}
+   commitPurchase();
+   db.settings.petrolPrice=purchase;
    $('petrolPrice').value=String(purchase).replace('.',',');
    write();
-   $('hwPetrolChartPoint').textContent='Prijzen bewaard. De grafiek wordt automatisch bijgewerkt bij een echte prijswijziging.';
+   $('hwPetrolChartPoint').textContent='Je aankoopprijs is bewaard. De officiële petroleumprijs blijft ongewijzigd.';
  });
  const milliseconds=d=>Date.parse(d+'T12:00:00Z');
  function line(rows,start,end,tx,ty){
@@ -3326,8 +3327,8 @@ function hw62Analyze(){
  }
  else html+='Nog onvoldoende gegevens';
  html+='</strong></div></div>';
- html+='<p class="hw62-note">De indicatie na één uur wordt onafhankelijk beoordeeld en vereist twee vergelijkbare metingen van één tot anderhalf uur. De tijdsmarge tot je doeltemperatuur gebruikt uitsluitend volledige opwarmtrajecten.</p>';
- html+='<p class="hw62-note">'+similar.length+' vergelijkbare meetperiodes uit '+unique(similar)+' tests ('+warm.length+' met opwarming uit '+testRates.length+' tests). '+(consistent?'Voorzichtige schatting op basis van meerdere onafhankelijke tests.':sufficient?'De vergelijkbare tests verschillen te sterk in opwarmsnelheid (spreiding '+nf(relativeSpread*100,0)+'%). Daarom wordt geen voorspelling getoond.':'Voor een voorspelling zijn minstens 2 verschillende tests met daadwerkelijke opwarming nodig.')+'</p>';
+ 
+ html+='<p class="hw62-note">'+similar.length+' vergelijkbare meetperiodes uit '+unique(similar)+' tests ('+warm.length+' met opwarming uit '+testRates.length+' tests). '+(!consistent&&sufficient?'De opwarmtijden verschillen te sterk voor een betrouwbare voorspelling.':!sufficient?'Nog te weinig vergelijkbare opwarmtests.':'')+'</p>';
  
  if(target>now&&!targetSupported)html+='<p class="hw62-note">Voor dit volledige opwarmtraject zijn minder dan twee onafhankelijke vergelijkbare metingen beschikbaar. Daarom tonen we geen tijds-, petroleum- of kostenprognose.</p>';
  if(sufficient&&(target>now&&target>maxSeen+.5))html+='<p class="hw62-note">Voor deze temperatuur is onvoldoende werkelijk gemeten opwarming beschikbaar. HeatWise extrapoleert niet voorbij het gemeten bereik.</p>';
