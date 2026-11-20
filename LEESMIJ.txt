@@ -1,0 +1,22 @@
+HeatWise v1.9.110 — vernieuwde Zibro-test (20 november 2026)
+
+Deze ZIP bevat uitsluitend index.html en sw.js en een uitlegbestand. Er worden GEEN foto's of oude JS-bestanden meegeleverd. De app gebruikt afbeeldingen die rechtstreeks in index.html zijn opgenomen. Bewaar bestaande andere GitHub-bestanden totdat je hebt gecontroleerd dat ze nergens meer gebruikt worden.
+
+Nieuw:
+- Zibro START: 3 dagsoorten, checkbox verlucht vooraf (standaard 30 min), temperaturen en Start. Geen vraag naar startreden.
+- TEST LOOPT: duidelijke teststatus met live brandduur, temperatuurmeting opslaan, automatische SET-verandering, afzonderlijke START/STOP VERLUCHTING met werkelijke begin- en eindtijd, test stoppen met bevestiging zonder stopreden of verplichte eindmeting.
+- Huidige tankcyclus verwijderen met bevestiging, zonder oude testen, branduren, kosten, refills of afgesloten tankcycli te wissen.
+- Nieuwe tankcyclus begint pas na echte nieuwe volledige tankvulling.
+- Vandaag-weer wordt voor een nieuwe Zibro-test overgenomen als het van dezelfde dag is.
+- Overbodig binnentemperatuur/gewenste-temperatuurpaneel van Vandaag verborgen, onderliggende berekenvelden behouden.
+
+INSTALLATIE
+1. Maak eerst via Overzicht > Bescherm je gegevens een verse JSON-back-up. Bewaar die buiten de app.
+2. Upload alleen index.html en sw.js uit deze ZIP naar de bestaande GitHub-repository en laat alle andere bestaande bestanden staan.
+3. Open HeatWise opnieuw, controleer bovenaan versie v1.9.110. Wis geen browsergegevens of appopslag.
+4. Controleer bestaande maandkosten, tankcyclus en winteranalyse. Verwijder pas daarna expliciet de huidige foutieve tankcyclus met de nieuwe knop.
+5. Vul de Zibro daadwerkelijk opnieuw (volgens de handleiding) en registreer die vulling daarna als nieuw startpunt.
+
+Let op: het wissen van de huidige tankcyclus is een afzonderlijke, bevestigde handeling. Het gebeurt niet automatisch door de update.
+
+Deze versie is voorbereid en geautomatiseerd getest, maar nog niet op jouw eigen telefoon getest.
