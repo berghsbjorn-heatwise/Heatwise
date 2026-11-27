@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.110: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.115: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -968,15 +968,24 @@ header small{font-size:12px}
 #hw67BellFolder #bellNewResults{border:0!important;box-shadow:none!important;background:transparent!important;padding:4px!important;margin:0!important}
 @media(max-width:400px){#heating .hw62-fields{gap:8px}#heating .hw62-fields label{font-size:11px}}
 </style>
-</head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.110</span></header>
+<style id="hw113Styles">
+/* v1.9.112: compacte Zibro-opwarmprognose */
+#hw57Analysis .hw62-intro,#hw57Analysis #hw62Origin{display:none!important}
+#hw62Forecast .hw62-count{margin:9px 0 0;font-size:12px;color:#cad8de;font-weight:650}
+#hw62Forecast .hw62-metrics{margin-bottom:4px}
+/* v1.9.115: aanraakbare prijspunten en rustige, leesbare blauwe labels */
+#sources #hwPetrolHistorySvg circle[data-price-date]{cursor:pointer;outline:none}
+#sources #hwPetrolHistorySvg circle[data-price-date]:focus{stroke:#0c365d;stroke-width:3}
+#sources .hw-petrol-selected-point{border:1px solid #a9c8eb;border-radius:9px;background:#edf5ff;color:#143b64;padding:7px 10px;margin-bottom:8px;font-size:13px;font-weight:700}
+</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.115</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
   <div class="hw-thermometer" aria-hidden="true"><svg viewBox="0 0 34 55" width="29" height="47"><path d="M14 9a5 5 0 0 1 10 0v24.5a11 11 0 1 1-10 0Z" fill="none" stroke="#dbeaf2" stroke-width="3.5"/><path d="M19 19v24" stroke="#ed3434" stroke-width="5" stroke-linecap="round"/><circle cx="19" cy="43" r="7" fill="#ed3434"/><path d="M26.5 13h4m-4 8h4m-4 8h4" stroke="#a3bac8" stroke-width="1.5"/></svg></div>
-  <div class="hw-weather-text"><div class="hw-weather-title">Buitentemperatuur <span>· Tienen</span></div><div class="hw-weather-reading"><input id="hwTopOutside" type="text" inputmode="decimal" aria-label="Buitentemperatuur in graden Celsius" value="" readonly><span>°C</span></div></div>
+  <div class="hw-weather-text"><div class="hw-weather-title">Buitentemperatuur <span>· KMI-weerstation</span></div><div class="hw-weather-reading"><input id="hwTopOutside" type="text" inputmode="decimal" aria-label="Buitentemperatuur in graden Celsius" value="" readonly><span>°C</span></div></div>
   <div class="hw-weather-actions"><button type="button" id="hwTopRefresh" class="btn" title="Buitentemperatuur ophalen" aria-label="Buitentemperatuur ophalen">↻</button><button type="button" id="hwTopEdit" class="btn alt" title="Buitentemperatuur handmatig aanpassen" aria-label="Buitentemperatuur aanpassen">✎</button></div>
  </div>
- <div id="hwTopWeatherStatus" class="hw-weather-status" aria-live="polite">↻ Temperatuur ophalen via Open-Meteo</div>
+ <div id="hwTopWeatherStatus" class="hw-weather-status" aria-live="polite">↻ Gemeten buitentemperatuur ophalen</div>
 </div>
  
  <div class="hw-gas-header">🔥 Actuele gasprijzen</div>
@@ -993,7 +1002,7 @@ header small{font-size:12px}
  </div><p class="tiny">Deze waarden blijven beschikbaar voor tests en warmtebehoefte. De buitentemperatuur stel je bovenaan in.</p></details></section>
 <section id="sources" class="hidden">
  <div class="card"><button type="button" id="backSources" class="btn alt" style="margin-bottom:10px">← Terug naar Vandaag</button><h2>⛽ Actuele energieprijzen</h2><p class="muted">Gas- en petroleumprijzen worden opgehaald. Je kunt ze ook zelf aanpassen.</p>
- <div class="hw-source hw-source-old-weather" hidden aria-hidden="true"><h3>🌤️ Weer · Tienen</h3><div id="srcWeather" class="hw-source-value">Nog niet opgehaald</div><p class="tiny" id="srcWeatherInfo">Bron: Open-Meteo. Model- of weerstationgegevens kunnen verschillen van je eigen thermometer.</p><button type="button" id="refreshWeather" class="btn wide">↻ Buitentemperatuur ophalen</button><button type="button" id="applyWeather" class="btn alt wide" disabled>Neem temperatuur over op Vandaag</button><a class="hw-source-link" href="https://www.weeronline.be/Europa/Belgie/Tienen/4053996" target="_blank" rel="noopener noreferrer">Bekijk weerwebsite ↗</a></div>
+ <div class="hw-source hw-source-old-weather" hidden aria-hidden="true"><h3>🌤️ Weer · Tienen</h3><div id="srcWeather" class="hw-source-value">Nog niet opgehaald</div><p class="tiny" id="srcWeatherInfo">Bron: KMI. Gemeten temperatuur van een weerstation in de buurt (Beauvechain of Diepenbeek), niet exact bij je woning.</p><button type="button" id="refreshWeather" class="btn wide">↻ Buitentemperatuur ophalen</button><button type="button" id="applyWeather" class="btn alt wide" disabled>Neem temperatuur over op Vandaag</button><a class="hw-source-link" href="https://www.weeronline.be/Europa/Belgie/Tienen/4053996" target="_blank" rel="noopener noreferrer">Bekijk weerwebsite ↗</a></div>
  <div class="hw-source"><h3>🔥 GasRadar · gasprijs</h3><div id="srcGas" class="hw-source-value">—</div><div class="hw-gas-gauge" id="gasGauge" aria-live="polite">
 <div class="hw-gauge-topline">Gasbarometer</div>
 <svg class="hw-gauge-svg" viewBox="0 0 360 208" role="img" aria-labelledby="gasGaugeTitle gasGaugeDescription">
@@ -1544,23 +1553,29 @@ function hwTankClose(litres,endAt){
  return true;
 }
 // Synchroniseer alleen huidige invoervelden; wijzig NOOIT opgeslagen historische observaties.
-function hwApplySharedOutside(value,source='handmatig'){
+function hwApplySharedOutside(value,source='handmatig',observation=null){
  const n=hwNumber(value);if(!Number.isFinite(n)||n < -60||n > 60)return;
  for(const id of ['outside','hwOutside','bellOutside','hwMixOutside','zLogOutside']){
-  const input=document.getElementById(id);if(!input)continue;
-  input.value=n.toLocaleString('nl-BE',{maximumFractionDigits:1});
+  const input=document.getElementById(id);if(input)input.value=n.toLocaleString('nl-BE',{maximumFractionDigits:1});
  }
-  const top=document.getElementById('hwTopOutside');if(top)top.value=n.toLocaleString('nl-BE',{maximumFractionDigits:1});
-  const status=document.getElementById('hwTopWeatherStatus');if(status)status.textContent=(source==='Open-Meteo'?'✓ Opgehaald via Open-Meteo':'✓ Temperatuur bijgewerkt');
-  db.settings.currentOutside=n;db.settings.currentOutsideDate=hwDateOnly();db.settings.currentOutsideSource=source;
+ const top=document.getElementById('hwTopOutside');if(top)top.value=n.toLocaleString('nl-BE',{maximumFractionDigits:1});
+ const status=document.getElementById('hwTopWeatherStatus');if(status)status.textContent=source==='KMI'?'✓ Gemeten temperatuur · KMI '+(observation?.station||'weerstation'):'✓ Temperatuur handmatig aangepast';
+ db.settings.currentOutside=n;db.settings.currentOutsideDate=hwDateOnly();db.settings.currentOutsideSource=source;
+ db.settings.currentOutsideFetchedAt=new Date().toISOString();
+ if(source==='KMI'&&observation){db.settings.currentOutsideObservedAt=observation.observedAt;db.settings.currentOutsideStation=observation.station;db.settings.currentOutsideProvider=observation.source;}
+ else {delete db.settings.currentOutsideObservedAt;delete db.settings.currentOutsideStation;delete db.settings.currentOutsideProvider;}
  localStorage.setItem(KEY,JSON.stringify(db));
  document.getElementById('outside').dispatchEvent(new Event('input',{bubbles:true}));
 }
 // Manual edit of the Today temperature also updates current entry forms.
 $('outside').addEventListener('change',()=>{const n=hwNumber($('outside').value);if(Number.isFinite(n))hwApplySharedOutside(n,'handmatig');});
 $('hwTopOutside').addEventListener('change',()=>{const n=hwNumber($('hwTopOutside').value);if(Number.isFinite(n)&&n>=-60&&n<=60)hwApplySharedOutside(n,'handmatig');else alert('Vul een geldige buitentemperatuur in.');});
-$('hwTopOutside').value=$('outside').value;
-if(db.settings.currentOutsideDate===hwDateOnly()&&Number.isFinite(Number(db.settings.currentOutside))){hwApplySharedOutside(db.settings.currentOutside,db.settings.currentOutsideSource||'eerder');}
+$('hwTopOutside').value='—';
+// Waarnemingsbron gewijzigd: vorige Open-Meteo-modelwaarde nooit als nieuwe KMI-meting presenteren.
+if(db.settings.currentOutsideDate===hwDateOnly()&&Number.isFinite(Number(db.settings.currentOutside))&&['handmatig','KMI'].includes(db.settings.currentOutsideSource)){
+ const n=Number(db.settings.currentOutside);for(const id of ['outside','hwOutside','bellOutside','hwMixOutside','zLogOutside','hwTopOutside']){const field=document.getElementById(id);if(field)field.value=n.toLocaleString('nl-BE',{maximumFractionDigits:1});}
+ document.getElementById('hwTopWeatherStatus').textContent=db.settings.currentOutsideSource==='KMI'?'✓ KMI-meting · '+(db.settings.currentOutsideStation||'weerstation'):'✓ Handmatig ingevuld';
+}else{document.getElementById('hwTopWeatherStatus').textContent='↻ Gemeten temperatuur ophalen';}
 const roundPetrol=n=>Math.round((Number(n)+Number.EPSILON)*100)/100;
 const formatPetrol=n=>Number(n).toLocaleString('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2});
 const fields=['petrolPrice','zRate','gasKwh','gasEff','heatDemand'];const num=id=>Number(String($(id).value).replace(',','.'));const escapeHtml=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const money=n=>'€ '+(Number.isFinite(n)?n:0).toFixed(2).replace('.',',');const save=()=>{localStorage.setItem(KEY,JSON.stringify(db));render()};const stamp=()=>new Date().toISOString().slice(0,10);$('sessionDate').value=stamp();for(const id of fields)if(db.settings[id]!=null)$(id).value=['petrolPrice','zRate'].includes(id)?String(db.settings[id]).replace('.',','):db.settings[id];const settings=()=>({...Object.fromEntries(fields.map(id=>[id,num(id)])),contractGas:num('contractGas'),spot:num('spot')});$('purchasePriceToday').value=Number(db.settings.petrolPrice??1.20).toLocaleString('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2});$('currentPetrolPrice').value=formatPetrol(roundPetrol(db.settings.currentPetrolPrice??2.00));function updateSavings(){const a=num('purchasePriceToday'),b=num('currentPetrolPrice');$('tankSaving').textContent=Number.isFinite(a)&&Number.isFinite(b)&&a>=0&&b>=0?money(7*(b-a)):'—';$('savingPurchase').textContent=Number.isFinite(a)&&a>=0?a.toLocaleString('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';$('savingCurrent').textContent=Number.isFinite(b)&&b>=0?formatPetrol(b):'—';$('savingNote').textContent='Prijsverschil op een tank van 7 liter. '+(b<a?'De huidige prijs ligt lager dan je aankoopprijs.':'Actuele prijs zelf ingevuld of overgenomen; de werkelijke pompprijs kan afwijken.')}function updatePetrol(){const a=num('purchasePriceToday'),b=num('currentPetrolPrice');if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<0)return;db.settings.petrolPrice=a;db.settings.currentPetrolPrice=b;$('petrolPrice').value=String(a);localStorage.setItem(KEY,JSON.stringify(db));updateSavings();markPending()}$('purchasePriceToday').addEventListener('input',updateSavings);$('currentPetrolPrice').addEventListener('input',updateSavings);
@@ -1852,7 +1867,7 @@ function hw56VentOverlaps(a,b){
 function hw56RenderVents(){
  const out=$('hw56VentRecent');if(!out)return;
  const rows=hw56Vents().slice().sort((a,b)=>hw56Millis(b.start)-hw56Millis(a.start)).slice(0,4);
- out.innerHTML=rows.length?'<strong>Recent geregistreerd</strong>'+rows.map(v=>'<div class="hw56-vent-item">🌬️ '+hw56Html(hw56FmtDateTime(v.start))+' · '+hw56Html(v.durationMinutes)+' minuten</div>').join(''):'<span>Er zijn nog geen verluchtingsperiodes geregistreerd.</span>';
+ out.innerHTML=rows.length?'<strong>Recent geregistreerd</strong>'+rows.map(v=>'<div class="hw56-vent-item">🌬️ '+hw56Html(hw56FmtDateTime(v.start))+' · '+hw56Html(v.durationMinutes)+' minuten'+(hw56Finite(v.startLiving)!==null&&hw56Finite(v.endLiving)!==null?' · living '+hw56N(v.startLiving,1)+' → '+hw56N(v.endLiving,1)+'°C ('+((v.endLiving-v.startLiving)>0?'+':'')+hw56N(v.endLiving-v.startLiving,1)+'°C)':'')+'</div>').join(''):'<span>Er zijn nog geen verluchtingsperiodes geregistreerd.</span>';
 }
 function hw56RegisterVent(){
  const mins=Number($('hw56VentMinutes')?.value);if(![15,30,45,60].includes(mins))return;
@@ -1915,7 +1930,7 @@ function hw56Analyze(){
   for(let i=1;i<ms.length;i++){
    const a=ms[i-1],b=ms[i],at=hw56Millis(hw56Moment(a)),bt=hw56Millis(hw56Moment(b)),hrs=(bt-at)/3600000;
    if(!Number.isFinite(hrs)||hrs<1/12||hrs>12)continue;
-   const x=hw56Finite(a.living),y=hw56Finite(b.living),sa=hw56Finite(a.set),sb=hw56Finite(b.set),room=hw56Finite(a.room);
+   const x=hw56Finite(a.living),y=hw56Finite(b.living),sa=hw56Finite(a.set),sb=(b.eventType==='setChange'&&hw56Finite(b.previousSet)!==null?hw56Finite(b.previousSet):hw56Finite(b.set)),room=hw56Finite(a.room);
    if(x===null||y===null)continue;
    const outA=hw56Finite(a.outside),outB=hw56Finite(b.outside),outside=outA!==null?outA:outB;
    const changed=sa!==null&&sb!==null&&Math.abs(sa-sb)>0.1;
@@ -2179,9 +2194,11 @@ $('hwDiscardFromStop').onclick=()=>{const t=hwCurrent();if(t)hwDeleteTest(t.id)}
 $('hwStartTest').onclick=()=>{
  if(hwCurrent())return alert('Er loopt al een test.');
  const start=hwNow(),m=hwReadMeasurement(start);if(!m)return;
- const kind=$('hw56DayKind')?.value||'',reason='';
+ const kind=$('hw56DayKind')?.value||'';
+ const officeMoment=kind==='office'?(document.querySelector('input[name="hw111OfficeMoment"]:checked')?.value||''):'';
+ const reason=officeMoment==='morning'?'morning':officeMoment==='evening'?'afterwork':'';
  if(kind)hw56DayKinds()[hw56Date(start)]=kind;
- const t={id:'test-'+Date.now(),start,status:'active',measurements:[m],startNote:'',dayKind:kind,startReason:reason};
+ const t={id:'test-'+Date.now(),start,status:'active',measurements:[m],startNote:'',dayKind:kind,startReason:reason,startMoment:officeMoment};
  if($('hw68ZVent')?.checked){
   const mins=30;
   const startMs=new Date(start).getTime();const begin=new Date(startMs-mins*60000);
@@ -2197,8 +2214,8 @@ $('hwSaveMeasurement').onclick=()=>{const t=hwCurrent();if(!t)return;const m=hwR
 let hwStoppedAt=null;
 $('hwStopTest').onclick=()=>{if(!hwCurrent())return;hwStoppedAt=hwNow();hwFinish(false)};
 $('hwCancelStop').onclick=()=>{hwStoppedAt=null;$('hwStopOptions').classList.add('hidden')};
-function hwFinish(withReading){const t=hwCurrent();if(!t)return;const end=hwStoppedAt||hwNow(),mins=hwMinutes(t.start,end);if(mins<0)return alert('Het einduur ligt voor het startuur. Controleer de klok van je toestel.');if(mins>60*24*7&&!confirm('Deze test duurt meer dan 7 dagen. Klopt dat?'))return;
-let m=null;if(withReading){m=hwReadMeasurement(end,true);if(!m)return;}const stopNote='';if(m){m.note=[m.note,stopNote].filter(Boolean).join(' · ');hwStoreMeasurement(m,t)}t.status='finished';t.end=end;t.minutes=mins;t.stopNote=stopNote;t.stopReason='';
+function hwFinish(withReading,confirmedReading=null){const t=hwCurrent();if(!t)return;const end=hwStoppedAt||hwNow(),mins=hwMinutes(t.start,end);if(mins<0)return alert('Het einduur ligt voor het startuur. Controleer de klok van je toestel.');if(mins>60*24*7&&!confirm('Deze test duurt meer dan 7 dagen. Klopt dat?'))return;
+let m=null;if(withReading){m=confirmedReading||hwReadMeasurement(end,true);if(!m)return;}const stopNote='';if(m){m.note=[m.note,stopNote].filter(Boolean).join(' · ');hwStoreMeasurement(m,t)}t.status='finished';t.end=end;t.minutes=mins;t.stopNote=stopNote;t.stopReason='';
 const date=hwLocalDate(t.start),start=hwLocalTime(t.start),finish=hwLocalTime(end);
 // Gebruik dezelfde lijst als de oude tankcyclus, zonder bestaande branduren te verdubbelen.
 const overlap=db.zibroRuns.some(r=>{const p=hwRunInterval(r);return p&&new Date(t.start).getTime()<p[1]&&new Date(t.end).getTime()>p[0]});
@@ -2212,6 +2229,43 @@ hw56RenderVents();
 setTimeout(()=>hw56SyncWeather(false),1000);
 zRender();
 refreshSplitPreview();boundPhaseHours();render();calculate();$('comparison').classList.add('fresh');if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script><script id="hw114KmiObservations">
+/* HeatWise v1.9.115: echte Belgische KMI/RMI AWS-waarnemingen, GEEN weermodel. */
+window.hw114FetchKmi=async function(timeoutMs=8000){
+ const now=Date.now();
+ const since=new Date(now-150*60000).toISOString();
+ const filter="code IN (6458,6477) AND timestamp >= '"+since+"'";
+ const direct=new URL('https://opendata.meteo.be/service/aws/wfs');
+ direct.search=new URLSearchParams({service:'WFS',version:'2.0.0',request:'GetFeature',typeNames:'aws:aws_10min',outputFormat:'application/json',CQL_FILTER:filter});
+ const proxy=new URL('https://weerattest.be/wfs');
+ proxy.search=new URLSearchParams({typenames:'aws:aws_10min',CQL_FILTER:filter});
+ const request=async(url,ms)=>{
+  const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),ms);
+  try{const response=await fetch(url.toString(),{signal:controller.signal,cache:'no-store',credentials:'omit'});
+   if(!response.ok)throw new Error('Waarnemingsbron HTTP '+response.status);
+   return await response.json();
+  }finally{clearTimeout(timer)}
+ };
+ let lastError=null;
+ for(const source of [{url:direct,provider:'KMI'},{url:proxy,provider:'KMI / weerattest.be'}]){
+  try{
+   const data=await request(source.url,source.provider==='KMI'?timeoutMs:6500);
+   if(!Array.isArray(data?.features))throw new Error('Geen stationsmetingen in antwoord');
+   const good=data.features.map(x=>x?.properties||{}).filter(x=>[6458,6477].includes(Number(x.code))).map(x=>{
+    const n=typeof x.temp_dry_shelter_avg==='number'?x.temp_dry_shelter_avg:Number(x.temp_dry_shelter_avg);
+    const at=Date.parse(x.timestamp||'');return {n,at,code:Number(x.code)};
+   }).filter(x=>Number.isFinite(x.n)&&x.n>=-40&&x.n<=45&&Number.isFinite(x.at)&&x.at<=now+5*60000&&x.at>=now-50*60000).sort((a,b)=>b.at-a.at);
+   if(!good.length)throw new Error('Geen recente gemeten buitentemperatuur');
+   // Beauvechain ligt dichter bij het door HeatWise gebruikte Tienen (~24 km);
+   // als de meting daar te oud is, gebruik uitsluitend een recente KMI-meting uit Diepenbeek (~27 km).
+   const nearest=good.find(x=>x.code===6458&&x.at>=now-30*60000);
+   const selected=nearest||good[0];
+   const station=selected.code===6458?'Beauvechain':'Diepenbeek';
+   return {temperature:Math.round(selected.n*10)/10,observedAt:new Date(selected.at).toISOString(),station,stationCode:selected.code,source:source.provider};
+  }catch(e){lastError=e;}
+ }
+ throw lastError||new Error('Geen KMI-waarneming beschikbaar');
+};
 </script><script>
 /* HeatWise v1.9.30: Statbel-petroleum C en GasRadar-weergave. Bestaande metingen ongewijzigd. */
 (function(){
@@ -2253,21 +2307,39 @@ refreshSplitPreview();boundPhaseHours();render();calculate();$('comparison').cla
    return await response.json();
   }finally{clearTimeout(timeout)}
  }
- async function loadWeather(){
+ let hw114WeatherRequest=0;
+ let hw114LastAutomatic=0;
+ async function loadWeather({automatic=false}={}){
+  if(automatic&&db.settings.currentOutsideSource==='handmatig'&&db.settings.currentOutsideDate===belgiumToday())return;
+  const requestId=++hw114WeatherRequest;
   const topStatus=el('hwTopWeatherStatus'),topButton=el('hwTopRefresh');
-  if(topStatus)topStatus.textContent='Ophalen via Open-Meteo…';if(topButton)topButton.disabled=true;
-  el('srcWeather').textContent='Ophalen…';el('applyWeather').disabled=true;
+  if(topStatus)topStatus.textContent='↻ KMI-meting ophalen…';if(topButton)topButton.disabled=true;
+  if(!automatic){el('srcWeather').textContent='Ophalen…';el('applyWeather').disabled=true;}
   try{
-   const j=await fetchTimed('https://api.open-meteo.com/v1/forecast?latitude=50.8074&longitude=5.1037&current=temperature_2m&timezone=Europe%2FBrussels',10);
-   const n=j?.current?.temperature_2m;
-   if(typeof n!=='number'||!Number.isFinite(n))throw new Error('Geen temperatuur');
-   weather=n;el('srcWeather').textContent=n.toLocaleString('nl-BE',{maximumFractionDigits:1})+' °C';hwApplySharedOutside(n,'Open-Meteo');
-   el('srcWeatherInfo').textContent='Open-Meteo · '+hwDateText(j.current.time||'tijd onbekend')+' · Tienen (weermodel). Je kunt dit altijd aanpassen.';
+   const observation=await window.hw114FetchKmi(8000);
+   if(requestId!==hw114WeatherRequest)return;
+   if(automatic&&db.settings.currentOutsideSource==='handmatig'&&db.settings.currentOutsideDate===belgiumToday())return;
+   // Waarnemingen kunnen vertraagd binnenkomen; val niet terug naar een ouder meetpunt.
+   const old=Date.parse(db.settings.currentOutsideObservedAt||'');
+   if(db.settings.currentOutsideSource==='KMI'&&Number.isFinite(old)&&Date.parse(observation.observedAt)<old){if(topStatus)topStatus.textContent='✓ Laatst bekende KMI-meting behouden';return;}
+   weather=observation.temperature;
+   el('srcWeather').textContent=weather.toLocaleString('nl-BE',{maximumFractionDigits:1})+' °C';
+   hwApplySharedOutside(weather,'KMI',observation);
+   el('srcWeatherInfo').textContent='Bron: KMI, weerstation '+observation.station+' (circa '+(observation.stationCode===6458?'24':'27')+' km van Tienen). Echte meting, niet exact de temperatuur bij je woning.';
    el('applyWeather').disabled=false;
-  }catch(err){weather=null;el('srcWeather').textContent='Niet beschikbaar';el('srcWeatherInfo').textContent='Automatisch ophalen mislukt. Controleer je verbinding of gebruik de weerwebsite.';
-   if(topStatus)topStatus.textContent='Weer tijdelijk niet beschikbaar. Je huidige temperatuur blijft behouden en is zelf aanpasbaar.';
-  }finally{if(topButton)topButton.disabled=false;}
+  }catch(err){
+   if(requestId!==hw114WeatherRequest)return;
+   weather=null;
+   if(!automatic){el('srcWeather').textContent='Niet beschikbaar';el('srcWeatherInfo').textContent='Geen recente gemeten KMI-temperatuur beschikbaar. Vul de temperatuur indien nodig zelf in.';}
+   if(topStatus)topStatus.textContent='⚠️ Geen actuele stationsmeting. Gebruik zo nodig ✎.';
+  }finally{if(requestId===hw114WeatherRequest&&topButton)topButton.disabled=false;}
  }
+ // Ophalen op Vandaag en bij terugkeer in de app, maximaal eens per 15 min.
+ function hw114AutoWeather(){if(Date.now()-hw114LastAutomatic<15*60000)return;hw114LastAutomatic=Date.now();loadWeather({automatic:true});}
+ setTimeout(hw114AutoWeather,1200);
+ document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')hw114AutoWeather();});
+ setInterval(()=>{if(document.visibilityState==='visible')hw114AutoWeather();},15*60000);
+
  // Statbel publiceert een vrije JSON-export. Alleen exact lamppetroleum C aan de pomp, prijs incl. btw.
  // Let op: browserbeveiliging (CORS) van de bron kan direct ophalen verhinderen.
  // v1.9.56: gebruik voor de gasbarometer de langere prijsvergelijking van GasRadar.
@@ -2394,9 +2466,9 @@ refreshSplitPreview();boundPhaseHours();render();calculate();$('comparison').cla
    el('srcPetrolInfo').textContent='Bron: Statbel / FOD Economie · incl. btw. Automatisch ophalen niet mogelijk; je bestaande prijs blijft behouden. Gebruik eventueel de links of handmatige invoer.';
   }
  }
- el('refreshWeather').addEventListener('click',loadWeather);el('hwTopRefresh').addEventListener('click',loadWeather);
+ el('refreshWeather').addEventListener('click',()=>loadWeather());el('hwTopRefresh').addEventListener('click',()=>loadWeather());
  el('refreshPetrol').addEventListener('click',loadPetrol);el('refreshGasRadar').addEventListener('click',loadGasRadar);el('useGasRadar').addEventListener('click',()=>{if(!gasRadar)return;el('srcGasInput').value=gas2(gasRadar.price);el('applyGas').click()});
- el('applyWeather').addEventListener('click',()=>{if(weather===null)return;hwApplySharedOutside(weather,'Open-Meteo');el('backSources').click()});
+ el('applyWeather').addEventListener('click',()=>{if(weather===null)return;el('backSources').click()});
  el('applyGas').addEventListener('click',()=>{
   const n=Number(el('srcGasInput').value.replace(',','.'));
   if(!Number.isFinite(n)||n<0||!el('srcGasInput').value.trim())return alert('Vul een geldige gasprijs in.');
@@ -2900,20 +2972,51 @@ el('bellStart').onclick=()=>{
    }
    const officialSeries=history.official.filter(r=>r.date>=start&&r.date<=end);
    const prior=history.official.filter(r=>r.date<start).at(-1);
-   const chartSeries=prior?[{...prior,date:start},...officialSeries]:officialSeries;
+   const chartSeries=prior?[{...prior,date:start,actualDate:prior.date},...officialSeries]:officialSeries;
    if(chartSeries.length){
      const path=chartSeries.map((p,i)=>(i?'L':'M')+tx(p.date).toFixed(2)+' '+ty(p.price).toFixed(2)).join(' ');
      parts.push('<path d="'+path+'" fill="none" stroke="#1765d5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>');
-     for(let i=0;i<chartSeries.length;i++){
-       const p=chartSeries[i],x=tx(p.date),y=ty(p.price);
-       const label=euros(p.price);
-       // Each value is visible; alternate label heights to reduce collisions.
-       const labelY=Math.max(13,y-(i%2?22:13));
-       const textWidth=label.length*7.0+10;
-       const labelX=Math.max(52+textWidth/2,Math.min(403-textWidth/2,x));
-       parts.push('<circle cx="'+x.toFixed(2)+'" cy="'+y.toFixed(2)+'" r="4.5" fill="#1765d5" stroke="#fff" stroke-width="1.5"/>');
-       parts.push('<rect x="'+(labelX-textWidth/2).toFixed(2)+'" y="'+(labelY-12).toFixed(2)+'" width="'+textWidth.toFixed(2)+'" height="17" rx="6" fill="#1765d5"/>');
-       parts.push('<text x="'+labelX.toFixed(2)+'" y="'+labelY.toFixed(2)+'" fill="#fff" text-anchor="middle" font-size="11" font-weight="700">'+label+'</text>');
+     // v1.9.115: nieuwste prijs eerst; labels zoeken automatisch een vrije plaats.
+     // Elk meetpunt blijft aantikbaar, ook wanneer een oud label niet meer past.
+     const pts=chartSeries.map((p,i)=>({p,i,x:tx(p.date),y:ty(p.price),label:euros(p.price)}));
+     const boxes=[],leaderLines=[],labelParts=[],labelledPoints=[];
+     const intersects=(a,b)=>a.left<b.right+4&&a.right>b.left-4&&a.top<b.bottom+4&&a.bottom>b.top-4;
+     for(const pt of pts.slice().reverse()){
+       // Bij bijna identieke punten: toon één leesbaar label en laat de rest aantikbaar.
+       if(labelledPoints.length>=10||labelledPoints.some(other=>Math.hypot(pt.x-other.x,pt.y-other.y)<18))continue;
+       const w=Math.min(77,Math.max(51,pt.label.length*6.7+12)),h=19;
+       let chosen=null;
+       // Boven het punt heeft voorrang. Dicht opeengepakte prijzen verspringen in hoogte en opzij.
+       const heights=[-34,16,-59,41,-84,66,-109,91,-134,116,-159,141];
+       const sideways=[0,-29,29,-58,58,-87,87,-116,116,-145,145];
+       for(const dy of heights){
+         if(chosen)break;
+         for(const dx of sideways){
+           const cx=Math.max(x0+w/2+2,Math.min(x1-w/2-2,pt.x+dx));
+           const top=pt.y+dy;
+           const box={left:cx-w/2,right:cx+w/2,top,bottom:top+h};
+           if(box.top<3||box.bottom>y1+5||boxes.some(p=>intersects(p,box)))continue;
+           chosen={...box,cx};break;
+         }
+       }
+       if(!chosen)continue; // Laat oude, te dicht opeen staande labels weg; punten blijven klikbaar.
+       // Lange verbindingslijnen maken een drukke grafiek onleesbaar.
+       const nearestX=Math.max(chosen.left,Math.min(chosen.right,pt.x));
+       const nearestY=Math.max(chosen.top,Math.min(chosen.bottom,pt.y));
+       if(Math.hypot(nearestX-pt.x,nearestY-pt.y)>80)continue;
+       boxes.push(chosen);labelledPoints.push(pt);
+       const endX=Math.max(chosen.left+5,Math.min(chosen.right-5,pt.x));
+       const endY=pt.y<chosen.top?chosen.top:pt.y>chosen.bottom?chosen.bottom:(Math.abs(pt.y-chosen.top)<Math.abs(pt.y-chosen.bottom)?chosen.top:chosen.bottom);
+       leaderLines.push('<line x1="'+pt.x.toFixed(2)+'" y1="'+pt.y.toFixed(2)+'" x2="'+endX.toFixed(2)+'" y2="'+endY.toFixed(2)+'" stroke="#1765d5" stroke-width="1" opacity=".8"/>');
+       labelParts.push('<rect x="'+chosen.left.toFixed(2)+'" y="'+chosen.top.toFixed(2)+'" width="'+w.toFixed(2)+'" height="'+h+'" rx="6" fill="#1765d5"/>');
+       labelParts.push('<text x="'+chosen.cx.toFixed(2)+'" y="'+(chosen.top+13).toFixed(2)+'" fill="#fff" text-anchor="middle" font-size="11" font-weight="700">'+pt.label+'</text>');
+     }
+     parts.push(...leaderLines,...labelParts);
+     for(const pt of pts){
+       const date=pt.p.actualDate||pt.p.date,price=Number(pt.p.price).toFixed(2);
+       // Een transparant raakvlak van 19px maakt selectie met een vinger makkelijker.
+       parts.push('<circle cx="'+pt.x.toFixed(2)+'" cy="'+pt.y.toFixed(2)+'" r="4.5" fill="#1765d5" stroke="#fff" stroke-width="1.5" pointer-events="none"/>');
+       parts.push('<circle data-price-date="'+date+'" data-price-value="'+price+'" tabindex="0" role="button" aria-label="'+human(date)+': '+pt.label+' per liter" cx="'+pt.x.toFixed(2)+'" cy="'+pt.y.toFixed(2)+'" r="10" fill="transparent" stroke="none"/>');
      }
    }
    if(!values.length)parts.push('<text x="224" y="98" text-anchor="middle" fill="currentColor" font-size="13">Nog geen prijzen voor dit jaar.</text>');
@@ -2926,6 +3029,16 @@ el('bellStart').onclick=()=>{
      '<div style="background:#e8f2fd;color:#15385b;padding:12px;border-radius:10px"><strong>Verschil t.o.v. laatst geregistreerde officiële prijs: '+(difference===null?'—':euros(difference)+'/L')+'</strong><span style="display:block">Verschil voor 7 liter: '+(difference===null?'—':euros(7*difference))+'</span></div>';
    info.textContent='Geregistreerd: '+nOfficial+' officiële prijs'+(nOfficial===1?'':'wijzigingen')+'. Niet-opgehaalde prijswijzigingen zijn onbekend. Geen verzonnen tussenwaarden.';
  }
+ function selectPricePoint(target){
+   if(!target)return;
+   const date=target.getAttribute('data-price-date'),price=Number(target.getAttribute('data-price-value'));
+   if(!date||!Number.isFinite(price))return;
+   let detail=document.getElementById('hw113SelectedPrice');
+   if(!detail){detail=document.createElement('div');detail.id='hw113SelectedPrice';detail.className='hw-petrol-selected-point';selection.prepend(detail);}
+   detail.textContent=human(date)+' · '+euros(price)+'/L';
+ }
+ svg.addEventListener('click',e=>selectPricePoint(e.target.closest?.('circle[data-price-date]')));
+ svg.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;const point=e.target.closest?.('circle[data-price-date]');if(point){e.preventDefault();selectPricePoint(point);}});
  yearPicker.addEventListener('change',draw);
 
  write();draw();
@@ -2997,14 +3110,23 @@ const bellResults=el('bellNewResults');if(bellResults){
 const starts=el('hw56StartChoices');let dayOptions=[['office','Ik werk vandaag op kantoor'],['telework','Ik werk vandaag thuis'],['home','Vrije dag']];
 let reasonOptions=[['morning','Even verwarmen voordat ik vertrek'],['day','Ik ben thuis en ga langer verwarmen'],['evening','Ik ben thuisgekomen en wil verwarmen'],['afterwork','Ik ben thuisgekomen van het werk en ga verwarmen'],['restart','Ik zet mijn Zibro opnieuw aan na een pauze'],['absence','Ik ben terug na een langere afwezigheid'],['other','Andere reden']];
 function radioGroup(name,options){return options.map(([v,label])=>'<label class="hw57-choice"><input type="radio" name="'+name+'" value="'+esc(v)+'"><span>'+esc(label)+'</span></label>').join('');}
-if(starts){starts.insertAdjacentHTML('beforeend','<div id="hw57StartChoices"><div class="hw57-start-title">1. Wat voor dag is het vandaag?</div>'+radioGroup('hw57Day',dayOptions)+'</div>');}
+if(starts){starts.insertAdjacentHTML('beforeend','<div id="hw57StartChoices"><div class="hw57-start-title">1. Wat voor dag is het vandaag?</div>'+radioGroup('hw57Day',dayOptions)+'<div id="hw111OfficeChoices" class="hw57-hidden"><div class="hw57-start-title">Wanneer verwarm je de woning?</div>'+radioGroup('hw111OfficeMoment',[['morning','Ochtendopwarming vóór vertrek'],['evening','Avondverwarming na het werk']])+'</div></div>');}
+function hw111SyncOfficeChoices(){
+ const office=el('hw56DayKind')?.value==='office',box=el('hw111OfficeChoices');if(!box)return;
+ box.classList.toggle('hw57-hidden',!office);
+ if(office&&!pickRadio('hw111OfficeMoment')){
+  const today=hwDateOnly(),earlier=(db.zibroTests||[]).some(t=>String(t.start||'').slice(0,10)===today);
+  const initial=earlier||new Date().getHours()>=12?'evening':'morning';
+  const radio=box.querySelector('input[value="'+initial+'"]');if(radio)radio.checked=true;
+ }
+}
 function matchRadios(){for(const [name,id] of [['hw57Day','hw56DayKind'],['hw57Start','hw56StartReason']]){const val=el(id)?.value||'';document.querySelectorAll('input[name="'+name+'"]').forEach(r=>r.checked=r.value===val);}}
 function pickRadio(name){return document.querySelector('input[name="'+name+'"]:checked')?.value||'';}
 const startHint={morning:'Kort verwarmen vóór vertrek.',day:'Je blijft thuis en verwarmt langere tijd.',evening:'Je begint te verwarmen na thuiskomst.',restart:'De Zibro heeft eerder al gebrand.',absence:'De woning stond langere tijd zonder geregistreerde Zibro-verwarming.',other:'Je registreert een andere verwarmingsbeurt.'};
 function syncStartHint(){const h=el('hw57StartHint');if(h)h.textContent=startHint[el('hw56StartReason')?.value]||'';}
 starts?.insertAdjacentHTML('beforeend','<div class="hw57-start-title">2. Heb je vooraf verlucht?</div><div class="hw68-start-vent"><label><input type="checkbox" id="hw68ZVent"> Ik heb mijn woning verlucht vóór deze test</label></div>');
-starts?.addEventListener('change',e=>{const r=e.target;if(r.name==='hw57Day'){el('hw56DayKind').value=r.value;el('hw56DayKind').dispatchEvent(new Event('change',{bubbles:true}));matchRadios();syncStartHint();}else if(r.name==='hw57Start'){el('hw56StartReason').value=r.value;el('hw56StartReason').dispatchEvent(new Event('change',{bubbles:true}));syncStartHint();}});
-matchRadios();syncStartHint();
+starts?.addEventListener('change',e=>{const r=e.target;if(r.name==='hw57Day'){el('hw56DayKind').value=r.value;el('hw56DayKind').dispatchEvent(new Event('change',{bubbles:true}));matchRadios();syncStartHint();hw111SyncOfficeChoices();}else if(r.name==='hw57Start'){el('hw56StartReason').value=r.value;el('hw56StartReason').dispatchEvent(new Event('change',{bubbles:true}));syncStartHint();}});
+matchRadios();syncStartHint();hw111SyncOfficeChoices();
 // Belangrijk: een en hetzelfde temperatuurformulier bij START, tussentijds OPSLAAN en STOP.
 const oldFields=el('hwActiveTestFields');
 const form=document.createElement('div');form.id='hw57TestForm';form.innerHTML='<h3 class="hw57-start-title" id="hw57MeasureTitle">3. Welke temperaturen meet je nu?</h3><div class="hw57-grid" id="hw57HomeFields"></div><div class="hw57-grid" id="hw57ZibroFields"></div><div id="hw57OutsideBox"><label class="hw57-label" for="hwOutside">Buitentemperatuur (°C)</label><div class="hw57-outside"><div id="hw57OutsideInputSlot" style="flex:1;min-width:0"></div><button type="button" id="hw57FetchOutside" class="btn alt hw57-fetch">↻ Automatisch ophalen</button></div><div class="hw57-note" id="hw57OutsideStatus"></div></div><div id="hw57ExtraSlot"></div>';
@@ -3035,19 +3157,24 @@ panel.querySelector('h2').textContent='⛽ Mijn Zibro-test';panel.querySelector(
 const active=el('hwActiveTest');
 active?.insertAdjacentHTML('afterbegin','<div id="hw57ActiveActions">'+
  '<div class="hw57-divider"></div><h3 class="hw57-start-title">1. Temperatuurmeting registreren</h3>'+
- '<p class="hw57-note">Vul hierboven je gemeten temperaturen in. Een hogere of lagere Zibro SET wordt vanzelf herkend.</p>'+
+ '<p class="hw57-note">Vul de werkelijke temperaturen in. Laat de SET staan op de instelling waarop de kachel al werkte.</p>'+
  '<button type="button" class="btn wide hw57-primary" id="hw57Save">💾 TEMPERATUURMETING OPSLAAN</button>'+
- '<small class="hw57-quiet">Alleen deze meting wordt opgeslagen. De test blijft lopen.</small>'+
+ '<small class="hw57-quiet">Na opslaan verschijnt 5 seconden een bevestiging. De test blijft lopen.</small>'+
+ '<h3 class="hw57-start-title">Zibro SET hoger of lager gezet?</h3>'+
+ '<p class="hw57-note">Verander eerst de SET op je kachel, vul de nieuwe SET en de werkelijke livingtemperatuur hierboven in en druk op onderstaande knop. Dit is het vertrekpunt voor de volgende meting, niet het resultaat van de nieuwe SET.</p>'+
+ '<button type="button" class="btn wide hw57-secondary" id="hw111SaveSet">↕ SET-WIJZIGING OPSLAAN</button>'+
  '<div class="hw57-divider"></div><h3 class="hw57-start-title">2. Verluchting tijdens de test</h3>'+
- '<p class="hw57-note">Druk op Start als je de ramen opent, en op Stop zodra je ze sluit. Hiervoor hoef je geen temperatuurmeting op te slaan.</p>'+
+ '<p class="hw57-note">Meet de livingtemperatuur als je het raam opent en nog eens wanneer je het sluit. HeatWise bewaart beide temperaturen en de werkelijke duur automatisch.</p>'+
+ '<label class="hw57-label" for="hw111VentLiving">Werkelijke livingtemperatuur bij verluchten (°C)</label>'+
+ '<input id="hw111VentLiving" type="text" inputmode="decimal" placeholder="Bijv. 20" autocomplete="off">'+
  '<button type="button" id="hw110VentStart" class="btn wide hw57-primary">🌬️ START VERLUCHTING</button>'+
  '<button type="button" id="hw110VentStop" class="btn wide hw57-stop hw57-hidden">🌬️ VERLUCHTING STOPPEN</button>'+
  '<p class="hw57-note" id="hw110VentInfo" role="status"></p>'+
  '<div class="hw57-divider"></div><h3 class="hw57-start-title">3. Test beëindigen</h3>'+
  '<button type="button" class="btn wide hw57-stop" id="hw57Stop">■ TEST STOPPEN</button>'+
- '<small class="hw57-quiet">Geen stopreden of extra temperatuurmeting nodig.</small>'+
- '<div id="hw110StopConfirm" class="hw57-hidden hw110-stop-confirm"><strong>Zibro-test beëindigen?</strong><p class="hw57-note">De stoptijd staat vast. Je bestaande metingen en branduren worden bewaard.</p>'+
- '<button type="button" class="btn wide hw57-primary" id="hw110StopYes">✓ TEST BEËINDIGEN</button>'+
+ '<small class="hw57-quiet">Vul eerst de eindtemperaturen hierboven in. De eindmeting wordt samen met de branduren opgeslagen.</small>'+
+ '<div id="hw110StopConfirm" class="hw57-hidden hw110-stop-confirm"><strong>Zibro-test beëindigen?</strong><p class="hw57-note" id="hw111StopSummary">Je eindtemperatuur, stoptijd en branduren worden bewaard.</p>'+
+ '<button type="button" class="btn wide hw57-primary" id="hw110StopYes">✓ EINDMETING OPSLAAN EN TEST STOPPEN</button>'+
  '<button type="button" class="btn alt wide" id="hw110StopNo">TERUG</button></div>'+
  '<p id="hw57ActionFeedback" class="hw57-note" role="status"></p>'+
  '<div class="hw57-hidden" aria-hidden="true"><div id="hw57SetReasonSlot"></div><div id="hw57VentSlot"></div><div id="hw57StopReasonSlot"></div></div>'+
@@ -3064,10 +3191,10 @@ const oldStopLabel=active?.querySelector('label[for="hw56StopReason"]');oldStopL
 let previousActiveKey=null;
 function syncTest(){
  const t=hwCurrent(),live=!!t,status=el('hw57TestStatus');
- if(status){status.innerHTML=live?'<strong>🟢 TEST LOOPT</strong><small>Gestart om '+esc(String(t.start).slice(11,16))+' · <span id="hw110LiveDuration">Brandduur: '+hw56Duration(Math.max(0,hwMinutes(t.start,hwNow())))+'</span> · '+(t.measurements||[]).length+' meting(en) bewaard</small><div class="hw62-live-rows">'+(t.measurements||[]).map(m=>'<div><b>'+esc(String(m.when||'').slice(11,16))+'</b> · woonkamer '+nf(m.living,1)+'°C · buiten '+(m.outside==null?'—':nf(m.outside,1)+'°C')+' · SET '+(m.set==null?'—':nf(m.set,0)+'°C')+' · ROOM '+(m.room==null?'—':nf(m.room,0)+'°C')+' <button type="button" class="hw68-trash" data-hw68-zdel="'+esc(m.id)+'" aria-label="Verwijder deze meting" title="Verwijder deze meting">🗑️</button></div>').join('')+'</div>':'Geen lopende Zibro-test';status.classList.toggle('hw62-live',live);}
+ if(status){status.innerHTML=live?'<strong>🟢 TEST LOOPT</strong><small>Gestart om '+esc(String(t.start).slice(11,16))+' · <span id="hw110LiveDuration">Brandduur: '+hw56Duration(Math.max(0,hwMinutes(t.start,hwNow())))+'</span> · '+(t.measurements||[]).length+' meting(en) bewaard</small><div class="hw62-live-rows">'+(t.measurements||[]).map(m=>'<div><b>'+esc(String(m.when||'').slice(11,16))+'</b> '+(m.eventType==='setChange'?'· ↕ SET '+nf(m.previousSet,0)+' → '+nf(m.set,0)+'°C · begin nieuwe instelling':m.final?'· ✓ Eindmeting':'')+' · woonkamer '+nf(m.living,1)+'°C · buiten '+(m.outside==null?'—':nf(m.outside,1)+'°C')+' · SET '+(m.set==null?'—':nf(m.set,0)+'°C')+' · ROOM '+(m.room==null?'—':nf(m.room,0)+'°C')+' <button type="button" class="hw68-trash" data-hw68-zdel="'+esc(m.id)+'" aria-label="Verwijder deze meting" title="Verwijder deze meting">🗑️</button></div>').join('')+'</div>':'Geen lopende Zibro-test';status.classList.toggle('hw62-live',live);}
  el('hw57MeasureTitle').textContent=live?'Temperatuurmetingen tijdens de test':'3. Welke temperaturen meet je nu?';
  el('hw57ActiveActions')?.classList.toggle('hw57-hidden',!live);
- if(!live){matchRadios();syncStartHint();previousActiveKey=null;if(!outside.value&&db.settings?.currentOutsideDate===hwDateOnly()&&Number.isFinite(Number(db.settings.currentOutside)))outside.value=nf(Number(db.settings.currentOutside),1);}
+ if(!live){matchRadios();syncStartHint();hw111SyncOfficeChoices();previousActiveKey=null;if(!outside.value&&db.settings?.currentOutsideDate===hwDateOnly()&&Number.isFinite(Number(db.settings.currentOutside)))outside.value=nf(Number(db.settings.currentOutside),1);}
  else{const last=(t.measurements||[]).at(-1);const key=t.id+':'+(last?.id||'');if(previousActiveKey!==key){outside.value=last?.outside!=null?nf(Number(last.outside),1):(db.settings?.currentOutsideDate===hwDateOnly()&&Number.isFinite(Number(db.settings.currentOutside))?nf(Number(db.settings.currentOutside),1):'');el('hw57OutsideStatus').textContent='';previousActiveKey=key;}hw110UpdateVentButtons();}
 }
 el('hw57TestStatus')?.addEventListener('click',e=>{
@@ -3079,53 +3206,109 @@ el('hw57TestStatus')?.addEventListener('click',e=>{
  hwLastAutoFill='';save();zRender();hwUpdate();syncTest();v57Render();
  });
 function hw110UpdateVentButtons(){
- const t=hwCurrent(),activeVent=db.hwActiveVentilation,ongoing=!!(t&&activeVent&&activeVent.testId===t.id);
+ const t=hwCurrent(),vent=db.hwActiveVentilation,ongoing=!!(t&&vent&&vent.testId===t.id);
  el('hw110VentStart')?.classList.toggle('hw57-hidden',ongoing);
  el('hw110VentStop')?.classList.toggle('hw57-hidden',!ongoing);
- if(ongoing)el('hw110VentInfo').textContent='🌬️ VERLUCHTING LOOPT sinds '+String(activeVent.start).slice(11,16)+'. De Zibro-test loopt verder.';
+ const label=el('hw110VentInfo');
+ if(ongoing)label.textContent='🌬️ VERLUCHTING LOOPT sinds '+String(vent.start).slice(11,16)+'. Begin living: '+hw56N(vent.startLiving,1)+'°C. Vul bij het sluiten opnieuw de actuele livingtemperatuur in.';
+ else if(label?.textContent?.startsWith('🌬️ VERLUCHTING LOOPT'))label.textContent='';
+}
+function hw111VentReading(){
+ const raw=el('hw111VentLiving')?.value?.trim()||'';
+ if(!raw){alert('Meet en vul eerst de werkelijke livingtemperatuur in.');return null;}
+ const value=Number(raw.replace(',','.'));
+ if(!Number.isFinite(value)||value<0||value>45){alert('Controleer de livingtemperatuur (0 tot 45 °C).');return null;}
+ return value;
 }
 el('hw110VentStart')?.addEventListener('click',()=>{
  const t=hwCurrent();if(!t)return alert('Start eerst een Zibro-test.');
  if(db.hwActiveVentilation)return alert('Er loopt al een verluchting. Stop die eerst.');
- db.hwActiveVentilation={id:'vent-'+Date.now(),testId:t.id,start:hwNow()};
- localStorage.setItem(KEY,JSON.stringify(db));hw110UpdateVentButtons();
+ const startLiving=hw111VentReading();if(startLiving===null)return;
+ db.hwActiveVentilation={id:'vent-'+Date.now(),testId:t.id,start:hwNow(),startLiving};
+ localStorage.setItem(KEY,JSON.stringify(db));
+ el('hw111VentLiving').value='';hw110UpdateVentButtons();
 });
 el('hw110VentStop')?.addEventListener('click',()=>{
  const t=hwCurrent(),vent=db.hwActiveVentilation;if(!t||!vent||vent.testId!==t.id)return;
+ const endLiving=hw111VentReading();if(endLiving===null)return;
  const end=hwNow(),duration=Math.max(0,Math.round((new Date(end)-new Date(vent.start))/60000));
- hw56Vents().push({id:vent.id,testId:t.id,start:vent.start,end,durationMinutes:duration,duringTest:true});
+ const deltaLiving=endLiving-vent.startLiving;
+ hw56Vents().push({id:vent.id,testId:t.id,start:vent.start,end,durationMinutes:duration,duringTest:true,startLiving:vent.startLiving,endLiving,deltaLiving});
  delete db.hwActiveVentilation;
  save();hw56RenderVents();hw110UpdateVentButtons();
- el('hw110VentInfo').textContent='✓ Verluchting automatisch geregistreerd: '+duration+' minuten. Een nieuwe temperatuurmeting is optioneel.';
+ el('hw111VentLiving').value='';
+ el('hw110VentInfo').textContent='✓ Verluchting opgeslagen: '+duration+' min · living '+hw56N(vent.startLiving,1)+' → '+hw56N(endLiving,1)+'°C ('+(deltaLiving>0?'+':'')+hw56N(deltaLiving,1)+'°C). De test loopt door.';
 });
+let hw111SaveTimer=null;
+function hw111ConfirmSaved(button,message){
+ if(!button)return;
+ const original=button.id==='hw111SaveSet'?'↕ SET-WIJZIGING OPSLAAN':'💾 TEMPERATUURMETING OPSLAAN';
+ button.disabled=true;button.textContent='✓ '+message;button.classList.add('hw111-saved');
+ clearTimeout(button._hw111Timer);
+ button._hw111Timer=setTimeout(()=>{button.textContent=original;button.disabled=false;button.classList.remove('hw111-saved');},5000);
+}
+function hw111LastSet(t){
+ const ms=t?.measurements||[];
+ for(let i=ms.length-1;i>=0;i--){const set=hw56Finite(ms[i]?.set);if(set!==null)return set;}
+ return null;
+}
 el('hw57Save').addEventListener('click',()=>{
- const t=hwCurrent();if(!t)return;
+ const t=hwCurrent(),btn=el('hw57Save');if(!t||btn.disabled)return;
+ const prev=hw111LastSet(t),next=hwNum('hwSet');
+ if(prev!==null&&next!==null&&!Number.isNaN(next)&&Math.abs(prev-next)>=.1){
+  alert('De Zibro SET is gewijzigd van '+hw56N(prev,0)+' naar '+hw56N(next,0)+'°C. Gebruik daarvoor de aparte knop SET-WIJZIGING OPSLAAN.');return;
+ }
  const m=hwReadMeasurement(hwNow());if(!m)return;
+ m.eventType='measurement';
  hwStoreMeasurement(m,t);hw56ClearOptionalFields();
- el('hw57ActionFeedback').textContent=m.setChanged?'✓ Meting bewaard. Zibro SET aangepast van '+hw56N(m.previousSet,0)+' naar '+hw56N(m.set,0)+'°C. Test loopt verder.':'✓ Temperatuurmeting bewaard. De test loopt verder.';
+ hw111ConfirmSaved(btn,'METING OPGESLAGEN');
+ el('hw57ActionFeedback').textContent='✓ Temperatuurmeting opgeslagen om '+String(m.when).slice(11,16)+'. De test loopt verder.';
 });
+el('hw111SaveSet').addEventListener('click',()=>{
+ const t=hwCurrent(),btn=el('hw111SaveSet');if(!t||btn.disabled)return;
+ const prev=hw111LastSet(t),next=hwNum('hwSet');
+ if(prev===null)return alert('Er is nog geen eerdere Zibro SET geregistreerd. Bewaar eerst een gewone meting met de huidige SET.');
+ if(next===null||Number.isNaN(next))return alert('Vul de nieuwe Zibro SET in.');
+ if(Math.abs(prev-next)<.1)return alert('De Zibro SET is niet veranderd. Gebruik TEMPERATUURMETING OPSLAAN.');
+ const when=hwNow(),m=hwReadMeasurement(when);if(!m)return;
+ m.eventType='setChange';m.setChanged=true;m.previousSet=prev;m.setReason='';
+ hwStoreMeasurement(m,t);hw56ClearOptionalFields();
+ hw111ConfirmSaved(btn,'SET-WIJZIGING OPGESLAGEN');
+ el('hw57ActionFeedback').textContent='✓ SET gewijzigd '+hw56N(prev,0)+' → '+hw56N(next,0)+'°C om '+String(when).slice(11,16)+'. De huidige livingtemperatuur is het vertrekpunt; meet straks opnieuw.';
+});
+let hw111PendingStop=null;
 el('hw57Stop').addEventListener('click',()=>{
  const t=hwCurrent();if(!t)return;
  if(db.hwActiveVentilation?.testId===t.id)return alert('Stop eerst de lopende verluchting. Daarna kun je de test beëindigen.');
- hwStoppedAt=hwNow();
+ const when=hwNow(),m=hwReadMeasurement(when,true);if(!m)return;
+ if(m.set===null||m.room===null)return alert('Vul ook de huidige Zibro SET en ROOM in voor de eindmeting.');
+ hw111PendingStop=m;hwStoppedAt=when;
+ el('hw111StopSummary').textContent='Eindmeting: living '+hw56N(m.living,1)+'°C, SET '+hw56N(m.set,0)+'°C, ROOM '+hw56N(m.room,0)+'°C. De eindtijd staat vast op '+String(when).slice(11,16)+'.';
  el('hw110StopConfirm').classList.remove('hw57-hidden');
  el('hw57Stop').classList.add('hw57-hidden');
 });
 el('hw110StopNo')?.addEventListener('click',()=>{
- hwStoppedAt=null;el('hw110StopConfirm').classList.add('hw57-hidden');el('hw57Stop').classList.remove('hw57-hidden');
+ hw111PendingStop=null;hwStoppedAt=null;
+ el('hw110StopConfirm').classList.add('hw57-hidden');el('hw57Stop').classList.remove('hw57-hidden');
 });
 el('hw110StopYes')?.addEventListener('click',()=>{
- if(!hwCurrent())return;
- hwFinish(false);el('hw110StopConfirm').classList.add('hw57-hidden');el('hw57Stop').classList.remove('hw57-hidden');
+ if(!hwCurrent()||!hw111PendingStop)return;
+ const reading=hw111PendingStop;
+ hwFinish(true,reading);
+ if(!hwCurrent()){
+  hw111PendingStop=null;
+  el('hw110StopConfirm').classList.add('hw57-hidden');el('hw57Stop').classList.remove('hw57-hidden');
+ }
 });
 startButton?.addEventListener('click',e=>{
  if(!pickRadio('hw57Day')){e.preventDefault();e.stopImmediatePropagation();alert('Kies eerst wat voor dag het vandaag is.');return;}
+ if(pickRadio('hw57Day')==='office'&&!pickRadio('hw111OfficeMoment')){e.preventDefault();e.stopImmediatePropagation();alert('Kies ochtendopwarming of avondverwarming.');return;}
 },true);
 setInterval(()=>{const t=hwCurrent(),label=el('hw110LiveDuration');if(t&&label)label.textContent='Brandduur: '+hw56Duration(Math.max(0,hwMinutes(t.start,hwNow())));},15000);
 hw110UpdateVentButtons();
 // Buitentemperatuur van de test komt uitsluitend// Buitentemperatuur van de test komt uitsluitend na het indrukken van deze knop of handmatige invoer.
 el('hw57FetchOutside')?.addEventListener('click',async()=>{const btn=el('hw57FetchOutside'),label=el('hw57OutsideStatus');btn.disabled=true;btn.textContent='Bezig…';label.textContent='';
- try{const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),9000);let response;try{response=await fetch('https://api.open-meteo.com/v1/forecast?latitude=50.8074&longitude=5.1037&current=temperature_2m&timezone=Europe%2FBrussels',{signal:controller.signal,cache:'no-store'});}finally{clearTimeout(timeout);}if(!response.ok)throw new Error('Weerdienst niet bereikbaar');const j=await response.json(),t=parsed(j?.current?.temperature_2m);if(t===null)throw new Error('Geen temperatuur ontvangen');outside.value=nf(t,1);hwApplySharedOutside(t,'Open-Meteo');label.textContent='';v57Render();}
+ try{const observation=await window.hw114FetchKmi(8000);hwApplySharedOutside(observation.temperature,'KMI',observation);outside.value=nf(observation.temperature,1);outside.dataset.hw110Manual='1';label.textContent='✓ Gemeten buitentemperatuur · KMI '+observation.station;v57Render();}
  catch(e){label.textContent='Ophalen niet gelukt. Je kunt de buitentemperatuur zelf invullen.';}
  finally{btn.disabled=false;btn.textContent='↻ Automatisch ophalen';}
 });
@@ -3312,15 +3495,24 @@ function hw62Defaults(){
  for(const [id,value] of Object.entries(values))if(value!=null&&el(id))el(id).value=value;
  el('hw62Origin').textContent=m?'Woonkamer: laatst geregistreerde meting ('+String(m.when||'').slice(0,16).replace('T',' ')+'), niet noodzakelijk de temperatuur van nu. Je kunt alle waarden aanpassen.':'Vul je actuele waarden in om een voorspelling te bekijken.';
 }
+// v1.9.112: uitsluitend de prognosewaarden en het aantal vergelijkbare tests tonen.
+function hw112Forecast(html, comparableTests){
+ const holder=document.createElement('div');holder.innerHTML=html;
+ holder.querySelectorAll('.hw62-note').forEach(note=>note.remove());
+ const count=document.createElement('p');count.className='hw62-count';
+ count.textContent='Vergelijkbare opwarmtests: '+comparableTests;
+ holder.append(count);
+ return holder.innerHTML;
+}
 function hw62Analyze(){
  hw62Defaults();
  const now=parsed(el('hw62Now').value),target=parsed(el('hw62Target').value),set=parsed(el('hw62Set').value),outside=parsed(el('hw62Outside').value),out=el('hw62Forecast');
- if([now,target,set,outside].some(v=>v===null)){out.innerHTML='<p class="hw62-note">Vul de vier temperaturen in om je opgeslagen metingen te vergelijken.</p>';return;}
+ if([now,target,set,outside].some(v=>v===null)){out.innerHTML='<p class="hw62-count">Vul de vier temperaturen in.</p>';return;}
 
  // If the requested temperature has already been reached, historical evidence
  // and outside-temperature range checks are irrelevant: no heating is required.
  if(target<=now){
-  out.innerHTML='<div class="hw62-metrics"><div><small>Indicatie kamertemperatuur na 1 uur</small><strong>Niet nodig</strong></div><div><small>Wanneer wordt mijn woonkamer '+nf(target,1)+'°C?</small><strong>Al bereikt</strong></div></div><p class="hw62-note">De gewenste temperatuur is al bereikt. Er is geen extra opwarmtijd, petroleumverbruik of brandstofkost nodig om dit doel te bereiken.</p>';
+  out.innerHTML='<div class="hw62-metrics"><div><small>Indicatie kamertemperatuur na 1 uur</small><strong>Niet nodig</strong></div><div><small>Wanneer wordt mijn woonkamer '+nf(target,1)+'°C?</small><strong>Al bereikt</strong></div></div><p class="hw62-count">0 vergelijkbare opwarmtests nodig</p>';
   return;
  }
 
@@ -3332,7 +3524,7 @@ function hw62Analyze(){
  // Dit voorkomt schijnnauwkeurige voorspellingen op basis van veel koudere of warmere tests.
  const observedOutside=rows.map(r=>r.outside).filter(Number.isFinite);
  if(!observedOutside.length||outside<Math.min(...observedOutside)||outside>Math.max(...observedOutside)){
-  out.innerHTML='<p class="hw62-note">Geen betrouwbare voorspelling: de ingevoerde buitentemperatuur ligt buiten het bereik van je bruikbare geregistreerde tests ('+(observedOutside.length?nf(Math.min(...observedOutside),1)+'°C tot '+nf(Math.max(...observedOutside),1)+'°C':'geen metingen')+'). Er worden geen geschatte opwarmduur, liters of kosten getoond.</p>';
+  out.innerHTML='<div class="hw62-metrics"><div><small>Opwarmprognose</small><strong>Niet beschikbaar</strong></div></div><p class="hw62-count">0 vergelijkbare opwarmtests</p>';
   return;
  }
  const unique=a=>new Set(a.map(r=>r.test.id)).size;
@@ -3415,7 +3607,7 @@ function hw62Analyze(){
  }else{
   html+='<p class="hw62-note">Petroleum- en kostenprognose verschijnt zodra minstens twee onderling consistente onafhankelijke tests voldoende opwarming aantonen binnen het gemeten temperatuurbereik. We verzinnen geen verbruik op basis van temperatuur alleen.</p>';
  }
- out.innerHTML=html;
+ out.innerHTML=hw112Forecast(html,unique(similar));
 }
 
 let hw66Dirty=false;
@@ -3448,7 +3640,7 @@ const previousHWUpdate=hwUpdate;hwUpdate=function(...args){const result=previous
 // Zodra de oorspronkelijke weeranalyse opnieuw wordt opgebouwd, krijgt ons overzicht dezelfde gegevens.
 const previousWeatherRender=hw56RenderWinter;hw56RenderWinter=function(...args){const result=previousWeatherRender.apply(this,args);el('hw56WinterCard')?.classList.add('hw57-legacy-hide');return result;};
 // De Today-synchronisatie mag niet ongemerkt de buitentemperatuur van een Zibro-test invullen.
-const originalSharedOutside=hwApplySharedOutside;hwApplySharedOutside=function(...args){const previous=outside.value,manuallyEditing=!!hwCurrent()&&outside.dataset.hw110Manual==='1';const result=originalSharedOutside.apply(this,args);if(manuallyEditing)outside.value=previous;return result;};
+const originalSharedOutside=hwApplySharedOutside;hwApplySharedOutside=function(...args){const previous=outside.value,active=!!hwCurrent();const result=originalSharedOutside.apply(this,args);if(active)outside.value=previous;return result;};
 outside.addEventListener('input',()=>{outside.dataset.hw110Manual='1';});
 // Voor een nieuwe test de actuele buitentemperatuur van Vandaag gebruiken, enkel als die van vandaag is.
 outside.value=db.settings?.currentOutsideDate===hwDateOnly()&&Number.isFinite(Number(db.settings.currentOutside))?nf(Number(db.settings.currentOutside),1):'';
@@ -3524,7 +3716,7 @@ setTimeout(()=>syncOfflineWeather(false),2000);
 #heating .hw68-live-row{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #526573;padding:9px 0;font-size:13px}
 #register #hw57ActiveActions .hw57-start-title{color:#f0f6fa!important}
 </style><style>
-/* v1.9.110 Zibro: minder keuzes, duidelijke actieve test */
+/* v1.9.115 Zibro: minder keuzes, duidelijke actieve test */
 #today .hw-inside-extras{display:none!important}
 #register #hw56VentCard{display:none!important}
 #register #hw57ActiveActions>.hw57-hidden{display:none!important}
@@ -3534,4 +3726,13 @@ setTimeout(()=>syncOfflineWeather(false),2000);
 #register .hw110-stop-confirm{background:#293f4d;border:1px solid #668297;padding:13px;border-radius:12px;margin:12px 0}
 #register #hw57TestStatus.hw62-live{border:2px solid #549c7c!important}
 #register #hw110LiveDuration{font-weight:800;color:#e4fbe9!important}
+/* v1.9.115: duidelijke testacties en ventilatie met twee echte temperatuurmetingen */
+#register #hw111OfficeChoices{margin:12px 0;padding:12px;border:1px solid #536e7e;border-radius:12px}
+#register #hw111OfficeChoices.hw57-hidden{display:none!important}
+#register #hw111OfficeChoices .hw57-choice{margin:8px 0}
+#register #hw111SaveSet{background:#366c90;color:#fff}
+#register #hw111VentLiving{margin:7px 0 10px;max-width:100%;border:1px solid #8a9eac;background:#edf5f9;color:#152f3b}
+#register #hw57ActiveActions .hw111-saved{background:#21734f!important;color:white!important;opacity:1!important;cursor:not-allowed}
+#register #hw57ActiveActions button:disabled.hw111-saved{opacity:1!important}
+#register #hw110StopConfirm p{line-height:1.55}
 </style></body></html>

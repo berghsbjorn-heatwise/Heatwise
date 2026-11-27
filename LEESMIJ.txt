@@ -1,22 +1,20 @@
-HeatWise v1.9.110 — vernieuwde Zibro-test (20 november 2026)
+HeatWise v1.9.115 — gemeten buitentemperatuur (KMI)
 
-Deze ZIP bevat uitsluitend index.html en sw.js en een uitlegbestand. Er worden GEEN foto's of oude JS-bestanden meegeleverd. De app gebruikt afbeeldingen die rechtstreeks in index.html zijn opgenomen. Bewaar bestaande andere GitHub-bestanden totdat je hebt gecontroleerd dat ze nergens meer gebruikt worden.
+Deze versie bevat alle verbeteringen van v1.9.111, v1.9.112 en v1.9.113.
 
-Nieuw:
-- Zibro START: 3 dagsoorten, checkbox verlucht vooraf (standaard 30 min), temperaturen en Start. Geen vraag naar startreden.
-- TEST LOOPT: duidelijke teststatus met live brandduur, temperatuurmeting opslaan, automatische SET-verandering, afzonderlijke START/STOP VERLUCHTING met werkelijke begin- en eindtijd, test stoppen met bevestiging zonder stopreden of verplichte eindmeting.
-- Huidige tankcyclus verwijderen met bevestiging, zonder oude testen, branduren, kosten, refills of afgesloten tankcycli te wissen.
-- Nieuwe tankcyclus begint pas na echte nieuwe volledige tankvulling.
-- Vandaag-weer wordt voor een nieuwe Zibro-test overgenomen als het van dezelfde dag is.
-- Overbodig binnentemperatuur/gewenste-temperatuurpaneel van Vandaag verborgen, onderliggende berekenvelden behouden.
+ACTUELE BUITENTEMPERATUUR
+- De actuele buitenwaarde komt niet meer van het Open-Meteo-weermodel, maar van het dichtstbijzijnde beschikbare KMI-station BEAUVECHAIN (6458, ongeveer 24 km van de huidige app-locatie Tienen), of DIEPENBEEK (6477, 27 km) indien de eerste geen recente gegevens heeft.
+- Bron: KMI open data (CC BY 4.0); bij verbindingsproblemen wordt het openbare CORS-doorstuurpunt weerattest.be geprobeerd. Attributie: KMI / weerattest.be (CC BY 4.0) waar van toepassing.
+- Een stationsmeting is echt gemeten, maar NIET gelijk aan een thermometer bij jouw woning. Verschillen van circa 1 °C of meer kunnen bestaan. Alleen een eigen buitensensor zou exact lokaal meten.
+- Als de gemeten gegevens ontbreken, te oud zijn of de verbinding faalt, houdt HeatWise de vorige waarde aan of laat je de buitentemperatuur zelf invullen. De app verzint geen waarde en schakelt niet stil terug naar een weersvoorspelling.
+- Geen tijdsaanduiding op het scherm; de tijd wordt alleen intern gecontroleerd om verouderde metingen af te wijzen.
+- Ophalen bij openen en maximaal elke 15 minuten bij gebruik. Handmatige correctie blijft op dezelfde dag behouden totdat je expliciet verversing vraagt.
+- Tijdens een lopende Zibro-test blijft de ingevulde buitentemperatuur onveranderd bij automatisch vernieuwen van Vandaag. De eigen knop 'Automatisch ophalen' in de test haalt uitdrukkelijk de nieuwe KMI-meting op.
+
+Historische weeranalyses (afzonderlijke weerserie), bestaande testgegevens, kosten, tankcycli, prognoses en petroleumprijzen worden NIET aangepast.
 
 INSTALLATIE
-1. Maak eerst via Overzicht > Bescherm je gegevens een verse JSON-back-up. Bewaar die buiten de app.
-2. Upload alleen index.html en sw.js uit deze ZIP naar de bestaande GitHub-repository en laat alle andere bestaande bestanden staan.
-3. Open HeatWise opnieuw, controleer bovenaan versie v1.9.110. Wis geen browsergegevens of appopslag.
-4. Controleer bestaande maandkosten, tankcyclus en winteranalyse. Verwijder pas daarna expliciet de huidige foutieve tankcyclus met de nieuwe knop.
-5. Vul de Zibro daadwerkelijk opnieuw (volgens de handleiding) en registreer die vulling daarna als nieuw startpunt.
-
-Let op: het wissen van de huidige tankcyclus is een afzonderlijke, bevestigde handeling. Het gebeurt niet automatisch door de update.
-
-Deze versie is voorbereid en geautomatiseerd getest, maar nog niet op jouw eigen telefoon getest.
+1. Sluit een eventuele lopende Zibro-test af en maak een JSON-back-up.
+2. Upload index.html en sw.js naar GitHub/main. Wis geen sitegegevens.
+3. Herlaad HeatWise en controleer versie v1.9.115.
+4. Test op je eigen smartphone of de KMI-bron bereikbaar is. Als de actuele meting niet lukt, corrigeer de temperatuur tijdelijk handmatig met het potloodje en meld het, dan bekijken we de netwerktoegang. De gemeten waarden mogen niet worden verzonnen.
