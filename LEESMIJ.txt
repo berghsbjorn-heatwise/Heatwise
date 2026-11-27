@@ -1,15 +1,12 @@
-HeatWise v1.9.123 – verfijning van de Zibro-weekgrafiek
+HeatWise v1.9.124 – volgorde van de Zibro-weekgrafiek
 
-- Branduren staan vlak boven de eigen balk.
-- Geen 0 u bij dagen zonder stookuren; zeer korte stookbeurten blijven zichtbaar.
-- Toekomstige dagen tonen geen uurcijfer of kosten. Voorbije dagen zonder verbruik tonen wel € 0,00.
-- Dagtminimum wordt alleen getoond voor afgeronde dagen met beschikbare gegevens; vandaag en ontbrekende waarden tonen —.
-- Eén titel: Mijn Zibro-verbruik.
-- Korte legenda: ° = laagste buitentemperatuur per dag.
-- Kalenderweken, maandkeuze, maandtotalen, andere grafieken, gegevensopslag en berekeningen blijven behouden.
+- Weekdag en datum staan nu boven de blauwe balken.
+- Branduren blijven vlak boven de bijbehorende balk staan.
+- Minimumtemperatuur en duidelijke kostenvakjes staan onder de balken.
+- Kalenderweken, maandkeuze, maandtotalen, berekeningen, testgegevens en overige appfuncties blijven ongewijzigd.
 
-Installatie:
-1. Maak voor de zekerheid een JSON-back-up van HeatWise.
-2. Pak dit ZIP-bestand uit.
+Installeren:
+1. Maak voor de zekerheid eerst een JSON-back-up in HeatWise.
+2. Pak het ZIP-bestand uit.
 3. Upload index.html en sw.js naar https://github.com/berghsbjorn-heatwise/Heatwise/upload/main
-4. Commit de vervanging en heropen HeatWise.
+4. Bevestig de vervanging en open HeatWise opnieuw.
