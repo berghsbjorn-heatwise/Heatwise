@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.119: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.120: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -976,13 +976,20 @@ header small{font-size:12px}
 #hw57Analysis .hw62-intro,#hw57Analysis #hw62Origin{display:none!important}
 #hw62Forecast .hw62-count{margin:9px 0 0;font-size:12px;color:#cad8de;font-weight:650}
 #hw62Forecast .hw62-metrics{margin-bottom:4px}
-/* v1.9.119: rustige prijslijn met één oranje recentste prijs. */
+/* v1.9.120: rustige prijslijn met één oranje recentste prijs. */
 #sources #hwPetrolHistorySvg rect[data-price-date]{cursor:pointer;outline:none}
 #sources #hwPetrolHistorySvg rect[data-price-date]:focus{stroke:#794313;stroke-width:2.5}
 #sources #hwPetrolHistorySvg circle[data-price-date]{cursor:pointer;outline:none}
 #sources #hwPetrolHistorySvg circle[data-price-date]:focus{stroke:#0c365d;stroke-width:3}
 #sources .hw-petrol-selected-point{border:1px solid #a9c8eb;border-radius:9px;background:#edf5ff;color:#143b64;padding:7px 10px;margin-bottom:8px;font-size:13px;font-weight:700}
-</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.119</span></header>
+/* HeatWise v1.9.120 – kalenderweken & dagminimum */
+#register .hw120-weeklabel,#heating .hw120-weeklabel{text-align:center;font-size:13px;font-weight:650;color:#d6e6ef;margin:5px 0 0}
+#register .hw120-weekday,#heating .hw120-weekday{font-size:11px;color:#f0f6fa;font-weight:700}
+#register .hw120-temp,#heating .hw120-temp{font-size:clamp(8px,2.4vw,11px);font-weight:650;color:#efa653;white-space:nowrap;letter-spacing:-.3px}
+#register .hw120-weather-source,#heating .hw120-weather-source{color:#bfd0d9;font-size:10px;line-height:1.35;margin:5px 2px 3px}
+#register .hw65-day:has(.hw120-temp),#heating .hw65-day:has(.hw120-temp){gap:5px}
+#register .hw65-page,#heating .hw65-page{min-width:0}
+</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.120</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -2865,7 +2872,7 @@ el('bellStart').onclick=()=>{
 })();
 </script>
 <script>
-/* HeatWise v1.9.119: official price change points evenly spaced, with actual dates shown. */
+/* HeatWise v1.9.120: official price change points evenly spaced, with actual dates shown. */
 (function(){
  const $=id=>document.getElementById(id);
  const from='2026-08-01';
@@ -3370,22 +3377,94 @@ function hw59ShowMonth(id,days,table,desc){
  host.append(graph,details);
  hw59MonthGraph(key,days,hw59Modes[key]||'hours',desc);
 }
+// v1.9.120 – echte ISO-kalenderweken en dagminimum buiten voor de Zibro.
+const hw120WeekNames=['Ma','Di','Wo','Do','Vr','Za','Zo'];
+const hw120DayMinCache=Object.create(null);
+const hw120PendingWeather=new Set();
+const hw120WeekPositions={};
+function hw120ISO(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function hw120Parse(s){const a=s.split('-').map(Number);return new Date(a[0],a[1]-1,a[2],12);}
+function hw120Plus(s,n){const d=hw120Parse(s);d.setDate(d.getDate()+n);return hw120ISO(d);}
+function hw120Monday(s){const d=hw120Parse(s);d.setDate(d.getDate()-(d.getDay()+6)%7);return hw120ISO(d);}
+function hw120WeekNum(s){const d=hw120Parse(s),w=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));w.setUTCDate(w.getUTCDate()+4-(w.getUTCDay()||7));const y=new Date(Date.UTC(w.getUTCFullYear(),0,1));return Math.ceil((((w-y)/86400000)+1)/7);}
+function hw120Short(s){return s.slice(8,10)+'/'+s.slice(5,7);}
+function hw120Today(){return hw120ISO(new Date());}
+function hw120MinState(day){
+ // Vandaag is nog geen volledige kalenderdag; toekomstige dagen ook niet.
+ if(day>=hw120Today())return null;
+ const rec=hw120DayMinCache[day]||(db.hw120DailyMinimum||{})[day];
+ return rec&&Number.isFinite(rec.min)?rec.min:null;
+}
+function hw120MinText(day){const v=hw120MinState(day);return v===null?'Min. —':('Min. '+nf(v,1)+'°C');}
+async function hw120FetchDailyMinimum(first,last,refresh){
+ const today=hw120Today(),yesterday=hw120Plus(today,-1);
+ if(first>yesterday)return;
+ const upper=last<yesterday?last:yesterday;
+ const days=[];for(let d=first;d<=upper;d=hw120Plus(d,1))days.push(d);
+ const missing=days.filter(d=>{const c=hw120DayMinCache[d]||(db.hw120DailyMinimum||{})[d];return !c||((Date.now()-(c.checkedAt||0))>(c.min===null?6*3600000:14*86400000));});
+ if(!missing.length)return;
+ const token=first+':'+upper;if(hw120PendingWeather.has(token))return;
+ hw120PendingWeather.add(token);
+ // Het archief wordt met enkele dagen vertraging bijgewerkt; voor recente dagen gebruiken we forecast history.
+ const groups=[{kind:'archive',days:missing.filter(d=>d<hw120Plus(today,-6))},{kind:'recent',days:missing.filter(d=>d>=hw120Plus(today,-6))}].filter(g=>g.days.length);
+ try{
+  for(const g of groups){
+   const from=g.days[0],to=g.days[g.days.length-1];
+   const url=(g.kind==='archive'?'https://archive-api.open-meteo.com/v1/archive':'https://api.open-meteo.com/v1/forecast')+'?latitude=50.8074&longitude=5.1037&daily=temperature_2m_min&timezone=Europe%2FBrussels&start_date='+from+'&end_date='+to;
+   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
+   try{
+    const response=await fetch(url,{signal:controller.signal,cache:'no-store'});
+    if(!response.ok)throw Error('Weather '+response.status);
+    const data=await response.json(),ts=data?.daily?.time,mins=data?.daily?.temperature_2m_min;
+    if(!Array.isArray(ts)||!Array.isArray(mins)||ts.length!==mins.length)throw Error('Geen minima');
+    const available=new Map(ts.map((day,i)=>[day,mins[i]]));
+    for(const d of g.days){const val=available.get(d);const n=val===null||val===undefined?null:Number(val);hw120DayMinCache[d]={min:n!==null&&Number.isFinite(n)?n:null,source:'Open-Meteo',checkedAt:Date.now()};}
+   }catch(e){for(const d of g.days)if(!hw120DayMinCache[d])hw120DayMinCache[d]={min:null,checkedAt:Date.now()};}
+   finally{clearTimeout(timeout);}
+  }
+  db.hw120DailyMinimum=db.hw120DailyMinimum||{};
+  Object.assign(db.hw120DailyMinimum,hw120DayMinCache);
+  try{localStorage.setItem(KEY,JSON.stringify(db));}catch(e){}
+ }finally{hw120PendingWeather.delete(token);if(typeof refresh==='function')refresh();}
+}
 function hw62ShowZMonth(days,table,device='Z'){
  const host=el(device==='Z'?'hw57ZBody':'hw57BBody');
- const graph=document.createElement('div');graph.className='hw65-chart';graph.setAttribute('aria-label',device==='Z'?'Zibro-verbruik per week: blauwe balken tonen branduren, bedragen eronder tonen geschatte kosten':'Bellfires-verbruik per week: blauwe balken tonen branduren, bedragen eronder tonen gemeten gaskosten of geen P1');
- const nav=document.createElement('div');nav.className='hw63-nav hw65-nav';nav.setAttribute('aria-label','Blader per zeven dagen');
- const monthDays=new Date(Number(chosenMonth.slice(0,4)),Number(chosenMonth.slice(5,7)),0).getDate();
- const byDay=new Map(days.map(d=>[Number(d.day.slice(0,2)),d]));
- const fullDays=Array.from({length:monthDays},(_,i)=>byDay.get(i+1)||{day:String(i+1).padStart(2,'0')+'/'+chosenMonth.slice(5,7),hours:0,cost:device==='Z'?0:null});
- const pages=Math.ceil(monthDays/7);let active=0;
- const maxHours=Math.max(1,...fullDays.map(d=>d.hours));
+ const graph=document.createElement('div');graph.className='hw65-chart';graph.setAttribute('aria-label',device==='Z'?'Zibro-branduren en geschatte kosten per kalenderweek, met dagelijkse minimum buitentemperatuur':'Bellfires-verbruik per week: blauwe balken tonen branduren en bedragen eronder tonen gemeten gaskosten of geen P1');
+ const nav=document.createElement('div');nav.className='hw63-nav hw65-nav';
+ if(device==='B'){
+  // Bellfires behoudt de bestaande weekgrafiek volledig ongewijzigd.
+  nav.setAttribute('aria-label','Blader per zeven dagen');
+  const monthDays=new Date(Number(chosenMonth.slice(0,4)),Number(chosenMonth.slice(5,7)),0).getDate();
+  const byDay=new Map(days.map(d=>[Number(d.day.slice(0,2)),d]));
+  const fullDays=Array.from({length:monthDays},(_,i)=>byDay.get(i+1)||{day:String(i+1).padStart(2,'0')+'/'+chosenMonth.slice(5,7),hours:0,cost:null});
+  const pages=Math.ceil(monthDays/7);let active=0;
+  const maxHours=Math.max(1,...fullDays.map(d=>d.hours));
+  const render=()=>{const chunk=fullDays.slice(active*7,active*7+7);
+   graph.innerHTML='<div class="hw65-bars">'+chunk.map(d=>'<div class="hw65-day"><span class="hw65-hours">'+(d.hours>0?nf(d.hours,1)+' u':'0 u')+'</span><div class="hw65-bar-area"><div class="hw65-bar" title="'+nf(d.hours,1)+' branduren" style="height:'+(d.hours>0?Math.max(3,Math.round(d.hours/maxHours*112)):0)+'px"></div></div><b class="hw65-cost">'+euro(d.cost)+'</b><small>'+esc(d.day)+'</small></div>').join('')+'</div>';
+   nav.innerHTML='<button type="button" aria-label="Vorige zeven dagen" '+(active===0?'disabled':'')+'>〈</button><span class="hw65-page">'+(active*7+1)+'–'+Math.min(monthDays,(active+1)*7)+' / '+monthDays+'</span><button type="button" aria-label="Volgende zeven dagen" '+(active===pages-1?'disabled':'')+'>〉</button>';
+   const buttons=nav.querySelectorAll('button');buttons[0].onclick=()=>{active=Math.max(0,active-1);render()};buttons[1].onclick=()=>{active=Math.min(pages-1,active+1);render()};};
+  const details=document.createElement('details');details.className='hw59-month-details';details.innerHTML='<summary class="hw57-summary">Bekijk exacte brandbeurten</summary>'+table+'<p class="hw57-note">Bellfires-kosten worden alleen getoond bij beschikbare P1-metingen; — betekent geen P1-gegevens.</p>';
+  host.append(graph,nav,details);render();return;
+ }
+ nav.setAttribute('aria-label','Blader per kalenderweek van maandag tot zondag');
+ const first=chosenMonth+'-01',last=chosenMonth+'-'+String(new Date(Number(chosenMonth.slice(0,4)),Number(chosenMonth.slice(5,7)),0).getDate()).padStart(2,'0');
+ const starts=[];for(let d=hw120Monday(first);d<=last;d=hw120Plus(d,7))starts.push(d);
+ const now=hw120Today(),currentWeek=hw120Monday(now);
+ const preferred=starts.indexOf(currentWeek);
+ let active=hw120WeekPositions[chosenMonth]??(preferred>=0?preferred:starts.length-1);
+ active=Math.max(0,Math.min(active,starts.length-1));
+ const dayMap=new Map(days.map(d=>[d.iso,d]));
+ const maxHours=Math.max(1,...days.map(d=>d.hours));
  const render=()=>{
-  const chunk=fullDays.slice(active*7,active*7+7);
-  graph.innerHTML='<div class="hw65-bars">'+chunk.map(d=>'<div class="hw65-day"><span class="hw65-hours">'+(d.hours>0?nf(d.hours,1)+' u':'0 u')+'</span><div class="hw65-bar-area"><div class="hw65-bar" title="'+nf(d.hours,1)+' branduren" style="height:'+(d.hours>0?Math.max(3,Math.round(d.hours/maxHours*112)):0)+'px"></div></div><b class="hw65-cost">'+euro(d.cost)+'</b><small>'+esc(d.day)+'</small></div>').join('')+'</div>';
-  nav.innerHTML='<button type="button" aria-label="Vorige zeven dagen" '+(active===0?'disabled':'')+'>〈</button><span class="hw65-page">'+(active*7+1)+'–'+Math.min(monthDays,(active+1)*7)+' / '+monthDays+'</span><button type="button" aria-label="Volgende zeven dagen" '+(active===pages-1?'disabled':'')+'>〉</button>';
-  const buttons=nav.querySelectorAll('button');buttons[0].onclick=()=>{active=Math.max(0,active-1);render()};buttons[1].onclick=()=>{active=Math.min(pages-1,active+1);render()};
+  if(!graph.isConnected)return;
+  const weekStart=starts[active],weekEnd=hw120Plus(weekStart,6);
+  const chunk=Array.from({length:7},(_,i)=>{const iso=hw120Plus(weekStart,i);return {...(dayMap.get(iso)||{hours:0,cost:0}),iso,day:hw120Short(iso)};});
+  graph.innerHTML='<div class="hw120-weeklabel">Week '+hw120WeekNum(weekStart)+' · '+hw120Short(weekStart)+' – '+hw120Short(weekEnd)+'</div><div class="hw65-bars">'+chunk.map((d,i)=>'<div class="hw65-day"><span class="hw65-hours">'+(d.hours>0?nf(d.hours,1)+' u':'0 u')+'</span><div class="hw65-bar-area"><div class="hw65-bar" title="'+nf(d.hours,1)+' branduren" style="height:'+(d.hours>0?Math.max(3,Math.round(d.hours/maxHours*112)):0)+'px"></div></div><strong class="hw120-weekday">'+hw120WeekNames[i]+'</strong><small>'+esc(d.day)+'</small><span class="hw120-temp" title="Laagste buitentemperatuur van de kalenderdag · Open-Meteo">'+esc(hw120MinText(d.iso))+'</span><b class="hw65-cost">'+euro(d.cost)+'</b></div>').join('')+'</div><p class="hw120-weather-source">Min. = laagste buitentemperatuur per volledige dag (Open-Meteo, omgeving Tienen). — = nog niet beschikbaar.</p>';
+  nav.innerHTML='<button type="button" aria-label="Vorige kalenderweek" '+(active===0?'disabled':'')+'>〈</button><span class="hw65-page">Week '+hw120WeekNum(weekStart)+' · '+hw120Short(weekStart)+'–'+hw120Short(weekEnd)+'</span><button type="button" aria-label="Volgende kalenderweek" '+(active===starts.length-1?'disabled':'')+'>〉</button>';
+  const buttons=nav.querySelectorAll('button');buttons[0].onclick=()=>{active=Math.max(0,active-1);hw120WeekPositions[chosenMonth]=active;render()};buttons[1].onclick=()=>{active=Math.min(starts.length-1,active+1);hw120WeekPositions[chosenMonth]=active;render()};
+  hw120FetchDailyMinimum(weekStart,weekEnd,()=>{if(graph.isConnected&&starts[active]===weekStart)render()});
  };
- const details=document.createElement('details');details.className='hw59-month-details';details.innerHTML='<summary class="hw57-summary">Bekijk exacte brandbeurten</summary>'+table+'<p class="hw57-note">'+(device==='Z'?'Kosten zijn schattingen op basis van branduren, gemiddeld verbruik en petroleumprijs.':'Bellfires-kosten worden alleen getoond bij beschikbare P1-metingen; — betekent geen P1-gegevens.')+'</p>';
+ const details=document.createElement('details');details.className='hw59-month-details';details.innerHTML='<summary class="hw57-summary">Bekijk exacte brandbeurten</summary>'+table+'<p class="hw57-note">Kosten zijn schattingen op basis van branduren, gemiddeld verbruik en petroleumprijs.</p>';
  host.append(graph,nav,details);render();
 }
 
@@ -3394,7 +3473,8 @@ function monthZ(){const segs=zSegments().filter(x=>x.day.startsWith(chosenMonth)
  const dailyList=[...daily.values()].sort((a,b)=>b.day.localeCompare(a.day));
  const table=dailyList.length?'<table class="hw57-table"><thead><tr><th>Datum en uur</th><th>Brandduur</th><th>Kosten</th></tr></thead><tbody>'+dailyList.map(r=>'<tr><td><strong>'+prettyDate(r.day)+'</strong><small>'+esc(r.sessions.join(' · '))+'</small></td><td>'+period(r.minutes)+'</td><td>'+euro(r.minutes/60*consumption*unit)+'</td></tr>').join('')+'</tbody></table>':'<p class="hw57-note">Voor deze maand zijn nog geen Zibro-branduren geregistreerd.</p>';
  el('hw57ZBody').innerHTML='<div class="hw57-grid"><div class="hw57-tile"><small>Totaal gebrand</small><strong>'+period(total)+'</strong></div><div class="hw57-tile"><small>Geschatte kosten</small><strong>'+euro(total/60*consumption*unit)+'</strong></div></div><h3>Mijn verbruik per dag</h3>';
- hw62ShowZMonth(dailyList.slice().reverse().map(r=>({day:r.day.slice(8)+'/'+r.day.slice(5,7),hours:r.minutes/60,cost:r.minutes/60*consumption*unit})),table);
+ const graphDaily=new Map();for(const s of zSegments()){let r=graphDaily.get(s.day);if(!r){r={iso:s.day,hours:0,cost:0};graphDaily.set(s.day,r);}r.hours+=s.minutes/60;r.cost+=s.minutes/60*consumption*unit;}
+ hw62ShowZMonth([...graphDaily.values()],table);
  return total/60*consumption*unit;
 }
 function monthB(){const rec=gRows().filter(x=>x.day.startsWith(chosenMonth)),real=rec.filter(x=>x.gas!==null),total=real.reduce((n,x)=>n+x.cost,0);const days=new Map();for(const r of rec){if(!days.has(r.day))days.set(r.day,{cost:0,m3:0,minutes:0,readings:0,pending:0});const d=days.get(r.day);d.minutes+=r.minutes||0;if(r.cost!==null){d.cost+=r.cost;d.m3+=r.gas;d.readings++;}else d.pending++;}

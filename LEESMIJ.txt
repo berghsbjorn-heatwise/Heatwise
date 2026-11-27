@@ -1,15 +1,21 @@
-HeatWise v1.9.119 — petroleumprijsgrafiek
+HeatWise v1.9.120 – update Zibro-weekgrafiek
 
-Upload op GitHub uitsluitend de bestanden index.html en sw.js naar de hoofdmap van de HeatWise-repository. Beide bestanden vervangen hun bestaande versies. Dit ZIP-bestand hoef je niet rechtstreeks te uploaden.
+Nieuw:
+- Echte kalenderweken (maandag t/m zondag), ook op maandgrenzen.
+- Dagnaam en datum onder iedere blauwe brandurenbalk.
+- Automatisch opgehaalde minimum buitentemperatuur per volledige dag (Open-Meteo omgeving Tienen).
+- Kosten blijven per dag zichtbaar; branduren en maandtotalen behouden.
+- Geen lijn, tweede balk of wisselknoppen.
+- Ontbrekende en nog onvolledige dagtemperaturen verschijnen als —.
+- Bellfires-grafiek niet gewijzigd.
 
-Wat verandert:
-- Alle officiële prijswijzigingen staan op gelijke horizontale afstand.
-- Onder elk meetpunt staat de werkelijke datum (dd/mm).
-- De nieuwste officiële prijs krijgt een oranje meetpunt en prijslabel.
-- Bij meer wijzigingen is de grafiek horizontaal verschuifbaar.
-- Tik op een meetpunt voor volledige datum en prijs.
-- De grafiek verduidelijkt dat gelijke afstand geen kalender-tijdschaal is.
+Let op: de minimumtemperatuur is een model- of historische weerbronwaarde, geen lokale KMI-stationsmeting. Ze kan zich voordoen wanneer de Zibro niet brandt.
 
-Geen wijzigingen aan je opgeslagen prijzen, Zibro-tests, tankcycli, kostenberekeningen en weerfunctionaliteit.
+Installatie:
+1. Maak eerst een JSON-back-up van HeatWise.
+2. Pak dit ZIP-bestand uit.
+3. Upload index.html en sw.js naar de hoofdmap van de GitHub Pages repository.
+4. Herlaad HeatWise na publicatie (sluit en open de app eventueel opnieuw).
 
-Advies: maak vooraf een HeatWise-JSON-back-up en sluit een lopende test af. Een nieuwe serviceworker-cache zorgt ervoor dat de app de gewijzigde bestanden kan ophalen. Heropen/ververs de app na de GitHub-upload.
+De bestaande appgegevens worden niet opzettelijk verwijderd.
+Code is gecontroleerd met node --check; browsertest kon in deze omgeving niet worden uitgevoerd.

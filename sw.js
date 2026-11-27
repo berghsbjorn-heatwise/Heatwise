@@ -1,4 +1,4 @@
-const CACHE='heatwise-cache-v19119';
+const CACHE='heatwise-cache-v19120';
 const CORE=['./','./index.html'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)))});
 self.addEventListener('activate',e=>e.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('heatwise-')&&k!==CACHE).map(k=>caches.delete(k))))])));
