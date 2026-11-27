@@ -1,18 +1,17 @@
-HeatWise v1.9.116 — automatische buitentemperatuur hersteld
+HeatWise v1.9.117 — petroleumprijsgrafiek: duidelijke labels
 
-- De vorige KMI-aanvraag gebruikte foutief het AWS-meetnet voor Beauvechain. Beauvechain wordt nu via de officiële synoptische KMI-dienst (SYNOP) opgevraagd.
-- Diepenbeek is de officiële AWS-reserve. Er zijn directe aanvragen en een gedocumenteerde CORS-doorgang.
-- Indien beide officiële verbindingen mislukken, wordt automatisch een temperatuurbenadering van Open-Meteo voor Tienen opgehaald. HeatWise vermeldt duidelijk 'Open-Meteo · benadering'; dit is géén gemeten buitentemperatuur.
-- Handmatig aanpassen blijft mogelijk. Reeds opgeslagen testen, metingen en kosten worden niet gewijzigd. Een automatische update mag de ingevulde buitentemperatuur tijdens een lopende Zibro-test niet wijzigen.
-- De bestaande functies, v1.9.113-grafiek, opwarmprognose en registraties zijn behouden.
+Wijziging ten opzichte van v1.9.116:
+- Blauwe prijslabels worden rechts van de grafieklijn geplaatst in een afzonderlijke kolom.
+- Automatische verticale verdeling voorkomt overlapping, ook bij snel opeenvolgende prijswijzigingen.
+- Elk getoond prijslabel heeft een dun verbindingslijntje naar het echte meetpunt.
+- Recentste prijs krijgt altijd voorrang en is subtiel gemarkeerd.
+- Elk meetpunt blijft aantikbaar. Ook de blauwe prijslabels zijn aantikbaar voor datum en exacte prijs.
+- Bij veel meetpunten blijven de recentste 7 labels zichtbaar; oudere meetpunten blijven aantikbaar.
 
-INSTALLATIE
-1. Sluit een lopende Zibro-test af en maak in de app een JSON-back-up.
-2. Vervang op GitHub uitsluitend index.html en sw.js.
-3. Controleer in de app of versie v1.9.116 wordt weergegeven.
-4. Test de buitentemperatuur op Vandaag en Zibro; controleer de bronvermelding.
+Alle officiële prijsgegevens, datums, berekeningen, winteranalyse, Zibro-testen, KMI/Open-Meteo-koppeling en lokale opslag blijven ongewijzigd.
 
-TESTSTATUS
-De JavaScript-syntax en gesimuleerde KMI-/Open-Meteo-antwoorden zijn getest. Een echte fetch vanaf je smartphone naar de externe diensten kan vanuit deze omgeving niet worden bevestigd.
-
-Bron: KMI/RMI open data (CC BY 4.0); terugvalbron Open-Meteo-model.
+Installeren:
+1. Sluit een eventuele lopende HeatWise-test af en maak een JSON-back-up via Overzicht > Bescherm je gegevens.
+2. Pak de ZIP uit en upload index.html en sw.js naar de bestaande GitHub Pages repository.
+3. Klik Commit changes. Herlaad HeatWise en controleer Privé • v1.9.117.
+4. Wis de app- of browsergegevens NIET: daarin staan de opgeslagen metingen.
