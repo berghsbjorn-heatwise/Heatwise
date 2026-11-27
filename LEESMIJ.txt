@@ -1,16 +1,5 @@
-HeatWise v1.9.121 — weekgrafiek verfijning
+HeatWise v1.9.122 – correctie branduren boven de balk
 
-1. Maak voor de zekerheid eerst een JSON-back-up in de huidige HeatWise-app.
-2. Pak de ZIP uit.
-3. Upload index.html en sw.js naar de hoofdmap van je GitHub-repository:
-   https://github.com/berghsbjorn-heatwise/Heatwise/upload/main
-4. Vervang beide bestanden en bevestig (commit).
-5. Open HeatWise opnieuw. Bij een oude versie: sluit de app volledig en open opnieuw.
+De uren staan vlak boven de eigen blauwe balk, ook bij nul uur. De balkhoogtes en alle overige grafiekgegevens blijven ongewijzigd. De update is gebaseerd op v1.9.121. Er zijn geen wijzigingen aan opgeslagen metingen.
 
-Nieuw:
-- Branduren blijven boven de balken.
-- Dagelijkse kosten krijgen afzonderlijke donkerblauwe vakjes.
-- Minimumtemperatuur verkort (bv. 7,6°; ontbrekende waarde —).
-- Weekperiode nog maar eenmaal boven de grafiek.
-- De maandkeuze, weeknavigatie en alle bestaande functies blijven behouden.
-- Geen wijziging aan gegevensopslag of berekeningen.
+Pak de ZIP uit en upload index.html en sw.js naar GitHub. Kies Commit changes. Heropen HeatWise en controleer v1.9.122. Wis geen browser- of websitegegevens.
