@@ -1,21 +1,16 @@
-HeatWise v1.9.120 – update Zibro-weekgrafiek
+HeatWise v1.9.121 — weekgrafiek verfijning
+
+1. Maak voor de zekerheid eerst een JSON-back-up in de huidige HeatWise-app.
+2. Pak de ZIP uit.
+3. Upload index.html en sw.js naar de hoofdmap van je GitHub-repository:
+   https://github.com/berghsbjorn-heatwise/Heatwise/upload/main
+4. Vervang beide bestanden en bevestig (commit).
+5. Open HeatWise opnieuw. Bij een oude versie: sluit de app volledig en open opnieuw.
 
 Nieuw:
-- Echte kalenderweken (maandag t/m zondag), ook op maandgrenzen.
-- Dagnaam en datum onder iedere blauwe brandurenbalk.
-- Automatisch opgehaalde minimum buitentemperatuur per volledige dag (Open-Meteo omgeving Tienen).
-- Kosten blijven per dag zichtbaar; branduren en maandtotalen behouden.
-- Geen lijn, tweede balk of wisselknoppen.
-- Ontbrekende en nog onvolledige dagtemperaturen verschijnen als —.
-- Bellfires-grafiek niet gewijzigd.
-
-Let op: de minimumtemperatuur is een model- of historische weerbronwaarde, geen lokale KMI-stationsmeting. Ze kan zich voordoen wanneer de Zibro niet brandt.
-
-Installatie:
-1. Maak eerst een JSON-back-up van HeatWise.
-2. Pak dit ZIP-bestand uit.
-3. Upload index.html en sw.js naar de hoofdmap van de GitHub Pages repository.
-4. Herlaad HeatWise na publicatie (sluit en open de app eventueel opnieuw).
-
-De bestaande appgegevens worden niet opzettelijk verwijderd.
-Code is gecontroleerd met node --check; browsertest kon in deze omgeving niet worden uitgevoerd.
+- Branduren blijven boven de balken.
+- Dagelijkse kosten krijgen afzonderlijke donkerblauwe vakjes.
+- Minimumtemperatuur verkort (bv. 7,6°; ontbrekende waarde —).
+- Weekperiode nog maar eenmaal boven de grafiek.
+- De maandkeuze, weeknavigatie en alle bestaande functies blijven behouden.
+- Geen wijziging aan gegevensopslag of berekeningen.
