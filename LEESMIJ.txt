@@ -1,5 +1,13 @@
-HeatWise v1.9.122 – correctie branduren boven de balk
+HeatWise v1.9.122 – kleine verfijning van de Zibro-weekgrafiek
 
-De uren staan vlak boven de eigen blauwe balk, ook bij nul uur. De balkhoogtes en alle overige grafiekgegevens blijven ongewijzigd. De update is gebaseerd op v1.9.121. Er zijn geen wijzigingen aan opgeslagen metingen.
+Nieuw:
+- De weekperiode (bv. Week 48 · 23/11 – 29/11) staat tussen de navigatiepijltjes.
+- De dubbele weektitel boven de grafiek is verwijderd.
+- De lange Open-Meteo-tekst onder de grafiek is ingekort tot: "Oranje ° = minimumtemperatuur van de volledige dag."
+- De branduren, kostenvakjes, maandselectie, weergegevens, opslag en berekeningen zijn niet gewijzigd.
 
-Pak de ZIP uit en upload index.html en sw.js naar GitHub. Kies Commit changes. Heropen HeatWise en controleer v1.9.122. Wis geen browser- of websitegegevens.
+Installatie:
+1. Maak eerst een JSON-back-up van HeatWise.
+2. Upload index.html en sw.js naar https://github.com/berghsbjorn-heatwise/Heatwise/upload/main
+3. Vervang de twee bestaande bestanden en bevestig (commit).
+4. Open HeatWise opnieuw.

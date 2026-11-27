@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.122: branduren direct boven eigen balk; weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.122: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -976,20 +976,20 @@ header small{font-size:12px}
 #hw57Analysis .hw62-intro,#hw57Analysis #hw62Origin{display:none!important}
 #hw62Forecast .hw62-count{margin:9px 0 0;font-size:12px;color:#cad8de;font-weight:650}
 #hw62Forecast .hw62-metrics{margin-bottom:4px}
-/* v1.9.121: rustige prijslijn met één oranje recentste prijs. */
+/* v1.9.122: rustige prijslijn met één oranje recentste prijs. */
 #sources #hwPetrolHistorySvg rect[data-price-date]{cursor:pointer;outline:none}
 #sources #hwPetrolHistorySvg rect[data-price-date]:focus{stroke:#794313;stroke-width:2.5}
 #sources #hwPetrolHistorySvg circle[data-price-date]{cursor:pointer;outline:none}
 #sources #hwPetrolHistorySvg circle[data-price-date]:focus{stroke:#0c365d;stroke-width:3}
 #sources .hw-petrol-selected-point{border:1px solid #a9c8eb;border-radius:9px;background:#edf5ff;color:#143b64;padding:7px 10px;margin-bottom:8px;font-size:13px;font-weight:700}
-/* HeatWise v1.9.121 – kalenderweken & dagminimum */
+/* HeatWise v1.9.122 – kalenderweken & dagminimum */
 #register .hw120-weeklabel,#heating .hw120-weeklabel{text-align:center;font-size:13px;font-weight:650;color:#d6e6ef;margin:5px 0 0}
 #register .hw120-weekday,#heating .hw120-weekday{font-size:11px;color:#f0f6fa;font-weight:700}
 #register .hw120-temp,#heating .hw120-temp{font-size:clamp(8px,2.4vw,11px);font-weight:650;color:#efa653;white-space:nowrap;letter-spacing:-.3px}
 #register .hw120-weather-source,#heating .hw120-weather-source{color:#bfd0d9;font-size:10px;line-height:1.35;margin:5px 2px 3px}
 #register .hw65-day:has(.hw120-temp),#heating .hw65-day:has(.hw120-temp){gap:5px}
 #register .hw65-page,#heating .hw65-page{min-width:0}
-/* HeatWise v1.9.121 – compacte temperatuurwaarden en duidelijke dagkosten in Zibro-kalenderweken */
+/* HeatWise v1.9.122 – compacte temperatuurwaarden en duidelijke dagkosten in Zibro-kalenderweken */
 #register .hw65-day .hw121-cost,#heating .hw65-day .hw121-cost{
  display:flex;align-items:center;justify-content:center;box-sizing:border-box;
  width:100%;min-height:27px;padding:5px 1px;border-radius:6px;
@@ -1000,10 +1000,6 @@ header small{font-size:12px}
 #register .hw65-day:has(.hw121-cost) .hw120-temp,#heating .hw65-day:has(.hw121-cost) .hw120-temp{
  font-size:clamp(10px,2.7vw,12px);letter-spacing:0;
 }
-
-/* v1.9.122: branduren direct boven de eigen Zibro-balk */
-#register .hw65-day:has(.hw120-temp) .hw65-bar-area{height:142px;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px}
-#register .hw65-day:has(.hw120-temp) .hw65-bar-area .hw65-bar{flex-shrink:0}
 </style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.122</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
@@ -2887,7 +2883,7 @@ el('bellStart').onclick=()=>{
 })();
 </script>
 <script>
-/* HeatWise v1.9.121: official price change points evenly spaced, with actual dates shown. */
+/* HeatWise v1.9.122: official price change points evenly spaced, with actual dates shown. */
 (function(){
  const $=id=>document.getElementById(id);
  const from='2026-08-01';
@@ -3392,7 +3388,7 @@ function hw59ShowMonth(id,days,table,desc){
  host.append(graph,details);
  hw59MonthGraph(key,days,hw59Modes[key]||'hours',desc);
 }
-// v1.9.121 – echte ISO-kalenderweken en dagminimum buiten voor de Zibro.
+// v1.9.122 – echte ISO-kalenderweken en dagminimum buiten voor de Zibro.
 const hw120WeekNames=['Ma','Di','Wo','Do','Vr','Za','Zo'];
 const hw120DayMinCache=Object.create(null);
 const hw120PendingWeather=new Set();
@@ -3474,8 +3470,8 @@ function hw62ShowZMonth(days,table,device='Z'){
   if(!graph.isConnected)return;
   const weekStart=starts[active],weekEnd=hw120Plus(weekStart,6);
   const chunk=Array.from({length:7},(_,i)=>{const iso=hw120Plus(weekStart,i);return {...(dayMap.get(iso)||{hours:0,cost:0}),iso,day:hw120Short(iso)};});
-  graph.innerHTML='<div class="hw120-weeklabel">Week '+hw120WeekNum(weekStart)+' · '+hw120Short(weekStart)+' – '+hw120Short(weekEnd)+'</div><div class="hw65-bars">'+chunk.map((d,i)=>'<div class="hw65-day"><div class="hw65-bar-area"><span class="hw65-hours">'+(d.hours>0?nf(d.hours,1)+' u':'0 u')+'</span><div class="hw65-bar" title="'+nf(d.hours,1)+' branduren" style="height:'+(d.hours>0?Math.max(3,Math.round(d.hours/maxHours*112)):0)+'px"></div></div><strong class="hw120-weekday">'+hw120WeekNames[i]+'</strong><small>'+esc(d.day)+'</small><span class="hw120-temp" title="Laagste buitentemperatuur van de kalenderdag · Open-Meteo">'+esc(hw120MinText(d.iso))+'</span><b class="hw65-cost hw121-cost">'+euro(d.cost)+'</b></div>').join('')+'</div><p class="hw120-weather-source">Oranje ° = minimumtemperatuur van de volledige dag (Open-Meteo, omgeving Tienen). — = nog niet beschikbaar.</p>';
-  nav.innerHTML='<button type="button" aria-label="Vorige kalenderweek" '+(active===0?'disabled':'')+'>〈</button><span class="hw65-page">Blader per week</span><button type="button" aria-label="Volgende kalenderweek" '+(active===starts.length-1?'disabled':'')+'>〉</button>';
+  graph.innerHTML='<div class="hw65-bars">'+chunk.map((d,i)=>'<div class="hw65-day"><span class="hw65-hours">'+(d.hours>0?nf(d.hours,1)+' u':'0 u')+'</span><div class="hw65-bar-area"><div class="hw65-bar" title="'+nf(d.hours,1)+' branduren" style="height:'+(d.hours>0?Math.max(3,Math.round(d.hours/maxHours*112)):0)+'px"></div></div><strong class="hw120-weekday">'+hw120WeekNames[i]+'</strong><small>'+esc(d.day)+'</small><span class="hw120-temp" title="Laagste buitentemperatuur van de kalenderdag · Open-Meteo">'+esc(hw120MinText(d.iso))+'</span><b class="hw65-cost hw121-cost">'+euro(d.cost)+'</b></div>').join('')+'</div><p class="hw120-weather-source">Oranje ° = minimumtemperatuur van de volledige dag.</p>';
+  nav.innerHTML='<button type="button" aria-label="Vorige kalenderweek" '+(active===0?'disabled':'')+'>〈</button><span class="hw65-page">Week '+hw120WeekNum(weekStart)+' · '+hw120Short(weekStart)+' – '+hw120Short(weekEnd)+'</span><button type="button" aria-label="Volgende kalenderweek" '+(active===starts.length-1?'disabled':'')+'>〉</button>';
   const buttons=nav.querySelectorAll('button');buttons[0].onclick=()=>{active=Math.max(0,active-1);hw120WeekPositions[chosenMonth]=active;render()};buttons[1].onclick=()=>{active=Math.min(starts.length-1,active+1);hw120WeekPositions[chosenMonth]=active;render()};
   hw120FetchDailyMinimum(weekStart,weekEnd,()=>{if(graph.isConnected&&starts[active]===weekStart)render()});
  };
