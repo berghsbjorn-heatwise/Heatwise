@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.117: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.118: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -973,13 +973,13 @@ header small{font-size:12px}
 #hw57Analysis .hw62-intro,#hw57Analysis #hw62Origin{display:none!important}
 #hw62Forecast .hw62-count{margin:9px 0 0;font-size:12px;color:#cad8de;font-weight:650}
 #hw62Forecast .hw62-metrics{margin-bottom:4px}
-/* v1.9.117: prijslabels in aparte rechterkolom, met grotere raakvlakken. */
+/* v1.9.118: rustige prijslijn met één oranje recentste prijs. */
 #sources #hwPetrolHistorySvg rect[data-price-date]{cursor:pointer;outline:none}
-#sources #hwPetrolHistorySvg rect[data-price-date]:focus{stroke:#092d54;stroke-width:2.5}
+#sources #hwPetrolHistorySvg rect[data-price-date]:focus{stroke:#794313;stroke-width:2.5}
 #sources #hwPetrolHistorySvg circle[data-price-date]{cursor:pointer;outline:none}
 #sources #hwPetrolHistorySvg circle[data-price-date]:focus{stroke:#0c365d;stroke-width:3}
 #sources .hw-petrol-selected-point{border:1px solid #a9c8eb;border-radius:9px;background:#edf5ff;color:#143b64;padding:7px 10px;margin-bottom:8px;font-size:13px;font-weight:700}
-</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.117</span></header>
+</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.118</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -1030,7 +1030,7 @@ header small{font-size:12px}
  <div class="hw-petrol-chart" id="hwPetrolPriceChart" aria-label="Prijsverloop petroleum C">
   <div class="hw-petrol-chart-head"><h3>📈 Prijsverloop petroleum C</h3><label for="hwPetrolYear">Jaar <select id="hwPetrolYear" aria-label="Kies jaar"></select></label></div>
   <div class="hw-petrol-chart-legend"><span><i style="display:inline-block;width:20px;height:3px;background:#1765d5;vertical-align:middle;margin-right:7px"></i>Officiële maximumprijs (€/L)</span></div>
-  <svg id="hwPetrolHistorySvg" viewBox="0 0 420 253" role="img" aria-label="Jaarlijkse stappengrafiek van de geregistreerde petroleumprijzen" preserveAspectRatio="xMidYMid meet"></svg>
+  <svg id="hwPetrolHistorySvg" viewBox="0 0 420 253" role="img" aria-label="Prijsverloop van de geregistreerde petroleumprijzen, laatste prijs oranje" preserveAspectRatio="xMidYMid meet"></svg>
   <div id="hwPetrolChartPoint" class="hw-petrol-chart-detail" aria-live="polite"></div>
   <p id="hwPetrolChartInfo" class="tiny">De grafiek gebruikt alleen je opgeslagen prijzen en de echte datums van wijzigingen.</p>
  </div>
@@ -2979,8 +2979,8 @@ el('bellStart').onclick=()=>{
    const yr=Number(yearPicker.value),start=yr===2026?from:yr+'-01-01',fullEnd=yr+'-12-31';
    const end=today()<fullEnd?today():fullEnd;
    const minT=milliseconds(start),maxT=milliseconds(fullEnd);
-   const x0=52,x1=305,y0=30,y1=205;
-   // Rechterruimte voor de blauwe prijslabels: labels nooit over de datalijn heen.
+   const x0=52,x1=401,y0=30,y1=205;
+   // De hele grafiekbreedte gebruiken: geen vaste prijsetikettenkolom.
    const tx=d=>x0+(milliseconds(d)-minT)/Math.max(1,maxT-minT)*(x1-x0);
    const seen=all.filter(r=>r.date<=end&&((r.date>=start)||r===history.purchase.find(x=>x.date<start)||r===history.official.find(x=>x.date<start)));
    const activeAtStart=[history.official.filter(r=>r.date<=start).at(-1)].filter(Boolean);
@@ -3010,44 +3010,28 @@ el('bellStart').onclick=()=>{
      const path=chartSeries.map((p,i)=>(i?'L':'M')+tx(p.date).toFixed(2)+' '+ty(p.price).toFixed(2)).join(' ');
      parts.push('<path d="'+path+'" fill="none" stroke="#1765d5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>');
 
-   // v1.9.117: duidelijke prijslabels in een gereserveerde kolom rechts.
-   // Data- en prijshistoriek blijven onaangeroerd; alleen de SVG-weergave verandert.
+   // v1.9.118: de echte prijsreeks als één rustige blauwe lijn.
+   // Alleen de recentste prijs is blijvend oranje gemarkeerd.
    const pts=chartSeries.map((p,i)=>({p,i,x:tx(p.date),y:ty(p.price),label:euros(p.price)}));
-   const tagX=322,tagWidth=72,tagH=19,tagStep=24;
-   const tagMin=15,tagMax=y1+6-tagH;
-   const maxTags=Math.min(7,Math.floor((tagMax-tagMin)/tagStep)+1);
-   // Recente prijzen krijgen altijd voorrang; oudere punten blijven aanklikbaar.
-   const labelled=pts.slice().reverse().slice(0,maxTags).sort((a,b)=>a.y-b.y||b.i-a.i);
-   const tagY=[];
-   for(const pt of labelled){
-     const want=Math.max(tagMin,Math.min(tagMax,pt.y-tagH/2));
-     tagY.push(Math.max(want,tagY.length?tagY[tagY.length-1]+tagStep:tagMin));
-   }
-   // Schuif de hele reeks zo nodig omhoog en behoud de afstand tussen labels.
-   if(tagY.length){
-     tagY[tagY.length-1]=Math.min(tagMax,tagY[tagY.length-1]);
-     for(let i=tagY.length-2;i>=0;i--)tagY[i]=Math.min(tagY[i],tagY[i+1]-tagStep);
-     if(tagY[0]<tagMin){
-       const delta=tagMin-tagY[0];
-       for(let i=0;i<tagY.length;i++)tagY[i]+=delta;
-     }
-   }
-   // Subtiele scheiding tussen de echte prijsgrafiek en de prijskaartjes.
-   parts.push('<line x1="315" y1="16" x2="315" y2="'+(y1+6)+'" stroke="#b6c8dc" stroke-width="1" opacity=".55"/>');
-   for(let i=0;i<labelled.length;i++){
-     const pt=labelled[i],top=tagY[i],mid=top+tagH/2,latest=pt.i===pts.length-1;
-     const date=pt.p.actualDate||pt.p.date,price=Number(pt.p.price).toFixed(2);
-     const labelColor=latest?'#075abf':'#1765d5';
-     // De fijne lijn begint naast de meetpuntcirkel en eindigt aan het label.
-     const sx=Math.min(pt.x+5,tagX-7);
-     parts.push('<path d="M '+sx.toFixed(2)+' '+pt.y.toFixed(2)+' L '+(tagX-5)+' '+mid.toFixed(2)+'" fill="none" stroke="#789bc4" stroke-width="1" opacity=".8"/>');
-     parts.push('<rect data-price-date="'+date+'" data-price-value="'+price+'" role="button" tabindex="0" aria-label="'+human(date)+': '+pt.label+' per liter" x="'+tagX+'" y="'+top.toFixed(2)+'" width="'+tagWidth+'" height="'+tagH+'" rx="5" fill="'+labelColor+'" stroke="'+(latest?'#07386d':'none')+'" stroke-width="'+(latest?'1.3':'0')+'"/>');
-     parts.push('<text x="'+(tagX+tagWidth/2)+'" y="'+(top+13).toFixed(2)+'" fill="#fff" font-size="11" text-anchor="middle" font-weight="700" pointer-events="none">'+pt.label+'</text>');
+   const latest=pts[pts.length-1];
+   if(latest){
+     const date=latest.p.actualDate||latest.p.date;
+     const price=Number(latest.p.price).toFixed(2);
+     const labelW=79,labelH=24;
+     // Plaats het etiket dichtbij het laatste punt, zonder buiten het grafiekvlak te vallen.
+     const labelX=Math.max(x0,Math.min(x1-labelW, latest.x+12));
+     const labelY=latest.y>y0+42?latest.y-37:latest.y+14;
+     const lineEndX=labelX>latest.x?labelX:labelX+labelW;
+     const lineEndY=labelY+(labelY<latest.y?labelH:0);
+     parts.push('<line x1="'+latest.x.toFixed(2)+'" y1="'+latest.y.toFixed(2)+'" x2="'+lineEndX.toFixed(2)+'" y2="'+lineEndY.toFixed(2)+'" stroke="#b66b23" stroke-width="1.3" opacity=".8"/>');
+     parts.push('<rect data-price-date="'+date+'" data-price-value="'+price+'" role="button" tabindex="0" aria-label="Meest recente prijs: '+human(date)+': '+latest.label+' per liter" x="'+labelX.toFixed(2)+'" y="'+labelY.toFixed(2)+'" width="'+labelW+'" height="'+labelH+'" rx="7" fill="#b96316" stroke="#884310" stroke-width=".8"/>');
+     parts.push('<text x="'+(labelX+labelW/2).toFixed(2)+'" y="'+(labelY+16).toFixed(2)+'" fill="#fff" font-size="13" text-anchor="middle" font-weight="750" pointer-events="none">'+latest.label+'</text>');
    }
      for(const pt of pts){
        const date=pt.p.actualDate||pt.p.date,price=Number(pt.p.price).toFixed(2);
        // Een transparant raakvlak van 19px maakt selectie met een vinger makkelijker.
-       parts.push('<circle cx="'+pt.x.toFixed(2)+'" cy="'+pt.y.toFixed(2)+'" r="4.5" fill="#1765d5" stroke="#fff" stroke-width="1.5" pointer-events="none"/>');
+       const newest=pt.i===pts.length-1;
+       parts.push('<circle cx="'+pt.x.toFixed(2)+'" cy="'+pt.y.toFixed(2)+'" r="'+(newest?'6':'4.5')+'" fill="'+(newest?'#b96316':'#1765d5')+'" stroke="#fff" stroke-width="2" pointer-events="none"/>');
        parts.push('<circle data-price-date="'+date+'" data-price-value="'+price+'" tabindex="0" role="button" aria-label="'+human(date)+': '+pt.label+' per liter" cx="'+pt.x.toFixed(2)+'" cy="'+pt.y.toFixed(2)+'" r="10" fill="transparent" stroke="none"/>');
      }
    }

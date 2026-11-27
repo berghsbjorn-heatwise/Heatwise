@@ -1,17 +1,17 @@
-HeatWise v1.9.117 — petroleumprijsgrafiek: duidelijke labels
+HeatWise v1.9.118 — eenvoudige petroleumprijsgrafiek (optie 1)
 
-Wijziging ten opzichte van v1.9.116:
-- Blauwe prijslabels worden rechts van de grafieklijn geplaatst in een afzonderlijke kolom.
-- Automatische verticale verdeling voorkomt overlapping, ook bij snel opeenvolgende prijswijzigingen.
-- Elk getoond prijslabel heeft een dun verbindingslijntje naar het echte meetpunt.
-- Recentste prijs krijgt altijd voorrang en is subtiel gemarkeerd.
-- Elk meetpunt blijft aantikbaar. Ook de blauwe prijslabels zijn aantikbaar voor datum en exacte prijs.
-- Bij veel meetpunten blijven de recentste 7 labels zichtbaar; oudere meetpunten blijven aantikbaar.
+Vanaf v1.9.117 is alleen de vormgeving van de petroleumprijsgrafiek veranderd:
+- Eén blauwe lijn over de beschikbare breedte en kleine blauwe punten voor eerdere prijzen.
+- Alleen de meest recente bekende officiële prijs krijgt een oranje meetpunt en prijslabel.
+- Tik op een vroeger meetpunt voor de bijbehorende datum en prijs.
+- Het oranje label verschuift automatisch mee met de recentste prijs, of die nu stijgt of daalt.
+- Geen vaste rechterkolom met blauwe labels of kruisende verbindingslijnen meer.
 
-Alle officiële prijsgegevens, datums, berekeningen, winteranalyse, Zibro-testen, KMI/Open-Meteo-koppeling en lokale opslag blijven ongewijzigd.
+Alle oorspronkelijke prijsdatums, prijswaarden, aankopen, kostenberekeningen, gas- en Zibro-testen,
+tankcycli, prognoses en de bestaande buitentemperatuurophaling blijven ongewijzigd.
 
 Installeren:
-1. Sluit een eventuele lopende HeatWise-test af en maak een JSON-back-up via Overzicht > Bescherm je gegevens.
-2. Pak de ZIP uit en upload index.html en sw.js naar de bestaande GitHub Pages repository.
-3. Klik Commit changes. Herlaad HeatWise en controleer Privé • v1.9.117.
-4. Wis de app- of browsergegevens NIET: daarin staan de opgeslagen metingen.
+1. Sluit een lopende test af en maak een JSON-back-up via Overzicht > Bescherm je gegevens.
+2. Pak deze ZIP uit, upload index.html en sw.js in je bestaande GitHub-repository.
+3. Klik op Commit changes; herlaad de app en controleer Privé • v1.9.118.
+4. Wis geen browsergegevens of appgegevens; daarin staan de opgeslagen metingen.
