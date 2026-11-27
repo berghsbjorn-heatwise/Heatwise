@@ -1,12 +1,12 @@
-HeatWise v1.9.124 – volgorde van de Zibro-weekgrafiek
+HeatWise v1.9.125 – basislijn onder Zibro-weekgrafiek
 
-- Weekdag en datum staan nu boven de blauwe balken.
-- Branduren blijven vlak boven de bijbehorende balk staan.
-- Minimumtemperatuur en duidelijke kostenvakjes staan onder de balken.
-- Kalenderweken, maandkeuze, maandtotalen, berekeningen, testgegevens en overige appfuncties blijven ongewijzigd.
+- Eén doorlopende subtiele grijsblauwe lijn direct onder de blauwe balken, zoals in het goedgekeurde voorbeeld.
+- De lijn loopt ook door bij dagen zonder branduren.
+- Dag/datum bovenaan, branduren boven de balken, minimumtemperatuur en kostenvakjes eronder blijven ongewijzigd.
+- De overige appfuncties, berekeningen en gegevensopslag zijn niet aangepast.
 
-Installeren:
-1. Maak voor de zekerheid eerst een JSON-back-up in HeatWise.
+Installatie:
+1. Maak voor de zekerheid een JSON-back-up in HeatWise.
 2. Pak het ZIP-bestand uit.
 3. Upload index.html en sw.js naar https://github.com/berghsbjorn-heatwise/Heatwise/upload/main
-4. Bevestig de vervanging en open HeatWise opnieuw.
+4. Bevestig de wijzigingen en open HeatWise opnieuw.

@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.124: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.125: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -976,20 +976,20 @@ header small{font-size:12px}
 #hw57Analysis .hw62-intro,#hw57Analysis #hw62Origin{display:none!important}
 #hw62Forecast .hw62-count{margin:9px 0 0;font-size:12px;color:#cad8de;font-weight:650}
 #hw62Forecast .hw62-metrics{margin-bottom:4px}
-/* v1.9.124: rustige prijslijn met één oranje recentste prijs. */
+/* v1.9.125: rustige prijslijn met één oranje recentste prijs. */
 #sources #hwPetrolHistorySvg rect[data-price-date]{cursor:pointer;outline:none}
 #sources #hwPetrolHistorySvg rect[data-price-date]:focus{stroke:#794313;stroke-width:2.5}
 #sources #hwPetrolHistorySvg circle[data-price-date]{cursor:pointer;outline:none}
 #sources #hwPetrolHistorySvg circle[data-price-date]:focus{stroke:#0c365d;stroke-width:3}
 #sources .hw-petrol-selected-point{border:1px solid #a9c8eb;border-radius:9px;background:#edf5ff;color:#143b64;padding:7px 10px;margin-bottom:8px;font-size:13px;font-weight:700}
-/* HeatWise v1.9.124 – kalenderweken & dagminimum */
+/* HeatWise v1.9.125 – kalenderweken & dagminimum */
 #register .hw120-weeklabel,#heating .hw120-weeklabel{text-align:center;font-size:13px;font-weight:650;color:#d6e6ef;margin:5px 0 0}
 #register .hw120-weekday,#heating .hw120-weekday{font-size:11px;color:#f0f6fa;font-weight:700}
 #register .hw120-temp,#heating .hw120-temp{font-size:clamp(8px,2.4vw,11px);font-weight:650;color:#efa653;white-space:nowrap;letter-spacing:-.3px}
 #register .hw120-weather-source,#heating .hw120-weather-source{color:#bfd0d9;font-size:10px;line-height:1.35;margin:5px 2px 3px}
 #register .hw65-day:has(.hw120-temp),#heating .hw65-day:has(.hw120-temp){gap:5px}
 #register .hw65-page,#heating .hw65-page{min-width:0}
-/* HeatWise v1.9.124 – compacte temperatuurwaarden en duidelijke dagkosten in Zibro-kalenderweken */
+/* HeatWise v1.9.125 – compacte temperatuurwaarden en duidelijke dagkosten in Zibro-kalenderweken */
 #register .hw65-day .hw121-cost,#heating .hw65-day .hw121-cost{
  display:flex;align-items:center;justify-content:center;box-sizing:border-box;
  width:100%;min-height:27px;padding:5px 1px;border-radius:6px;
@@ -1001,7 +1001,7 @@ header small{font-size:12px}
  font-size:clamp(10px,2.7vw,12px);letter-spacing:0;
 }
 
-/* HeatWise v1.9.124 – branduren tegen de juiste balk, lege toekomstige dagen */
+/* HeatWise v1.9.125 – branduren tegen de juiste balk, lege toekomstige dagen */
 #register #hw57MonthZ .hw123-bars .hw65-bar-area{height:130px;overflow:visible}
 #register #hw57MonthZ .hw123-bar-group{position:relative;display:flex;align-items:flex-end;justify-content:center;width:100%;max-width:36px;flex-shrink:0}
 #register #hw57MonthZ .hw123-bar{width:76%;height:100%;min-height:3px;max-width:36px}
@@ -1009,11 +1009,19 @@ header small{font-size:12px}
 #register #hw57MonthZ .hw123-bars .hw120-temp{min-height:15px;display:block}
 #register #hw57MonthZ .hw123-cost-empty{display:block;width:100%;min-height:27px}
 
-/* HeatWise v1.9.124 – dag en datum boven de balken; overige meetwaarden ongewijzigd */
+/* HeatWise v1.9.125 – dag en datum boven de balken; overige meetwaarden ongewijzigd */
 #register #hw57MonthZ .hw123-bars{align-items:start}
 #register #hw57MonthZ .hw123-bars .hw65-day{justify-content:flex-start}
 #register #hw57MonthZ .hw123-bars .hw65-bar-area{margin-top:8px}
-</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.124</span></header>
+
+/* HeatWise v1.9.125 – één doorlopende, subtiele basislijn onder de Zibro-weekbalken. */
+#register #hw57MonthZ .hw123-bars .hw65-day:first-child .hw65-bar-area{position:relative}
+#register #hw57MonthZ .hw123-bars .hw65-day:first-child .hw65-bar-area::after{
+ content:"";position:absolute;bottom:0;left:0;width:calc(700% + 18px);height:1px;
+ background:rgba(160,184,199,.35);pointer-events:none;z-index:0;
+}
+#register #hw57MonthZ .hw123-bars .hw123-bar-group{z-index:1}
+</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.125</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -2896,7 +2904,7 @@ el('bellStart').onclick=()=>{
 })();
 </script>
 <script>
-/* HeatWise v1.9.124: official price change points evenly spaced, with actual dates shown. */
+/* HeatWise v1.9.125: official price change points evenly spaced, with actual dates shown. */
 (function(){
  const $=id=>document.getElementById(id);
  const from='2026-08-01';
@@ -3401,7 +3409,7 @@ function hw59ShowMonth(id,days,table,desc){
  host.append(graph,details);
  hw59MonthGraph(key,days,hw59Modes[key]||'hours',desc);
 }
-// v1.9.124 – echte ISO-kalenderweken en dagminimum buiten voor de Zibro.
+// v1.9.125 – echte ISO-kalenderweken en dagminimum buiten voor de Zibro.
 const hw120WeekNames=['Ma','Di','Wo','Do','Vr','Za','Zo'];
 const hw120DayMinCache=Object.create(null);
 const hw120PendingWeather=new Set();
