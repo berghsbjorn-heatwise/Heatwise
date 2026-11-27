@@ -1,17 +1,15 @@
-HeatWise v1.9.118 — eenvoudige petroleumprijsgrafiek (optie 1)
+HeatWise v1.9.119 — petroleumprijsgrafiek
 
-Vanaf v1.9.117 is alleen de vormgeving van de petroleumprijsgrafiek veranderd:
-- Eén blauwe lijn over de beschikbare breedte en kleine blauwe punten voor eerdere prijzen.
-- Alleen de meest recente bekende officiële prijs krijgt een oranje meetpunt en prijslabel.
-- Tik op een vroeger meetpunt voor de bijbehorende datum en prijs.
-- Het oranje label verschuift automatisch mee met de recentste prijs, of die nu stijgt of daalt.
-- Geen vaste rechterkolom met blauwe labels of kruisende verbindingslijnen meer.
+Upload op GitHub uitsluitend de bestanden index.html en sw.js naar de hoofdmap van de HeatWise-repository. Beide bestanden vervangen hun bestaande versies. Dit ZIP-bestand hoef je niet rechtstreeks te uploaden.
 
-Alle oorspronkelijke prijsdatums, prijswaarden, aankopen, kostenberekeningen, gas- en Zibro-testen,
-tankcycli, prognoses en de bestaande buitentemperatuurophaling blijven ongewijzigd.
+Wat verandert:
+- Alle officiële prijswijzigingen staan op gelijke horizontale afstand.
+- Onder elk meetpunt staat de werkelijke datum (dd/mm).
+- De nieuwste officiële prijs krijgt een oranje meetpunt en prijslabel.
+- Bij meer wijzigingen is de grafiek horizontaal verschuifbaar.
+- Tik op een meetpunt voor volledige datum en prijs.
+- De grafiek verduidelijkt dat gelijke afstand geen kalender-tijdschaal is.
 
-Installeren:
-1. Sluit een lopende test af en maak een JSON-back-up via Overzicht > Bescherm je gegevens.
-2. Pak deze ZIP uit, upload index.html en sw.js in je bestaande GitHub-repository.
-3. Klik op Commit changes; herlaad de app en controleer Privé • v1.9.118.
-4. Wis geen browsergegevens of appgegevens; daarin staan de opgeslagen metingen.
+Geen wijzigingen aan je opgeslagen prijzen, Zibro-tests, tankcycli, kostenberekeningen en weerfunctionaliteit.
+
+Advies: maak vooraf een HeatWise-JSON-back-up en sluit een lopende test af. Een nieuwe serviceworker-cache zorgt ervoor dat de app de gewijzigde bestanden kan ophalen. Heropen/ververs de app na de GitHub-upload.
