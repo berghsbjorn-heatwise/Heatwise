@@ -1,20 +1,18 @@
-HeatWise v1.9.115 — gemeten buitentemperatuur (KMI)
+HeatWise v1.9.116 — automatische buitentemperatuur hersteld
 
-Deze versie bevat alle verbeteringen van v1.9.111, v1.9.112 en v1.9.113.
-
-ACTUELE BUITENTEMPERATUUR
-- De actuele buitenwaarde komt niet meer van het Open-Meteo-weermodel, maar van het dichtstbijzijnde beschikbare KMI-station BEAUVECHAIN (6458, ongeveer 24 km van de huidige app-locatie Tienen), of DIEPENBEEK (6477, 27 km) indien de eerste geen recente gegevens heeft.
-- Bron: KMI open data (CC BY 4.0); bij verbindingsproblemen wordt het openbare CORS-doorstuurpunt weerattest.be geprobeerd. Attributie: KMI / weerattest.be (CC BY 4.0) waar van toepassing.
-- Een stationsmeting is echt gemeten, maar NIET gelijk aan een thermometer bij jouw woning. Verschillen van circa 1 °C of meer kunnen bestaan. Alleen een eigen buitensensor zou exact lokaal meten.
-- Als de gemeten gegevens ontbreken, te oud zijn of de verbinding faalt, houdt HeatWise de vorige waarde aan of laat je de buitentemperatuur zelf invullen. De app verzint geen waarde en schakelt niet stil terug naar een weersvoorspelling.
-- Geen tijdsaanduiding op het scherm; de tijd wordt alleen intern gecontroleerd om verouderde metingen af te wijzen.
-- Ophalen bij openen en maximaal elke 15 minuten bij gebruik. Handmatige correctie blijft op dezelfde dag behouden totdat je expliciet verversing vraagt.
-- Tijdens een lopende Zibro-test blijft de ingevulde buitentemperatuur onveranderd bij automatisch vernieuwen van Vandaag. De eigen knop 'Automatisch ophalen' in de test haalt uitdrukkelijk de nieuwe KMI-meting op.
-
-Historische weeranalyses (afzonderlijke weerserie), bestaande testgegevens, kosten, tankcycli, prognoses en petroleumprijzen worden NIET aangepast.
+- De vorige KMI-aanvraag gebruikte foutief het AWS-meetnet voor Beauvechain. Beauvechain wordt nu via de officiële synoptische KMI-dienst (SYNOP) opgevraagd.
+- Diepenbeek is de officiële AWS-reserve. Er zijn directe aanvragen en een gedocumenteerde CORS-doorgang.
+- Indien beide officiële verbindingen mislukken, wordt automatisch een temperatuurbenadering van Open-Meteo voor Tienen opgehaald. HeatWise vermeldt duidelijk 'Open-Meteo · benadering'; dit is géén gemeten buitentemperatuur.
+- Handmatig aanpassen blijft mogelijk. Reeds opgeslagen testen, metingen en kosten worden niet gewijzigd. Een automatische update mag de ingevulde buitentemperatuur tijdens een lopende Zibro-test niet wijzigen.
+- De bestaande functies, v1.9.113-grafiek, opwarmprognose en registraties zijn behouden.
 
 INSTALLATIE
-1. Sluit een eventuele lopende Zibro-test af en maak een JSON-back-up.
-2. Upload index.html en sw.js naar GitHub/main. Wis geen sitegegevens.
-3. Herlaad HeatWise en controleer versie v1.9.115.
-4. Test op je eigen smartphone of de KMI-bron bereikbaar is. Als de actuele meting niet lukt, corrigeer de temperatuur tijdelijk handmatig met het potloodje en meld het, dan bekijken we de netwerktoegang. De gemeten waarden mogen niet worden verzonnen.
+1. Sluit een lopende Zibro-test af en maak in de app een JSON-back-up.
+2. Vervang op GitHub uitsluitend index.html en sw.js.
+3. Controleer in de app of versie v1.9.116 wordt weergegeven.
+4. Test de buitentemperatuur op Vandaag en Zibro; controleer de bronvermelding.
+
+TESTSTATUS
+De JavaScript-syntax en gesimuleerde KMI-/Open-Meteo-antwoorden zijn getest. Een echte fetch vanaf je smartphone naar de externe diensten kan vanuit deze omgeving niet worden bevestigd.
+
+Bron: KMI/RMI open data (CC BY 4.0); terugvalbron Open-Meteo-model.

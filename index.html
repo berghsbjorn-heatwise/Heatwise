@@ -1,4 +1,4 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.115: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#132b3b"><link rel="manifest" href="manifest.webmanifest"><title>HeatWise</title><!-- HeatWise v1.9.116: weekgrafiek;  tankcycluscorrectie, resterende branduren, compacte testresultaten; T1 behouden --><style>
 :root{font-family:system-ui,Arial,sans-serif;color:#172b3c;background:#edf3f6}*{box-sizing:border-box}body{margin:0}.app{max-width:700px;margin:auto;min-height:100vh;background:#f8fafc;padding:18px 16px 90px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}h1{margin:0;font-size:28px}h2{font-size:19px;margin:0 0 12px}small,.muted{color:#64748b}.card{background:white;border:1px solid #e1e8ee;border-radius:18px;padding:17px;margin:12px 0;box-shadow:0 2px 12px #19354a0a}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}input,select{width:100%;font:inherit;border:1px solid #cbd5e1;border-radius:10px;padding:11px;background:white;color:#172b3c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{border:0;border-radius:11px;padding:12px 14px;background:#156c86;color:white;font-weight:700;cursor:pointer}.btn.alt{background:#e6f0f4;color:#15546c}.btn.danger{background:#fee2e2;color:#9f1239}.btn:disabled{opacity:.5}.wide{width:100%;margin-top:12px}.tabs{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:center;border-top:1px solid #d9e2e9;padding:7px 3px env(safe-area-inset-bottom)}.tabs button{flex:1;max-width:175px;border:0;background:transparent;padding:7px 2px;color:#64748b;font-size:11px}.tabs button.active{color:#0c657d;font-weight:800}.tabs b{display:block;font-size:21px}.hidden{display:none}.result{border-left:4px solid #156c86;background:#f1f8fa;padding:12px;border-radius:9px;margin:10px 0}.price{font-size:23px;font-weight:800}.pill{background:#e3f5ec;color:#12613e;padding:4px 8px;border-radius:30px;font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.warning{color:#92400e;background:#fffbeb;border-radius:9px;padding:10px;font-size:13px}.history{border-bottom:1px solid #e5e7eb;padding:10px 0}.history:last-child{border:0}p{line-height:1.45}details{margin-top:12px}summary{cursor:pointer;font-weight:650}footer{font-size:12px;color:#64748b;margin-top:18px}
 
 /* v1.3: compact dashboard */
@@ -973,11 +973,11 @@ header small{font-size:12px}
 #hw57Analysis .hw62-intro,#hw57Analysis #hw62Origin{display:none!important}
 #hw62Forecast .hw62-count{margin:9px 0 0;font-size:12px;color:#cad8de;font-weight:650}
 #hw62Forecast .hw62-metrics{margin-bottom:4px}
-/* v1.9.115: aanraakbare prijspunten en rustige, leesbare blauwe labels */
+/* v1.9.116: aanraakbare prijspunten en rustige, leesbare blauwe labels */
 #sources #hwPetrolHistorySvg circle[data-price-date]{cursor:pointer;outline:none}
 #sources #hwPetrolHistorySvg circle[data-price-date]:focus{stroke:#0c365d;stroke-width:3}
 #sources .hw-petrol-selected-point{border:1px solid #a9c8eb;border-radius:9px;background:#edf5ff;color:#143b64;padding:7px 10px;margin-bottom:8px;font-size:13px;font-weight:700}
-</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.115</span></header>
+</style></head><body><main class="app"><header><div><h1>🔥 HeatWise</h1><small>Stay warm. Spend less.</small></div><span class="pill">Privé • v1.9.116</span></header>
 <section id="today"><div class="dashboard-inputs"><div class="card today-fields hw-today-compact"><h2>🏠 Vandaag</h2>
 <div class="hw-weather-head" id="hwWeatherTop">
  <div class="hw-weather-inline">
@@ -985,7 +985,7 @@ header small{font-size:12px}
   <div class="hw-weather-text"><div class="hw-weather-title">Buitentemperatuur <span>· KMI-weerstation</span></div><div class="hw-weather-reading"><input id="hwTopOutside" type="text" inputmode="decimal" aria-label="Buitentemperatuur in graden Celsius" value="" readonly><span>°C</span></div></div>
   <div class="hw-weather-actions"><button type="button" id="hwTopRefresh" class="btn" title="Buitentemperatuur ophalen" aria-label="Buitentemperatuur ophalen">↻</button><button type="button" id="hwTopEdit" class="btn alt" title="Buitentemperatuur handmatig aanpassen" aria-label="Buitentemperatuur aanpassen">✎</button></div>
  </div>
- <div id="hwTopWeatherStatus" class="hw-weather-status" aria-live="polite">↻ Gemeten buitentemperatuur ophalen</div>
+ <div id="hwTopWeatherStatus" class="hw-weather-status" aria-live="polite">↻ Buitentemperatuur ophalen</div>
 </div>
  
  <div class="hw-gas-header">🔥 Actuele gasprijzen</div>
@@ -1002,7 +1002,7 @@ header small{font-size:12px}
  </div><p class="tiny">Deze waarden blijven beschikbaar voor tests en warmtebehoefte. De buitentemperatuur stel je bovenaan in.</p></details></section>
 <section id="sources" class="hidden">
  <div class="card"><button type="button" id="backSources" class="btn alt" style="margin-bottom:10px">← Terug naar Vandaag</button><h2>⛽ Actuele energieprijzen</h2><p class="muted">Gas- en petroleumprijzen worden opgehaald. Je kunt ze ook zelf aanpassen.</p>
- <div class="hw-source hw-source-old-weather" hidden aria-hidden="true"><h3>🌤️ Weer · Tienen</h3><div id="srcWeather" class="hw-source-value">Nog niet opgehaald</div><p class="tiny" id="srcWeatherInfo">Bron: KMI. Gemeten temperatuur van een weerstation in de buurt (Beauvechain of Diepenbeek), niet exact bij je woning.</p><button type="button" id="refreshWeather" class="btn wide">↻ Buitentemperatuur ophalen</button><button type="button" id="applyWeather" class="btn alt wide" disabled>Neem temperatuur over op Vandaag</button><a class="hw-source-link" href="https://www.weeronline.be/Europa/Belgie/Tienen/4053996" target="_blank" rel="noopener noreferrer">Bekijk weerwebsite ↗</a></div>
+ <div class="hw-source hw-source-old-weather" hidden aria-hidden="true"><h3>🌤️ Weer · Tienen</h3><div id="srcWeather" class="hw-source-value">Nog niet opgehaald</div><p class="tiny" id="srcWeatherInfo">KMI-meting waar mogelijk; anders Open-Meteo (benadering). Handmatig aanpassen blijft mogelijk.</p><button type="button" id="refreshWeather" class="btn wide">↻ Buitentemperatuur ophalen</button><button type="button" id="applyWeather" class="btn alt wide" disabled>Neem temperatuur over op Vandaag</button><a class="hw-source-link" href="https://www.weeronline.be/Europa/Belgie/Tienen/4053996" target="_blank" rel="noopener noreferrer">Bekijk weerwebsite ↗</a></div>
  <div class="hw-source"><h3>🔥 GasRadar · gasprijs</h3><div id="srcGas" class="hw-source-value">—</div><div class="hw-gas-gauge" id="gasGauge" aria-live="polite">
 <div class="hw-gauge-topline">Gasbarometer</div>
 <svg class="hw-gauge-svg" viewBox="0 0 360 208" role="img" aria-labelledby="gasGaugeTitle gasGaugeDescription">
@@ -1556,10 +1556,10 @@ function hwTankClose(litres,endAt){
 function hwApplySharedOutside(value,source='handmatig',observation=null){
  const n=hwNumber(value);if(!Number.isFinite(n)||n < -60||n > 60)return;
  for(const id of ['outside','hwOutside','bellOutside','hwMixOutside','zLogOutside']){
-  const input=document.getElementById(id);if(input)input.value=n.toLocaleString('nl-BE',{maximumFractionDigits:1});
+  const input=document.getElementById(id);if(input&&!(id==='hwOutside'&&typeof hwCurrent==='function'&&hwCurrent()))input.value=n.toLocaleString('nl-BE',{maximumFractionDigits:1});
  }
  const top=document.getElementById('hwTopOutside');if(top)top.value=n.toLocaleString('nl-BE',{maximumFractionDigits:1});
- const status=document.getElementById('hwTopWeatherStatus');if(status)status.textContent=source==='KMI'?'✓ Gemeten temperatuur · KMI '+(observation?.station||'weerstation'):'✓ Temperatuur handmatig aangepast';
+ const status=document.getElementById('hwTopWeatherStatus');if(status)status.textContent=source==='KMI'?'✓ KMI-meting · '+(observation?.station||'weerstation'):source==='Open-Meteo'?'≈ Open-Meteo · benadering':'✓ Temperatuur handmatig aangepast';
  db.settings.currentOutside=n;db.settings.currentOutsideDate=hwDateOnly();db.settings.currentOutsideSource=source;
  db.settings.currentOutsideFetchedAt=new Date().toISOString();
  if(source==='KMI'&&observation){db.settings.currentOutsideObservedAt=observation.observedAt;db.settings.currentOutsideStation=observation.station;db.settings.currentOutsideProvider=observation.source;}
@@ -1572,9 +1572,9 @@ $('outside').addEventListener('change',()=>{const n=hwNumber($('outside').value)
 $('hwTopOutside').addEventListener('change',()=>{const n=hwNumber($('hwTopOutside').value);if(Number.isFinite(n)&&n>=-60&&n<=60)hwApplySharedOutside(n,'handmatig');else alert('Vul een geldige buitentemperatuur in.');});
 $('hwTopOutside').value='—';
 // Waarnemingsbron gewijzigd: vorige Open-Meteo-modelwaarde nooit als nieuwe KMI-meting presenteren.
-if(db.settings.currentOutsideDate===hwDateOnly()&&Number.isFinite(Number(db.settings.currentOutside))&&['handmatig','KMI'].includes(db.settings.currentOutsideSource)){
+if(db.settings.currentOutsideDate===hwDateOnly()&&Number.isFinite(Number(db.settings.currentOutside))&&['handmatig','KMI','Open-Meteo'].includes(db.settings.currentOutsideSource)){
  const n=Number(db.settings.currentOutside);for(const id of ['outside','hwOutside','bellOutside','hwMixOutside','zLogOutside','hwTopOutside']){const field=document.getElementById(id);if(field)field.value=n.toLocaleString('nl-BE',{maximumFractionDigits:1});}
- document.getElementById('hwTopWeatherStatus').textContent=db.settings.currentOutsideSource==='KMI'?'✓ KMI-meting · '+(db.settings.currentOutsideStation||'weerstation'):'✓ Handmatig ingevuld';
+ document.getElementById('hwTopWeatherStatus').textContent=db.settings.currentOutsideSource==='KMI'?'✓ KMI-meting · '+(db.settings.currentOutsideStation||'weerstation'):db.settings.currentOutsideSource==='Open-Meteo'?'≈ Open-Meteo · benadering':'✓ Handmatig ingevuld';
 }else{document.getElementById('hwTopWeatherStatus').textContent='↻ Gemeten temperatuur ophalen';}
 const roundPetrol=n=>Math.round((Number(n)+Number.EPSILON)*100)/100;
 const formatPetrol=n=>Number(n).toLocaleString('nl-BE',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -2230,41 +2230,71 @@ setTimeout(()=>hw56SyncWeather(false),1000);
 zRender();
 refreshSplitPreview();boundPhaseHours();render();calculate();$('comparison').classList.add('fresh');if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script><script id="hw114KmiObservations">
-/* HeatWise v1.9.115: echte Belgische KMI/RMI AWS-waarnemingen, GEEN weermodel. */
-window.hw114FetchKmi=async function(timeoutMs=8000){
- const now=Date.now();
- const since=new Date(now-150*60000).toISOString();
- const filter="code IN (6458,6477) AND timestamp >= '"+since+"'";
- const direct=new URL('https://opendata.meteo.be/service/aws/wfs');
- direct.search=new URLSearchParams({service:'WFS',version:'2.0.0',request:'GetFeature',typeNames:'aws:aws_10min',outputFormat:'application/json',CQL_FILTER:filter});
- const proxy=new URL('https://weerattest.be/wfs');
- proxy.search=new URLSearchParams({typenames:'aws:aws_10min',CQL_FILTER:filter});
- const request=async(url,ms)=>{
-  const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),ms);
-  try{const response=await fetch(url.toString(),{signal:controller.signal,cache:'no-store',credentials:'omit'});
-   if(!response.ok)throw new Error('Waarnemingsbron HTTP '+response.status);
-   return await response.json();
-  }finally{clearTimeout(timer)}
- };
- let lastError=null;
- for(const source of [{url:direct,provider:'KMI'},{url:proxy,provider:'KMI / weerattest.be'}]){
-  try{
-   const data=await request(source.url,source.provider==='KMI'?timeoutMs:6500);
-   if(!Array.isArray(data?.features))throw new Error('Geen stationsmetingen in antwoord');
-   const good=data.features.map(x=>x?.properties||{}).filter(x=>[6458,6477].includes(Number(x.code))).map(x=>{
-    const n=typeof x.temp_dry_shelter_avg==='number'?x.temp_dry_shelter_avg:Number(x.temp_dry_shelter_avg);
-    const at=Date.parse(x.timestamp||'');return {n,at,code:Number(x.code)};
-   }).filter(x=>Number.isFinite(x.n)&&x.n>=-40&&x.n<=45&&Number.isFinite(x.at)&&x.at<=now+5*60000&&x.at>=now-50*60000).sort((a,b)=>b.at-a.at);
-   if(!good.length)throw new Error('Geen recente gemeten buitentemperatuur');
-   // Beauvechain ligt dichter bij het door HeatWise gebruikte Tienen (~24 km);
-   // als de meting daar te oud is, gebruik uitsluitend een recente KMI-meting uit Diepenbeek (~27 km).
-   const nearest=good.find(x=>x.code===6458&&x.at>=now-30*60000);
-   const selected=nearest||good[0];
-   const station=selected.code===6458?'Beauvechain':'Diepenbeek';
-   return {temperature:Math.round(selected.n*10)/10,observedAt:new Date(selected.at).toISOString(),station,stationCode:selected.code,source:source.provider};
-  }catch(e){lastError=e;}
- }
- throw lastError||new Error('Geen KMI-waarneming beschikbaar');
+/* HeatWise v1.9.116 — eerst officiële KMI SYNOP Beauvechain, dan AWS Diepenbeek.
+   Als beide onbereikbaar zijn: herkenbare Open-Meteo-benadering, nooit als echte meting labelen. */
+window.hw114FetchKmi = async function(timeoutMs=8000){
+  const now=Date.now();
+  const since=new Date(now-4*60*60000).toISOString();
+  const stations=[
+    {code:6458,kind:'synop',layer:'synop:synop_data',url:'https://opendata.meteo.be/service/synop/wfs',name:'Beauvechain',maxAge:120*60000},
+    {code:6477,kind:'aws',layer:'aws:aws_10min',url:'https://opendata.meteo.be/service/aws/ows',name:'Diepenbeek',maxAge:90*60000}
+  ];
+  function makeUrl(station,viaProxy){
+    const filter="code = "+station.code+" AND timestamp >= '"+since+"'";
+    const url=new URL(viaProxy?'https://weerattest.be/wfs':station.url);
+    url.search=new URLSearchParams(viaProxy?
+      {typenames:station.layer,CQL_FILTER:filter,sortBy:'timestamp D'}:
+      {service:'WFS',version:'2.0.0',request:'GetFeature',typeNames:station.layer,outputFormat:'application/json',CQL_FILTER:filter,sortBy:'timestamp D',count:'35'});
+    return url;
+  }
+  async function getJSON(url,limit){
+    const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),limit);
+    try{
+      const response=await fetch(url.toString(),{signal:controller.signal,cache:'no-store',credentials:'omit'});
+      if(!response.ok)throw new Error('HTTP '+response.status);
+      return await response.json();
+    }finally{clearTimeout(timer)}
+  }
+  function parseStation(data,station,provider){
+    if(!Array.isArray(data?.features))return null;
+    let best=null;
+    for(const entry of data.features){
+      const p=entry?.properties||{};
+      if(Number(p.code)!==station.code)continue;
+      const raw=station.kind==='synop'?(p.temp??p.TEMP??p.temperature):(p.temp_dry_shelter_avg??p.TEMP_DRY_SHELTER_AVG);
+      if(raw===null||raw===undefined||String(raw).trim()==='')continue;
+      const temperature=Number(String(raw).replace(',','.'));
+      const observedAt=Date.parse(p.timestamp||'');
+      if(!Number.isFinite(temperature)||temperature < -45||temperature > 50||!Number.isFinite(observedAt))continue;
+      if(observedAt>now+5*60000||observedAt<now-station.maxAge)continue;
+      if(!best||observedAt>best.at)best={at:observedAt,temperature};
+    }
+    if(!best)return null;
+    return {temperature:Math.round(best.temperature*10)/10,observedAt:new Date(best.at).toISOString(),station:station.name,stationCode:station.code,source:provider,estimated:false};
+  }
+  // De WFS is soms alleen via een publieke CORS-doorgang bereikbaar vanaf GitHub Pages.
+  // Alle vier aanvragen tegelijk houden de wachttijd beperkt en geven Beauvechain voorrang.
+  const attempts=[];
+  for(const station of stations){
+    for(const viaProxy of [false,true]){
+      attempts.push(getJSON(makeUrl(station,viaProxy),Math.min(5000,Math.max(3000,timeoutMs-2000)))
+        .then(data=>parseStation(data,station,viaProxy?'KMI via weerattest.be':'KMI'))
+        .catch(()=>null));
+    }
+  }
+  const results=await Promise.all(attempts);
+  const beauvechain=results.slice(0,2).filter(Boolean).sort((a,b)=>Date.parse(b.observedAt)-Date.parse(a.observedAt))[0];
+  if(beauvechain)return beauvechain;
+  const diepenbeek=results.slice(2).filter(Boolean).sort((a,b)=>Date.parse(b.observedAt)-Date.parse(a.observedAt))[0];
+  if(diepenbeek)return diepenbeek;
+  // Nooit een modelwaarde voorstellen als een KMI-meting. Dit is een transparante noodoplossing.
+  const forecast=new URL('https://api.open-meteo.com/v1/forecast');
+  forecast.search=new URLSearchParams({latitude:'50.8074',longitude:'4.9378',current:'temperature_2m',timezone:'Europe/Brussels',forecast_days:'1'});
+  const data=await getJSON(forecast,5500);
+  const raw=data?.current?.temperature_2m;
+  const value=raw===null||raw===undefined?NaN:Number(raw);
+  if(!Number.isFinite(value)||value < -45||value > 50)throw new Error('Ook Open-Meteo levert geen geldige temperatuur');
+  return {temperature:Math.round(value*10)/10,observedAt:new Date().toISOString(),station:'Tienen',stationCode:null,source:'Open-Meteo',estimated:true};
 };
 </script><script>
 /* HeatWise v1.9.30: Statbel-petroleum C en GasRadar-weergave. Bestaande metingen ongewijzigd. */
@@ -2313,7 +2343,7 @@ window.hw114FetchKmi=async function(timeoutMs=8000){
   if(automatic&&db.settings.currentOutsideSource==='handmatig'&&db.settings.currentOutsideDate===belgiumToday())return;
   const requestId=++hw114WeatherRequest;
   const topStatus=el('hwTopWeatherStatus'),topButton=el('hwTopRefresh');
-  if(topStatus)topStatus.textContent='↻ KMI-meting ophalen…';if(topButton)topButton.disabled=true;
+  if(topStatus)topStatus.textContent='↻ Buitentemperatuur ophalen…';if(topButton)topButton.disabled=true;
   if(!automatic){el('srcWeather').textContent='Ophalen…';el('applyWeather').disabled=true;}
   try{
    const observation=await window.hw114FetchKmi(8000);
@@ -2321,16 +2351,16 @@ window.hw114FetchKmi=async function(timeoutMs=8000){
    if(automatic&&db.settings.currentOutsideSource==='handmatig'&&db.settings.currentOutsideDate===belgiumToday())return;
    // Waarnemingen kunnen vertraagd binnenkomen; val niet terug naar een ouder meetpunt.
    const old=Date.parse(db.settings.currentOutsideObservedAt||'');
-   if(db.settings.currentOutsideSource==='KMI'&&Number.isFinite(old)&&Date.parse(observation.observedAt)<old){if(topStatus)topStatus.textContent='✓ Laatst bekende KMI-meting behouden';return;}
+   if(!observation.estimated&&db.settings.currentOutsideSource==='KMI'&&Number.isFinite(old)&&Date.parse(observation.observedAt)<old){if(topStatus)topStatus.textContent='✓ Laatst bekende KMI-meting behouden';return;}
    weather=observation.temperature;
    el('srcWeather').textContent=weather.toLocaleString('nl-BE',{maximumFractionDigits:1})+' °C';
-   hwApplySharedOutside(weather,'KMI',observation);
-   el('srcWeatherInfo').textContent='Bron: KMI, weerstation '+observation.station+' (circa '+(observation.stationCode===6458?'24':'27')+' km van Tienen). Echte meting, niet exact de temperatuur bij je woning.';
+   hwApplySharedOutside(weather,observation.estimated?'Open-Meteo':'KMI',observation);
+   el('srcWeatherInfo').textContent=observation.estimated?'Open-Meteo: modelbenadering voor Tienen. Geen officiële stationsmeting beschikbaar.': 'Bron: KMI, station '+observation.station+'. Echte meting; lokale temperatuur kan verschillen.';
    el('applyWeather').disabled=false;
   }catch(err){
    if(requestId!==hw114WeatherRequest)return;
    weather=null;
-   if(!automatic){el('srcWeather').textContent='Niet beschikbaar';el('srcWeatherInfo').textContent='Geen recente gemeten KMI-temperatuur beschikbaar. Vul de temperatuur indien nodig zelf in.';}
+   if(!automatic){el('srcWeather').textContent='Niet beschikbaar';el('srcWeatherInfo').textContent='Automatisch ophalen niet beschikbaar. Vul de temperatuur indien nodig zelf in.';}
    if(topStatus)topStatus.textContent='⚠️ Geen actuele stationsmeting. Gebruik zo nodig ✎.';
   }finally{if(requestId===hw114WeatherRequest&&topButton)topButton.disabled=false;}
  }
@@ -2976,7 +3006,7 @@ el('bellStart').onclick=()=>{
    if(chartSeries.length){
      const path=chartSeries.map((p,i)=>(i?'L':'M')+tx(p.date).toFixed(2)+' '+ty(p.price).toFixed(2)).join(' ');
      parts.push('<path d="'+path+'" fill="none" stroke="#1765d5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>');
-     // v1.9.115: nieuwste prijs eerst; labels zoeken automatisch een vrije plaats.
+     // v1.9.116: nieuwste prijs eerst; labels zoeken automatisch een vrije plaats.
      // Elk meetpunt blijft aantikbaar, ook wanneer een oud label niet meer past.
      const pts=chartSeries.map((p,i)=>({p,i,x:tx(p.date),y:ty(p.price),label:euros(p.price)}));
      const boxes=[],leaderLines=[],labelParts=[],labelledPoints=[];
@@ -3308,7 +3338,7 @@ setInterval(()=>{const t=hwCurrent(),label=el('hw110LiveDuration');if(t&&label)l
 hw110UpdateVentButtons();
 // Buitentemperatuur van de test komt uitsluitend// Buitentemperatuur van de test komt uitsluitend na het indrukken van deze knop of handmatige invoer.
 el('hw57FetchOutside')?.addEventListener('click',async()=>{const btn=el('hw57FetchOutside'),label=el('hw57OutsideStatus');btn.disabled=true;btn.textContent='Bezig…';label.textContent='';
- try{const observation=await window.hw114FetchKmi(8000);hwApplySharedOutside(observation.temperature,'KMI',observation);outside.value=nf(observation.temperature,1);outside.dataset.hw110Manual='1';label.textContent='✓ Gemeten buitentemperatuur · KMI '+observation.station;v57Render();}
+ try{const observation=await window.hw114FetchKmi(8000);hwApplySharedOutside(observation.temperature,observation.estimated?'Open-Meteo':'KMI',observation);outside.value=nf(observation.temperature,1);outside.dataset.hw110Manual='1';label.textContent=observation.estimated?'≈ Open-Meteo · benadering':'✓ KMI-meting · '+observation.station;v57Render();}
  catch(e){label.textContent='Ophalen niet gelukt. Je kunt de buitentemperatuur zelf invullen.';}
  finally{btn.disabled=false;btn.textContent='↻ Automatisch ophalen';}
 });
@@ -3716,7 +3746,7 @@ setTimeout(()=>syncOfflineWeather(false),2000);
 #heating .hw68-live-row{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #526573;padding:9px 0;font-size:13px}
 #register #hw57ActiveActions .hw57-start-title{color:#f0f6fa!important}
 </style><style>
-/* v1.9.115 Zibro: minder keuzes, duidelijke actieve test */
+/* v1.9.116 Zibro: minder keuzes, duidelijke actieve test */
 #today .hw-inside-extras{display:none!important}
 #register #hw56VentCard{display:none!important}
 #register #hw57ActiveActions>.hw57-hidden{display:none!important}
@@ -3726,7 +3756,7 @@ setTimeout(()=>syncOfflineWeather(false),2000);
 #register .hw110-stop-confirm{background:#293f4d;border:1px solid #668297;padding:13px;border-radius:12px;margin:12px 0}
 #register #hw57TestStatus.hw62-live{border:2px solid #549c7c!important}
 #register #hw110LiveDuration{font-weight:800;color:#e4fbe9!important}
-/* v1.9.115: duidelijke testacties en ventilatie met twee echte temperatuurmetingen */
+/* v1.9.116: duidelijke testacties en ventilatie met twee echte temperatuurmetingen */
 #register #hw111OfficeChoices{margin:12px 0;padding:12px;border:1px solid #536e7e;border-radius:12px}
 #register #hw111OfficeChoices.hw57-hidden{display:none!important}
 #register #hw111OfficeChoices .hw57-choice{margin:8px 0}
